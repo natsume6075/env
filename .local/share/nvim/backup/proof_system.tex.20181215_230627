@@ -1,0 +1,90 @@
+\newpage
+%%%%
+%%%%
+%\chapter{proof system} \label{proof_system}
+
+% \newcount\K % int K
+%\def\myfor#1{%
+%  \K=0 \loop\ifnum\K<#1 % for(K=0;K<10;K++)
+%  これがループ \number\K 回目です．% この行を実行
+%  \advance\K by1\repeat % end for  
+%  }
+%
+%  %  \myfor 5
+
+
+\begin{prooftree}
+  \AxiomC{$\ $}
+  \UnaryInf$\mathbb{L};\Delta;\Gamma\vdash \fCenter\ \{P[y/x]\} x=y; \{P\}$
+\end{prooftree}
+\begin{prooftree}
+  \AxiomC{$\ $}
+  \UnaryInf$\mathbb{L};\Delta;\Gamma\vdash \fCenter\ \{P[null/x]\} x=null; \{P\}$
+\end{prooftree}
+\begin{prooftree}
+  \AxiomC{$y$ has static type $C$}
+  \AxiomC{$C \preceq _{1} D$}
+  \noLine
+  \BinaryInf$\fCenter\ D\ has\  field\ f$
+  \UnaryInf$\mathbb{L};\Delta;\Gamma\vdash \fCenter\ \{P[y.f/x]\} x=y.f; \{P\}$
+\end{prooftree}
+\begin{prooftree}
+  \AxiomC{$\ $}
+  \UnaryInf$\mathbb{L};\Delta;\Gamma\vdash \fCenter\ \{P[y/x.f]\} x.f=y; \{P\}$
+\end{prooftree}
+
+Dynamic method invocation
+\begin{prooftree}
+  \AxiomC{$x$ has static type $C$}
+  \AxiomC{$C.m(\overline{x}):\{P \}\_\{Q \} \in \Gamma $ }
+    \BinaryInf$\mathbb{L};\Delta;\Gamma\vdash \fCenter \{P[x,\mathbb{L},\overline{y} / {\bf this},\thisContext,\overline{x}] \land {\bf this} \neq null\}$ 
+    \noLine
+    \UnaryInf$               \fCenter \quad z = x.m(\overline{y})$
+    \noLine
+    \UnaryInf$   \fCenter \{P[z,x,\mathbb{L},\overline{y} / ret,{\bf this},\thisContext,\overline{x}] \land {\bf this}\} $
+\end{prooftree}
+
+
+\begin{prooftree}
+  \AxiomC{$ \mathbb{L};\Delta;\Gamma\vdash \{P\} \overline{s} \{Q\}$}
+  \UnaryInfC{$ \mathbb{L};\Delta;\Gamma\vdash \{P*R\} \overline{s} \{Q*R\}$}
+\end{prooftree}
+
+Dynamic Dispatch
+\begin{prooftree}
+  \AxiomC{$x$ has static type $C$}
+    \AxiomC{$C.m(\overline{x}):\{P \}\_\{Q \} \in \Gamma $ }
+  \BinaryInf$\Delta;\Gamma\vdash \fCenter \{P[x,y / {\bf this},x] \land {\bf this} \neq null\}$ 
+  \noLine
+  \UnaryInf$               \fCenter \quad z = x.m(\overline{y})$
+  \noLine
+  \UnaryInf$                    \fCenter \{P[x,y / {\bf this},x] \land {\bf this} \neq null\} $
+\end{prooftree}
+
+
+
+
+\begin{prooftree}
+  \AxiomC{$L\oplus\mathbb{L};\Delta;\Gamma\vdash \{P\}\overline{s}\{Q\}$}
+  \UnaryInf$\mathbb{L};\Delta;\Gamma\vdash \fCenter\ \{P\}$
+  \noLine
+  \UnaryInf$ \fCenter \quad \with(L)\{\overline{s}\}$
+  \noLine
+  \UnaryInf$ \fCenter  \{Q\}$
+\end{prooftree}
+
+\begin{prooftree}
+  \AxiomC{$L\ominus\mathbb{L};\Delta;\Gamma\vdash \{P\}\overline{s}\{Q\}$}
+  \UnaryInf$\mathbb{L};\Delta;\Gamma\vdash \fCenter\ \{P\}$
+  \noLine
+  \UnaryInf$ \fCenter \quad \without(L)\{\overline{s}\}$
+  \noLine
+  \UnaryInf$ \fCenter\{Q\}$
+\end{prooftree}
+
+\begin{prooftree}
+  \AxiomC{$term$}
+\end{prooftree}
+
+
+

@@ -1,0 +1,64 @@
+# Tex snippetsaxiom
+
+snippet     \curlybrackets
+alias       \{
+abbr	      \{ hoge \}
+options     word
+  \{${1:#:target}\}${2}
+
+snippet     overline
+alias       \overline
+options     word
+  \overline{${1}}${2}
+
+snippet     mathbb
+alias       \mathbb
+options     word
+  \mathbb{${1}}${2}
+
+snippet     bf
+alias       \bf
+options     word
+  {\bf ${1}}${2}
+
+snippet     bnf_term
+abbr        && expression \\
+  && ${1:#:term}\\\${2}
+
+snippet     \begin{prooftree}
+alias       prooftree \begin{prooftree}
+abbr        make prooftree
+options     head
+  \begin{prooftree}
+    ${1:target}
+  \end{prooftree}
+
+snippet     \AxiomC
+alias       axiom \axiomc
+abbr        prooftree Axiom
+options     head
+  \AxiomC{$${1:#:term}$}${2}
+
+snippet     \UnaryInfC
+alias       unaryc \unaryc
+abbr        prooftree UnaryInfC
+options     head
+  \UnaryInfC{$${1:#:term1} ${2:\fCenter\ } ${3:#:term2}$${4}}
+
+snippet     \UnaryInf
+alias       unary \unaryinf
+abbr        prooftree UnaryInf
+options     head
+  \UnaryInf$${1:#:term1} ${2:\fCenter\ } ${3:#:term2}$${4}
+
+snippet     \BinaryInf
+alias       binary \binaryinf
+abbr        prooftree BinaryInf
+options     head
+  \BinaryInf$${1:#:term1} ${2:\fCenter\ } ${3:#:term2}$${4}
+
+snippet     env
+abbr        \mathbb{L};\Delta;\Gamma\vdash
+options     word
+  \mathbb{L};\Delta;\Gamma\vdash
+

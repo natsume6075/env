@@ -1,0 +1,16 @@
+/*
+/.*
+
+!/.config/
+/.config/*
+!/.config/nvim/
+#!/.config/karabiner/
+
+!/.vim/
+
+!/.local/
+/.local/*
+!/.local/share/
+/.local/share/*
+!/.local/share/nvim/
+# !/.local/share/karabiner/
