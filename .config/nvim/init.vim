@@ -32,11 +32,15 @@
 "                          | |                                                | |    |
 "                          | |                                                | |    |
 "                          | |                                                | |    |
+"                          command で　command 追加できる？
+"                          folding をマスターせよ
 "                          | |                                                | |    |
 " ----------------------------------------------------------------------------------------------------
+function! Hino() abort
+  echo "hino"
+endfunction
 
 augroup initvim
-  " remove all initvim autocommands
   autocmd!
 augroup END
 
@@ -61,7 +65,6 @@ endfunction
 function! g:Set_curpos(pos) abort
   echo setpos('.', a:pos)
 endfunction
-
 
 
 
@@ -116,7 +119,7 @@ set undolevels=1000
 " set clipboard+=unnamedplus
 inoremap <silent><C-r><C-r>  <C-r>*
 autocmd initvim TextYankPost *
-    \ echomsg "yank"string(v:event.regcontents)" to reg: ".v:event.regname
+      \ echomsg "yank"string(v:event.regcontents)" to reg: ".v:event.regname
 " --- viminfo --------------------------
 set viminfo+=n$XDG_DATA_HOME/nvim/viminfo
 autocmd initvim TextYankPost * :wv
@@ -128,6 +131,9 @@ autocmd initvim FocusGained * :rv!
 function! Push_queue_of_marks() abort
   echo "hoge"
 endfunction
+
+" --- Folding --------------
+
 
 
 " --- Information -------------------------
@@ -390,6 +396,7 @@ nnoremap Q kA
 nnoremap <C-p> :<C-p>
 
 " function key
+" default: map <f1> to display the help file
 " map <f4> to edit init.vim
 nnoremap <f4> :<C-u>.tabedit $XDG_CONFIG_HOME/nvim/init.vim<CR>
 " map <f5> to source init.vim
@@ -533,9 +540,9 @@ let g:airline_section_c = airline#section#create(['filename'])
 let g:airline#extensions#branch#enabled = 0
 let g:airline#extensions#readonly#enabled = 0
 let g:airline_section_b =
-    \ '%{airline#extensions#branch#get_head()}' .
-    \ '%{""!=airline#extensions#branch#get_head()?("  " . g:airline_left_alt_sep . " "):""}' .
-    \ '%t%( %M%)'
+      \ '%{airline#extensions#branch#get_head()}' .
+      \ '%{""!=airline#extensions#branch#get_head()?("  " . g:airline_left_alt_sep . " "):""}' .
+      \ '%t%( %M%)'
 let g:airline#extensions#branch#empty_message = 'not staged'
 let g:airline_section_c = ''
 
