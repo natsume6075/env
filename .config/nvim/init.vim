@@ -32,9 +32,10 @@
 "                          | |    |＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿|    | |    |
 "                          | |                                                | |    |
 "                          | |                                                | |    |
+"                          | |     command でコマンド追加できる？             | |    |
 "                          | |                                                | |    |
-"                          command で　command 追加できる？
-"                          folding をマスターせよ
+"                          | |                                                | |    |
+"                          | |                                                | |    |
 "                          | |                                                | |    |
 " ----------------------------------------------------------------------------------------------------
 function! Hino() abort
@@ -51,7 +52,6 @@ let $XDG_CONFIG_HOME = expand($HOME.'/.config')
 let $XDG_DATA_DIRS = expand('/usr/local/share:/usr/share')
 let $XDG_DATA_HOME = expand($HOME.'/.local/share')
 
-let $MY_VIM_SETTINGS = expand($HOME.'/.vim/my_settings')
 let $CURRENT_FILE_NAME = split(expand("%"),"/")[-1]
 
 
