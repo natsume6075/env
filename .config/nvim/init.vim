@@ -404,23 +404,26 @@ endif
 
 
 " ---------------------------------------
-"  Design:
+"  Appearance:
 " ---------------------------------------
 
 " Color Scheme: -----------------------
+set runtimepath+=$XDG_CONFIG_HOME/nvim/runtime/
+
 " :Unite -auto-preview colorscheme
 " で一覧を表示する
 
-" colorscheme default
+colorscheme my_default
 " colorscheme molokai
 " colorscheme chocolatepapaya
 " colorscheme anotherdark
 " colorscheme bubblegum
 " colorscheme buddy
-colorscheme buttercream
 " colorscheme emacs
 " colorscheme elflord
-" colorscheme buttercream
+" colorscheme desert
+" colorscheme hybrid_reverse
+" colorscheme hybrid
 
 " set background=dark
 
@@ -438,7 +441,7 @@ hi Folded     term=standout ctermbg=Black ctermfg=Green
 hi FoldColumn term=standout ctermbg=Black ctermfg=Green
 " 欲を言うなら，fold しても1行目の構文ハイライトは維持したい。
 
-"
+
 " https://h2plus.biz/hiromitsu/entry/674
 " カラースキームをまとめたサイト
 hi SpellBad NONE
@@ -452,12 +455,10 @@ hi SpellLocal NONE
 let g:airline_theme = 'luna'
 
 
-" ---------------------------------------
-"  conceal:
-" ---------------------------------------
+" --- Conceal: -------------------- {{{
 set conceallevel=2
 set concealcursor=""
-
+" }}}
 
 
 " ---------------------------------------
@@ -653,7 +654,8 @@ xmap <C-k>     <plug>(neosnippet_expand_target)
 "imap <hoge>    <plug>(neosnippet_start_unite_snippet)
 " }}}
 
-" vim-surround ----------------
+" vim-surround ---------------- {{{
+" }}}
 
 " caw : commentout------------- {{{
 nmap <silent> ?? <plug>(caw:hatpos:toggle)
@@ -778,7 +780,6 @@ let g:airline_symbols.maxlinenr = ''
 " endif
 " Ref: https://github.com/zchee/.nvim/blob/master/init.vim
 " }}}
-
 
 " evervim --------------------- {{{
 
