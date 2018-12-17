@@ -1,4 +1,5 @@
 " vim: foldmethod=marker
+" vim: foldmarker=\ {{{,\ }}}
 "                                          _ __ _,  ＿_
 "                                      ,.-' 丶   '｀丶/
 "                                    ／ ）     ￣     ＼
@@ -115,28 +116,96 @@ nnoremap <silent> <C-g> <C-b>
 set undodir=$XDG_DATA_HOME/nvim/undo
 set undofile
 set undolevels=1000
-" --- Yank, Paste, Resisters -----------
+" --- Yank, Paste, Resisters ----------- {{{
 " set clipboard+=unnamedplus
 inoremap <silent><C-r><C-r>  <C-r>*
 autocmd initvim TextYankPost *
       \ echomsg "yank"string(v:event.regcontents)" to reg: ".v:event.regname
-" --- viminfo --------------------------
+" }}}
+
+" --- viminfo -------------------------- {{{
 set viminfo+=n$XDG_DATA_HOME/nvim/viminfo
 autocmd initvim TextYankPost * :wv
 autocmd initvim FocusGained * :rv!
-" --- Marks ----------------todo:
+" }}}
+
+" --- Marks ----------------todo: {{{
 " mark[0-9] をキューのように扱うものとして再構成する。
 " mark 0 に追加して，mark9 は削除する。
 " nnoremap mm
 function! Push_queue_of_marks() abort
   echo "hoge"
 endfunction
+" }}}
 
-" --- Folding --------------
+" --- Folding -------------- {{{
+set foldenable
 set foldmethod=marker
+" set foldmethod=indent
+set foldmarker=\ {{{,\ }}}
+set foldtext=FoldCCtext()
+set foldcolumn=3
+set fillchars=vert:\|
+noremap  <silent> zw :echo FoldCCnavi()<CR>
+let g:foldCCtext_head = ''
+let g:foldCCtext_tail = 'printf(" %s[%4d lines Lv%-2d ]%s  ", v:folddashes, v:foldend-v:foldstart+1, v:foldlevel, v:folddashes)'
+" foldcolumn が足りなくなった時に，自動で大きくする バグあり
+" let g:foldCCtext_enable_autofdc_adjuster = 1
+nnoremap <silent> zf za
+nnoremap <silent> zF zA
+nnoremap <silent> zM zM
+nnoremap <silent> zj zj
+nnoremap <silent> zk zk
+nnoremap <silent> zd zd
+nnoremap <silent> zD zD
+nnoremap <silent> zc zc
+nnoremap <silent> zC zC
+nnoremap <silent> zi zi
+" なにかつぶした
+nnoremap <silent> zh zMzv
+nnoremap <silent> za zR
+nnoremap <silent> zA zM
+nnoremap <silent>zj :<C-u>call <SID>smart_foldjump('j')<CR>
+nnoremap <silent>zk :<C-u>call <SID>smart_foldjump('k')<CR>
 
+function! s:smart_foldjump(direction)" {{{
+  if a:direction == 'j'
+    let [cross, trace, compare] = ['zj', ']z', '<']
+  else
+    let [cross, trace, compare] = ['zk', '[z', '>']
+  endif
 
-" --- Information -------------------------
+  let i = v:count1
+  while i
+    let save_lnum = line('.')
+    exe 'keepj norm! '. trace
+    let trace_lnum = line('.')
+    exe save_lnum
+
+    exe 'keepj norm! '. cross
+    let cross_lnum = line('.')
+    if cross_lnum != save_lnum && eval('cross_lnum '. compare. ' trace_lnum')
+          \ || trace_lnum == save_lnum
+      let i -= 1
+      continue
+    endif
+
+    exe trace_lnum
+    let i -= 1
+  endwhile
+  mark `
+  norm! zz
+endfunction
+" }}}
+
+" Save fold settings.
+autocmd BufWritePost * if expand('%') != '' && &buftype !~ 'nofile' | mkview | endif
+autocmd BufRead * if expand('%') != '' && &buftype !~ 'nofile' | silent loadview | endif
+" Don't save options.
+set viewoptions-=options
+" }}}
+
+" --- Information ------------------------- {{{
 " 行番号を表示
 set number
 " ビープ音を可視化
@@ -151,10 +220,9 @@ set showcmd
 set laststatus=2
 " コマンドラインの補完
 set wildmode=list:longest
+" }}}
 
-
-
-" --- Tab / invisible character -----------
+" --- Tab / invisible character ----------- {{{
 " 不可視文字を可視化(タブが「▸-」と表示される)
 set list listchars=tab:\▸\-
 " Tab文字を半角スペースにする
@@ -171,9 +239,9 @@ set smartindent
 set listchars=tab:>-,trail:.
 " 不可視文字を表示する
 set list
+" }}}
 
-
-" --- Search --------------------
+" --- Search -------------------- {{{
 " 検索文字列が小文字の場合は大文字小文字を区別なく検索する
 set ignorecase
 " 検索文字列に大文字が含まれている場合は区別して検索する
@@ -184,7 +252,7 @@ set incsearch
 set wrapscan
 " 検索語をハイライト表示
 set hlsearch
-
+" }}}
 
 " 英数を切り替えるための関数を定義する
 if executable('osascript')
@@ -308,6 +376,7 @@ if dein#load_state('$XDG_CACHE_HOME/dein')
   call dein#add('vim-jp/vimdoc-ja')
   " call dein#add('thinca/vim-ft-help_fold')
   call dein#add('tpope/vim-fugitive')
+  call dein#add('LeafCage/foldCC.vim')
 
 
   " Required :
@@ -355,6 +424,10 @@ highlight conceal ctermfg=7 ctermbg=black guibg=darkgray
 " 全角スペースの背景を白に変更
 autocmd initvim Colorscheme highlight FullWidthSpace ctermbg=white
 autocmd initvim VimEnter match FullWidthSpace /　/
+
+hi Folded     term=standout ctermbg=Black ctermfg=Green
+hi FoldColumn term=standout ctermbg=Black ctermfg=Green
+" 欲を言うなら，fold しても1行目の構文ハイライトは維持したい。
 
 "
 " https://h2plus.biz/hiromitsu/entry/674
@@ -408,6 +481,9 @@ noremap!  
 nnoremap Q kA
 " default: same as [k]
 nnoremap <C-p> :<C-p>
+
+nnoremap <silent> <ESC> :nohl<CR><ESC>
+
 
 noremap H ^
 noremap L $
