@@ -82,6 +82,10 @@ set swapfile
 set autoread
 " hidden current buffer and open other files
 set hidden
+" 自動改行しない
+set textwidth=0
+
+
 " spelling check
 set spell
 set spelllang=en,cjk
@@ -151,6 +155,7 @@ let g:foldCCtext_head = ''
 let g:foldCCtext_tail = 'printf(" %s[%4d lines Lv%-2d ]%s  ", v:folddashes, v:foldend-v:foldstart+1, v:foldlevel, v:folddashes)'
 " foldcolumn が足りなくなった時に，自動で大きくする バグあり
 " let g:foldCCtext_enable_autofdc_adjuster = 1
+" Ref: http://leafcage.hateblo.jp/entry/20111223/1324705686
 nnoremap <silent> zf za
 nnoremap <silent> zF zA
 nnoremap <silent> zM zM
@@ -197,12 +202,14 @@ function! s:smart_foldjump(direction)" {{{
   norm! zz
 endfunction
 " }}}
+" Ref: http://d.hatena.ne.jp/leafcage/20130212/1360636769
 
 " Save fold settings.
-autocmd BufWritePost * if expand('%') != '' && &buftype !~ 'nofile' | mkview | endif
-autocmd BufRead * if expand('%') != '' && &buftype !~ 'nofile' | silent loadview | endif
+autocmd BufWritePost * if expand('%') != '' && &buftype !~ 'nofile'                       | mkview | endif
+autocmd BufRead      * if expand('%') != '' && &buftype !~ 'nofile' && &buftype !~ 'help' | silent loadview | endif
 " Don't save options.
 set viewoptions-=options
+" Ref: https://vim-jp.org/vim-users-jp/2009/10/08/Hack-84.html
 " }}}
 
 " --- Information ------------------------- {{{
@@ -260,6 +267,7 @@ if executable('osascript')
   let g:force_alphanumeric_input_command = "osascript -e 'tell application \"System Events\" to key code " . s:keycode_jis_eisuu . "' &"
   inoremap   :call system(g:force_alphanumeric_input_command)
 endif
+" Ref:
 
 
 " about help ---------------------
@@ -418,12 +426,13 @@ colorscheme buttercream
 
 
 " highlight statusline ctermfg=248 ctermbg=23
+hi Visual ctermbg = 0
 
 " conceal        xxx ctermfg=7 ctermbg=242 guifg=lightgrey guibg=darkgrey
 highlight conceal ctermfg=7 ctermbg=black guibg=darkgray
 " 全角スペースの背景を白に変更
-autocmd initvim Colorscheme highlight FullWidthSpace ctermbg=white
-autocmd initvim VimEnter match FullWidthSpace /　/
+autocmd initvim colorscheme highlight fullwidthspace ctermbg=white
+autocmd initvim vimenter match fullwidthspace /　/
 
 hi Folded     term=standout ctermbg=Black ctermfg=Green
 hi FoldColumn term=standout ctermbg=Black ctermfg=Green
@@ -485,30 +494,43 @@ nnoremap <C-p> :<C-p>
 nnoremap <silent> <ESC> :nohl<CR><ESC>
 
 
+" http://www.ipentec.com/document/regularexpression-url-detect
+" https://
+
 noremap H ^
 noremap L $
 noremap M M
-noremap + K
+noremap <expr> +  Open_reference_OR_URL()
+
+function! Open_reference_OR_URL() abort" {{{
+  if expand('<cWORD>') =~ 'https\?:\/\/'
+    return ":!open ".expand('<cWORD>')."\<CR>"
+  else
+    return "K"
+  endif
+endfunction
+" }}}
+
 " 思い通りになるJK
 " default: Concat some lines
 noremap <expr> J   To_bottom_of_window_OR_scroll_next_page()
 " default: reference to help
 noremap <expr> K   To_top_of_window_OR_scroll_previous_page()
 
-function! To_bottom_of_window_OR_scroll_next_page() abort
+function! To_bottom_of_window_OR_scroll_next_page() abort" {{{
   if winline() > winheight(0) - 5
     return "\<C-f>L"
   else
     return "L"
   endif
-endfunction
-function! To_top_of_window_OR_scroll_previous_page() abort
+endfunction" }}}
+function! To_top_of_window_OR_scroll_previous_page() abort" {{{
   if winline() < 5
     return "\<C-b>H"
   else
     return "H"
   endif
-endfunction
+endfunction" }}}
 
 " function key
 " default: map <f1> to display the help file
@@ -570,7 +592,7 @@ inoremap <<ENTER> <><ESC>i<CR><Esc><S-o>
 "  plugin setting:
 " ---------------------------------------
 
-" deoplete ---------------------
+" deoplete --------------------- {{{
 
 if !has('nvim')
   call dein#add('roxma/nvim-yarp')
@@ -612,9 +634,9 @@ inoremap <silent><expr> <Down>  pumvisible() ? deoplete#close_popup()."\<Down>" 
 "      \ pumvisible() ? "\a<BS>".deoplete#mappings#manual_complete() :
 "      \ <sid>Check_back_space() ? "\<ENTER>" :
 "      \ "\<ENTER>"
+" }}}
 
-
-" neosnippet ---------------------
+" neosnippet --------------------- {{{
 let g:neosnippet#snippets_directory='$XDG_CONFIG_HOME/nvim/my_snippets'
 
 " note: it must be "imap" and "smap".  it uses <plug> mappings.
@@ -629,17 +651,17 @@ smap <C-k>     a<C-h><plug>(neosnippet_expand)
 smap <C-l>     <plug>(neosnippet_jump)
 xmap <C-k>     <plug>(neosnippet_expand_target)
 "imap <hoge>    <plug>(neosnippet_start_unite_snippet)
-
+" }}}
 
 " vim-surround ----------------
 
-" caw : commentout-------------
+" caw : commentout------------- {{{
 nmap <silent> ?? <plug>(caw:hatpos:toggle)
 vmap <silent> ?? <plug>(caw:hatpos:toggle)
 let g:caw_no_default_keymappings = 1
+" }}}
 
-
-" airline : statusline ------------- todo:lightline に乗り換える？
+" airline : statusline ------------- todo:lightline に乗り換える？ {{{
 let g:airline#extensions#default#layout = [
       \ [ 'a', 'b', 'c' ],
       \ [ 'x', 'y', 'z', 'error', 'warning' ]
@@ -754,14 +776,16 @@ let g:airline_symbols.maxlinenr = ''
 " if dein#source('vim-airline')
 "   let g:airline_section_c = airline#section#create(['%<', 'readonly', 'path'])
 " endif
+" Ref: https://github.com/zchee/.nvim/blob/master/init.vim
+" }}}
 
 
-
-" evervim ---------------------
+" evervim --------------------- {{{
 
 "S=s1:U=950c7:E=16ed29afffd:C=1677ae9d0f8:P=1cd:A=en-devtoken:V=2:H=5eb05138265db2c1bf56b1b5fea42e0b
 " first time settings
 " :EvervimSetup
+" }}}
 
 " ---------------------------------------
 "  Language Specific Setting:
@@ -780,6 +804,10 @@ let $LANG_COMMENT_TOKEN = "no defined"
 " autocmd initvim FileType hogehogengo
 "      \ let $LANG = "hogehogengo"
 
+
+" todo: 全部
+" &filetype =~ 'help'
+" でいい説がある
 
 " vim --------------------------
 autocmd initvim FileType vim
@@ -807,6 +835,7 @@ autocmd initvim VimEnter *
 
 
 
+
 " ----------------------------------------------
 "
 " おしまい
@@ -814,7 +843,7 @@ autocmd initvim VimEnter *
 "
 "       "<<<" "lll"
 "       " //        eee "
-"       "/\ /\      /\ /\   " 
+"       "/\ /\      /\ /\   "
 "        ￣￣￣￣￣￣￣￣￣￣   >
 "        ￣                     >
 "
