@@ -199,11 +199,11 @@ endif
 set helplang& helplang=en,ja
 
 " about tab/pain ---------------------
-let mapleader = "t"
+let mapleader = "s"
 
 " split pain horizontally/vertically
-nnoremap <silent> <Leader>s :split<CR>
-nnoremap <silent> <Leader>v :vsplit<CR>
+nnoremap <silent> <Leader>S :split<CR>
+nnoremap <silent> <Leader>s :vsplit<CR>
 " focus to another pane
 nnoremap <silent> <Leader>j <C-w>w
 " swap to another pane
@@ -217,13 +217,13 @@ nnoremap <silent> <Leader>< <C-w><
 nnoremap <silent> <Leader>+ <C-w>+
 nnoremap <silent> <Leader>- <C-w>-
 " new tab
-nnoremap <silent> <Leader>t :tabnew<CR>
+nnoremap <silent> <Leader>n :tabnew<CR>
 " show previous/next tab
 nnoremap <silent> <Leader>h gT
 nnoremap <silent> <Leader>l gt
 " move current pain to new tab
 " (if current window has only one pane, split into two tabs)
-nnoremap <silent> <Leader>m :<C-u>call <SID>MoveToNewTab()<CR>
+nnoremap <silent> <Leader>t :<C-u>call <SID>MoveToNewTab()<CR>
 function! s:MoveToNewTab()
   tab split
   tabprevious
@@ -394,6 +394,14 @@ noremap!  
 nnoremap Q kA
 " default: same as [k]
 nnoremap <C-p> :<C-p>
+" default: Concat some lines
+noremap J L
+" default: reference to help
+noremap K H
+noremap H ^
+noremap L $
+noremap M M
+noremap + K
 
 " function key
 " default: map <f1> to display the help file
@@ -422,6 +430,10 @@ nnoremap <f12> :set conceallevel=0<CR>
 " nnoremap <expr> d, "\a<C-h><esc>"
 nnoremap <expr><silent> d, Get_curpos_to_curpos()."\A<C-h><ESC>"
 
+
+" ---------------------------------------
+"  key map (v):
+" ---------------------------------------
 
 
 " ---------------------------------------
@@ -645,7 +657,7 @@ let g:airline_symbols.maxlinenr = ''
 " :EvervimSetup
 
 " ---------------------------------------
-"  Language Setting:
+"  Language Specific Setting:
 " ---------------------------------------
 filetype on
 filetype plugin indent on
