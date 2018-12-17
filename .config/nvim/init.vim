@@ -379,8 +379,22 @@ set concealcursor=""
 
 
 " ---------------------------------------
-"  key map (n):
+"  key map
 " ---------------------------------------
+
+"---------------------------------------------------------------------------"
+" Commands \ Modes | Normal | Insert | Command | Visual | Select | Operator |
+"------------------|--------|--------|---------|--------|--------|----------|
+" map  / noremap   |    @   |   -    |    -    |   @    |   @    |    @     |
+" nmap / nnoremap  |    @   |   -    |    -    |   -    |   -    |    -     |
+" vmap / vnoremap  |    -   |   -    |    -    |   @    |   @    |    -     |
+" omap / onoremap  |    -   |   -    |    -    |   -    |   -    |    @     |
+" xmap / xnoremap  |    -   |   -    |    -    |   @    |   -    |    -     |
+" smap / snoremap  |    -   |   -    |    -    |   -    |   @    |    -     |
+" map! / noremap!  |    -   |   @    |    @    |   -    |   -    |    -     |
+" imap / inoremap  |    -   |   @    |    -    |   -    |   -    |    -     |
+" cmap / cnoremap  |    -   |   -    |    @    |   -    |   -    |    -     |
+"---------------------------------------------------------------------------"
 
 " simple map ------------------------
 " :と;の入れ替え、Karabinar からやったのでクビ
@@ -390,18 +404,35 @@ set concealcursor=""
 " vnoremap ; :
 " vnoremap : ;
 noremap!  
-" default: switch to ex mode (same as [gQ])
+" default: same as [gQ] (switch to ex mode)
 nnoremap Q kA
 " default: same as [k]
 nnoremap <C-p> :<C-p>
-" default: Concat some lines
-noremap J L
-" default: reference to help
-noremap K H
+
 noremap H ^
 noremap L $
 noremap M M
 noremap + K
+" 思い通りになるJK
+" default: Concat some lines
+noremap <expr> J   To_bottom_of_window_OR_scroll_next_page()
+" default: reference to help
+noremap <expr> K   To_top_of_window_OR_scroll_previous_page()
+
+function! To_bottom_of_window_OR_scroll_next_page() abort
+  if winline() > winheight(0) - 5
+    return "\<C-f>L"
+  else
+    return "L"
+  endif
+endfunction
+function! To_top_of_window_OR_scroll_previous_page() abort
+  if winline() < 5
+    return "\<C-b>H"
+  else
+    return "H"
+  endif
+endfunction
 
 " function key
 " default: map <f1> to display the help file
