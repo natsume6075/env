@@ -1,0 +1,38 @@
+{
+  "title": "auxillary_mappings",
+  "rules": [
+    {
+      "description": "[auxilary] arrow だけではなく HL でも仮想デスクトップを左右に移動できるようにするためのマッピング",
+      "manipulators": [
+        { "type": "basic",
+          "from": {
+            "key_code": "h",
+            "modifiers": {
+              "mandatory": ["shift","control","command"],
+              "optional": ["option"]
+            }
+          },
+          "to": [
+            {  "key_code": "left_arrow",
+              "modifiers": ["shift","control","command"]
+            }
+          ]
+        },
+        { "type": "basic",
+          "from": {
+            "key_code": "l",
+            "modifiers": {
+              "mandatory": ["shift","control","command"],
+              "optional": ["option"]
+            }
+          },
+          "to": [
+            {  "key_code": "right_arrow",
+              "modifiers": ["shift","control","command"]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

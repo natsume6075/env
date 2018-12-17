@@ -1,0 +1,158 @@
+{
+  "title": "my_simple_mappings",
+  "rules": [
+    {
+      "description": "{} と [] を入れ替える（英数のみ）",
+      "manipulators": [
+        { "type": "basic",
+          "conditions": [
+            {
+              "type": "input_source_if",
+              "input_sources": [
+                {
+                  "language": "^en$"
+                }
+              ]
+            }
+          ],
+          "from": {
+            "key_code": "close_bracket"
+          },
+          "to": [
+            {  "key_code": "close_bracket",
+              "modifiers": ["shift"]
+            }
+          ]
+        },
+        { "type": "basic",
+          "conditions": [
+            {
+              "type": "input_source_if",
+              "input_sources": [
+                {
+                  "language": "^en$"
+                }
+              ]
+            }
+          ],
+          "from": {
+            "key_code": "close_bracket",
+            "modifiers": {
+              "mandatory": ["shift"]
+            }
+          },
+          "to": [
+            {  "key_code": "close_bracket"
+            }
+          ]
+        },
+        { "type": "basic",
+          "conditions": [
+            {
+              "type": "input_source_if",
+              "input_sources": [
+                {
+                  "language": "^en$"
+                }
+              ]
+            }
+          ],
+          "from": {
+            "key_code": "backslash"
+          },
+          "to": [
+            {  "key_code": "backslash",
+              "modifiers": ["shift"]
+            }
+          ]
+        },
+        { "type": "basic",
+          "conditions": [
+            {
+              "type": "input_source_if",
+              "input_sources": [
+                {
+                  "language": "^en$"
+                }
+              ]
+            }
+          ],
+          "from": {
+            "key_code": "backslash",
+            "modifiers": {
+              "mandatory": ["shift"]
+            }
+          },
+          "to": [
+            {  "key_code": "backslash"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "description": "= と - を入れ替える（英数のみ）",
+      "manipulators": [
+        { "type": "basic",
+          "conditions": [
+            {
+              "type": "input_source_if",
+              "input_sources": [
+                {
+                  "language": "^en$"
+                }
+              ]
+            }
+          ],
+          "from": {
+            "key_code": "hyphen"
+          },
+          "to": [
+            {  "key_code": "hyphen",
+              "modifiers": ["shift"]
+            }
+          ]
+        },
+        { "type": "basic",
+          "conditions": [
+            {
+              "type": "input_source_if",
+              "input_sources": [
+                {
+                  "language": "^en$"
+                }
+              ]
+            }
+          ],
+          "from": {
+            "key_code": "hyphen",
+            "modifiers": {
+              "mandatory": ["shift"]
+            }
+          },
+          "to": [
+            {  "key_code": "hyphen"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "description": "C-J で Return（衝突注意。vim も日本語をリターンできないから欲しい",
+      "manipulators": [
+        { "type": "basic",
+          "from": {
+            "key_code": "j",
+            "modifiers": {
+              "mandatory": ["control"]
+            }
+          },
+          "to": [
+            {  "key_code": "return_or_enter"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

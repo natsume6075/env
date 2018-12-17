@@ -1,0 +1,35 @@
+{
+  "title": "caps_lock_map_to_ctrl_and_leftshift_and_command",
+  "rules": [
+    {
+      "description": "Change caps_lock key to command+control+shift. (単独ならそのまま)",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "caps_lock",
+            "modifiers": {
+              "optional": [
+                "any"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "left_shift",
+              "modifiers": [
+                "left_command",
+                "left_control"
+              ]
+            }
+          ],
+          "to_if_alone": [
+            {
+              "key_code": "caps_lock"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

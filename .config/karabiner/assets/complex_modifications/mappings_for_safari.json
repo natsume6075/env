@@ -1,0 +1,114 @@
+{
+  "title": "mappings_for_safari",
+  "rules": [
+    {
+      "description": "⌘ →で tab の切り替え，shift もつけて tab のスワップ",
+      "manipulators": [
+        {
+          "type": "basic",
+          "condition": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers":["^com\\.apple\\.Safari$"]
+            }
+          ],
+          "from": {
+            "key_code": "right_arrow",
+            "modifiers": {
+              "mandatory": [
+                "command"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "right_arrow",
+              "modifiers": [
+                "left_shift",
+                "left_command"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "condition": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers":["^com\\.apple\\.Safari$"]
+            }
+          ],
+          "from": {
+            "key_code": "right_arrow",
+            "modifiers": {
+              "mandatory": [
+                "shift",
+                "command"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "right_arrow",
+              "modifiers": [
+                "left_command"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "condition": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers":["^com\\.apple\\.Safari$"]
+            }
+          ],
+          "from": {
+            "key_code": "left_arrow",
+            "modifiers": {
+              "mandatory": [
+                "command"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "left_arrow",
+              "modifiers": [
+                "left_shift",
+                "left_command"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "condition": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers":["^com\\.apple\\.Safari$"]
+            }
+          ],
+          "from": {
+            "key_code": "left_arrow",
+            "modifiers": {
+              "mandatory": [
+                "shift",
+                "command"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "left_arrow",
+              "modifiers": [
+                "left_command"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

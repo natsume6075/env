@@ -1,0 +1,43 @@
+{
+  "title": "ro_key_map_to_backslash_and_underscore",
+  "rules": [
+    {
+      "description": "ろ のキーをバックスラッシュにマップする（shiftでアンダーバーのまま）",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "international1",
+            "modifiers": {
+              "mandatory": [
+                "shift"
+              ],
+              "optional": [
+                "caps_lock"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "international1",
+              "modifiers": [
+                "left_shift"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "international1"
+          },
+          "to": [
+            {
+              "key_code": "international3"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
