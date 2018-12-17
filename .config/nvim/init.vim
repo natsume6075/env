@@ -1,4 +1,4 @@
-"
+" vim: foldmethod=marker
 "                                          _ __ _,  ＿_
 "                                      ,.-' 丶   '｀丶/
 "                                    ／ ）     ￣     ＼
@@ -133,7 +133,7 @@ function! Push_queue_of_marks() abort
 endfunction
 
 " --- Folding --------------
-
+set foldmethod=marker
 
 
 " --- Information -------------------------
