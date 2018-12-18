@@ -30,7 +30,8 @@
               "modifiers": [
                 "left_shift",
                 "option"
-              ]
+              ],
+              "lazy":"true"
             }
           ],
           "to_if_alone": [
@@ -40,7 +41,8 @@
                 "left_control",
                 "option",
                 "left_command"
-              ]
+              ],
+              "lazy":"true"
             }
           ],
           "to_if_held_down": [
@@ -50,7 +52,8 @@
                 "left_control",
                 "option",
                 "left_command"
-              ]
+              ],
+              "lazy":"true"
             }
           ]
         }

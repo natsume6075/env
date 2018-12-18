@@ -1286,6 +1286,7 @@
                                 "to": [
                                     {
                                         "key_code": "left_control",
+                                        "lazy": "true",
                                         "modifiers": [
                                             "left_shift",
                                             "option"
@@ -1295,6 +1296,7 @@
                                 "to_if_alone": [
                                     {
                                         "key_code": "a",
+                                        "lazy": "true",
                                         "modifiers": [
                                             "left_control",
                                             "option",
@@ -1305,35 +1307,11 @@
                                 "to_if_held_down": [
                                     {
                                         "key_code": "b",
+                                        "lazy": "true",
                                         "modifiers": [
                                             "left_control",
                                             "option",
                                             "left_command"
-                                        ]
-                                    }
-                                ],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "Change caps_lock key to command+control+shift.（alt 以外の装飾キーと一緒に押すと caps_lock としてはたらく）",
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "caps_lock",
-                                    "modifiers": {
-                                        "optional": [
-                                            "command"
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "left_control",
-                                        "modifiers": [
-                                            "left_shift",
-                                            "option"
                                         ]
                                     }
                                 ],
@@ -1362,8 +1340,8 @@
                                     {
                                         "key_code": "left_arrow",
                                         "mandatory": [
-                                            "left_control",
-                                            "left_shift",
+                                            "control",
+                                            "shift",
                                             "option"
                                         ]
                                     }
@@ -1390,6 +1368,30 @@
                                         "mandatory": [
                                             "control",
                                             "shift",
+                                            "option"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Change caps_lock key to command+control+shift.（option 以外の装飾キーと一緒に押すと caps_lock としてはたらく）",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "caps_lock",
+                                    "modifiers": {
+                                        "optional": [
+                                            "command"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "a",
+                                        "modifiers": [
                                             "option"
                                         ]
                                     }
