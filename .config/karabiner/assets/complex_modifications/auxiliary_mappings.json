@@ -14,7 +14,7 @@
           },
           "to": [
             {  "key_code": "left_arrow",
-              "mandatory": ["control","shift","option"]
+              "mandatory": ["left_control","left_shift","option"]
             }
           ]
         },
