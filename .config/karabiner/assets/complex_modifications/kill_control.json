@@ -1,0 +1,20 @@
+{
+  "title": "コントロールは死んだ。もういない。",
+  "rules": [
+    {
+      "description": "コントロールを殺す。",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "left_control",
+            "modifiers":{"optional":["any"]}
+          },
+          "to": [
+          ]
+        }
+
+      ]
+    }
+  ]
+}
