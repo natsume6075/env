@@ -1334,43 +1334,27 @@
                         ]
                     },
                     {
-                        "description": "Change caps_lock key to command+control+shift.（alt 以外の装飾キーと一緒に押すと caps_lock としてはたらく）",
+                        "description": "コントロールキーを ctrl+shift+command に。単体押しで c+f+d+",
                         "manipulators": [
                             {
                                 "from": {
-                                    "key_code": "caps_lock",
-                                    "modifiers": {
-                                        "optional": [
-                                            "option"
-                                        ]
-                                    }
+                                    "key_code": "left_control"
                                 },
                                 "to": [
                                     {
-                                        "key_code": "left_shift",
-                                        "modifiers": [
-                                            "left_command",
-                                            "left_control"
-                                        ]
+                                        "key_code": "t"
                                     }
                                 ],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "コントロールを殺す。",
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "left_control",
-                                    "modifiers": {
-                                        "optional": [
-                                            "any"
-                                        ]
+                                "to_if_alone": [
+                                    {
+                                        "key_code": "a"
                                     }
-                                },
-                                "to": [],
+                                ],
+                                "to_if_held_down": [
+                                    {
+                                        "key_code": "h"
+                                    }
+                                ],
                                 "type": "basic"
                             }
                         ]

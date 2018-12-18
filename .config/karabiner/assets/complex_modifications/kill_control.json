@@ -1,8 +1,8 @@
 {
-  "title": "コントロールは死んだ。もういない。",
+  "title": "コントロールキーについて",
   "rules": [
     {
-      "description": "コントロールを殺す。",
+      "description": "コントロールは死んだ。もういない。",
       "manipulators": [
         {
           "type": "basic",
@@ -14,6 +14,32 @@
           ]
         }
 
+      ]
+    },
+    {
+      "description": "コントロールキーを ctrl+shift+command に。単体押しで c+f+d+",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "left_control"
+          },
+          "to": [
+            {
+              "key_code": "t"
+            }
+          ],
+          "to_if_alone": [
+            {
+              "key_code": "a"
+            }
+          ],
+          "to_if_held_down": [
+            {
+              "key_code": "h"
+            }
+          ]
+        }
       ]
     }
   ]
