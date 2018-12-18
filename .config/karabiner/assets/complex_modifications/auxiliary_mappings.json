@@ -8,13 +8,13 @@
           "from": {
             "key_code": "h",
             "modifiers": {
-              "mandatory": ["shift","control","command"],
-              "optional": ["option"]
+              "mandatory": ["control","shift","option"],
+              "optional": ["command"]
             }
           },
           "to": [
             {  "key_code": "left_arrow",
-              "modifiers": ["shift","control","command"]
+              "mandatory": ["control","shift","option"]
             }
           ]
         },
@@ -22,13 +22,13 @@
           "from": {
             "key_code": "l",
             "modifiers": {
-              "mandatory": ["shift","control","command"],
-              "optional": ["option"]
+              "mandatory": ["control","shift","option"],
+              "optional": ["command"]
             }
           },
           "to": [
             {  "key_code": "right_arrow",
-              "modifiers": ["shift","control","command"]
+              "mandatory": ["control","shift","option"]
             }
           ]
         }

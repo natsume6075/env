@@ -26,10 +26,10 @@
           },
           "to": [
             {
-              "key_code": "left_shift",
+              "key_code": "left_control",
               "modifiers": [
-                "left_command",
-                "left_control"
+                "left_shift",
+                "option"
               ]
             }
           ],
@@ -37,9 +37,9 @@
             {
               "key_code": "a",
               "modifiers": [
-                "left_command",
+                "left_control",
                 "option",
-                "left_control"
+                "left_command"
               ]
             }
           ],
@@ -47,9 +47,9 @@
             {
               "key_code": "b",
               "modifiers": [
-                "left_command",
+                "left_control",
                 "option",
-                "left_control"
+                "left_command"
               ]
             }
           ]
