@@ -1334,7 +1334,32 @@
                         ]
                     },
                     {
-                        "description": "コントロールキーを ctrl+shift+command に。単体押しで c+f+d+",
+                        "description": "Change caps_lock key to command+control+shift.（alt 以外の装飾キーと一緒に押すと caps_lock としてはたらく）",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "caps_lock",
+                                    "modifiers": {
+                                        "optional": [
+                                            "option"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "left_shift",
+                                        "modifiers": [
+                                            "left_command",
+                                            "left_control"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "コントロールキーを ctrl+shift+command に。単体押しで ctrl+opt+com+a，長押しで ctrl+opt+com+b",
                         "manipulators": [
                             {
                                 "from": {
@@ -1342,17 +1367,31 @@
                                 },
                                 "to": [
                                     {
-                                        "key_code": "t"
+                                        "key_code": "left_shift",
+                                        "modifiers": [
+                                            "left_command",
+                                            "left_control"
+                                        ]
                                     }
                                 ],
                                 "to_if_alone": [
                                     {
-                                        "key_code": "a"
+                                        "key_code": "a",
+                                        "modifiers": [
+                                            "left_command",
+                                            "option",
+                                            "left_control"
+                                        ]
                                     }
                                 ],
                                 "to_if_held_down": [
                                     {
-                                        "key_code": "h"
+                                        "key_code": "b",
+                                        "modifiers": [
+                                            "left_command",
+                                            "option",
+                                            "left_control"
+                                        ]
                                     }
                                 ],
                                 "type": "basic"

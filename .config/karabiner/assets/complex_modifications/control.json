@@ -17,7 +17,7 @@
       ]
     },
     {
-      "description": "コントロールキーを ctrl+shift+command に。単体押しで c+f+d+",
+      "description": "コントロールキーを ctrl+shift+command に。単体押しで ctrl+opt+com+a，長押しで ctrl+opt+com+b",
       "manipulators": [
         {
           "type": "basic",
@@ -26,17 +26,31 @@
           },
           "to": [
             {
-              "key_code": "t"
+              "key_code": "left_shift",
+              "modifiers": [
+                "left_command",
+                "left_control"
+              ]
             }
           ],
           "to_if_alone": [
             {
-              "key_code": "a"
+              "key_code": "a",
+              "modifiers": [
+                "left_command",
+                "option",
+                "left_control"
+              ]
             }
           ],
           "to_if_held_down": [
             {
-              "key_code": "h"
+              "key_code": "b",
+              "modifiers": [
+                "left_command",
+                "option",
+                "left_control"
+              ]
             }
           ]
         }
