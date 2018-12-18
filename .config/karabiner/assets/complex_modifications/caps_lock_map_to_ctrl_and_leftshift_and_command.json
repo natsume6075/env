@@ -2,17 +2,13 @@
   "title": "caps lock map to ctrl and leftshift and command",
   "rules": [
     {
-      "description": "Change caps_lock key to command+control+shift. (単独ならそのまま)",
+      "description": "Change caps_lock key to command+control+shift.（alt 以外の装飾キーと一緒に押すと caps_lock としてはたらく）",
       "manipulators": [
         {
           "type": "basic",
           "from": {
             "key_code": "caps_lock",
-            "modifiers": {
-              "optional": [
-                "any"
-              ]
-            }
+            "modifiers":{"optional":["option"]}
           },
           "to": [
             {
@@ -21,11 +17,6 @@
                 "left_command",
                 "left_control"
               ]
-            }
-          ],
-          "to_if_alone": [
-            {
-              "key_code": "caps_lock"
             }
           ]
         }
