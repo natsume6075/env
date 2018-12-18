@@ -2,7 +2,7 @@
   "title": "auxillary_mappings",
   "rules": [
     {
-      "description": "[auxilary] arrow だけではなく HL でも仮想デスクトップを左右に移動できるようにするためのマッピング",
+      "description": "バグバグ[auxilary] arrow だけではなく HL でも仮想デスクトップを左右に移動できるようにするためのマッピング",
       "manipulators": [
         { "type": "basic",
           "from": {
@@ -36,3 +36,4 @@
     }
   ]
 }
+

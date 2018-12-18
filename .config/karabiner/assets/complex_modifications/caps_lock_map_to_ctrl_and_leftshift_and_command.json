@@ -12,12 +12,10 @@
           },
           "to": [
             {
-              "key_code": "a",
-              "key_code": "b",
-              "key_code": "left_control",
               "key_code": "left_shift",
               "modifiers": [
-                "option"
+                "option",
+                "left_control"
               ]
             }
           ]
