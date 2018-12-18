@@ -4,7 +4,7 @@
     {
       "description": "fnモードとsysモードの概念を導入する。fn の単独押しでモード切り替え。sysモード中はF*キーを押すとfnキーが同時押しされる。",
       "manipulators": [
-        { "_comment":"fnの単独でモードを切り替える、単独でないならそのまま",
+        {
           "type": "basic",
           "conditions":[
             {"type": "variable_if", "name": "is_fn_lock", "value": 0}
@@ -14,17 +14,15 @@
             "modifiers":{"optional":["any"]}
           },
           "to": [ 
-            {"key_code": "fn", "lazy": true},
-            {"set_variable": {"name": "fn_is_pressed", "value": 1}}
+            {"key_code": "fn", "lazy": true}
           ],
           "to_if_alone": [
+            {"key_code": "fn"},
+            {"key_code": "1"},
             {"set_variable": {"name": "is_fn_lock", "value": 1}}
-          ],
-          "to_after_key_up": [
-            {"set_variable": {"name": "fn_is_pressed", "value": 0}}
           ]
         },
-        { "_comment":"fnの単独でモードを切り替える、単独でないならそのまま",
+        {
           "type": "basic",
           "conditions":[
             {"type": "variable_if", "name": "is_fn_lock", "value": 1}
@@ -34,437 +32,103 @@
             "modifiers":{"optional":["any"]}
           },
           "to": [ 
-            {"key_code": "fn", "lazy": true},
-            {"set_variable": {"name": "fn_is_pressed", "value": 1}}
+            {"key_code": "fn", "lazy": true}
           ],
           "to_if_alone": [ 
             {"key_code": "fn"},
+            {"key_code": "0"},
             {"set_variable": {"name": "is_fn_lock", "value": 0}}
-          ],
-          "to_after_key_up": [
-            {"set_variable": {"name": "fn_is_pressed", "value": 0}}
           ]
         },
 
 
-        {
-          "_comment":"ほんとはいらんのだが、バグのせいで書く、今後全部これ書くのか・・・？",
-          "type": "basic",
-          "conditions":[
-            {"type": "variable_if", "name": "fn_is_pressed", "value": 1}
-          ],
-          "from": {"key_code": "delete_or_backspace"},
-          "to": [{"key_code": "delete_or_backspace", "modifiers":"fn"}]
-        },
+
+
+
 
 
 
         { "type": "basic",
           "conditions":[
-            {"type": "variable_if", "name": "is_fn_lock", "value": 1},
-            {"type": "variable_if", "name": "fn_is_pressed", "value": 0}
+            {"type": "variable_if", "name": "is_fn_lock", "value": 0}
           ],
-          "from": {"key_code": "f1"},
-          "to": [{"key_code": "f1", "modifiers":"fn"}]
+          "from": {
+            "key_code": "f11",
+            "modifiers":{"optional":["any"]}
+          },
+          "to": [
+            {"key_code": "f11"}
+          ]
         },
         { "type": "basic",
           "conditions":[
-            {"type": "variable_if", "name": "is_fn_lock", "value": 1},
-            {"type": "variable_if", "name": "fn_is_pressed", "value": 1}
+            {"type": "variable_if", "name": "is_fn_lock", "value": 1}
           ],
-          "from": {"key_code": "f1"},
-          "to": [{"key_code": "f1"}]
+          "from": {
+            "key_code": "f11",
+            "modifiers":{
+              "mandatory":["fn"],
+              "modifiers":{"optional":["command","control", "shift", "option", "caps_lock"]}
+            }
+          },
+          "to": [
+            {"key_code": "f11"}
+          ]
         },
         { "type": "basic",
           "conditions":[
-            {"type": "variable_if", "name": "is_fn_lock", "value": 0},
-            {"type": "variable_if", "name": "fn_is_pressed", "value": 0}
+            {"type": "variable_if", "name": "is_fn_lock", "value": 1}
           ],
-          "from": {"key_code": "f1"},
-          "to": [{"key_code": "f1"}]
-        },
-        { "type": "basic",
-          "conditions":[
-            {"type": "variable_if", "name": "is_fn_lock", "value": 0},
-            {"type": "variable_if", "name": "fn_is_pressed", "value": 1}
-          ],
-          "from": {"key_code": "f1"},
-          "to": [{"key_code": "f1", "modifiers":"fn"}]
-        },
-
-
-        { "type": "basic",
-          "conditions":[
-            {"type": "variable_if", "name": "is_fn_lock", "value": 1},
-            {"type": "variable_if", "name": "fn_is_pressed", "value": 0}
-          ],
-          "from": {"key_code": "f2"},
-          "to": [{"key_code": "f2", "modifiers":"fn"}]
-        },
-        { "type": "basic",
-          "conditions":[
-            {"type": "variable_if", "name": "is_fn_lock", "value": 1},
-            {"type": "variable_if", "name": "fn_is_pressed", "value": 1}
-          ],
-          "from": {"key_code": "f2"},
-          "to": [{"key_code": "f2"}]
-        },
-        { "type": "basic",
-          "conditions":[
-            {"type": "variable_if", "name": "is_fn_lock", "value": 0},
-            {"type": "variable_if", "name": "fn_is_pressed", "value": 0}
-          ],
-          "from": {"key_code": "f2"},
-          "to": [{"key_code": "f2"}]
-        },
-        { "type": "basic",
-          "conditions":[
-            {"type": "variable_if", "name": "is_fn_lock", "value": 0},
-            {"type": "variable_if", "name": "fn_is_pressed", "value": 1}
-          ],
-          "from": {"key_code": "f2"},
-          "to": [{"key_code": "f2", "modifiers":"fn"}]
+          "from": {
+            "key_code": "f11",
+            "modifiers":{"optional":["command","control", "shift", "option", "caps_lock"]}
+          },
+          "to": [
+            {"key_code": "f11", "modifiers":"fn"}
+          ]
         },
 
-
         { "type": "basic",
           "conditions":[
-            {"type": "variable_if", "name": "is_fn_lock", "value": 1},
-            {"type": "variable_if", "name": "fn_is_pressed", "value": 0}
+            {"type": "variable_if", "name": "is_fn_lock", "value": 0}
           ],
-          "from": {"key_code": "f3"},
-          "to": [{"key_code": "f3", "modifiers":"fn"}]
+          "from": {
+            "key_code": "f12",
+            "modifiers":{"optional":["any"]}
+          },
+          "to": [
+            {"key_code": "f12"}
+          ]
         },
         { "type": "basic",
           "conditions":[
-            {"type": "variable_if", "name": "is_fn_lock", "value": 1},
-            {"type": "variable_if", "name": "fn_is_pressed", "value": 1}
+            {"type": "variable_if", "name": "is_fn_lock", "value": 1}
           ],
-          "from": {"key_code": "f3"},
-          "to": [{"key_code": "f3"}]
+          "from": {
+            "key_code": "f12",
+            "modifiers":{
+              "mandatory":["fn"],
+              "modifiers":{"optional":["command","control", "shift", "option", "caps_lock"]}
+            }
+          },
+          "to": [
+            {"key_code": "f12"}
+          ]
         },
         { "type": "basic",
           "conditions":[
-            {"type": "variable_if", "name": "is_fn_lock", "value": 0},
-            {"type": "variable_if", "name": "fn_is_pressed", "value": 0}
+            {"type": "variable_if", "name": "is_fn_lock", "value": 1}
           ],
-          "from": {"key_code": "f3"},
-          "to": [{"key_code": "f3"}]
-        },
-        { "type": "basic",
-          "conditions":[
-            {"type": "variable_if", "name": "is_fn_lock", "value": 0},
-            {"type": "variable_if", "name": "fn_is_pressed", "value": 1}
-          ],
-          "from": {"key_code": "f3"},
-          "to": [{"key_code": "f3", "modifiers":"fn"}]
-        },
-
-
-        { "type": "basic",
-          "conditions":[
-            {"type": "variable_if", "name": "is_fn_lock", "value": 1},
-            {"type": "variable_if", "name": "fn_is_pressed", "value": 0}
-          ],
-          "from": {"key_code": "f4"},
-          "to": [{"key_code": "f4", "modifiers":"fn"}]
-        },
-        { "type": "basic",
-          "conditions":[
-            {"type": "variable_if", "name": "is_fn_lock", "value": 1},
-            {"type": "variable_if", "name": "fn_is_pressed", "value": 1}
-          ],
-          "from": {"key_code": "f4"},
-          "to": [{"key_code": "f4"}]
-        },
-        { "type": "basic",
-          "conditions":[
-            {"type": "variable_if", "name": "is_fn_lock", "value": 0},
-            {"type": "variable_if", "name": "fn_is_pressed", "value": 0}
-          ],
-          "from": {"key_code": "f4"},
-          "to": [{"key_code": "f4"}]
-        },
-        { "type": "basic",
-          "conditions":[
-            {"type": "variable_if", "name": "is_fn_lock", "value": 0},
-            {"type": "variable_if", "name": "fn_is_pressed", "value": 1}
-          ],
-          "from": {"key_code": "f4"},
-          "to": [{"key_code": "f4", "modifiers":"fn"}]
-        },
-
-
-        { "type": "basic",
-          "conditions":[
-            {"type": "variable_if", "name": "is_fn_lock", "value": 1},
-            {"type": "variable_if", "name": "fn_is_pressed", "value": 0}
-          ],
-          "from": {"key_code": "f5"},
-          "to": [{"key_code": "f5", "modifiers":"fn"}]
-        },
-        { "type": "basic",
-          "conditions":[
-            {"type": "variable_if", "name": "is_fn_lock", "value": 1},
-            {"type": "variable_if", "name": "fn_is_pressed", "value": 1}
-          ],
-          "from": {"key_code": "f5"},
-          "to": [{"key_code": "f5"}]
-        },
-        { "type": "basic",
-          "conditions":[
-            {"type": "variable_if", "name": "is_fn_lock", "value": 0},
-            {"type": "variable_if", "name": "fn_is_pressed", "value": 0}
-          ],
-          "from": {"key_code": "f5"},
-          "to": [{"key_code": "f5"}]
-        },
-        { "type": "basic",
-          "conditions":[
-            {"type": "variable_if", "name": "is_fn_lock", "value": 0},
-            {"type": "variable_if", "name": "fn_is_pressed", "value": 1}
-          ],
-          "from": {"key_code": "f5"},
-          "to": [{"key_code": "f5", "modifiers":"fn"}]
-        },
-
-
-        { "type": "basic",
-          "conditions":[
-            {"type": "variable_if", "name": "is_fn_lock", "value": 1},
-            {"type": "variable_if", "name": "fn_is_pressed", "value": 0}
-          ],
-          "from": {"key_code": "f6"},
-          "to": [{"key_code": "f6", "modifiers":"fn"}]
-        },
-        { "type": "basic",
-          "conditions":[
-            {"type": "variable_if", "name": "is_fn_lock", "value": 1},
-            {"type": "variable_if", "name": "fn_is_pressed", "value": 1}
-          ],
-          "from": {"key_code": "f6"},
-          "to": [{"key_code": "f6"}]
-        },
-        { "type": "basic",
-          "conditions":[
-            {"type": "variable_if", "name": "is_fn_lock", "value": 0},
-            {"type": "variable_if", "name": "fn_is_pressed", "value": 0}
-          ],
-          "from": {"key_code": "f6"},
-          "to": [{"key_code": "f6"}]
-        },
-        { "type": "basic",
-          "conditions":[
-            {"type": "variable_if", "name": "is_fn_lock", "value": 0},
-            {"type": "variable_if", "name": "fn_is_pressed", "value": 1}
-          ],
-          "from": {"key_code": "f6"},
-          "to": [{"key_code": "f6", "modifiers":"fn"}]
-        },
-
-
-        { "type": "basic",
-          "conditions":[
-            {"type": "variable_if", "name": "is_fn_lock", "value": 1},
-            {"type": "variable_if", "name": "fn_is_pressed", "value": 0}
-          ],
-          "from": {"key_code": "f7"},
-          "to": [{"key_code": "f7", "modifiers":"fn"}]
-        },
-        { "type": "basic",
-          "conditions":[
-            {"type": "variable_if", "name": "is_fn_lock", "value": 1},
-            {"type": "variable_if", "name": "fn_is_pressed", "value": 1}
-          ],
-          "from": {"key_code": "f7"},
-          "to": [{"key_code": "f7"}]
-        },
-        { "type": "basic",
-          "conditions":[
-            {"type": "variable_if", "name": "is_fn_lock", "value": 0},
-            {"type": "variable_if", "name": "fn_is_pressed", "value": 0}
-          ],
-          "from": {"key_code": "f7"},
-          "to": [{"key_code": "f7"}]
-        },
-        { "type": "basic",
-          "conditions":[
-            {"type": "variable_if", "name": "is_fn_lock", "value": 0},
-            {"type": "variable_if", "name": "fn_is_pressed", "value": 1}
-          ],
-          "from": {"key_code": "f7"},
-          "to": [{"key_code": "f7", "modifiers":"fn"}]
-        },
-
-
-        { "type": "basic",
-          "conditions":[
-            {"type": "variable_if", "name": "is_fn_lock", "value": 1},
-            {"type": "variable_if", "name": "fn_is_pressed", "value": 0}
-          ],
-          "from": {"key_code": "f8"},
-          "to": [{"key_code": "f8", "modifiers":"fn"}]
-        },
-        { "type": "basic",
-          "conditions":[
-            {"type": "variable_if", "name": "is_fn_lock", "value": 1},
-            {"type": "variable_if", "name": "fn_is_pressed", "value": 1}
-          ],
-          "from": {"key_code": "f8"},
-          "to": [{"key_code": "f8"}]
-        },
-        { "type": "basic",
-          "conditions":[
-            {"type": "variable_if", "name": "is_fn_lock", "value": 0},
-            {"type": "variable_if", "name": "fn_is_pressed", "value": 0}
-          ],
-          "from": {"key_code": "f8"},
-          "to": [{"key_code": "f8"}]
-        },
-        { "type": "basic",
-          "conditions":[
-            {"type": "variable_if", "name": "is_fn_lock", "value": 0},
-            {"type": "variable_if", "name": "fn_is_pressed", "value": 1}
-          ],
-          "from": {"key_code": "f8"},
-          "to": [{"key_code": "f8", "modifiers":"fn"}]
-        },
-
-
-        { "type": "basic",
-          "conditions":[
-            {"type": "variable_if", "name": "is_fn_lock", "value": 1},
-            {"type": "variable_if", "name": "fn_is_pressed", "value": 0}
-          ],
-          "from": {"key_code": "f9"},
-          "to": [{"key_code": "f9", "modifiers":"fn"}]
-        },
-        { "type": "basic",
-          "conditions":[
-            {"type": "variable_if", "name": "is_fn_lock", "value": 1},
-            {"type": "variable_if", "name": "fn_is_pressed", "value": 1}
-          ],
-          "from": {"key_code": "f9"},
-          "to": [{"key_code": "f9"}]
-        },
-        { "type": "basic",
-          "conditions":[
-            {"type": "variable_if", "name": "is_fn_lock", "value": 0},
-            {"type": "variable_if", "name": "fn_is_pressed", "value": 0}
-          ],
-          "from": {"key_code": "f9"},
-          "to": [{"key_code": "f9"}]
-        },
-        { "type": "basic",
-          "conditions":[
-            {"type": "variable_if", "name": "is_fn_lock", "value": 0},
-            {"type": "variable_if", "name": "fn_is_pressed", "value": 1}
-          ],
-          "from": {"key_code": "f9"},
-          "to": [{"key_code": "f9", "modifiers":"fn"}]
-        },
-
-
-        { "type": "basic",
-          "conditions":[
-            {"type": "variable_if", "name": "is_fn_lock", "value": 1},
-            {"type": "variable_if", "name": "fn_is_pressed", "value": 0}
-          ],
-          "from": {"key_code": "f10"},
-          "to": [{"key_code": "f10", "modifiers":"fn"}]
-        },
-        { "type": "basic",
-          "conditions":[
-            {"type": "variable_if", "name": "is_fn_lock", "value": 1},
-            {"type": "variable_if", "name": "fn_is_pressed", "value": 1}
-          ],
-          "from": {"key_code": "f10"},
-          "to": [{"key_code": "f10"}]
-        },
-        { "type": "basic",
-          "conditions":[
-            {"type": "variable_if", "name": "is_fn_lock", "value": 0},
-            {"type": "variable_if", "name": "fn_is_pressed", "value": 0}
-          ],
-          "from": {"key_code": "f10"},
-          "to": [{"key_code": "f10"}]
-        },
-        { "type": "basic",
-          "conditions":[
-            {"type": "variable_if", "name": "is_fn_lock", "value": 0},
-            {"type": "variable_if", "name": "fn_is_pressed", "value": 1}
-          ],
-          "from": {"key_code": "f10"},
-          "to": [{"key_code": "f10", "modifiers":"fn"}]
-        },
-
-
-        { "type": "basic",
-          "conditions":[
-            {"type": "variable_if", "name": "is_fn_lock", "value": 1},
-            {"type": "variable_if", "name": "fn_is_pressed", "value": 0}
-          ],
-          "from": {"key_code": "f11"},
-          "to": [{"key_code": "f11", "modifiers":"fn"}]
-        },
-        { "type": "basic",
-          "conditions":[
-            {"type": "variable_if", "name": "is_fn_lock", "value": 1},
-            {"type": "variable_if", "name": "fn_is_pressed", "value": 1}
-          ],
-          "from": {"key_code": "f11"},
-          "to": [{"key_code": "f11"}]
-        },
-        { "type": "basic",
-          "conditions":[
-            {"type": "variable_if", "name": "is_fn_lock", "value": 0},
-            {"type": "variable_if", "name": "fn_is_pressed", "value": 0}
-          ],
-          "from": {"key_code": "f11"},
-          "to": [{"key_code": "f11"}]
-        },
-        { "type": "basic",
-          "conditions":[
-            {"type": "variable_if", "name": "is_fn_lock", "value": 0},
-            {"type": "variable_if", "name": "fn_is_pressed", "value": 1}
-          ],
-          "from": {"key_code": "f11"},
-          "to": [{"key_code": "f11", "modifiers":"fn"}]
-        },
-
-
-        { "type": "basic",
-          "conditions":[
-            {"type": "variable_if", "name": "is_fn_lock", "value": 1},
-            {"type": "variable_if", "name": "fn_is_pressed", "value": 0}
-          ],
-          "from": {"key_code": "f12"},
-          "to": [{"key_code": "f12", "modifiers":"fn"}]
-        },
-        { "type": "basic",
-          "conditions":[
-            {"type": "variable_if", "name": "is_fn_lock", "value": 1},
-            {"type": "variable_if", "name": "fn_is_pressed", "value": 1}
-          ],
-          "from": {"key_code": "f12"},
-          "to": [{"key_code": "f12"}]
-        },
-        { "type": "basic",
-          "conditions":[
-            {"type": "variable_if", "name": "is_fn_lock", "value": 0},
-            {"type": "variable_if", "name": "fn_is_pressed", "value": 0}
-          ],
-          "from": {"key_code": "f12"},
-          "to": [{"key_code": "f12"}]
-        },
-        { "type": "basic",
-          "conditions":[
-            {"type": "variable_if", "name": "is_fn_lock", "value": 0},
-            {"type": "variable_if", "name": "fn_is_pressed", "value": 1}
-          ],
-          "from": {"key_code": "f12"},
-          "to": [{"key_code": "f12", "modifiers":"fn"}]
+          "from": {
+            "key_code": "f12",
+            "modifiers":{"optional":["command","control", "shift", "option", "caps_lock"]}
+          },
+          "to": [
+            {"key_code": "f12", "modifiers":"fn"}
+          ]
         }
+
+
 
 
       ]
