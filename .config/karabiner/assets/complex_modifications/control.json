@@ -1,0 +1,60 @@
+{
+  "title": "コントロールキーについて",
+  "rules": [
+    {
+      "description": "コントロールは死んだ。もういない。",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "left_control",
+            "modifiers":{"optional":["any"]}
+          },
+          "to": [
+          ]
+        }
+
+      ]
+    },
+    {
+      "description": "コントロールキーを ctrl+shift+command に。単体押しで ctrl+opt+com+a，長押しで ctrl+opt+com+b",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "left_control"
+          },
+          "to": [
+            {
+              "key_code": "left_shift",
+              "modifiers": [
+                "left_command",
+                "left_control"
+              ]
+            }
+          ],
+          "to_if_alone": [
+            {
+              "key_code": "a",
+              "modifiers": [
+                "left_command",
+                "option",
+                "left_control"
+              ]
+            }
+          ],
+          "to_if_held_down": [
+            {
+              "key_code": "b",
+              "modifiers": [
+                "left_command",
+                "option",
+                "left_control"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

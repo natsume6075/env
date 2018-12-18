@@ -4,8 +4,10 @@ frontmost_application_if
 international1
 key_code
 left_arrow
+left_shift
 mandatory
 modifiers
+option
 optional
 return_or_enter
 right_arrow
