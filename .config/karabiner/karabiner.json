@@ -322,9 +322,6 @@
                                         "key_code": "fn"
                                     },
                                     {
-                                        "key_code": "1"
-                                    },
-                                    {
                                         "set_variable": {
                                             "name": "is_fn_lock",
                                             "value": 1
@@ -358,9 +355,6 @@
                                 "to_if_alone": [
                                     {
                                         "key_code": "fn"
-                                    },
-                                    {
-                                        "key_code": "0"
                                     },
                                     {
                                         "set_variable": {
