@@ -66,6 +66,7 @@ alias vz='vim ~/.zshrc'
 alias c='cdr'
 alias vim='nvim'
 alias initvim='vim ~/.config/nvim/init.vim'
+alias g='git'
 
 # historyに日付を表示
 alias h='fc -lt '%F %T' 1'
