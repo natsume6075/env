@@ -57,6 +57,7 @@ let $CURRENT_FILE_NAME = split(expand("%"),"/")[-1]
 
 "--- Global Functions: -------------------
 let save_curpos = getcurpos()
+set nocompatible
 
 " function! g:Get_curpos_to_curpos() abort
 "   let g:curpos = getcurpos()
@@ -475,6 +476,12 @@ function! Find_for_next_line(char) abort
 endfunction
 " cursor が移動したときとしなかったときとで，動作を変えるしくみ。
 " f コマンドは見つからなかったときにエラーとして扱われるらしく，これでうまくいかない。
+nnoremap ___l :
+      \:let save_curpos = getcurpos()<CR>
+      \l
+      \:if save_curpos[1] != getcurpos()[1]<CR>
+      \^
+      \:endif<CR>
 nnoremap ___hoge :
       \:let save_curpos = getcurpos()<CR>
       \jjjkl
@@ -613,7 +620,9 @@ vmap <Leader>   S
 let mapleader = "\\"
 
 " marks ------------------------------{{{
-nnoremap <C-m> '
+" <C-m> と <CR> の２つはつながってる
+" nnoremap <C-m> '
+nnoremap <CR> <CR>
 "}}}
 
 " function key
