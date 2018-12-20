@@ -252,10 +252,12 @@ augroup initvim
   autocmd InsertEnter * NoMatchParen
 
   " インサートモードを抜けるときに発火
+  " 抜けてから入力できるまでウェイトタイムが生まれちゃうので切る。フォーカスのやつなら許容範囲だけど。。。
   autocmd InsertLeave * DoMatchParen
-  autocmd InsertLeave * call system(g:force_alphanumeric_input_command)
+  " autocmd InsertLeave * call system(g:force_alphanumeric_input_command)
 
   " vim をフォーカスしたときに発火
+  " インサートモードなら発火しないとかも考えられる
   autocmd FocusGained *
        \   call system(g:force_alphanumeric_input_command)
 
@@ -683,8 +685,8 @@ vmap <silent> " <plug>(caw:hatpos:toggle)
 "  key map (i):
 " ---------------------------------------
 
-inoremap <silent> jj  <ESC>
-inoremap <silent> っj <ESC>
+imap <silent> jj  <ESC>
+imap <silent> っj <ESC>
 " spell
 inoremap <C-s> <C-x>s
 " yank/cut/paste
@@ -700,9 +702,10 @@ imap (       (a<C-h><plug>(neosnippet_expand)
 imap {       {a<C-h><plug>(neosnippet_expand)
 imap [       [a<C-h><plug>(neosnippet_expand)
 imap <       <a<C-h><plug>(neosnippet_expand)
-inoremap () ()
-inoremap {} {}
-inoremap [] []
+imap (jj (jj
+imap {jj {jj
+imap [jj [jj
+imap <jj <jj
 inoremap <> <>
 inoremap (<CR> ()<ESC>i<CR><Esc><S-o>
 inoremap {<CR> {}<ESC>i<CR><Esc><S-o>
