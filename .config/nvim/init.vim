@@ -56,15 +56,15 @@ let $CURRENT_FILE_NAME = split(expand("%"),"/")[-1]
 
 
 "--- Global Functions: -------------------
-let g:curpos = getcurpos()
+let save_curpos = getcurpos()
 
-function! g:Get_curpos_to_curpos() abort
-  let g:curpos = getcurpos()
-endfunction
+" function! g:Get_curpos_to_curpos() abort
+"   let g:curpos = getcurpos()
+" endfunction
 
 " pos は配列で，その扱いがおかしいっぽい？
-function! g:Set_curpos(pos) abort
-  echo setpos('.', a:pos)
+function! g:Set_curpos() abort
+  call setpos('.', save_curpos)
 endfunction
 
 
@@ -468,6 +468,18 @@ function! To_top_of_window_OR_scroll_previous_page() abort" {{{
     return "H"
   endif
 endfunction" }}}
+noremap <silent>fa fa
+function! Find_for_next_line(char) abort
+  let save_curpos = getcurpos()
+endfunction
+nnoremap aaa 
+      \:let save_curpos = getcurpos()<CR>
+      \dd
+      \:if save_curpos == getcurpos()<CR>
+      \   :echo 1<CR>
+      \:else<CR>
+      \   :echo 0<CR>
+      \:endif<CR>
 "}}}
 
 " mode switch ----------------------
@@ -626,7 +638,11 @@ nnoremap <f12> :set conceallevel=0<CR>
 " small trick -----------------------
 " delete only last char in current line
 " nnoremap <expr> d, "\a<C-h><esc>"
-nnoremap <expr><silent> d, Get_curpos_to_curpos()."\A<C-h><ESC>"
+" nnoremap <expr><silent> d, Get_curpos_to_curpos()."\A<C-h><ESC>"
+nnoremap <silent>d, :
+      \:let save_curpos = getcurpos()<CR>
+      \A<C-h><ESC>
+      \:call setpos('.', save_curpos)<CR>
 
 
 " ---------------------------------------
