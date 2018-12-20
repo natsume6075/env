@@ -422,6 +422,7 @@ nnoremap j gj
 nnoremap k gk
 " spell
 nnoremap <C-s> z=
+" commentout
 nmap <silent> " <plug>(caw:hatpos:toggle)
 nnoremap con J
 
@@ -451,9 +452,6 @@ endfunction"
 " default: Concat some lines
 noremap <silent>J   :keepjumps normal ___J<CR>
 noremap <expr>  ___J   To_bottom_of_window_OR_scroll_next_page()
-" default: reference to help
-noremap <silent>K   :keepjumps normal ___K<CR>
-noremap <expr> ___K   To_top_of_window_OR_scroll_previous_page()
 function! To_bottom_of_window_OR_scroll_next_page() abort" {{{
   if winline() > winheight(0) - 5
     return "\<C-f>L"
@@ -461,6 +459,9 @@ function! To_bottom_of_window_OR_scroll_next_page() abort" {{{
     return "L"
   endif
 endfunction" }}}
+" default: reference to help
+noremap <silent>K   :keepjumps normal ___K<CR>
+noremap <expr> ___K   To_top_of_window_OR_scroll_previous_page()
 function! To_top_of_window_OR_scroll_previous_page() abort" {{{
   if winline() < 5
     return "\<C-b>H"
@@ -472,13 +473,15 @@ noremap <silent>fa fa
 function! Find_for_next_line(char) abort
   let save_curpos = getcurpos()
 endfunction
-nnoremap aaa 
+" cursor が移動したときとしなかったときとで，動作を変えるしくみ。
+" f コマンドは見つからなかったときにエラーとして扱われるらしく，これでうまくいかない。
+nnoremap ___hoge :
       \:let save_curpos = getcurpos()<CR>
-      \dd
+      \jjjkl
       \:if save_curpos == getcurpos()<CR>
-      \   :echo 1<CR>
+      \:    echo "移動してない"<CR>
       \:else<CR>
-      \   :echo 0<CR>
+      \:    echo "移動した"<CR>
       \:endif<CR>
 "}}}
 
@@ -637,7 +640,6 @@ nnoremap <f12> :set conceallevel=0<CR>
 
 " small trick -----------------------
 " delete only last char in current line
-" nnoremap <expr> d, "\a<C-h><esc>"
 " nnoremap <expr><silent> d, Get_curpos_to_curpos()."\A<C-h><ESC>"
 nnoremap <silent>d, :
       \:let save_curpos = getcurpos()<CR>
