@@ -1,5 +1,5 @@
 " vim: foldmethod=marker
-" vim: foldmarker=\ {{{,\ }}}
+" vim: foldmarker=\{{{,\}}}
 "                                          _ __ _,  ＿_
 "                                      ,.-' 丶   '｀丶/
 "                                    ／ ）     ￣     ＼
@@ -89,16 +89,11 @@ set textwidth=0
 " spelling check
 set spell
 set spelllang=en,cjk
-nnoremap <C-s> z=
-inoremap <C-s> <C-x>s
 
 "--- Move: ---------------------
 " 左右のカーソル移動で行間移動可能にする。
 set whichwrap=h,l,b,s,<,>,[,]
 set backspace=indent,eol,start
-" 折り返し時に表示行単位での移動できるようにする
-nnoremap <silent>j gj
-nnoremap <silent>k gk
 " マウスを使えるようにする
 set mouse=a
 " 行末の1文字先までカーソルを移動できるように
@@ -114,13 +109,11 @@ autocmd initvim BufReadPost *
       \ endif
 
 " --- Undo ------------------
-" nnoremap <C-u> <C-r>
 set undodir=$XDG_DATA_HOME/nvim/undo
 set undofile
 set undolevels=1000
 " --- Yank, Paste, Resisters ----------- {{{
 " set clipboard+=unnamedplus
-inoremap <silent><C-r><C-r>  <C-r>*
 autocmd initvim TextYankPost *
       \ echomsg "yank"string(v:event.regcontents)" to reg: ".v:event.regname
 " }}}
@@ -144,22 +137,34 @@ endfunction
 set foldenable
 set foldmethod=marker
 " set foldmethod=indent
-set foldmarker=\ {{{,\ }}}
-set foldtext=FoldCCtext()
+set foldmarker=\{{{,\}}}
+set foldtext=Natsume_fold_text()
+function! Natsume_fold_text() "{{{
+  if g:foldCCtext_enable_autofdc_adjuster && v:foldlevel > &fdc-1
+    let &fdc = v:foldlevel + 1
+  endif
+  let headline = 
+        \ getline(v:foldstart)
+        "\ getline(v:foldstart)
+  let head = g:foldCCtext_head=='' ? '' : eval(g:foldCCtext_head)
+  let tail = g:foldCCtext_tail=='' ? '' : ' '. eval(g:foldCCtext_tail)
+  let headline = s:_adjust_headline(headline, strlen(head)+strlen(tail))
+  return substitute(headline, '^\s*\ze', '\0'. head, ''). tail
+endfunction
+"}}}
 set foldcolumn=3
 set fillchars=vert:\|
 let g:foldCCtext_head = ''
 let g:foldCCtext_tail = 'printf(" %s[%4d lines Lv%-2d ]%s  ", v:folddashes, v:foldend-v:foldstart+1, v:foldlevel, v:folddashes)'
 " foldcolumn が足りなくなった時に，自動で大きくする バグあり
-" let g:foldCCtext_enable_autofdc_adjuster = 1
 " Ref: http://leafcage.hateblo.jp/entry/20111223/1324705686
-
+" let g:foldCCtext_enable_autofdc_adjuster = 1
+" Ref: https://vim-jp.org/vim-users-jp/2009/10/08/Hack-84.html
 " Save fold settings.
 autocmd BufWritePost * if expand('%') != '' && &buftype !~ 'nofile'                       | mkview | endif
 autocmd BufRead      * if expand('%') != '' && &buftype !~ 'nofile' && &buftype !~ 'help' | silent loadview | endif
 " Don't save options.
 set viewoptions-=options
-" Ref: https://vim-jp.org/vim-users-jp/2009/10/08/Hack-84.html
 " }}}
 
 " --- Information ------------------------- {{{
@@ -215,7 +220,7 @@ set hlsearch
 if executable('osascript')
   let s:keycode_jis_eisuu = 102
   let g:force_alphanumeric_input_command = "osascript -e 'tell application \"System Events\" to key code " . s:keycode_jis_eisuu . "' &"
-  inoremap   :call system(g:force_alphanumeric_input_command)
+  " inoremap   :call system(g:force_alphanumeric_input_command)
 endif
 " Ref:
 
@@ -236,7 +241,7 @@ augroup initvim
 
   " インサートモードを抜けるときに発火
   autocmd InsertLeave * :DoMatchParen
-  " 発火された直後にキー入力が余分に必要になるバグ、()のmapがおかしくなるバグがあって、コメントアウト
+  " 発火された直後にキー入力が余分に必要になるバグ、()がおかしくなるバグがあって、コメントアウト
   " autocmd InsertLeave * call system(g:force_alphanumeric_input_command)
 
   " vim をフォーカスしたときに発火
@@ -350,7 +355,7 @@ autocmd initvim colorscheme highlight fullwidthspace ctermbg=white
 autocmd initvim vimenter match fullwidthspace /　/
 
 hi Folded     term=standout ctermbg=Black ctermfg=Green
-hi FoldColumn term=standout ctermbg=Black ctermfg=Green
+hi FoldColumn term=standout ctermbg=Black ctermfg=130
 " 欲を言うなら，fold しても1行目の構文ハイライトは維持したい。
 
 
@@ -392,7 +397,7 @@ set concealcursor=""
 "---------------------------------------------------------------------------"
 
 " ---------------------------------------
-"  key map (i):
+"  key map (n):
 " ---------------------------------------
 
 " simple mappings -------------------
@@ -401,6 +406,17 @@ set concealcursor=""
 " nnoremap ; :
 " nnoremap : ;
 noremap!  
+" undo/redo
+nnoremap <C-u> <C-r>
+" yank/cut/paste
+nnoremap <C-r>   "
+" inoremap <C-r><C-r>  <C-r>*
+" 折り返し時に表示行単位での移動できるようにする
+nnoremap <silent> j gj
+nnoremap <silent> k gk
+" spell
+nnoremap <C-s> z=
+nmap <silent> " <plug>(caw:hatpos:toggle)
 
 " move ------------------------------
 noremap H ^
@@ -577,12 +593,18 @@ nnoremap <expr><silent> d, Get_curpos_to_curpos()."\A<C-h><ESC>"
 "  key map (v):
 " ---------------------------------------
 
+vmap <silent> " <plug>(caw:hatpos:toggle)
+
 
 " ---------------------------------------
 "  key map (i):
 " ---------------------------------------
 
 inoremap <silent> jj <ESC>
+" spell
+inoremap <C-s> <C-x>s
+" yank/cut/paste
+inoremap <C-r><C-r>  <C-r>*
 
 " ひとつ上の行をいただく
 inoremap y<Up> <C-o>d$<ESC><Up><Right>y$<Down>pa
@@ -672,11 +694,10 @@ xmap <C-k>     <plug>(neosnippet_expand_target)
 " }}}
 
 " vim-surround ---------------- {{{
+
 " }}}
 
 " caw : commentout------------- {{{
-nmap <silent> ?? <plug>(caw:hatpos:toggle)
-vmap <silent> ?? <plug>(caw:hatpos:toggle)
 let g:caw_no_default_keymappings = 1
 " }}}
 
