@@ -139,14 +139,14 @@ set foldmethod=marker
 " set foldmethod=indent
 set foldmarker=\{{{,\}}}
 set foldtext=Natsume_fold_text()
-function! Natsume_fold_text() "{{{ 
+function! Natsume_fold_text() "{{{
   " todo: 設定し放題。コメントなら表示するけど，そうじゃないなら表示しないとか？　大きいならなにか変わったあれを用意するとか？
   "       関数定義の１行目を巻き込まないようにすれば，シンタックスハイライトも消えずにすむ。
   "       その場合は body とかにしたりね。
   if g:foldCCtext_enable_autofdc_adjuster && v:foldlevel > &fdc-1
     let &fdc = v:foldlevel + 1
   endif
-  let headline = 
+  let headline =
         \ getline(v:foldstart)
         "\ getline(v:foldstart)
   let head = g:foldCCtext_head=='' ? '' : eval(g:foldCCtext_head)
@@ -421,7 +421,9 @@ nnoremap <silent> k gk
 nnoremap <C-s> z=
 nmap <silent> " <plug>(caw:hatpos:toggle)
 
-" move ------------------------------
+" motion ------------------------------{{{
+nnoremap Y :keepjumps normal n<CR>
+nnoremap <silent>J :keepjumps normal J<CR>
 noremap H ^
 noremap L $
 noremap M M
@@ -444,6 +446,7 @@ function! To_top_of_window_OR_scroll_previous_page() abort" {{{
     return "H"
   endif
 endfunction" }}}
+"}}}
 
 " mode switch ----------------------
 " default: same as [gQ] (switch to ex mode)
