@@ -90,7 +90,7 @@ set textwidth=0
 set spell
 set spelllang=en,cjk
 
-"--- Move: ---------------------
+"--- Motion ---------------------{{{
 " 左右のカーソル移動で行間移動可能にする。
 set whichwrap=h,l,b,s,<,>,[,]
 set backspace=indent,eol,start
@@ -107,11 +107,14 @@ autocmd initvim BufReadPost *
       \ if line("'\"") > 0 && line ("'\"") <= line("$") |
       \   exe "normal! g'\"" |
       \ endif
+"}}}
 
-" --- Undo ------------------
+" --- Undo ------------------{{{
 set undodir=$XDG_DATA_HOME/nvim/undo
 set undofile
 set undolevels=1000
+"}}}
+"
 " --- Yank, Paste, Resisters ----------- {{{
 " set clipboard+=unnamedplus
 autocmd initvim TextYankPost *
@@ -591,6 +594,10 @@ vmap <Leader>   S
 "}}}
 
 let mapleader = "\\"
+
+" marks ------------------------------{{{
+nnoremap <C-m> '
+"}}}
 
 " function key
 " default: map <f1> to display the help file
