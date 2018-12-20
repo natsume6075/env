@@ -456,7 +456,7 @@ let g:airline_theme = 'luna'
 
 
 " --- Conceal: -------------------- {{{
-set conceallevel=2
+set conceallevel=0
 set concealcursor=""
 " }}}
 
@@ -579,12 +579,17 @@ inoremap <silent> jj <ESC>
 inoremap y<Up> <C-o>d$<ESC><Up><Right>y$<Down>pa
 
 " かっこ補完
-inoremap (<ENTER> ()<ESC>i<CR><Esc><S-o>
-inoremap {<ENTER> {}<ESC>i<CR><Esc><S-o>
-inoremap <<ENTER> <><ESC>i<CR><Esc><S-o>
+imap (       (a<C-h><plug>(neosnippet_expand)
+imap {       {a<C-h><plug>(neosnippet_expand)
+imap [       [a<C-h><plug>(neosnippet_expand)
+imap <       <a<C-h><plug>(neosnippet_expand)
+inoremap (<CR> ()<ESC>i<CR><Esc><S-o>
+inoremap {<CR> {}<ESC>i<CR><Esc><S-o>
+inoremap [<CR> []<ESC>i<CR><Esc><S-o>
+inoremap <<CR> <><ESC>i<CR><Esc><S-o>
 
 
-
+" imap     <silent><expr> <C-l>   pumvisible() ? deoplete#close_popup()."\<C-l>" : "\<plug>(neosnippet_jump)"
 
 
 
@@ -643,7 +648,7 @@ let g:neosnippet#snippets_directory='$XDG_CONFIG_HOME/nvim/my_snippets'
 " note: it must be "imap" and "smap".  it uses <plug> mappings.
 " a<C-h> の理由：
 "   例えば { を使ったマッピングがある影響で { を入力すると待機モードになる。
-"   待機モードで extend を呼び出しても即座に展開はされず，二度押しが必要だった。
+"   待機モードで expand を呼び出しても即座に展開はされず，二度押しが必要だった。
 "   他にも待機モードになるような任意の入力で即座に展開できなかった。
 "   一旦適当な文字 a を打ってそれを消す操作を挟むことで，一度押しでいけるようにした。
 imap <C-k>     a<C-h><plug>(neosnippet_expand)
