@@ -243,16 +243,21 @@ set helplang& helplang=en,ja
 " ---------------------------------------
 augroup initvim
 
+  if executable('osascript')
+    let s:keycode_jis_eisuu = 102
+    let g:force_alphanumeric_input_command = "osascript -e 'tell application \"System Events\" to key code " . s:keycode_jis_eisuu . "' &"
+  endif
+
   " インサートモードに入ったときに発火
-  autocmd InsertEnter * :NoMatchParen
+  autocmd InsertEnter * NoMatchParen
 
   " インサートモードを抜けるときに発火
-  autocmd InsertLeave * :DoMatchParen
-  " 発火された直後にキー入力が余分に必要になるバグ、()がおかしくなるバグがあって、コメントアウト
-  " autocmd InsertLeave * call system(g:force_alphanumeric_input_command)
+  autocmd InsertLeave * DoMatchParen
+  autocmd InsertLeave * call system(g:force_alphanumeric_input_command)
 
   " vim をフォーカスしたときに発火
-  " autocmd FocusGained * call system(g:force_alphanumeric_input_command)
+  autocmd FocusGained *
+       \   call system(g:force_alphanumeric_input_command)
 
   " init.vim を保存したときにリロード
   autocmd BufWritePost $XDG_CONFIG_HOME/nvim/init.vim so $XDG_CONFIG_HOME/nvim/init.vim
@@ -416,9 +421,8 @@ set concealcursor=""
 " undo/redo
 nnoremap <C-u> <C-r>
 " yank/cut/paste
-nnoremap <C-r>   "
-nnoremap <C-r>'   "*
-" inoremap <C-r><C-r>  <C-r>*
+noremap <C-r>   "
+noremap <C-r>'   "*
 " 折り返し時に表示行単位での移動できるようにする
 nnoremap j gj
 nnoremap k gk
@@ -498,8 +502,7 @@ nnoremap ___hoge :
       \:    echo "移動した"<CR>
       \:endif<CR>
 
-" CursorMoved
-
+" autocmd initvim CursorMoved * j
 
 
 "}}}
@@ -680,7 +683,8 @@ vmap <silent> " <plug>(caw:hatpos:toggle)
 "  key map (i):
 " ---------------------------------------
 
-inoremap <silent> jj <ESC>
+inoremap <silent> jj  <ESC>
+inoremap <silent> っj <ESC>
 " spell
 inoremap <C-s> <C-x>s
 " yank/cut/paste
