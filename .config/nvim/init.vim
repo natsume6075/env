@@ -139,7 +139,10 @@ set foldmethod=marker
 " set foldmethod=indent
 set foldmarker=\{{{,\}}}
 set foldtext=Natsume_fold_text()
-function! Natsume_fold_text() "{{{
+function! Natsume_fold_text() "{{{ 
+  " todo: 設定し放題。コメントなら表示するけど，そうじゃないなら表示しないとか？　大きいならなにか変わったあれを用意するとか？
+  "       関数定義の１行目を巻き込まないようにすれば，シンタックスハイライトも消えずにすむ。
+  "       その場合は body とかにしたりね。
   if g:foldCCtext_enable_autofdc_adjuster && v:foldlevel > &fdc-1
     let &fdc = v:foldlevel + 1
   endif
@@ -481,8 +484,8 @@ nnoremap <silent> <Leader>C zC
 nnoremap <silent> <Leader>i zi
 " なにかつぶした
 nnoremap <silent> <Leader>h zMzv
-nnoremap <silent> <Leader>a zR
-nnoremap <silent> <Leader>A zM
+nnoremap <silent> <Leader>A zR
+nnoremap <silent> <Leader>a zM
 nnoremap <silent> <Leader>j :<C-u>call <SID>smart_foldjump('j')<CR>
 nnoremap <silent> <Leader>k :<C-u>call <SID>smart_foldjump('k')<CR>
 
@@ -520,29 +523,29 @@ endfunction
 let mapleader = "\\"
 " }}}
 
-" about tab/pain --------------------- {{{
 let mapleader = "s"
 
+" about tab/pain --------------------- {{{
 " split pain horizontally/vertically
 nnoremap <silent> <Leader>S :split<CR>
 nnoremap <silent> <Leader>s :vsplit<CR>
 " focus to another pane
-nnoremap <silent> <Leader>j <C-w>w
+nnoremap <Leader>j <C-w>w
 " swap to another pane
-nnoremap <silent> <Leader>J <C-w>J
-nnoremap <silent> <Leader>K <C-w>K
-nnoremap <silent> <Leader>H <C-w>H
-nnoremap <silent> <Leader>L <C-w>L
+nnoremap <Leader>J <C-w>J
+nnoremap <Leader>K <C-w>K
+nnoremap <Leader>H <C-w>H
+nnoremap <Leader>L <C-w>L
 " Expand/Shrink focused pane (take number)
-nnoremap <silent> <Leader>> <C-w>>
-nnoremap <silent> <Leader>< <C-w><
-nnoremap <silent> <Leader>+ <C-w>+
-nnoremap <silent> <Leader>- <C-w>-
+nnoremap <Leader>> <C-w>>
+nnoremap <Leader>< <C-w><
+nnoremap <Leader>+ <C-w>+
+nnoremap <Leader>- <C-w>-
 " new tab
 nnoremap <silent> <Leader>n :tabnew<CR>
-" show previous/next tab
-nnoremap <silent> <Leader>h gT
-nnoremap <silent> <Leader>l gt
+" show preious/next tab
+nnoremap <Leader>h gT
+nnoremap <Leader>l gt
 " move current pain to new tab
 " (if current window has only one pane, split into two tabs)
 nnoremap <silent> <Leader>t :<C-u>call <SID>MoveToNewTab()<CR>
@@ -557,9 +560,15 @@ function! s:MoveToNewTab()" {{{
   tabnext
 endfunction
 " }}}
+" }}}
+
+" surround ---------------------------{{{
+nmap <Leader>d  ds
+nmap <Leader>c  cs
+vmap <Leader>   S
+"}}}
 
 let mapleader = "\\"
-" }}}
 
 " function key
 " default: map <f1> to display the help file
@@ -593,6 +602,7 @@ nnoremap <expr><silent> d, Get_curpos_to_curpos()."\A<C-h><ESC>"
 "  key map (v):
 " ---------------------------------------
 
+" comment (caw)
 vmap <silent> " <plug>(caw:hatpos:toggle)
 
 
