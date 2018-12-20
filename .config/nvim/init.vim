@@ -418,23 +418,24 @@ nnoremap <C-u> <C-r>
 nnoremap <C-r>   "
 " inoremap <C-r><C-r>  <C-r>*
 " 折り返し時に表示行単位での移動できるようにする
-nnoremap <silent> j gj
-nnoremap <silent> k gk
+nnoremap j gj
+nnoremap k gk
 " spell
 nnoremap <C-s> z=
 nmap <silent> " <plug>(caw:hatpos:toggle)
+nnoremap con J
 
 " motion ------------------------------{{{
 " keepjumps をする際に，関数の中に入れることで，無限ループを回避している。
 nnoremap <silent>n  :keepjumps normal ___n<CR>"{{{
 nnoremap <expr>  ___n Avoid_too_recursive_n()
-function! Avoid_too_recursive_n() abort" 
+function! Avoid_too_recursive_n() abort"
   return "n"
 endfunction
 "}}}
 nnoremap <silent>N  :keepjumps normal ___N<CR>"{{{
 nnoremap <expr>  ___N Avoid_too_recursive_N()
-function! Avoid_too_recursive_N() abort" 
+function! Avoid_too_recursive_N() abort"
   return "N"
 endfunction
 "}}}
@@ -442,9 +443,9 @@ noremap H _
 noremap L $
 noremap <silent>M :keepjumps normal ___M<CR>"{{{
 noremap <expr>  ___M   Avoid_too_recursive_M()
-function! Avoid_too_recursive_M() abort" 
+function! Avoid_too_recursive_M() abort"
   return "M"
-endfunction" 
+endfunction"
 "}}}
 " 思い通りになるJK
 " default: Concat some lines
@@ -493,8 +494,9 @@ function! Open_reference_OR_URL() abort" {{{
 endfunction
 " }}}
 
-" folding -------------------------------------------------- {{{
 let mapleader = "z"
+
+" folding -------------------------------------------------- {{{
 
 noremap  <silent> <Leader>w :echo FoldCCnavi()<CR>
 nnoremap <silent> <Leader>f za
@@ -545,9 +547,9 @@ endfunction
 " }}}
 " Ref: http://d.hatena.ne.jp/leafcage/20130212/1360636769
 
-let mapleader = "\\"
 " }}}
 
+let mapleader = "\\"
 let mapleader = "s"
 
 " about tab/pain --------------------- {{{
