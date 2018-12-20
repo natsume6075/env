@@ -112,8 +112,6 @@ autocmd initvim BufReadPost *
       \ if line("'\"") > 0 && line ("'\"") <= line("$") |
       \   exe "normal! g'\"" |
       \ endif
-" default: show file name, lines, cursor pos
-nnoremap <silent> <C-g> <C-b>
 
 " --- Undo ------------------
 " nnoremap <C-u> <C-r>
@@ -150,59 +148,11 @@ set foldmarker=\ {{{,\ }}}
 set foldtext=FoldCCtext()
 set foldcolumn=3
 set fillchars=vert:\|
-noremap  <silent> zw :echo FoldCCnavi()<CR>
 let g:foldCCtext_head = ''
 let g:foldCCtext_tail = 'printf(" %s[%4d lines Lv%-2d ]%s  ", v:folddashes, v:foldend-v:foldstart+1, v:foldlevel, v:folddashes)'
 " foldcolumn が足りなくなった時に，自動で大きくする バグあり
 " let g:foldCCtext_enable_autofdc_adjuster = 1
 " Ref: http://leafcage.hateblo.jp/entry/20111223/1324705686
-nnoremap <silent> zf za
-nnoremap <silent> zF zA
-nnoremap <silent> zM zM
-nnoremap <silent> zj zj
-nnoremap <silent> zk zk
-nnoremap <silent> zd zd
-nnoremap <silent> zD zD
-nnoremap <silent> zc zc
-nnoremap <silent> zC zC
-nnoremap <silent> zi zi
-" なにかつぶした
-nnoremap <silent> zh zMzv
-nnoremap <silent> za zR
-nnoremap <silent> zA zM
-nnoremap <silent>zj :<C-u>call <SID>smart_foldjump('j')<CR>
-nnoremap <silent>zk :<C-u>call <SID>smart_foldjump('k')<CR>
-
-function! s:smart_foldjump(direction)" {{{
-  if a:direction == 'j'
-    let [cross, trace, compare] = ['zj', ']z', '<']
-  else
-    let [cross, trace, compare] = ['zk', '[z', '>']
-  endif
-
-  let i = v:count1
-  while i
-    let save_lnum = line('.')
-    exe 'keepj norm! '. trace
-    let trace_lnum = line('.')
-    exe save_lnum
-
-    exe 'keepj norm! '. cross
-    let cross_lnum = line('.')
-    if cross_lnum != save_lnum && eval('cross_lnum '. compare. ' trace_lnum')
-          \ || trace_lnum == save_lnum
-      let i -= 1
-      continue
-    endif
-
-    exe trace_lnum
-    let i -= 1
-  endwhile
-  mark `
-  norm! zz
-endfunction
-" }}}
-" Ref: http://d.hatena.ne.jp/leafcage/20130212/1360636769
 
 " Save fold settings.
 autocmd BufWritePost * if expand('%') != '' && &buftype !~ 'nofile'                       | mkview | endif
@@ -274,45 +224,7 @@ endif
 " If true Vim master, use English help file.
 set helplang& helplang=en,ja
 
-" about tab/pain ---------------------
-let mapleader = "s"
 
-" split pain horizontally/vertically
-nnoremap <silent> <Leader>S :split<CR>
-nnoremap <silent> <Leader>s :vsplit<CR>
-" focus to another pane
-nnoremap <silent> <Leader>j <C-w>w
-" swap to another pane
-nnoremap <silent> <Leader>J <C-w>J
-nnoremap <silent> <Leader>K <C-w>K
-nnoremap <silent> <Leader>H <C-w>H
-nnoremap <silent> <Leader>L <C-w>L
-" Expand/Shrink focused pane (take number)
-nnoremap <silent> <Leader>> <C-w>>
-nnoremap <silent> <Leader>< <C-w><
-nnoremap <silent> <Leader>+ <C-w>+
-nnoremap <silent> <Leader>- <C-w>-
-" new tab
-nnoremap <silent> <Leader>n :tabnew<CR>
-" show previous/next tab
-nnoremap <silent> <Leader>h gT
-nnoremap <silent> <Leader>l gt
-" move current pain to new tab
-" (if current window has only one pane, split into two tabs)
-nnoremap <silent> <Leader>t :<C-u>call <SID>MoveToNewTab()<CR>
-function! s:MoveToNewTab()
-  tab split
-  tabprevious
-  if winnr('$') > 1
-    close
-  elseif bufnr('$') > 1
-    buffer #
-  endif
-  tabnext
-endfunction
-
-
-let mapleader = "\\"
 
 " ---------------------------------------
 "  autocmd settings
@@ -455,10 +367,10 @@ hi SpellLocal NONE
 let g:airline_theme = 'luna'
 
 
-" --- Conceal: -------------------- {{{
+" --- Conceal: --------------------
 set conceallevel=0
 set concealcursor=""
-" }}}
+
 
 
 " ---------------------------------------
@@ -479,45 +391,26 @@ set concealcursor=""
 " cmap / cnoremap  |    -   |   -    |    @    |   -    |   -    |    -     |
 "---------------------------------------------------------------------------"
 
-" simple map ------------------------
+" ---------------------------------------
+"  key map (i):
+" ---------------------------------------
+
+" simple mappings -------------------
 " :と;の入れ替え、Karabinar からやったのでクビ
 " それどころかキーボードも物理的に入れ替えちゃった
 " nnoremap ; :
 " nnoremap : ;
-" vnoremap ; :
-" vnoremap : ;
 noremap!  
-" default: same as [gQ] (switch to ex mode)
-nnoremap Q kA
-" default: same as [k]
-nnoremap <C-p> :<C-p>
 
-nnoremap <silent> <ESC> :nohl<CR><ESC>
-
-
-" http://www.ipentec.com/document/regularexpression-url-detect
-" https://
-
+" move ------------------------------
 noremap H ^
 noremap L $
 noremap M M
-noremap <expr> +  Open_reference_OR_URL()
-
-function! Open_reference_OR_URL() abort" {{{
-  if expand('<cWORD>') =~ 'https\?:\/\/'
-    return ":!open ".expand('<cWORD>')."\<CR>"
-  else
-    return "K"
-  endif
-endfunction
-" }}}
-
 " 思い通りになるJK
 " default: Concat some lines
 noremap <expr> J   To_bottom_of_window_OR_scroll_next_page()
 " default: reference to help
 noremap <expr> K   To_top_of_window_OR_scroll_previous_page()
-
 function! To_bottom_of_window_OR_scroll_next_page() abort" {{{
   if winline() > winheight(0) - 5
     return "\<C-f>L"
@@ -532,6 +425,125 @@ function! To_top_of_window_OR_scroll_previous_page() abort" {{{
     return "H"
   endif
 endfunction" }}}
+
+" mode switch ----------------------
+" default: same as [gQ] (switch to ex mode)
+nnoremap Q kA
+
+" default: same as [k]
+nnoremap <C-p> :<C-p>
+
+nnoremap <silent> <ESC> :nohl<CR><ESC>
+
+
+" http://www.ipentec.com/document/regularexpression-url-detect
+
+noremap <expr> +  Open_reference_OR_URL()
+
+function! Open_reference_OR_URL() abort" {{{
+  if expand('<cWORD>') =~ 'https\?:\/\/'
+    return ":!open ".expand('<cWORD>')."\<CR>"
+  else
+    return "K"
+  endif
+endfunction
+" }}}
+
+" folding -------------------------------------------------- {{{
+let mapleader = "z"
+
+noremap  <silent> <Leader>w :echo FoldCCnavi()<CR>
+nnoremap <silent> <Leader>f za
+nnoremap <silent> <Leader>F zA
+nnoremap <silent> <Leader>M zM
+nnoremap <silent> <Leader>j zj
+nnoremap <silent> <Leader>k zk
+nnoremap <silent> <Leader>d zd
+nnoremap <silent> <Leader>D zD
+nnoremap <silent> <Leader>c zc
+nnoremap <silent> <Leader>C zC
+nnoremap <silent> <Leader>i zi
+" なにかつぶした
+nnoremap <silent> <Leader>h zMzv
+nnoremap <silent> <Leader>a zR
+nnoremap <silent> <Leader>A zM
+nnoremap <silent> <Leader>j :<C-u>call <SID>smart_foldjump('j')<CR>
+nnoremap <silent> <Leader>k :<C-u>call <SID>smart_foldjump('k')<CR>
+
+function! s:smart_foldjump(direction)" {{{
+  if a:direction == 'j'
+    let [cross, trace, compare] = ['zj', ']z', '<']
+  else
+    let [cross, trace, compare] = ['zk', '[z', '>']
+  endif
+
+  let i = v:count1
+  while i
+    let save_lnum = line('.')
+    exe 'keepj norm! '. trace
+    let trace_lnum = line('.')
+    exe save_lnum
+
+    exe 'keepj norm! '. cross
+    let cross_lnum = line('.')
+    if cross_lnum != save_lnum && eval('cross_lnum '. compare. ' trace_lnum')
+          \ || trace_lnum == save_lnum
+      let i -= 1
+      continue
+    endif
+
+    exe trace_lnum
+    let i -= 1
+  endwhile
+  mark `
+  norm! zz
+endfunction
+" }}}
+" Ref: http://d.hatena.ne.jp/leafcage/20130212/1360636769
+
+let mapleader = "\\"
+" }}}
+
+" about tab/pain --------------------- {{{
+let mapleader = "s"
+
+" split pain horizontally/vertically
+nnoremap <silent> <Leader>S :split<CR>
+nnoremap <silent> <Leader>s :vsplit<CR>
+" focus to another pane
+nnoremap <silent> <Leader>j <C-w>w
+" swap to another pane
+nnoremap <silent> <Leader>J <C-w>J
+nnoremap <silent> <Leader>K <C-w>K
+nnoremap <silent> <Leader>H <C-w>H
+nnoremap <silent> <Leader>L <C-w>L
+" Expand/Shrink focused pane (take number)
+nnoremap <silent> <Leader>> <C-w>>
+nnoremap <silent> <Leader>< <C-w><
+nnoremap <silent> <Leader>+ <C-w>+
+nnoremap <silent> <Leader>- <C-w>-
+" new tab
+nnoremap <silent> <Leader>n :tabnew<CR>
+" show previous/next tab
+nnoremap <silent> <Leader>h gT
+nnoremap <silent> <Leader>l gt
+" move current pain to new tab
+" (if current window has only one pane, split into two tabs)
+nnoremap <silent> <Leader>t :<C-u>call <SID>MoveToNewTab()<CR>
+function! s:MoveToNewTab()" {{{
+  tab split
+  tabprevious
+  if winnr('$') > 1
+    close
+  elseif bufnr('$') > 1
+    buffer #
+  endif
+  tabnext
+endfunction
+" }}}
+
+let mapleader = "\\"
+" }}}
 
 " function key
 " default: map <f1> to display the help file
@@ -570,11 +582,8 @@ nnoremap <expr><silent> d, Get_curpos_to_curpos()."\A<C-h><ESC>"
 "  key map (i):
 " ---------------------------------------
 
-" simple map ------------------------
 inoremap <silent> jj <ESC>
 
-
-" small trick -----------------------
 " ひとつ上の行をいただく
 inoremap y<Up> <C-o>d$<ESC><Up><Right>y$<Down>pa
 
@@ -583,11 +592,14 @@ imap (       (a<C-h><plug>(neosnippet_expand)
 imap {       {a<C-h><plug>(neosnippet_expand)
 imap [       [a<C-h><plug>(neosnippet_expand)
 imap <       <a<C-h><plug>(neosnippet_expand)
+inoremap () ()
+inoremap {} {}
+inoremap [] []
+inoremap <> <>
 inoremap (<CR> ()<ESC>i<CR><Esc><S-o>
 inoremap {<CR> {}<ESC>i<CR><Esc><S-o>
 inoremap [<CR> []<ESC>i<CR><Esc><S-o>
 inoremap <<CR> <><ESC>i<CR><Esc><S-o>
-
 
 " imap     <silent><expr> <C-l>   pumvisible() ? deoplete#close_popup()."\<C-l>" : "\<plug>(neosnippet_jump)"
 
@@ -792,6 +804,7 @@ let g:airline_symbols.maxlinenr = ''
 " first time settings
 " :EvervimSetup
 " }}}
+
 
 " ---------------------------------------
 "  Language Specific Setting:
