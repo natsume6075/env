@@ -327,7 +327,7 @@ endif
 "  Appearance:
 " ---------------------------------------
 
-" Color Scheme: -----------------------
+" Color Scheme: -----------------------{{{
 set runtimepath+=$XDG_CONFIG_HOME/nvim/runtime/
 
 " :Unite -auto-preview colorscheme
@@ -373,7 +373,7 @@ hi SpellLocal NONE
 " let g:airline_theme = 'bubblegum'
 " let g:airline_theme = 'papercolor'
 let g:airline_theme = 'luna'
-
+"}}}
 
 " --- Conceal: --------------------
 set conceallevel=0
@@ -408,7 +408,7 @@ set concealcursor=""
 " それどころかキーボードも物理的に入れ替えちゃった
 " nnoremap ; :
 " nnoremap : ;
-noremap!  
+" noremap!  
 " undo/redo
 nnoremap <C-u> <C-r>
 " yank/cut/paste
