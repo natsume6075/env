@@ -417,6 +417,7 @@ set concealcursor=""
 nnoremap <C-u> <C-r>
 " yank/cut/paste
 nnoremap <C-r>   "
+nnoremap <C-r>'   "*
 " inoremap <C-r><C-r>  <C-r>*
 " 折り返し時に表示行単位での移動できるようにする
 nnoremap j gj
@@ -477,11 +478,17 @@ endfunction
 " cursor が移動したときとしなかったときとで，動作を変えるしくみ。
 " f コマンドは見つからなかったときにエラーとして扱われるらしく，これでうまくいかない。
 nnoremap ___l :
-      \:let save_curpos = getcurpos()<CR>
+      \:let g:save_curpos = getcurpos()<CR>
       \l
-      \:if save_curpos[1] != getcurpos()[1]<CR>
-      \^
-      \:endif<CR>
+      \:call Hoge(save_curpos)
+function! Hoge(save_curpos) abort
+  if save_curpos[1] != getcurpos()[1]
+    return "^"
+  else
+    return ""
+  endif
+endfunction
+
 nnoremap ___hoge :
       \:let save_curpos = getcurpos()<CR>
       \jjjkl
@@ -490,6 +497,11 @@ nnoremap ___hoge :
       \:else<CR>
       \:    echo "移動した"<CR>
       \:endif<CR>
+
+" CursorMoved
+
+
+
 "}}}
 
 " mode switch ----------------------
@@ -672,7 +684,9 @@ inoremap <silent> jj <ESC>
 " spell
 inoremap <C-s> <C-x>s
 " yank/cut/paste
-inoremap <C-r><C-r>  <C-r>*
+inoremap <C-r>'   <C-r>*
+" inoremap <C-r><C-r>  <C-r>*
+
 
 " ひとつ上の行をいただく
 inoremap y<Up> <C-o>d$<ESC><Up><Right>y$<Down>pa
