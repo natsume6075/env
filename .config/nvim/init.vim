@@ -422,16 +422,34 @@ nnoremap <C-s> z=
 nmap <silent> " <plug>(caw:hatpos:toggle)
 
 " motion ------------------------------{{{
-nnoremap Y :keepjumps normal n<CR>
-nnoremap <silent>J :keepjumps normal J<CR>
-noremap H ^
+" keepjumps をする際に，関数の中に入れることで，無限ループを回避している。
+nnoremap <silent>n  :keepjumps normal ___n<CR>"{{{
+nnoremap <expr>  ___n Avoid_too_recursive_n()
+function! Avoid_too_recursive_n() abort" 
+  return "n"
+endfunction
+"}}}
+nnoremap <silent>N  :keepjumps normal ___N<CR>"{{{
+nnoremap <expr>  ___N Avoid_too_recursive_N()
+function! Avoid_too_recursive_N() abort" 
+  return "N"
+endfunction
+"}}}
+noremap H _
 noremap L $
-noremap M M
+noremap <silent>M :keepjumps normal ___M<CR>"{{{
+noremap <expr>  ___M   Avoid_too_recursive_M()
+function! Avoid_too_recursive_M() abort" 
+  return "M"
+endfunction" 
+"}}}
 " 思い通りになるJK
 " default: Concat some lines
-noremap <expr> J   To_bottom_of_window_OR_scroll_next_page()
+noremap <silent>J   :keepjumps normal ___J<CR>
+noremap <expr>  ___J   To_bottom_of_window_OR_scroll_next_page()
 " default: reference to help
-noremap <expr> K   To_top_of_window_OR_scroll_previous_page()
+noremap <silent>K   :keepjumps normal ___K<CR>
+noremap <expr> ___K   To_top_of_window_OR_scroll_previous_page()
 function! To_bottom_of_window_OR_scroll_next_page() abort" {{{
   if winline() > winheight(0) - 5
     return "\<C-f>L"
@@ -456,6 +474,7 @@ nnoremap Q kA
 nnoremap <C-p> :<C-p>
 
 nnoremap <silent> <ESC> :nohl<CR><ESC>
+nnoremap <silent> <C-c> :nohl<CR><ESC>
 
 
 " http://www.ipentec.com/document/regularexpression-url-detect
