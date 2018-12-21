@@ -650,6 +650,10 @@ nnoremap <CR> <CR>
 
 " function key
 " default: map <f1> to display the help file
+" map <f2> to toggle show Information
+nnoremap <f2> :
+      \:set cursorline!<CR>
+      \:set cursorcolumn!<CR>
 " map <f4> to edit init.vim
 nnoremap <f4> :<C-u>.tabedit $XDG_CONFIG_HOME/nvim/init.vim<CR>
 " map <f5> to source init.vim
@@ -833,7 +837,7 @@ let g:airline_section_c = ''
 
 
 let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#enabled = 1
+" let g:airline#extensions#tabline#enabled = 1
 " let g:airline#extensions#tabline#buffer_idx_mode = 1
 let g:airline#extensions#whitespace#mixed_indent_algo = 1
 if !exists('g:airline_symbols')
