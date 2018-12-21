@@ -55,6 +55,7 @@ let $XDG_DATA_HOME = expand($HOME.'/.local/share')
 let $CURRENT_FILE_NAME = split(expand("%"),"/")[-1]
 
 
+
 "--- Global Functions: -------------------
 let save_curpos = getcurpos()
 set nocompatible
@@ -85,6 +86,8 @@ set autoread
 set hidden
 " 自動改行しない
 set textwidth=0
+set display=lastline
+set pumheight=12
 
 
 " spelling check
@@ -179,8 +182,9 @@ set viewoptions-=options
 set number
 " ビープ音を可視化
 " set visualbell
-" 括弧入力時の対応する括弧を表示
+" 括弧入力時の対応する括弧を表示，その時間
 set showmatch
+set matchtime=1
 " 入力中のコマンドをステータスに表示する
 set showcmd
 " 文字数
@@ -387,6 +391,7 @@ let g:airline_theme = 'luna'
 "}}}
 
 " --- Conceal: --------------------
+let conceallevel=0
 set conceallevel=0
 set concealcursor=""
 
@@ -658,12 +663,18 @@ nnoremap <f8> :<C-u>.tabedit $LANG_DICTIONARY<CR>:sort u<CR>
 " autocmd initvim filetype dict  nnoremap <f8> :q<CR>
 " v mode <f8> 選択範囲を dictionary に送る
 vnoremap <f8> y :!echo <C-r>">> $LANG_DICTIONARY<CR><CR>
-" <f10> conceal syntax の呼び出し（vim）
-autocmd initvim filetype tex  nnoremap <f10>
+" <f11> conceal syntax の呼び出し（vim）
+autocmd initvim filetype tex  nnoremap <f11>
       \ :<C-u>.tabedit $XDG_CACHE_HOME/dein/repos/github.com/keitanakamura/tex-conceal.vim/after/syntax/tex.vim<CR>
-" <f11> <f12> conceal のきりかえ
-nnoremap <f11> :set conceallevel=2<CR>
-nnoremap <f12> :set conceallevel=0<CR>
+" <f12> conceal のきりかえ
+nnoremap <f12> :
+      \:let conceallevel=(conceallevel/2+1)%2*2<CR>
+      \:if conceallevel == 0<CR>
+      \:    set conceallevel=0<CR>
+      \:else<CR>
+      \:    set conceallevel=2<CR>
+      \:endif<CR>
+      \<CR>
 
 " small trick -----------------------
 " delete only last char in current line
@@ -694,27 +705,30 @@ inoremap <C-s> <C-x>s
 inoremap <C-r>'   <C-r>*
 " inoremap <C-r><C-r>  <C-r>*
 
-
 " ひとつ上の行をいただく
-inoremap y<Up> <C-o>d$<ESC><Up><Right>y$<Down>pa
+" i_CTRL-Y を最後までやる
+imap <C-y>L  <Up><Right><ESC>y$i<Down><ESC>pa<CR><C-o>dd<left>
+
 
 " かっこ補完
 imap (       (a<C-h><plug>(neosnippet_expand)
 imap {       {a<C-h><plug>(neosnippet_expand)
 imap [       [a<C-h><plug>(neosnippet_expand)
 imap <       <a<C-h><plug>(neosnippet_expand)
+inoremap () ()
+inoremap {} {}
+inoremap [] []
+inoremap <> <>
 imap (jj (jj
 imap {jj {jj
 imap [jj [jj
 imap <jj <jj
-inoremap <> <>
 inoremap (<CR> ()<ESC>i<CR><Esc><S-o>
 inoremap {<CR> {}<ESC>i<CR><Esc><S-o>
 inoremap [<CR> []<ESC>i<CR><Esc><S-o>
 inoremap <<CR> <><ESC>i<CR><Esc><S-o>
 
 " imap     <silent><expr> <C-l>   pumvisible() ? deoplete#close_popup()."\<C-l>" : "\<plug>(neosnippet_jump)"
-
 
 
 
