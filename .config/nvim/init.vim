@@ -253,11 +253,12 @@ augroup initvim
   endif
 
   " インサートモードに入ったときに発火
-  autocmd InsertEnter * NoMatchParen
+  " autocmd InsertEnter * NoMatchParen
 
   " インサートモードを抜けるときに発火
   " 抜けてから入力できるまでウェイトタイムが生まれちゃうので切る。フォーカスのやつなら許容範囲だけど。。。
-  autocmd InsertLeave * DoMatchParen
+  " q: モードでインサートモードに入るとバグる
+  " autocmd InsertLeave * DoMatchParen
   " autocmd InsertLeave * call system(g:force_alphanumeric_input_command)
 
   " vim をフォーカスしたときに発火
@@ -971,6 +972,8 @@ autocmd initvim FileType tex
       \ let $LANG = "tex"
 let g:tex_conceal="adgmb"
 
+autocmd initvim BufNewFile  *.tex  put='%! TEX root = /path/to/thesis.tex'
+
 let g:tex_flavor = 'latex'
 let g:vimtex_fold_enabled = 1
 call deoplete#custom#var('omni', 'input_patterns', {
@@ -987,8 +990,11 @@ let g:vimtex_latexmk_options = '-pdfdvi'
 let g:vimtex_view_method = 'general'
 let g:vimtex_view_automatic = 1
 let g:vimtex_view_general_viewer = '/Applications/Skim.app/Contents/MacOS/Skim'
+" 分割してるとバグる？
+" let g:vimtex_quickfix_autojump = 1
+let g:vimtex_quickfix_mode     = 2
+let g:vimtex_quickfix_autoclose_after_keystrokes = 1
 
-autocmd initvim BufNewFile  *.tex  put='%! TEX root = /path/to/thesis.tex'
 
 
 function! s:previewTex() range
@@ -1016,6 +1022,7 @@ autocmd initvim FileType tex
 " 表示のためのアプリやスペースの選択（amethyst は邪魔 ツールバーも邪魔）
 "   最前列で内容に合わせてなるべく小さく
 " キャッシュしておいて素早く表示する
+
 
 
 " json -------------------------
