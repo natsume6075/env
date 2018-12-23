@@ -1369,6 +1369,49 @@
                                 "type": "basic"
                             }
                         ]
+                    },
+                    {
+                        "description": "コントロールキーを ctrl+shift+command に。単体押しで ctrl+opt+com+a，長押しで ctrl+opt+com+b",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "left_control"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "left_control",
+                                        "lazy": "true",
+                                        "modifiers": [
+                                            "left_shift",
+                                            "option"
+                                        ]
+                                    }
+                                ],
+                                "to_if_alone": [
+                                    {
+                                        "key_code": "a",
+                                        "lazy": "true",
+                                        "modifiers": [
+                                            "left_control",
+                                            "option",
+                                            "left_command"
+                                        ]
+                                    }
+                                ],
+                                "to_if_held_down": [
+                                    {
+                                        "key_code": "b",
+                                        "lazy": "true",
+                                        "modifiers": [
+                                            "left_control",
+                                            "option",
+                                            "left_command"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
                     }
                 ]
             },
