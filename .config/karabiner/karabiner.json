@@ -1277,24 +1277,20 @@
                         ]
                     },
                     {
-                        "description": "Change caps_lock key to command+control+shift.（option 以外の装飾キーと一緒に押すと caps_lock としてはたらく）",
+                        "description": "基本",
                         "manipulators": [
                             {
                                 "from": {
                                     "key_code": "caps_lock",
                                     "modifiers": {
-                                        "optional": [
-                                            "command"
+                                        "mandatory": [
+                                            "caps_lock"
                                         ]
                                     }
                                 },
                                 "to": [
                                     {
-                                        "key_code": "left_shift",
-                                        "modifiers": [
-                                            "option",
-                                            "left_control"
-                                        ]
+                                        "key_code": "caps_lock"
                                     }
                                 ],
                                 "type": "basic"
@@ -1302,42 +1298,72 @@
                         ]
                     },
                     {
-                        "description": "コントロールキーを ctrl+shift+command に。単体押しで ctrl+opt+com+a，長押しで ctrl+opt+com+b",
+                        "description": "hjkl",
                         "manipulators": [
                             {
                                 "from": {
-                                    "key_code": "left_control"
+                                    "key_code": "h",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "caps_lock"
+                                        ]
+                                    }
                                 },
                                 "to": [
                                     {
-                                        "key_code": "left_control",
-                                        "lazy": "true",
-                                        "modifiers": [
-                                            "left_shift",
-                                            "option"
-                                        ]
+                                        "key_code": "left_arrow",
+                                        "modifiers": "caps_lock"
                                     }
                                 ],
-                                "to_if_alone": [
-                                    {
-                                        "key_code": "a",
-                                        "lazy": "true",
-                                        "modifiers": [
-                                            "left_control",
-                                            "option",
-                                            "left_command"
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "j",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "caps_lock"
                                         ]
                                     }
-                                ],
-                                "to_if_held_down": [
+                                },
+                                "to": [
                                     {
-                                        "key_code": "b",
-                                        "lazy": "true",
-                                        "modifiers": [
-                                            "left_control",
-                                            "option",
-                                            "left_command"
+                                        "key_code": "down_arrow",
+                                        "modifiers": "caps_lock"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "k",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "caps_lock"
                                         ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "up_arrow",
+                                        "modifiers": "caps_lock"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "l",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "caps_lock"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "right_arrow",
+                                        "modifiers": "caps_lock"
                                     }
                                 ],
                                 "type": "basic"
