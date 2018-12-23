@@ -142,9 +142,9 @@ endfunction
 
 " --- Folding -------------- {{{
 set foldenable
-set foldmethod=marker
+" set foldmethod=marker
 " set foldmethod=indent
-set foldmarker=\{{{,\}}}
+" set foldmarker=\{{{,\}}}
 set foldtext=Natsume_fold_text()
 function! Natsume_fold_text() "{{{
   " todo: 設定し放題。コメントなら表示するけど，そうじゃないなら表示しないとか？　大きいならなにか変わったあれを用意するとか？
@@ -227,12 +227,12 @@ set wrapscan
 set hlsearch
 " }}}
 
-" 英数を切り替えるための関数を定義する
-if executable('osascript')
-  let s:keycode_jis_eisuu = 102
-  let g:force_alphanumeric_input_command = "osascript -e 'tell application \"System Events\" to key code " . s:keycode_jis_eisuu . "' &"
-  " inoremap   :call system(g:force_alphanumeric_input_command)
-endif
+" " 英数を切り替えるための関数を定義する
+" if executable('osascript')
+"   let s:keycode_jis_eisuu = 102
+"   let g:force_alphanumeric_input_command = "osascript -e 'tell application \"System Events\" to key code " . s:keycode_jis_eisuu . "' &"
+"   " inoremap   :call system(g:force_alphanumeric_input_command)
+" endif
 " Ref:
 
 
@@ -262,8 +262,8 @@ augroup initvim
 
   " vim をフォーカスしたときに発火
   " インサートモードなら発火しないとかも考えられる
-  autocmd FocusGained *
-       \   call system(g:force_alphanumeric_input_command)
+  " autocmd FocusGained *
+  "     \   call system(g:force_alphanumeric_input_command)
 
   " init.vim を保存したときにリロード
   autocmd BufWritePost $XDG_CONFIG_HOME/nvim/init.vim so $XDG_CONFIG_HOME/nvim/init.vim
@@ -298,7 +298,7 @@ if dein#load_state('$XDG_CACHE_HOME/dein')
   call dein#add('Shougo/deoplete.nvim')
   call dein#add('Shougo/denite.nvim')
   call dein#add('Shougo/unite.vim')
-  call dein#add('poppyschmo/deoplete-latex')
+  " call dein#add('poppyschmo/deoplete-latex')
   " call dein#add('Shougo/neco-syntax')
   " call dein#add('Shougo/neco-vim')
   call dein#add('Shougo/neosnippet.vim')
@@ -524,7 +524,8 @@ nnoremap ___hoge :
 nnoremap Q kA
 
 " default: same as [k]
-nnoremap <C-p> :<C-p>
+nnoremap <C-p> q:k
+nnoremap q: :
 
 nnoremap <silent> <ESC> :nohl<CR><ESC>
 nnoremap <silent> <C-c> :nohl<CR><ESC>
@@ -969,6 +970,50 @@ autocmd initvim FileType vim
 autocmd initvim FileType tex
       \ let $LANG = "tex"
 let g:tex_conceal="adgmb"
+
+let g:tex_flavor = 'latex'
+let g:vimtex_fold_enabled = 1
+call deoplete#custom#var('omni', 'input_patterns', {
+     \ 'tex': g:vimtex#re#deoplete
+     \})
+let g:vimtex_compiler_enabled = 1
+let g:vimtex_compiler_progname = '/usr/local/bin/nvim'
+" -pvc
+let g:vimtex_compiler_latexmk = {'continuous': 1}
+let g:vimtex_quickfix_open_on_warning = 1
+" autocmd BufNewFile,BufRead *.tex nmap <C-c> <plug>(vimtex-compile)
+
+let g:vimtex_latexmk_options = '-pdfdvi'
+let g:vimtex_view_method = 'general'
+let g:vimtex_view_automatic = 1
+let g:vimtex_view_general_viewer = '/Applications/Skim.app/Contents/MacOS/Skim'
+
+autocmd initvim BufNewFile  *.tex  put='%! TEX root = /path/to/thesis.tex'
+
+
+" function! s:previewTex() range
+"     let l:tmp = @@
+"     silent normal gvy
+"     let l:selected = split(@@, "\n")
+"     let @@ = l:tmp
+"
+"     let l:template1 = ["\\documentclass[a4paper]{jsarticle}",
+"                      \"\\usepackage[dvipdfmx]{graphicx}",
+"                      \"\\usepackage{amsmath,amssymb,bm}",
+"                      \"\\pagestyle{empty}",
+"                      \"\\begin{document}"]
+"     let l:template2 = ["\\end{document}"]
+"
+"     let l:output_file = "preview.tex"
+"     call writefile(extend(extend(l:template1, l:selected), template2), l:output_file)
+"     silent call system("latexmk preview.tex")
+" endfunction
+" autocmd initvim FileType tex
+"            \   nnoremap <buffer> <localleader>la :call latex#motion#next_section(0,1,0)<CR>v:call latex#motion#next_section(0,0,1)<CR>:call <SID>previewTex()<CR>
+"            \ | vnoremap <buffer> <localleader>la :call <SID>previewTex()<CR>
+" Ref: http://mmi.hatenablog.com/entry/2015/01/02/003517
+
+
 
 " json -------------------------
 autocmd initvim FileType json

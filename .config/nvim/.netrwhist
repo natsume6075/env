@@ -1,11 +1,5 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =9
-let g:netrw_dirhist_1='/Users/natsume/.vim/my_snippets'
-let g:netrw_dirhist_2='/Users/natsume/.vim/my_settings/my_snippets'
-let g:netrw_dirhist_3='/Users/natsume/.config/karabiner/assets/complex_modifications'
-let g:netrw_dirhist_4='/Users/natsume/.vim/my_settings/my_dictionary'
-let g:netrw_dirhist_5='/Users/natsume/.config/karabiner/assets/complex_modifications'
-let g:netrw_dirhist_6='/Users/natsume/Dropbox/natsume/master_thesis/document/text'
-let g:netrw_dirhist_7='/Users/natsume'
-let g:netrw_dirhist_8='/Users/natsume/Dropbox/natsume/master_thesis/document/text'
-let g:netrw_dirhist_9='/Users/natsume/.config/nvim'
+let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_1='/Users/natsume/Dropbox/natsume/master_thesis/document/text'
+let g:netrw_dirhist_2='/Users/natsume/Dropbox/natsume/master_thesis/document'
+let g:netrw_dirhist_3='/Users/natsume/Dropbox/natsume/master_thesis/document/text'
