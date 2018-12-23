@@ -562,8 +562,8 @@ nnoremap <silent> <Leader>C zC
 nnoremap <silent> <Leader>i zi
 " なにかつぶした
 nnoremap <silent> <Leader>h zMzv
-nnoremap <silent> <Leader>A zR
-nnoremap <silent> <Leader>a zM
+nnoremap <silent> <Leader>a zR
+nnoremap <silent> <Leader>A zM
 nnoremap <silent> <Leader>j :<C-u>call <SID>smart_foldjump('j')<CR>
 nnoremap <silent> <Leader>k :<C-u>call <SID>smart_foldjump('k')<CR>
 
