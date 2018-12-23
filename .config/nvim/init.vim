@@ -991,28 +991,31 @@ let g:vimtex_view_general_viewer = '/Applications/Skim.app/Contents/MacOS/Skim'
 autocmd initvim BufNewFile  *.tex  put='%! TEX root = /path/to/thesis.tex'
 
 
-" function! s:previewTex() range
-"     let l:tmp = @@
-"     silent normal gvy
-"     let l:selected = split(@@, "\n")
-"     let @@ = l:tmp
-"
-"     let l:template1 = ["\\documentclass[a4paper]{jsarticle}",
-"                      \"\\usepackage[dvipdfmx]{graphicx}",
-"                      \"\\usepackage{amsmath,amssymb,bm}",
-"                      \"\\pagestyle{empty}",
-"                      \"\\begin{document}"]
-"     let l:template2 = ["\\end{document}"]
-"
-"     let l:output_file = "preview.tex"
-"     call writefile(extend(extend(l:template1, l:selected), template2), l:output_file)
-"     silent call system("latexmk preview.tex")
-" endfunction
-" autocmd initvim FileType tex
-"            \   nnoremap <buffer> <localleader>la :call latex#motion#next_section(0,1,0)<CR>v:call latex#motion#next_section(0,0,1)<CR>:call <SID>previewTex()<CR>
-"            \ | vnoremap <buffer> <localleader>la :call <SID>previewTex()<CR>
-" Ref: http://mmi.hatenablog.com/entry/2015/01/02/003517
+function! s:previewTex() range
+    let l:tmp = @@
+    silent normal gvy
+    let l:selected = split(@@, "\n")
+    let @@ = l:tmp
 
+    let l:template1 = ["\\input{env.tex}",
+                     \"\\begin{document}"]
+    let l:template2 = ["\\end{document}"]
+
+    let l:output_file = "preview.tex"
+    call writefile(extend(extend(l:template1, l:selected), template2), l:output_file)
+    silent call system("latexmk preview.tex")
+    silent call system("open -ga /Applications/Skim.app preview.pdf")
+endfunction
+autocmd initvim FileType tex
+           \ | nmap <buffer> <localleader>la vae:call <SID>previewTex()<CR>
+           \ | vnoremap <buffer> <localleader>la :call <SID>previewTex()<CR>
+           \ | nmap <buffer> <Space><Space> <localleader>la
+" Ref: http://mmi.hatenablog.com/entry/2015/01/02/003517
+" 環境単位でコンパイルできる。
+" カードル移動に伴って自動的に表示するようにする？
+" 表示のためのアプリやスペースの選択（amethyst は邪魔 ツールバーも邪魔）
+"   最前列で内容に合わせてなるべく小さく
+" キャッシュしておいて素早く表示する
 
 
 " json -------------------------
