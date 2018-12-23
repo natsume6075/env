@@ -321,6 +321,8 @@ if dein#load_state('$XDG_CACHE_HOME/dein')
   call dein#add('tpope/vim-fugitive')
   call dein#add('LeafCage/foldCC.vim')
 
+  call dein#add('lervag/vimtex')
+
 
   " Required :
   call dein#end()
@@ -379,7 +381,9 @@ hi FoldColumn term=standout ctermbg=Black ctermfg=130
 
 " https://h2plus.biz/hiromitsu/entry/674
 " カラースキームをまとめたサイト
-hi SpellBad NONE
+hi MatchParen ctermbg=240
+
+hi spellbad NONE
 hi SpellCap NONE
 hi SpellRare NONE
 hi SpellLocal NONE
