@@ -1,5 +1,7 @@
 bundle_identifiers
 control
+delete_or_backspace
+down_arrow
 frontmost_application_if
 international1
 key_code
@@ -14,4 +16,3 @@ right_arrow
 shift
 to_after_key_up
 up_arrow
-down_arrow

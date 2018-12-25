@@ -50,3 +50,29 @@ abbr        manipulator の追加
           ]
         }${6:#:I can add more manipulators in following with ,}
 
+
+snippet     hits_repeatedly
+alias       renda
+abbr        key の連打
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "variable_if", "name": "j_key", "value": 0 }
+          ],
+          "from": {
+            "key_code": "j",
+            "modifiers": { "optional": [ "any" ] }
+          },
+          "to": [
+            { "set_variable": { "name": "j_key", "value": 1 } },
+            { "key_code": "j" }
+          ],
+          "to_delayed_action": {
+            "to_if_invoked": [
+              { "set_variable": { "name": "j_key", "value": 0 } }
+            ],
+            "to_if_canceled": [
+              { "set_variable": { "name": "j_key", "value": 0 } }
+            ]
+          }
+        },
