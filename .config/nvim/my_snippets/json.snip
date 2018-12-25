@@ -57,6 +57,17 @@ abbr        key の連打
         {
           "type": "basic",
           "conditions": [
+            { "type": "variable_if", "name": "j_key", "value": 1 }
+          ],
+          "from": { "key_code": "j" },
+          "to": [
+            { "key_code": "delete_or_backspace" },
+            { "set_variable": { "name": "normal_mode", "value": 1 } }
+          ]
+        },
+        {
+          "type": "basic",
+          "conditions": [
             { "type": "variable_if", "name": "j_key", "value": 0 }
           ],
           "from": {

@@ -7,6 +7,7 @@
         {
           "type": "basic",
           "conditions":[
+            {"type": "variable_if", "name": "fn_key",     "value": 0},
             {"type": "variable_if", "name": "is_fn_lock", "value": 0}
           ],
           "from": {
@@ -24,6 +25,7 @@
         {
           "type": "basic",
           "conditions":[
+            {"type": "variable_if", "name": "fn_key",     "value": 0},
             {"type": "variable_if", "name": "is_fn_lock", "value": 1}
           ],
           "from": {
@@ -38,7 +40,40 @@
             {"set_variable": {"name": "is_fn_lock", "value": 0}}
           ]
         },
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "variable_if", "name": "j_key", "value": 1 }
+          ],
+          "from": { "key_code": "j" },
+          "to": [
+            { "key_code": "delete_or_backspace" },
+            { "set_variable": { "name": "normal_mode", "value": 1 } }
+          ]
+        },
 
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "variable_if", "name": "fn_key", "value": 0 }
+          ],
+          "from": {
+            "key_code": "j",
+            "modifiers": { "optional": [ "any" ] }
+          },
+          "to": [
+            { "set_variable": { "name": "j_key", "value": 1 } },
+            { "key_code": "j" }
+          ],
+          "to_delayed_action": {
+            "to_if_invoked": [
+              { "set_variable": { "name": "j_key", "value": 0 } }
+            ],
+            "to_if_canceled": [
+              { "set_variable": { "name": "j_key", "value": 0 } }
+            ]
+          }
+        },
 
 
 
