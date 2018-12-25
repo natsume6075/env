@@ -76,3 +76,21 @@ abbr        key の連打
             ]
           }
         },
+
+
+snippet     vim_mode
+alias       vim
+abbr        vim_mode の normal_mode での挙動の定義
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "variable_if", "name": "nomal_mode", "value": 1 },
+            { "type": "frontmost_application_unless", "bundle_identifiers": [ "^com\\\\.googlecode\\\\.iterm2" ] }
+          ],
+          "from": {
+            "key_code": "l"
+          },
+          "to": [
+            { "key_code": "right_arrow" }
+          ]
+        },

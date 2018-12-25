@@ -709,6 +709,7 @@ vmap <silent> " <plug>(caw:hatpos:toggle)
 
 imap <silent> jj  <ESC>
 imap <silent> っj <ESC>
+inoremap <C-d> <Right><C-h>
 " spell
 inoremap <C-s> <C-x>s
 " yank/cut/paste
