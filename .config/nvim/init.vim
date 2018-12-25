@@ -470,7 +470,8 @@ endfunction"
 " 思い通りになるJK
 " default: Concat some lines
 noremap <silent>J   :keepjumps normal ___J<CR>
-noremap <expr>  ___J   To_bottom_of_window_OR_scroll_next_page()
+xnoremap <expr>J        To_bottom_of_window_OR_scroll_next_page()
+noremap  <expr>  ___J   To_bottom_of_window_OR_scroll_next_page()
 function! To_bottom_of_window_OR_scroll_next_page() abort" {{{
   if winline() > winheight(0) - 5
     return "\<C-f>L"
@@ -480,6 +481,7 @@ function! To_bottom_of_window_OR_scroll_next_page() abort" {{{
 endfunction" }}}
 " default: reference to help
 noremap <silent>K   :keepjumps normal ___K<CR>
+xnoremap <expr>K      To_top_of_window_OR_scroll_previous_page()
 noremap <expr> ___K   To_top_of_window_OR_scroll_previous_page()
 function! To_top_of_window_OR_scroll_previous_page() abort" {{{
   if winline() < 5
