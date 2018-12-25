@@ -147,10 +147,73 @@
 
       ]
     },
+    {
+      "description": "[vim-mode] normal_command",
+      "manipulators": [
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "variable_if", "name": "normal_mode", "value": 1 },
+            { "type": "frontmost_application_unless", "bundle_identifiers": [ "^com\\.googlecode\\.iterm2" ] }
+          ],
+          "from": {
+            "key_code": "x"
+          },
+          "to": [
+            { "key_code": "delete_or_backspace", "modifiers": ["fn"] }
+          ]
+        },
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "variable_if", "name": "normal_mode", "value": 1 },
+            { "type": "frontmost_application_unless", "bundle_identifiers": [ "^com\\.googlecode\\.iterm2" ] }
+          ],
+          "from": {
+            "key_code": "p"
+          },
+          "to": [
+            { "key_code": "v", "modifiers": ["command"] }
+          ]
+        },
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "variable_if", "name": "normal_mode", "value": 1 },
+            { "type": "frontmost_application_unless", "bundle_identifiers": [ "^com\\.googlecode\\.iterm2" ] }
+          ],
+          "from": {
+            "key_code": "u"
+          },
+          "to": [
+            { "key_code": "z", "modifiers": ["command"] },
+            { "key_code": "left_arrow" },
+            { "key_code": "right_arrow" }
+          ]
+        },
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "variable_if", "name": "normal_mode", "value": 1 },
+            { "type": "frontmost_application_unless", "bundle_identifiers": [ "^com\\.googlecode\\.iterm2" ] }
+          ],
+          "from": {
+            "key_code": "u",
+            "modifiers":{"mandatory":["control"]}
+          },
+          "to": [
+            { "key_code": "z", "modifiers": ["command", "shift"] },
+            { "key_code": "left_arrow" },
+            { "key_code": "right_arrow" }
+          ]
+        }
+
+      ]
+    },
 
 
     {
-      "description": "[vim-mode] hjkl",
+      "description": "[vim-mode] normal_motion",
       "manipulators": [
         {
           "type": "basic",
@@ -203,30 +266,7 @@
           "to": [
             { "key_code": "right_arrow" }
           ]
-        }
-      ]
-    },
-    {
-      "description": "[vim-mode] x",
-      "manipulators": [
-        {
-          "type": "basic",
-          "conditions": [
-            { "type": "variable_if", "name": "normal_mode", "value": 1 },
-            { "type": "frontmost_application_unless", "bundle_identifiers": [ "^com\\.googlecode\\.iterm2" ] }
-          ],
-          "from": {
-            "key_code": "x"
-          },
-          "to": [
-            { "key_code": "delete_or_backspace", "modifiers": ["fn"] }
-          ]
-        }
-      ]
-    },
-    {
-      "description": "[vim-mode] wb",
-      "manipulators": [
+        },
         {
           "type": "basic",
           "conditions": [
@@ -252,44 +292,7 @@
           "to": [
             { "key_code": "right_arrow", "modifiers": ["option"] }
           ]
-        }
-      ]
-    },
-    {
-      "description": "[vim-mode] u",
-      "manipulators": [
-        {
-          "type": "basic",
-          "conditions": [
-            { "type": "variable_if", "name": "normal_mode", "value": 1 },
-            { "type": "frontmost_application_unless", "bundle_identifiers": [ "^com\\.googlecode\\.iterm2" ] }
-          ],
-          "from": {
-            "key_code": "u"
-          },
-          "to": [
-            { "key_code": "z", "modifiers": ["command"] }
-          ]
         },
-        {
-          "type": "basic",
-          "conditions": [
-            { "type": "variable_if", "name": "normal_mode", "value": 1 },
-            { "type": "frontmost_application_unless", "bundle_identifiers": [ "^com\\.googlecode\\.iterm2" ] }
-          ],
-          "from": {
-            "key_code": "u",
-            "modifiers":{"mandatory":["control"]}
-          },
-          "to": [
-            { "key_code": "z", "modifiers": ["command", "shift"] }
-          ]
-        }
-      ]
-    },
-    {
-      "description": "[vim-mode] HL",
-      "manipulators": [
         {
           "type": "basic",
           "conditions": [
@@ -323,7 +326,7 @@
 
 
     {
-      "description": "[vim-mode] visual mode",
+      "description": "[vim-mode] normal <-> visual mode chenge",
       "manipulators": [
         {
           "type": "basic",
@@ -350,7 +353,14 @@
           "to": [
             { "set_variable": { "name": "normal_mode", "value": 2 } }
           ]
-        },
+        }
+      ]
+    },
+
+
+    {
+      "description": "[vim-mode] visual_command",
+      "manipulators": [
         {
           "type": "basic",
           "conditions": [
@@ -362,12 +372,31 @@
           },
           "to": [
             { "key_code": "c", "modifiers": ["command"] },
+            { "key_code": "left_arrow" },
             { "set_variable": { "name": "normal_mode", "value": 1 } }
           ]
         },
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "variable_if", "name": "normal_mode", "value": 2 },
+            { "type": "frontmost_application_unless", "bundle_identifiers": [ "^com\\.googlecode\\.iterm2" ] }
+          ],
+          "from": {
+            "key_code": "x"
+          },
+          "to": [
+            { "key_code": "delete_or_backspace" },
+            { "set_variable": { "name": "normal_mode", "value": 1 } }
+          ]
+        }
+      ]
+    },
 
 
-
+    {
+      "description": "[vim-mode] visual_motion",
+      "manipulators": [
         {
           "type": "basic",
           "conditions": [
