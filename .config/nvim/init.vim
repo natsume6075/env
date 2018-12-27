@@ -134,7 +134,6 @@ autocmd initvim FocusGained * :rv!
 " --- Marks ----------------todo: {{{
 " mark[0-9] をキューのように扱うものとして再構成する。
 " mark 0 に追加して，mark9 は削除する。
-" nnoremap mm
 function! Push_queue_of_marks() abort
   echo "hoge"
 endfunction
@@ -142,9 +141,9 @@ endfunction
 
 " --- Folding -------------- {{{
 set foldenable
-" set foldmethod=marker
+set foldmethod=marker
 " set foldmethod=indent
-" set foldmarker=\{{{,\}}}
+set foldmarker=\{{{,\}}}
 set foldtext=Natsume_fold_text()
 function! Natsume_fold_text() "{{{
   " todo: 設定し放題。コメントなら表示するけど，そうじゃないなら表示しないとか？　大きいならなにか変わったあれを用意するとか？
@@ -155,7 +154,7 @@ function! Natsume_fold_text() "{{{
   endif
   let headline =
         \ getline(v:foldstart)
-        "\ getline(v:foldstart)
+  "\ getline(v:foldstart)
   let head = g:foldCCtext_head=='' ? '' : eval(g:foldCCtext_head)
   let tail = g:foldCCtext_tail=='' ? '' : ' '. eval(g:foldCCtext_tail)
   let headline = s:_adjust_headline(headline, strlen(head)+strlen(tail))
@@ -403,9 +402,9 @@ set concealcursor=""
 
 
 " ---------------------------------------
-"  key map
-" ---------------------------------------
-
+"  Key Map: {{{
+"
+"
 "---------------------------------------------------------------------------"
 " Commands \ Modes | Normal | Insert | Command | Visual | Select | Operator |
 "------------------|--------|--------|---------|--------|--------|----------|
@@ -419,6 +418,8 @@ set concealcursor=""
 " imap / inoremap  |    -   |   @    |    -    |   -    |   -    |    -     |
 " cmap / cnoremap  |    -   |   -    |    @    |   -    |   -    |    -     |
 "---------------------------------------------------------------------------"
+
+let maplocalleader = "t"
 
 " ---------------------------------------
 "  key map (n):
@@ -750,12 +751,13 @@ inoremap {<CR> {}<ESC>i<CR><Esc><S-o>
 inoremap [<CR> []<ESC>i<CR><Esc><S-o>
 inoremap <<CR> <><ESC>i<CR><Esc><S-o>
 
-" imap     <silent><expr> <C-l>   pumvisible() ? deoplete#close_popup()."\<C-l>" : "\<plug>(neosnippet_jump)"
+" imap     <silent><expr> <C-l>   pumvisible() ? deoplete#close_popup()."\<C-l>" : "\<plug>(neosnippet_jump)"}}}
+" ---------------------------------------
 
 
 
 " ---------------------------------------
-"  plugin setting:
+"  Plugin Setting:
 " ---------------------------------------
 
 " deoplete --------------------- {{{
@@ -983,7 +985,8 @@ autocmd initvim BufNewFile  *.snip  put='# hogehoge snippets'
 
 " tex --------------------------
 autocmd initvim FileType tex
-      \ let $LANG = "tex"
+      \ | let $LANG = "tex"
+      \ | set foldmethod=expr
 let g:tex_conceal="adgmb"
 
 autocmd initvim BufNewFile  *.tex  put='%! TEX root = /path/to/thesis.tex'
@@ -991,8 +994,8 @@ autocmd initvim BufNewFile  *.tex  put='%! TEX root = /path/to/thesis.tex'
 let g:tex_flavor = 'latex'
 let g:vimtex_fold_enabled = 1
 call deoplete#custom#var('omni', 'input_patterns', {
-     \ 'tex': g:vimtex#re#deoplete
-     \})
+      \ 'tex': g:vimtex#re#deoplete
+      \})
 let g:vimtex_compiler_enabled = 1
 let g:vimtex_compiler_progname = '/usr/local/bin/nvim'
 " -pvc
@@ -1012,24 +1015,24 @@ let g:vimtex_quickfix_autoclose_after_keystrokes = 1
 
 
 function! s:previewTex() range
-    let l:tmp = @@
-    silent normal gvy
-    let l:selected = split(@@, "\n")
-    let @@ = l:tmp
+  let l:tmp = @@
+  silent normal gvy
+  let l:selected = split(@@, "\n")
+  let @@ = l:tmp
 
-    let l:template1 = ["\\input{env.tex}",
-                     \"\\begin{document}"]
-    let l:template2 = ["\\end{document}"]
+  let l:template1 = ["\\input{env.tex}",
+        \"\\begin{document}"]
+  let l:template2 = ["\\end{document}"]
 
-    let l:output_file = "preview.tex"
-    call writefile(extend(extend(l:template1, l:selected), template2), l:output_file)
-    silent call system("latexmk preview.tex")
-    silent call system("open -ga /Applications/Skim.app preview.pdf")
+  let l:output_file = "preview.tex"
+  call writefile(extend(extend(l:template1, l:selected), template2), l:output_file)
+  silent call system("latexmk preview.tex")
+  silent call system("open -ga /Applications/Skim.app preview.pdf")
 endfunction
 autocmd initvim FileType tex
-           \ | nmap <buffer> <localleader>la vae:call <SID>previewTex()<CR>
-           \ | vnoremap <buffer> <localleader>la :call <SID>previewTex()<CR>
-           \ | nmap <buffer> <Space><Space> <localleader>la
+      \ | nmap <buffer> <localleader>la vae:call <SID>previewTex()<CR>
+      \ | vnoremap <buffer> <localleader>la :call <SID>previewTex()<CR>
+      \ | nmap <buffer> <Space><Space> <localleader>la
 " Ref: http://mmi.hatenablog.com/entry/2015/01/02/003517
 " 環境単位でコンパイルできる。
 " カードル移動に伴って自動的に表示するようにする？
