@@ -668,12 +668,13 @@ nnoremap <f4> :<C-u>.tabedit $XDG_CONFIG_HOME/nvim/init.vim<CR>
 nnoremap <f5> :<C-u>source $XDG_CONFIG_HOME/nvim/init.vim<CR>
 " map <f6> to global neosnippetedit
 nnoremap <f6> :<C-u>.tabedit $XDG_CONFIG_HOME/nvim/my_snippets/_.snip<CR>
+xnoremap <f6> y :<C-u>.tabedit $XDG_CONFIG_HOME/nvim/my_snippets/_.snip<CR>Gp
 " map <f7> to language specific neosnippetedit
 nnoremap <f7> :NeoSnippetEdit -horizontal<CR>
+xnoremap <f7> y :NeoSnippetEdit -horizontal<CR>Gp
 " <f8> dictionary の呼び出し
-nnoremap <f8> :<C-u>.tabedit $LANG_DICTIONARY<CR>:sort u<CR>:w<CR>
 " autocmd initvim filetype dict  nnoremap <f8> :q<CR>
-" v mode <f8> 選択範囲を dictionary に送る
+nnoremap <f8> :<C-u>.tabedit $LANG_DICTIONARY<CR>:sort u<CR>:w<CR>
 vnoremap <f8> y :!echo <C-r>">> $LANG_DICTIONARY<CR><CR>
 " <f11> conceal syntax の呼び出し（vim）
 autocmd initvim filetype tex  nnoremap <f11>
