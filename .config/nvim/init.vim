@@ -236,6 +236,9 @@ set hlsearch
 " If true Vim master, use English help file.
 set helplang& helplang=en,ja
 
+" command
+command! DiffOrig vert new | set bt=nofile | r ++edit # | 0d_
+      \ | diffthis | wincmd p | diffthis
 
 
 " ---------------------------------------
