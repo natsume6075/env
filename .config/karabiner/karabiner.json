@@ -1325,7 +1325,7 @@
                             {
                                 "conditions": [
                                     {
-                                        "name": "normal_mode",
+                                        "name": "current_mode",
                                         "type": "variable_if",
                                         "value": 0
                                     },
@@ -1342,7 +1342,7 @@
                                 "to": [
                                     {
                                         "set_variable": {
-                                            "name": "normal_mode",
+                                            "name": "current_mode",
                                             "value": 1
                                         }
                                     }
@@ -1357,7 +1357,7 @@
                                         "value": 1
                                     },
                                     {
-                                        "name": "normal_mode",
+                                        "name": "current_mode",
                                         "type": "variable_if",
                                         "value": 0
                                     },
@@ -1377,7 +1377,7 @@
                                     },
                                     {
                                         "set_variable": {
-                                            "name": "normal_mode",
+                                            "name": "current_mode",
                                             "value": 1
                                         }
                                     }
@@ -1392,7 +1392,12 @@
                                         "value": 0
                                     },
                                     {
-                                        "name": "normal_mode",
+                                        "name": "current_mode",
+                                        "type": "variable_if",
+                                        "value": 0
+                                    },
+                                    {
+                                        "name": "CTLR_o_insert_mode",
                                         "type": "variable_if",
                                         "value": 0
                                     },
@@ -1445,7 +1450,7 @@
                             {
                                 "conditions": [
                                     {
-                                        "name": "normal_mode",
+                                        "name": "current_mode",
                                         "type": "variable_if",
                                         "value": 1
                                     },
@@ -1462,7 +1467,7 @@
                                 "to": [
                                     {
                                         "set_variable": {
-                                            "name": "normal_mode",
+                                            "name": "current_mode",
                                             "value": 0
                                         }
                                     }
@@ -1472,7 +1477,7 @@
                             {
                                 "conditions": [
                                     {
-                                        "name": "normal_mode",
+                                        "name": "current_mode",
                                         "type": "variable_if",
                                         "value": 1
                                     },
@@ -1492,7 +1497,7 @@
                                     },
                                     {
                                         "set_variable": {
-                                            "name": "normal_mode",
+                                            "name": "current_mode",
                                             "value": 0
                                         }
                                     }
@@ -1502,7 +1507,7 @@
                             {
                                 "conditions": [
                                     {
-                                        "name": "normal_mode",
+                                        "name": "current_mode",
                                         "type": "variable_if",
                                         "value": 1
                                     },
@@ -1530,7 +1535,7 @@
                                     },
                                     {
                                         "set_variable": {
-                                            "name": "normal_mode",
+                                            "name": "current_mode",
                                             "value": 0
                                         }
                                     }
@@ -1540,7 +1545,7 @@
                             {
                                 "conditions": [
                                     {
-                                        "name": "normal_mode",
+                                        "name": "current_mode",
                                         "type": "variable_if",
                                         "value": 1
                                     },
@@ -1568,7 +1573,7 @@
                                     },
                                     {
                                         "set_variable": {
-                                            "name": "normal_mode",
+                                            "name": "current_mode",
                                             "value": 0
                                         }
                                     }
@@ -1578,7 +1583,7 @@
                             {
                                 "conditions": [
                                     {
-                                        "name": "normal_mode",
+                                        "name": "current_mode",
                                         "type": "variable_if",
                                         "value": 1
                                     },
@@ -1604,7 +1609,7 @@
                                     },
                                     {
                                         "set_variable": {
-                                            "name": "normal_mode",
+                                            "name": "current_mode",
                                             "value": 0
                                         }
                                     }
@@ -1614,7 +1619,7 @@
                             {
                                 "conditions": [
                                     {
-                                        "name": "normal_mode",
+                                        "name": "current_mode",
                                         "type": "variable_if",
                                         "value": 1
                                     },
@@ -1648,9 +1653,374 @@
                                     },
                                     {
                                         "set_variable": {
-                                            "name": "normal_mode",
+                                            "name": "current_mode",
                                             "value": 0
                                         }
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "[vim-mode] CTLR_o_insert",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "current_mode",
+                                        "type": "variable_if",
+                                        "value": 0
+                                    },
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.googlecode\\.iterm2"
+                                        ],
+                                        "type": "frontmost_application_unless"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "o",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "control"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "CTLR_o_insert_mode",
+                                            "value": 1
+                                        }
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "CTLR_o_insert_mode",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    },
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.googlecode\\.iterm2"
+                                        ],
+                                        "type": "frontmost_application_unless"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "x"
+                                },
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "CTLR_o_insert_mode",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "key_code": "delete_or_backspace",
+                                        "modifiers": [
+                                            "fn"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "CTLR_o_insert_mode",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    },
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.googlecode\\.iterm2"
+                                        ],
+                                        "type": "frontmost_application_unless"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "p"
+                                },
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "CTLR_o_insert_mode",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "key_code": "v",
+                                        "modifiers": [
+                                            "command"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "CTLR_o_insert_mode",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    },
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.googlecode\\.iterm2"
+                                        ],
+                                        "type": "frontmost_application_unless"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "h"
+                                },
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "CTLR_o_insert_mode",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "key_code": "left_arrow"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "CTLR_o_insert_mode",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    },
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.googlecode\\.iterm2"
+                                        ],
+                                        "type": "frontmost_application_unless"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "j"
+                                },
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "CTLR_o_insert_mode",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "key_code": "down_arrow"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "CTLR_o_insert_mode",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    },
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.googlecode\\.iterm2"
+                                        ],
+                                        "type": "frontmost_application_unless"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "k"
+                                },
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "CTLR_o_insert_mode",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "key_code": "up_arrow"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "CTLR_o_insert_mode",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    },
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.googlecode\\.iterm2"
+                                        ],
+                                        "type": "frontmost_application_unless"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "l"
+                                },
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "CTLR_o_insert_mode",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "key_code": "right_arrow"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "CTLR_o_insert_mode",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    },
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.googlecode\\.iterm2"
+                                        ],
+                                        "type": "frontmost_application_unless"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "b"
+                                },
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "CTLR_o_insert_mode",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "key_code": "left_arrow",
+                                        "modifiers": [
+                                            "option"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "CTLR_o_insert_mode",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    },
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.googlecode\\.iterm2"
+                                        ],
+                                        "type": "frontmost_application_unless"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "w"
+                                },
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "CTLR_o_insert_mode",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "key_code": "right_arrow",
+                                        "modifiers": [
+                                            "option"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "CTLR_o_insert_mode",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    },
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.googlecode\\.iterm2"
+                                        ],
+                                        "type": "frontmost_application_unless"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "h",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "shift"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "CTLR_o_insert_mode",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "key_code": "left_arrow",
+                                        "modifiers": [
+                                            "command"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "CTLR_o_insert_mode",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    },
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.googlecode\\.iterm2"
+                                        ],
+                                        "type": "frontmost_application_unless"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "l",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "shift"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "CTLR_o_insert_mode",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "key_code": "right_arrow",
+                                        "modifiers": [
+                                            "command"
+                                        ]
                                     }
                                 ],
                                 "type": "basic"
@@ -1663,7 +2033,7 @@
                             {
                                 "conditions": [
                                     {
-                                        "name": "normal_mode",
+                                        "name": "current_mode",
                                         "type": "variable_if",
                                         "value": 1
                                     },
@@ -1690,7 +2060,7 @@
                             {
                                 "conditions": [
                                     {
-                                        "name": "normal_mode",
+                                        "name": "current_mode",
                                         "type": "variable_if",
                                         "value": 1
                                     },
@@ -1717,7 +2087,7 @@
                             {
                                 "conditions": [
                                     {
-                                        "name": "normal_mode",
+                                        "name": "current_mode",
                                         "type": "variable_if",
                                         "value": 1
                                     },
@@ -1750,7 +2120,7 @@
                             {
                                 "conditions": [
                                     {
-                                        "name": "normal_mode",
+                                        "name": "current_mode",
                                         "type": "variable_if",
                                         "value": 1
                                     },
@@ -1794,7 +2164,7 @@
                             {
                                 "conditions": [
                                     {
-                                        "name": "normal_mode",
+                                        "name": "current_mode",
                                         "type": "variable_if",
                                         "value": 1
                                     },
@@ -1818,7 +2188,7 @@
                             {
                                 "conditions": [
                                     {
-                                        "name": "normal_mode",
+                                        "name": "current_mode",
                                         "type": "variable_if",
                                         "value": 1
                                     },
@@ -1842,7 +2212,7 @@
                             {
                                 "conditions": [
                                     {
-                                        "name": "normal_mode",
+                                        "name": "current_mode",
                                         "type": "variable_if",
                                         "value": 1
                                     },
@@ -1866,7 +2236,7 @@
                             {
                                 "conditions": [
                                     {
-                                        "name": "normal_mode",
+                                        "name": "current_mode",
                                         "type": "variable_if",
                                         "value": 1
                                     },
@@ -1890,7 +2260,7 @@
                             {
                                 "conditions": [
                                     {
-                                        "name": "normal_mode",
+                                        "name": "current_mode",
                                         "type": "variable_if",
                                         "value": 1
                                     },
@@ -1917,7 +2287,7 @@
                             {
                                 "conditions": [
                                     {
-                                        "name": "normal_mode",
+                                        "name": "current_mode",
                                         "type": "variable_if",
                                         "value": 1
                                     },
@@ -1944,7 +2314,7 @@
                             {
                                 "conditions": [
                                     {
-                                        "name": "normal_mode",
+                                        "name": "current_mode",
                                         "type": "variable_if",
                                         "value": 1
                                     },
@@ -1976,7 +2346,7 @@
                             {
                                 "conditions": [
                                     {
-                                        "name": "normal_mode",
+                                        "name": "current_mode",
                                         "type": "variable_if",
                                         "value": 1
                                     },
@@ -2013,7 +2383,7 @@
                             {
                                 "conditions": [
                                     {
-                                        "name": "normal_mode",
+                                        "name": "current_mode",
                                         "type": "variable_if",
                                         "value": 2
                                     },
@@ -2030,7 +2400,7 @@
                                 "to": [
                                     {
                                         "set_variable": {
-                                            "name": "normal_mode",
+                                            "name": "current_mode",
                                             "value": 1
                                         }
                                     }
@@ -2040,7 +2410,7 @@
                             {
                                 "conditions": [
                                     {
-                                        "name": "normal_mode",
+                                        "name": "current_mode",
                                         "type": "variable_if",
                                         "value": 1
                                     },
@@ -2057,7 +2427,7 @@
                                 "to": [
                                     {
                                         "set_variable": {
-                                            "name": "normal_mode",
+                                            "name": "current_mode",
                                             "value": 2
                                         }
                                     }
@@ -2072,7 +2442,7 @@
                             {
                                 "conditions": [
                                     {
-                                        "name": "normal_mode",
+                                        "name": "current_mode",
                                         "type": "variable_if",
                                         "value": 2
                                     },
@@ -2098,7 +2468,7 @@
                                     },
                                     {
                                         "set_variable": {
-                                            "name": "normal_mode",
+                                            "name": "current_mode",
                                             "value": 1
                                         }
                                     }
@@ -2108,7 +2478,7 @@
                             {
                                 "conditions": [
                                     {
-                                        "name": "normal_mode",
+                                        "name": "current_mode",
                                         "type": "variable_if",
                                         "value": 2
                                     },
@@ -2128,7 +2498,7 @@
                                     },
                                     {
                                         "set_variable": {
-                                            "name": "normal_mode",
+                                            "name": "current_mode",
                                             "value": 1
                                         }
                                     }
@@ -2143,7 +2513,7 @@
                             {
                                 "conditions": [
                                     {
-                                        "name": "normal_mode",
+                                        "name": "current_mode",
                                         "type": "variable_if",
                                         "value": 2
                                     },
@@ -2170,7 +2540,7 @@
                             {
                                 "conditions": [
                                     {
-                                        "name": "normal_mode",
+                                        "name": "current_mode",
                                         "type": "variable_if",
                                         "value": 2
                                     },
@@ -2197,7 +2567,7 @@
                             {
                                 "conditions": [
                                     {
-                                        "name": "normal_mode",
+                                        "name": "current_mode",
                                         "type": "variable_if",
                                         "value": 2
                                     },
@@ -2224,7 +2594,7 @@
                             {
                                 "conditions": [
                                     {
-                                        "name": "normal_mode",
+                                        "name": "current_mode",
                                         "type": "variable_if",
                                         "value": 2
                                     },
@@ -2251,7 +2621,7 @@
                             {
                                 "conditions": [
                                     {
-                                        "name": "normal_mode",
+                                        "name": "current_mode",
                                         "type": "variable_if",
                                         "value": 2
                                     },
@@ -2279,7 +2649,7 @@
                             {
                                 "conditions": [
                                     {
-                                        "name": "normal_mode",
+                                        "name": "current_mode",
                                         "type": "variable_if",
                                         "value": 2
                                     },
@@ -2307,7 +2677,7 @@
                             {
                                 "conditions": [
                                     {
-                                        "name": "normal_mode",
+                                        "name": "current_mode",
                                         "type": "variable_if",
                                         "value": 2
                                     },
@@ -2340,7 +2710,7 @@
                             {
                                 "conditions": [
                                     {
-                                        "name": "normal_mode",
+                                        "name": "current_mode",
                                         "type": "variable_if",
                                         "value": 2
                                     },

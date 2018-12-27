@@ -35,6 +35,7 @@
           "conditions": [
             { "type": "variable_if", "name": "j_key", "value": 0 },
             { "type": "variable_if", "name": "current_mode", "value": 0 },
+            { "type": "variable_if", "name": "CTLR_o_insert_mode", "value": 0 },
             { "type": "frontmost_application_unless", "bundle_identifiers": [ "^com\\.googlecode\\.iterm2" ] }
           ],
           "from": {
@@ -53,21 +54,6 @@
               { "set_variable": { "name": "j_key", "value": 0 } }
             ]
           }
-        },
-        {
-          "type": "basic",
-          "conditions": [
-            { "type": "variable_if", "name": "current_mode", "value": 0 },
-            { "type": "frontmost_application_unless", "bundle_identifiers": [ "^com\\.googlecode\\.iterm2" ] }
-          ],
-          "from": {
-            "key_code": "o",
-            "modifiers": { "mandatory": [ "control" ] }
-          },
-          "to": [
-            { "set_variable": { "name": "current_mode", "value": 1 } },
-            { "set_variable": { "name": "CTLR_o_insert_mode", "value": 1 } }
-          ]
         },
 
 
@@ -160,9 +146,174 @@
             { "set_variable": { "name": "current_mode", "value": 0 } }
           ]
         }
-
       ]
     },
+
+
+    {
+      "description": "[vim-mode] CTLR_o_insert",
+      "manipulators": [
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "variable_if", "name": "current_mode", "value": 0 },
+            { "type": "frontmost_application_unless", "bundle_identifiers": [ "^com\\.googlecode\\.iterm2" ] }
+          ],
+          "from": {
+            "key_code": "o",
+            "modifiers": { "mandatory": [ "control" ] }
+          },
+          "to": [
+            { "set_variable": { "name": "CTLR_o_insert_mode", "value": 1 } }
+          ]
+        },
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "variable_if", "name": "CTLR_o_insert_mode", "value": 1 },
+            { "type": "frontmost_application_unless", "bundle_identifiers": [ "^com\\.googlecode\\.iterm2" ] }
+          ],
+          "from": {
+            "key_code": "x"
+          },
+          "to": [
+            { "set_variable": { "name": "CTLR_o_insert_mode", "value": 0 } },
+            { "key_code": "delete_or_backspace", "modifiers": ["fn"] }
+          ]
+        },
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "variable_if", "name": "CTLR_o_insert_mode", "value": 1 },
+            { "type": "frontmost_application_unless", "bundle_identifiers": [ "^com\\.googlecode\\.iterm2" ] }
+          ],
+          "from": {
+            "key_code": "p"
+          },
+          "to": [
+            { "set_variable": { "name": "CTLR_o_insert_mode", "value": 0 } },
+            { "key_code": "v", "modifiers": ["command"] }
+          ]
+        },
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "variable_if", "name": "CTLR_o_insert_mode", "value": 1 },
+            { "type": "frontmost_application_unless", "bundle_identifiers": [ "^com\\.googlecode\\.iterm2" ] }
+          ],
+          "from": {
+            "key_code": "h"
+          },
+          "to": [
+            { "set_variable": { "name": "CTLR_o_insert_mode", "value": 0 } },
+            { "key_code": "left_arrow" }
+          ]
+        },
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "variable_if", "name": "CTLR_o_insert_mode", "value": 1 },
+            { "type": "frontmost_application_unless", "bundle_identifiers": [ "^com\\.googlecode\\.iterm2" ] }
+          ],
+          "from": {
+            "key_code": "j"
+          },
+          "to": [
+            { "set_variable": { "name": "CTLR_o_insert_mode", "value": 0 } },
+            { "key_code": "down_arrow" }
+          ]
+        },
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "variable_if", "name": "CTLR_o_insert_mode", "value": 1 },
+            { "type": "frontmost_application_unless", "bundle_identifiers": [ "^com\\.googlecode\\.iterm2" ] }
+          ],
+          "from": {
+            "key_code": "k"
+          },
+          "to": [
+            { "set_variable": { "name": "CTLR_o_insert_mode", "value": 0 } },
+            { "key_code": "up_arrow" }
+          ]
+        },
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "variable_if", "name": "CTLR_o_insert_mode", "value": 1 },
+            { "type": "frontmost_application_unless", "bundle_identifiers": [ "^com\\.googlecode\\.iterm2" ] }
+          ],
+          "from": {
+            "key_code": "l"
+          },
+          "to": [
+            { "set_variable": { "name": "CTLR_o_insert_mode", "value": 0 } },
+            { "key_code": "right_arrow" }
+          ]
+        },
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "variable_if", "name": "CTLR_o_insert_mode", "value": 1 },
+            { "type": "frontmost_application_unless", "bundle_identifiers": [ "^com\\.googlecode\\.iterm2" ] }
+          ],
+          "from": {
+            "key_code": "b"
+          },
+          "to": [
+            { "set_variable": { "name": "CTLR_o_insert_mode", "value": 0 } },
+            { "key_code": "left_arrow", "modifiers": ["option"] }
+          ]
+        },
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "variable_if", "name": "CTLR_o_insert_mode", "value": 1 },
+            { "type": "frontmost_application_unless", "bundle_identifiers": [ "^com\\.googlecode\\.iterm2" ] }
+          ],
+          "from": {
+            "key_code": "w"
+          },
+          "to": [
+            { "set_variable": { "name": "CTLR_o_insert_mode", "value": 0 } },
+            { "key_code": "right_arrow", "modifiers": ["option"] }
+          ]
+        },
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "variable_if", "name": "CTLR_o_insert_mode", "value": 1 },
+            { "type": "frontmost_application_unless", "bundle_identifiers": [ "^com\\.googlecode\\.iterm2" ] }
+          ],
+          "from": {
+            "key_code": "h",
+            "modifiers":{"mandatory":["shift"]}
+          },
+          "to": [
+            { "set_variable": { "name": "CTLR_o_insert_mode", "value": 0 } },
+            { "key_code": "left_arrow", "modifiers": ["command"] }
+          ]
+        },
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "variable_if", "name": "CTLR_o_insert_mode", "value": 1 },
+            { "type": "frontmost_application_unless", "bundle_identifiers": [ "^com\\.googlecode\\.iterm2" ] }
+          ],
+          "from": {
+            "key_code": "l",
+            "modifiers":{"mandatory":["shift"]}
+          },
+          "to": [
+            { "set_variable": { "name": "CTLR_o_insert_mode", "value": 0 } },
+            { "key_code": "right_arrow", "modifiers": ["command"] }
+          ]
+        }
+      ]
+    },
+
+
+
     {
       "description": "[vim-mode] normal_command",
       "manipulators": [
