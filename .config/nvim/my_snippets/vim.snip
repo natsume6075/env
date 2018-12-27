@@ -1,11 +1,15 @@
+# vim snippets
+
 snippet     aiu
 abbr        ok
 regexp      '\(foo\|bar\)'
-  yokuwakannnaine
+    yokuwakannnaine
 
 
 snippet     language
 options     head
-  " ${1:#:lang} -------------------------
-  autocmd initvim FileType ${2:#:lang}
-        \ let $LANG = "${3:#:lang}"
+    " ${1:#:lang} -------------------------
+    autocmd initvim FileType ${2:#:lang}
+    		\ let $LANG = "${3:#:lang}"
+
+

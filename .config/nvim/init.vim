@@ -671,7 +671,7 @@ nnoremap <f6> :<C-u>.tabedit $XDG_CONFIG_HOME/nvim/my_snippets/_.snip<CR>
 " map <f7> to language specific neosnippetedit
 nnoremap <f7> :NeoSnippetEdit -horizontal<CR>
 " <f8> dictionary の呼び出し
-nnoremap <f8> :<C-u>.tabedit $LANG_DICTIONARY<CR>:sort u<CR>
+nnoremap <f8> :<C-u>.tabedit $LANG_DICTIONARY<CR>:sort u<CR>:w<CR>
 " autocmd initvim filetype dict  nnoremap <f8> :q<CR>
 " v mode <f8> 選択範囲を dictionary に送る
 vnoremap <f8> y :!echo <C-r>">> $LANG_DICTIONARY<CR><CR>
@@ -976,6 +976,9 @@ let $LANG_COMMENT_TOKEN = "no defined"
 " vim --------------------------
 autocmd initvim FileType vim
       \ let $LANG = "vim"
+
+" neosnippet -------------------
+autocmd initvim BufNewFile  *.snip  put='# hogehoge snippets'
 
 " tex --------------------------
 autocmd initvim FileType tex

@@ -1,12 +1,15 @@
 # neosnippet snippets
 
+
 snippet     snippet
-abbr        snippet abbr options <snippet code>
 alias       snip
-options     head
+abbr        snippet abbr options <snippet code>
+options     head, indent
     snippet     ${1:#:trigger}
     alias       ${2:#:alias}
     abbr        ${3:#:abbr}
-    options     ${4:head, word}
-        ${5:#:TARGET}
+    options     ${4:head, word, indent}
+    			${5:#:TARGET}
+    ${6:#:word => unko+snip| OK}
+    ${7:#:don't forget TARGET}
 
