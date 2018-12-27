@@ -724,10 +724,18 @@ imap <C-y>L  <Up><Right><ESC>y$i<Down><ESC>pa<CR><C-o>dd<left>
 
 
 " かっこ補完
-imap (       (a<C-h><plug>(neosnippet_expand)
-imap {       {a<C-h><plug>(neosnippet_expand)
-imap [       [a<C-h><plug>(neosnippet_expand)
-imap <       <a<C-h><plug>(neosnippet_expand)
+" imap (       (a<C-h><plug>(neosnippet_expand)
+" imap {       {a<C-h><plug>(neosnippet_expand)
+" imap [       [a<C-h><plug>(neosnippet_expand)
+" imap <       <a<C-h><plug>(neosnippet_expand)
+
+xmap (     <plug>(neosnippet_expand_target)(<CR>
+xmap {     <plug>(neosnippet_expand_target){<CR>
+xmap [     <plug>(neosnippet_expand_target)[<CR>
+xmap <     <plug>(neosnippet_expand_target)<<CR>
+xmap "     <plug>(neosnippet_expand_target)"<CR>
+xmap '     <plug>(neosnippet_expand_target)'<CR>
+
 inoremap () ()
 inoremap {} {}
 inoremap [] []
@@ -804,14 +812,13 @@ let g:neosnippet#snippets_directory='$XDG_CONFIG_HOME/nvim/my_snippets'
 "   一旦適当な文字 a を打ってそれを消す操作を挟むことで，一度押しでいけるようにした。
 imap <C-k>     a<C-h><plug>(neosnippet_expand)
 smap <C-k>     a<C-h><plug>(neosnippet_expand)
+xmap <C-k>     <plug>(neosnippet_expand_target)
 " deoplete setting -> imap <silent><expr> <C-l>   pumvisible() ? deoplete#close_popup()."\<C-l>" : "\<plug>(neosnippet_jump)"
 smap <C-l>     <plug>(neosnippet_jump)
-xmap <C-k>     <plug>(neosnippet_expand_target)
 "imap <hoge>    <plug>(neosnippet_start_unite_snippet)
 " }}}
 
 " vim-surround ---------------- {{{
-
 " }}}
 
 " caw : commentout------------- {{{
