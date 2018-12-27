@@ -1,25 +1,25 @@
-# Tex snippetsaxiom
+# tex snippets
 
 snippet     \curlybrackets
 alias       \{
 abbr	      \{ hoge \}
 options     word
-  \{${1:#:target}\}${2}
+  \{${1:#:TARGET}\}${2}
 
 snippet     overline
 alias       \overline
 options     word
-  \overline{${1}}${2}
+  \overline{${1:#:TARGET}}${2}
 
 snippet     mathbb
 alias       \mathbb
 options     word
-  \mathbb{${1}}${2}
+  \mathbb{${1:#:TARGET}}${2}
 
 snippet     bf
 alias       \bf
 options     word
-  {\bf ${1}}${2}
+  {\bf ${1:#:TARGET}}${2}
 
 snippet     bnf_term
 abbr        && expression \\
@@ -30,7 +30,7 @@ alias       prooftree \begin{prooftree}
 abbr        make prooftree
 options     head
   \begin{prooftree}
-    ${1:target}
+    ${1:#:term}
   \end{prooftree}
 
 snippet     \AxiomC
