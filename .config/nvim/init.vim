@@ -703,8 +703,17 @@ nnoremap <silent>d, :
 "  key map (v):
 " ---------------------------------------
 
+vnoremap  *  y/\V\<<C-r>0\>
+vnoremap g*  y/\V<C-r>0
+
+"hogeh
+"hoge
+"hoge
+
+
 " comment (caw)
 vmap <silent> " <plug>(caw:hatpos:toggle)
+
 
 
 " ---------------------------------------
@@ -826,6 +835,7 @@ smap <C-l>     <plug>(neosnippet_jump)
 
 " caw : commentout------------- {{{
 let g:caw_no_default_keymappings = 1
+" let g:caw_operator_keymappings   = 0
 " }}}
 
 " airline : statusline ------------- todo:lightline に乗り換える？ {{{
