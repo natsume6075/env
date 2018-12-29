@@ -2143,14 +2143,43 @@
                             {
                                 "conditions": [
                                     {
-                                        "name": "d_key",
+                                        "name": "current_mode",
                                         "type": "variable_if",
-                                        "value": 1
+                                        "value": 3
                                     },
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.googlecode\\.iterm2"
+                                        ],
+                                        "type": "frontmost_application_unless"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "w"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "right_arrow",
+                                        "modifiers": [
+                                            "shift",
+                                            "option"
+                                        ]
+                                    },
+                                    {
+                                        "key_code": "x",
+                                        "modifiers": [
+                                            "command"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
                                     {
                                         "name": "current_mode",
                                         "type": "variable_if",
-                                        "value": 1
+                                        "value": 3
                                     },
                                     {
                                         "bundle_identifiers": [
@@ -2194,10 +2223,39 @@
                             {
                                 "conditions": [
                                     {
-                                        "name": "d_key",
+                                        "name": "current_mode",
                                         "type": "variable_if",
-                                        "value": 0
+                                        "value": 3
                                     },
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.googlecode\\.iterm2"
+                                        ],
+                                        "type": "frontmost_application_unless"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "b"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "left_arrow",
+                                        "modifiers": [
+                                            "shift",
+                                            "option"
+                                        ]
+                                    },
+                                    {
+                                        "key_code": "x",
+                                        "modifiers": [
+                                            "command"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
                                     {
                                         "name": "current_mode",
                                         "type": "variable_if",
@@ -2216,8 +2274,8 @@
                                 "to": [
                                     {
                                         "set_variable": {
-                                            "name": "d_key",
-                                            "value": 1
+                                            "name": "current_mode",
+                                            "value": 3
                                         }
                                     }
                                 ],
@@ -2225,20 +2283,52 @@
                                     "to_if_canceled": [
                                         {
                                             "set_variable": {
-                                                "name": "d_key",
-                                                "value": 0
+                                                "name": "current_mode",
+                                                "value": 1
                                             }
                                         }
                                     ],
                                     "to_if_invoked": [
                                         {
                                             "set_variable": {
-                                                "name": "d_key",
-                                                "value": 0
+                                                "name": "current_mode",
+                                                "value": 1
                                             }
                                         }
                                     ]
                                 },
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "current_mode",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    },
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.googlecode\\.iterm2"
+                                        ],
+                                        "type": "frontmost_application_unless"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "d",
+                                    "modifiers": {
+                                        "optional": [
+                                            "shift"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "k",
+                                        "modifiers": [
+                                            "control"
+                                        ]
+                                    }
+                                ],
                                 "type": "basic"
                             },
                             {

@@ -445,11 +445,23 @@
           "to": []
         },
 
+
         {
           "type": "basic",
           "conditions": [
-            { "type": "variable_if", "name": "d_key", "value": 1 },
-            { "type": "variable_if", "name": "current_mode", "value": 1 },
+            { "type": "variable_if", "name": "current_mode", "value": 3 },
+            { "type": "frontmost_application_unless", "bundle_identifiers": [ "^com\\.googlecode\\.iterm2" ] }
+          ],
+          "from": { "key_code": "w" },
+          "to": [
+            { "key_code": "right_arrow", "modifiers": ["shift","option"] },
+            { "key_code": "x", "modifiers": ["command"] }
+          ]
+        },
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "variable_if", "name": "current_mode", "value": 3 },
             { "type": "frontmost_application_unless", "bundle_identifiers": [ "^com\\.googlecode\\.iterm2" ] }
           ],
           "from": { "key_code": "d" },
@@ -463,7 +475,18 @@
         {
           "type": "basic",
           "conditions": [
-            { "type": "variable_if", "name": "d_key", "value": 0 },
+            { "type": "variable_if", "name": "current_mode", "value": 3 },
+            { "type": "frontmost_application_unless", "bundle_identifiers": [ "^com\\.googlecode\\.iterm2" ] }
+          ],
+          "from": { "key_code": "b" },
+          "to": [
+            { "key_code": "left_arrow", "modifiers": ["shift","option"] },
+            { "key_code": "x", "modifiers": ["command"] }
+          ]
+        },
+        {
+          "type": "basic",
+          "conditions": [
             { "type": "variable_if", "name": "current_mode", "value": 1 },
             { "type": "frontmost_application_unless", "bundle_identifiers": [ "^com\\.googlecode\\.iterm2" ] }
           ],
@@ -471,18 +494,33 @@
             "key_code": "d"
           },
           "to": [
-            { "set_variable": { "name": "d_key", "value": 1 } }
+            { "set_variable": { "name": "current_mode", "value": 3 } }
           ],
           "to_delayed_action": {
             "to_if_invoked": [
-              { "set_variable": { "name": "d_key", "value": 0 } }
+              { "set_variable": { "name": "current_mode", "value": 1 } }
             ],
             "to_if_canceled": [
-              { "set_variable": { "name": "d_key", "value": 0 } }
+              { "set_variable": { "name": "current_mode", "value": 1 } }
             ]
           }
         },
 
+
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "variable_if", "name": "current_mode", "value": 1 },
+            { "type": "frontmost_application_unless", "bundle_identifiers": [ "^com\\.googlecode\\.iterm2" ] }
+          ],
+          "from": {
+            "key_code": "d",
+            "modifiers":{"mandatory":["shift"]}
+          },
+          "to": [
+            { "key_code": "k", "modifiers": ["control"] }
+          ]
+        },
         {
           "type": "basic",
           "conditions": [
