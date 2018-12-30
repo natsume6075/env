@@ -90,8 +90,10 @@ bindkey -M viins '^H'    backward-delete-char
 bindkey -M viins '^K'    kill-line
 bindkey -M viins '^N'    down-line-or-history
 # bindkey -M viins 'O' c-o
-bindkey -M viins '^O''L' end-of-line
+bindkey -M viins '^O''h' backward-char
 bindkey -M viins '^O''H' beginning-of-line
+bindkey -M viins '^O''L' end-of-line
+bindkey -M viins '^O''l' forward-char
 bindkey -M viins '^P'    up-line-or-history
 bindkey -M viins '^R'    history-incremental-pattern-search-backward
 bindkey -M viins '^U'    backward-kill-line
