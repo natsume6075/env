@@ -3056,6 +3056,30 @@
                                 "type": "basic"
                             }
                         ]
+                    },
+                    {
+                        "description": "C-Tab で Shift-Tab（shift-Tab とか押せない。リストのインデント上げとか，ポップアップの遡りとか）",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "tab",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "control"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "tab",
+                                        "modifiers": [
+                                            "shift"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
                     }
                 ]
             },

@@ -138,7 +138,7 @@
       ]
     },
     {
-      "description": "C-J で Return（衝突注意。vim も日本語をリターンできないから欲しい",
+      "description": "C-J で Return（衝突注意。vim も日本語をリターンできないから欲しい）",
       "manipulators": [
         { "type": "basic",
           "from": {
@@ -149,6 +149,24 @@
           },
           "to": [
             {  "key_code": "return_or_enter"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "description": "C-Tab で Shift-Tab（shift-Tab とか押せない。リストのインデント上げとか，ポップアップの遡りとか）",
+      "manipulators": [
+        { "type": "basic",
+          "from": {
+            "key_code": "tab",
+            "modifiers": {
+              "mandatory": ["control"]
+            }
+          },
+          "to": [
+            {  "key_code": "tab",
+              "modifiers": ["shift"]
             }
           ]
         }
