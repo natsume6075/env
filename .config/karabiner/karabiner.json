@@ -9,7 +9,7 @@
             "complex_modifications": {
                 "parameters": {
                     "basic.simultaneous_threshold_milliseconds": 50,
-                    "basic.to_delayed_action_delay_milliseconds": 500,
+                    "basic.to_delayed_action_delay_milliseconds": 1000,
                     "basic.to_if_alone_timeout_milliseconds": 500,
                     "basic.to_if_held_down_threshold_milliseconds": 500
                 },
@@ -1154,6 +1154,30 @@
                         ]
                     },
                     {
+                        "description": "C-Tab で Shift-Tab（shift-Tab とか押せない。リストのインデント上げとか，ポップアップの遡りとか）",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "tab",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "control"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "tab",
+                                        "modifiers": [
+                                            "shift"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
                         "description": "[vim-mode] normal <-> insert mode chenge",
                         "manipulators": [
                             {
@@ -1595,6 +1619,183 @@
                                         ]
                                     }
                                 ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "CTLR_o_insert_mode",
+                                        "type": "variable_if",
+                                        "value": 3
+                                    },
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.googlecode\\.iterm2"
+                                        ],
+                                        "type": "frontmost_application_unless"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "w"
+                                },
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "CTLR_o_insert_mode",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "key_code": "right_arrow",
+                                        "modifiers": [
+                                            "shift",
+                                            "option"
+                                        ]
+                                    },
+                                    {
+                                        "key_code": "x",
+                                        "modifiers": [
+                                            "command"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "CTLR_o_insert_mode",
+                                        "type": "variable_if",
+                                        "value": 3
+                                    },
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.googlecode\\.iterm2"
+                                        ],
+                                        "type": "frontmost_application_unless"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "d"
+                                },
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "CTLR_o_insert_mode",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "key_code": "a",
+                                        "modifiers": [
+                                            "control"
+                                        ]
+                                    },
+                                    {
+                                        "key_code": "right_arrow",
+                                        "modifiers": [
+                                            "shift",
+                                            "command"
+                                        ]
+                                    },
+                                    {
+                                        "key_code": "right_arrow",
+                                        "modifiers": [
+                                            "shift"
+                                        ]
+                                    },
+                                    {
+                                        "key_code": "x",
+                                        "modifiers": [
+                                            "command"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "CTLR_o_insert_mode",
+                                        "type": "variable_if",
+                                        "value": 3
+                                    },
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.googlecode\\.iterm2"
+                                        ],
+                                        "type": "frontmost_application_unless"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "b"
+                                },
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "CTLR_o_insert_mode",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "key_code": "left_arrow",
+                                        "modifiers": [
+                                            "shift",
+                                            "option"
+                                        ]
+                                    },
+                                    {
+                                        "key_code": "x",
+                                        "modifiers": [
+                                            "command"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "CTLR_o_insert_mode",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    },
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.googlecode\\.iterm2"
+                                        ],
+                                        "type": "frontmost_application_unless"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "d"
+                                },
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "CTLR_o_insert_mode",
+                                            "value": 3
+                                        }
+                                    }
+                                ],
+                                "to_delayed_action": {
+                                    "to_if_canceled": [
+                                        {
+                                            "set_variable": {
+                                                "name": "CTLR_o_insert_mode",
+                                                "value": 0
+                                            }
+                                        }
+                                    ],
+                                    "to_if_invoked": [
+                                        {
+                                            "set_variable": {
+                                                "name": "CTLR_o_insert_mode",
+                                                "value": 0
+                                            }
+                                        }
+                                    ]
+                                },
                                 "type": "basic"
                             },
                             {
@@ -2316,7 +2517,7 @@
                                 "from": {
                                     "key_code": "d",
                                     "modifiers": {
-                                        "optional": [
+                                        "mandatory": [
                                             "shift"
                                         ]
                                     }
@@ -3050,30 +3251,6 @@
                                         "modifiers": [
                                             "shift",
                                             "option"
-                                        ]
-                                    }
-                                ],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "C-Tab で Shift-Tab（shift-Tab とか押せない。リストのインデント上げとか，ポップアップの遡りとか）",
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "tab",
-                                    "modifiers": {
-                                        "mandatory": [
-                                            "control"
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "tab",
-                                        "modifiers": [
-                                            "shift"
                                         ]
                                     }
                                 ],

@@ -193,6 +193,72 @@
             { "key_code": "v", "modifiers": ["command"] }
           ]
         },
+
+
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "variable_if", "name": "CTLR_o_insert_mode", "value": 3 },
+            { "type": "frontmost_application_unless", "bundle_identifiers": [ "^com\\.googlecode\\.iterm2" ] }
+          ],
+          "from": { "key_code": "w" },
+          "to": [
+              { "set_variable": { "name": "CTLR_o_insert_mode", "value": 0 } },
+            { "key_code": "right_arrow", "modifiers": ["shift","option"] },
+            { "key_code": "x", "modifiers": ["command"] }
+          ]
+        },
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "variable_if", "name": "CTLR_o_insert_mode", "value": 3 },
+            { "type": "frontmost_application_unless", "bundle_identifiers": [ "^com\\.googlecode\\.iterm2" ] }
+          ],
+          "from": { "key_code": "d" },
+          "to": [
+              { "set_variable": { "name": "CTLR_o_insert_mode", "value": 0 } },
+            { "key_code": "a", "modifiers": ["control"] },
+            { "key_code": "right_arrow", "modifiers": ["shift","command"] },
+            { "key_code": "right_arrow", "modifiers": ["shift"] },
+            { "key_code": "x", "modifiers": ["command"] }
+          ]
+        },
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "variable_if", "name": "CTLR_o_insert_mode", "value": 3 },
+            { "type": "frontmost_application_unless", "bundle_identifiers": [ "^com\\.googlecode\\.iterm2" ] }
+          ],
+          "from": { "key_code": "b" },
+          "to": [
+              { "set_variable": { "name": "CTLR_o_insert_mode", "value": 0 } },
+            { "key_code": "left_arrow", "modifiers": ["shift","option"] },
+            { "key_code": "x", "modifiers": ["command"] }
+          ]
+        },
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "variable_if", "name": "CTLR_o_insert_mode", "value": 1 },
+            { "type": "frontmost_application_unless", "bundle_identifiers": [ "^com\\.googlecode\\.iterm2" ] }
+          ],
+          "from": {
+            "key_code": "d"
+          },
+          "to": [
+            { "set_variable": { "name": "CTLR_o_insert_mode", "value": 3 } }
+          ],
+          "to_delayed_action": {
+            "to_if_invoked": [
+              { "set_variable": { "name": "CTLR_o_insert_mode", "value": 0 } }
+            ],
+            "to_if_canceled": [
+              { "set_variable": { "name": "CTLR_o_insert_mode", "value": 0 } }
+            ]
+          }
+        },
+
+
         {
           "type": "basic",
           "conditions": [
