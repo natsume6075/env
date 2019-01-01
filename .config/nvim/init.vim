@@ -731,7 +731,9 @@ inoremap <C-r>'   <C-r>*
 
 " ひとつ上の行をいただく
 " i_CTRL-Y を最後までやる
-imap <C-y>L  <Up><Right><ESC>y$i<Down><ESC>pa<CR><C-o>dd<left>
+" CTRL-Y の表示がこのマッピングがあるためにディレイかかっちゃって使いづらい上に，あんまり使ってないのでオフ
+" imap <C-y>L  <Up><Right><ESC>y$i<Down><ESC>pa<CR><C-o>dd<left>
+
 
 
 " かっこ補完
@@ -796,21 +798,14 @@ function! s:Check_back_space() abort "{{{
 endfunction"}}}
 
 " 選択を tab キーで行う。単語の後ろで tab キーを押すと deoplete を呼び出す（無効化）
-"inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : <sid>Check_back_space() ? "\<TAB>" : deoplete#mappings#manual_complete()
-inoremap <silent><expr> <TAB>   pumvisible() ? "\<C-n>" : "\<TAB>"
-inoremap <silent><expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<TAB>"
-imap     <silent><expr> <C-l>   pumvisible() ? deoplete#close_popup()."\<C-l>" : "\<plug>(neosnippet_jump)"
-inoremap <silent><expr> <Up>    pumvisible() ? deoplete#close_popup()."\<Up>" : "\<Up>"
-inoremap <silent><expr> <Down>  pumvisible() ? deoplete#close_popup()."\<Down>" : "\<Down>"
-" inoremap <expr><hoge> deoplete#complete_common_string()
+" inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : <sid>Check_back_space() ? "\<TAB>" : deoplete#mappings#manual_complete()
+inoremap <expr> <TAB>   pumvisible() ? deoplete#complete_common_string() : "\<TAB>"
+inoremap <expr> <S-TAB> deoplete#refresh().deoplete#smart_close_popup()
+imap     <expr> <C-l>   pumvisible() ? deoplete#close_popup()."\<C-l>"   : "\<plug>(neosnippet_jump)"
+inoremap <expr> <Up>    pumvisible() ? deoplete#close_popup()."\<Up>"    : "\<Up>"
+inoremap <expr> <Down>  pumvisible() ? deoplete#close_popup()."\<Down>"  : "\<Down>"
 
-"tab tab キーでトップヒットを選択する
-"inoremap <silent><expr><TAB>    pumvisible() ? "\<C-n>".deoplete#mappings#close_popup() : "\<TAB>"
-" 開いてるときにリターンすると確定 バグあり
-"inoremap <silent><expr> <ENTER>
-"      \ pumvisible() ? "\a<BS>".deoplete#mappings#manual_complete() :
-"      \ <sid>Check_back_space() ? "\<ENTER>" :
-"      \ "\<ENTER>"
+
 " }}}
 
 " neosnippet --------------------- {{{
