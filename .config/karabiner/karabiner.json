@@ -206,49 +206,6 @@
                         ]
                     },
                     {
-                        "description": "コントロールキーを ctrl+shift+command に。単体押しで ctrl+opt+com+a，長押しで ctrl+opt+com+b",
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "left_control"
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "left_control",
-                                        "lazy": "true",
-                                        "modifiers": [
-                                            "left_shift",
-                                            "option"
-                                        ]
-                                    }
-                                ],
-                                "to_if_alone": [
-                                    {
-                                        "key_code": "a",
-                                        "lazy": "true",
-                                        "modifiers": [
-                                            "left_control",
-                                            "option",
-                                            "left_command"
-                                        ]
-                                    }
-                                ],
-                                "to_if_held_down": [
-                                    {
-                                        "key_code": "b",
-                                        "lazy": "true",
-                                        "modifiers": [
-                                            "left_control",
-                                            "option",
-                                            "left_command"
-                                        ]
-                                    }
-                                ],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
                         "description": "fnモードとsysモードの概念を導入する。fn の単独押しでモード切り替え。sysモード中はF*キーを押すとfnキーが同時押しされる。F7,8だけはそのまま。",
                         "manipulators": [
                             {
@@ -1147,6 +1104,91 @@
                                     {
                                         "key_code": "f12",
                                         "modifiers": "fn"
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "コントロールキーを ctrl+shift+command に。単体押しで ctrl+opt+com+a，長押しで ctrl+opt+com+b",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "instant_expose",
+                                        "type": "variable_if",
+                                        "value": 0
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "left_control",
+                                    "modifiers": {
+                                        "optional": [
+                                            "command"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "left_control",
+                                        "lazy": "true",
+                                        "modifiers": [
+                                            "left_shift",
+                                            "option"
+                                        ]
+                                    }
+                                ],
+                                "to_if_alone": [
+                                    {
+                                        "key_code": "a",
+                                        "lazy": "true",
+                                        "modifiers": [
+                                            "left_control",
+                                            "option",
+                                            "left_command"
+                                        ]
+                                    }
+                                ],
+                                "to_if_held_down": [
+                                    {
+                                        "key_code": "b",
+                                        "lazy": "true",
+                                        "modifiers": [
+                                            "left_control",
+                                            "option",
+                                            "left_command"
+                                        ]
+                                    },
+                                    {
+                                        "set_variable": {
+                                            "name": "instant_expose",
+                                            "value": 1
+                                        }
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "instant_expose",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "left_control"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "return_or_enter"
+                                    },
+                                    {
+                                        "set_variable": {
+                                            "name": "instant_expose",
+                                            "value": 0
+                                        }
                                     }
                                 ],
                                 "type": "basic"

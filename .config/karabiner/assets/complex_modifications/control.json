@@ -21,8 +21,12 @@
       "manipulators": [
         {
           "type": "basic",
+          "conditions": [
+            { "type": "variable_if", "name": "instant_expose", "value": 0 }
+          ],
           "from": {
-            "key_code": "left_control"
+            "key_code": "left_control",
+            "modifiers":{"optional":["command"]}
           },
           "to": [
             {
@@ -54,7 +58,23 @@
                 "left_command"
               ],
               "lazy":"true"
-            }
+            },
+            { "set_variable": { "name": "instant_expose", "value": 1 } }
+          ]
+        },
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "variable_if", "name": "instant_expose", "value": 1 }
+          ],
+          "from": {
+            "key_code": "left_control"
+          },
+          "to": [
+            {
+              "key_code": "return_or_enter"
+            },
+            { "set_variable": { "name": "instant_expose", "value": 0 } }
           ]
         }
       ]
