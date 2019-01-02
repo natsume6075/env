@@ -446,7 +446,7 @@ nmap <silent> " <plug>(caw:hatpos:toggle)
 nnoremap con J
 
 " 同じ文字に置換するコマンドを呼び出すことで，マッチ数を表示する検索を模倣する
-nnoremap <expr> // _(":%s/<Cursor>/&/gn")
+nnoremap <expr> // _(":%s/<Cursor>/&/g")
 function! s:move_cursor_pos_mapping(str, ...)
   let left = get(a:, 1, "<Left>")
   let lefts = join(map(split(matchstr(a:str, '.*<Cursor>\zs.*\ze'), '.\zs'), 'left'), "")
@@ -717,10 +717,6 @@ nnoremap <silent>d, :
 
 vnoremap  *  y/\V\<<C-r>0\>
 vnoremap g*  y/\V<C-r>0
-
-"hogeh
-"hoge
-"hoge
 
 
 " comment (caw)
