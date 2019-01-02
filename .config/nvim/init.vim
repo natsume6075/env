@@ -446,6 +446,18 @@ nnoremap <C-s> z=
 nmap <silent> " <plug>(caw:hatpos:toggle)
 nnoremap con J
 
+" 同じ文字に置換するコマンドを呼び出すことで，マッチ数を表示する検索を模倣する
+nnoremap <expr> // _(":%s/<Cursor>/&/gn")
+function! s:move_cursor_pos_mapping(str, ...)
+  let left = get(a:, 1, "<Left>")
+  let lefts = join(map(split(matchstr(a:str, '.*<Cursor>\zs.*\ze'), '.\zs'), 'left'), "")
+  return substitute(a:str, '<Cursor>', '', '') . lefts
+endfunction
+function! _(str)
+  return s:move_cursor_pos_mapping(a:str, "\<Left>")
+endfunction
+
+
 " motion ------------------------------{{{
 " keepjumps をする際に，関数の中に入れることで，無限ループを回避している。
 nnoremap <silent>n  :keepjumps normal ___n<CR>"{{{
