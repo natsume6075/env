@@ -430,12 +430,11 @@ let maplocalleader = "t"
 " それどころかキーボードも物理的に入れ替えちゃった
 " nnoremap ; :
 " nnoremap : ;
-" noremap!  
 " undo/redo
 nnoremap <C-u> <C-r>
 " yank/cut/paste
 noremap <C-r>   "
-noremap <C-r>'   "*
+noremap <C-r>'  "*
 nnoremap Y y$
 " 折り返し時に表示行単位での移動できるようにする
 nnoremap j gj
@@ -456,6 +455,7 @@ endfunction
 function! _(str)
   return s:move_cursor_pos_mapping(a:str, "\<Left>")
 endfunction
+" Ref: http://d.hatena.ne.jp/osyo-manga/20130424/1366800441
 
 
 " motion ------------------------------{{{
