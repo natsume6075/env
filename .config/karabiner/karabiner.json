@@ -1226,8 +1226,8 @@
                                 "conditions": [
                                     {
                                         "name": "current_mode",
-                                        "type": "variable_unless",
-                                        "value": 0
+                                        "type": "variable_if",
+                                        "value": 1
                                     },
                                     {
                                         "bundle_identifiers": [
@@ -1243,7 +1243,7 @@
                                     {
                                         "set_variable": {
                                             "name": "current_mode",
-                                            "value": 0
+                                            "value": 2
                                         }
                                     }
                                 ],
