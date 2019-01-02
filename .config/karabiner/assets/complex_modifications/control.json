@@ -17,7 +17,7 @@
       ]
     },
     {
-      "description": "コントロールキーを ctrl+shift+command に。単体押しで ctrl+opt+com+a，長押しで ctrl+opt+com+b",
+      "description": "コントロールキーを ctrl+shift+command に。単体押しで ctrl+opt+com+a，長押しで ctrl+opt+com+b，single expose 中は return",
       "manipulators": [
         {
           "type": "basic",
@@ -62,6 +62,7 @@
             { "set_variable": { "name": "instant_expose", "value": 1 } }
           ]
         },
+
         {
           "type": "basic",
           "conditions": [
