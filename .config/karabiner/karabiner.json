@@ -1748,7 +1748,7 @@
                                     {
                                         "name": "current_mode",
                                         "type": "variable_if",
-                                        "value": 5
+                                        "value": 11
                                     },
                                     {
                                         "bundle_identifiers": [
@@ -1782,7 +1782,7 @@
                                     {
                                         "name": "current_mode",
                                         "type": "variable_if",
-                                        "value": 5
+                                        "value": 11
                                     },
                                     {
                                         "bundle_identifiers": [
@@ -1828,7 +1828,7 @@
                                     {
                                         "name": "current_mode",
                                         "type": "variable_if",
-                                        "value": 5
+                                        "value": 11
                                     },
                                     {
                                         "bundle_identifiers": [
@@ -1878,7 +1878,7 @@
                                     {
                                         "set_variable": {
                                             "name": "current_mode",
-                                            "value": 5
+                                            "value": 11
                                         }
                                     }
                                 ],

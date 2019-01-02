@@ -246,7 +246,7 @@
         {
           "type": "basic",
           "conditions": [
-            { "type": "variable_if", "name": "current_mode", "value": 5 },
+            { "type": "variable_if", "name": "current_mode", "value": 11 },
             { "type": "frontmost_application_unless", "bundle_identifiers": [ "^com\\.googlecode\\.iterm2" ] }
           ],
           "from": { "key_code": "w" },
@@ -258,7 +258,7 @@
         {
           "type": "basic",
           "conditions": [
-            { "type": "variable_if", "name": "current_mode", "value": 5 },
+            { "type": "variable_if", "name": "current_mode", "value": 11 },
             { "type": "frontmost_application_unless", "bundle_identifiers": [ "^com\\.googlecode\\.iterm2" ] }
           ],
           "from": { "key_code": "d" },
@@ -272,7 +272,7 @@
         {
           "type": "basic",
           "conditions": [
-            { "type": "variable_if", "name": "current_mode", "value": 5 },
+            { "type": "variable_if", "name": "current_mode", "value": 11 },
             { "type": "frontmost_application_unless", "bundle_identifiers": [ "^com\\.googlecode\\.iterm2" ] }
           ],
           "from": { "key_code": "b" },
@@ -291,7 +291,7 @@
             "key_code": "d"
           },
           "to": [
-            { "set_variable": { "name": "current_mode", "value": 5 } }
+            { "set_variable": { "name": "current_mode", "value": 11 } }
           ],
           "to_delayed_action": {
             "to_if_invoked": [
