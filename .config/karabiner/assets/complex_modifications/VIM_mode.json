@@ -377,7 +377,6 @@
     },
 
 
-
     {
       "description": "[vim-mode] normal_command",
       "manipulators": [
@@ -769,9 +768,6 @@
     },
 
 
-
-
-
     {
       "description": "[vim-mode] normal <-> visual mode chenge",
       "manipulators": [
@@ -832,7 +828,6 @@
         }
       ]
     },
-
 
 
     {
@@ -947,5 +942,7 @@
 
       ]
     }
+
+
   ]
 }
