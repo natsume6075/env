@@ -1243,7 +1243,7 @@
                                     {
                                         "set_variable": {
                                             "name": "current_mode",
-                                            "value": 0
+                                            "value": 2
                                         }
                                     }
                                 ],
@@ -1270,7 +1270,7 @@
                                     {
                                         "set_variable": {
                                             "name": "current_mode",
-                                            "value": 0
+                                            "value": 2
                                         }
                                     }
                                 ],
@@ -1308,7 +1308,7 @@
                                     {
                                         "set_variable": {
                                             "name": "current_mode",
-                                            "value": 0
+                                            "value": 2
                                         }
                                     }
                                 ],
@@ -1344,7 +1344,7 @@
                                     {
                                         "set_variable": {
                                             "name": "current_mode",
-                                            "value": 0
+                                            "value": 2
                                         }
                                     }
                                 ],
@@ -1388,7 +1388,7 @@
                                     {
                                         "set_variable": {
                                             "name": "current_mode",
-                                            "value": 0
+                                            "value": 2
                                         }
                                     }
                                 ],
@@ -1418,7 +1418,7 @@
                                     {
                                         "set_variable": {
                                             "name": "current_mode",
-                                            "value": 0
+                                            "value": 2
                                         }
                                     }
                                 ],
@@ -1456,7 +1456,7 @@
                                     {
                                         "set_variable": {
                                             "name": "current_mode",
-                                            "value": 0
+                                            "value": 2
                                         }
                                     }
                                 ],
@@ -1472,7 +1472,7 @@
                                     {
                                         "name": "current_mode",
                                         "type": "variable_if",
-                                        "value": 0
+                                        "value": 2
                                     },
                                     {
                                         "bundle_identifiers": [
@@ -1507,7 +1507,7 @@
                                     {
                                         "name": "current_mode",
                                         "type": "variable_if",
-                                        "value": 0
+                                        "value": 2
                                     },
                                     {
                                         "name": "CTLR_o_insert_mode",
@@ -1570,7 +1570,7 @@
                                     {
                                         "name": "current_mode",
                                         "type": "variable_if",
-                                        "value": 0
+                                        "value": 2
                                     },
                                     {
                                         "bundle_identifiers": [
@@ -2388,7 +2388,7 @@
                                     {
                                         "name": "current_mode",
                                         "type": "variable_if",
-                                        "value": 3
+                                        "value": 5
                                     },
                                     {
                                         "bundle_identifiers": [
@@ -2422,7 +2422,7 @@
                                     {
                                         "name": "current_mode",
                                         "type": "variable_if",
-                                        "value": 3
+                                        "value": 5
                                     },
                                     {
                                         "bundle_identifiers": [
@@ -2468,7 +2468,7 @@
                                     {
                                         "name": "current_mode",
                                         "type": "variable_if",
-                                        "value": 3
+                                        "value": 5
                                     },
                                     {
                                         "bundle_identifiers": [
@@ -2518,7 +2518,7 @@
                                     {
                                         "set_variable": {
                                             "name": "current_mode",
-                                            "value": 3
+                                            "value": 5
                                         }
                                     }
                                 ],
@@ -2948,7 +2948,7 @@
                                     {
                                         "name": "current_mode",
                                         "type": "variable_if",
-                                        "value": 2
+                                        "value": 3
                                     },
                                     {
                                         "bundle_identifiers": [
@@ -2975,7 +2975,7 @@
                                     {
                                         "name": "current_mode",
                                         "type": "variable_if",
-                                        "value": 2
+                                        "value": 3
                                     },
                                     {
                                         "bundle_identifiers": [
@@ -3011,7 +3011,7 @@
                                     {
                                         "name": "current_mode",
                                         "type": "variable_if",
-                                        "value": 2
+                                        "value": 3
                                     },
                                     {
                                         "bundle_identifiers": [
@@ -3057,7 +3057,7 @@
                                     {
                                         "set_variable": {
                                             "name": "current_mode",
-                                            "value": 2
+                                            "value": 3
                                         }
                                     }
                                 ],
@@ -3073,7 +3073,7 @@
                                     {
                                         "name": "current_mode",
                                         "type": "variable_if",
-                                        "value": 2
+                                        "value": 3
                                     },
                                     {
                                         "bundle_identifiers": [
@@ -3101,7 +3101,7 @@
                                     {
                                         "name": "current_mode",
                                         "type": "variable_if",
-                                        "value": 2
+                                        "value": 3
                                     },
                                     {
                                         "bundle_identifiers": [
@@ -3128,7 +3128,7 @@
                                     {
                                         "name": "current_mode",
                                         "type": "variable_if",
-                                        "value": 2
+                                        "value": 3
                                     },
                                     {
                                         "bundle_identifiers": [
@@ -3161,7 +3161,7 @@
                                     {
                                         "name": "current_mode",
                                         "type": "variable_if",
-                                        "value": 2
+                                        "value": 3
                                     },
                                     {
                                         "bundle_identifiers": [
@@ -3188,7 +3188,7 @@
                                     {
                                         "name": "current_mode",
                                         "type": "variable_if",
-                                        "value": 2
+                                        "value": 3
                                     },
                                     {
                                         "bundle_identifiers": [
@@ -3215,7 +3215,7 @@
                                     {
                                         "name": "current_mode",
                                         "type": "variable_if",
-                                        "value": 2
+                                        "value": 3
                                     },
                                     {
                                         "bundle_identifiers": [
@@ -3242,7 +3242,7 @@
                                     {
                                         "name": "current_mode",
                                         "type": "variable_if",
-                                        "value": 2
+                                        "value": 3
                                     },
                                     {
                                         "bundle_identifiers": [
@@ -3275,7 +3275,7 @@
                                     {
                                         "name": "current_mode",
                                         "type": "variable_if",
-                                        "value": 2
+                                        "value": 3
                                     },
                                     {
                                         "bundle_identifiers": [

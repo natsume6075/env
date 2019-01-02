@@ -7,14 +7,14 @@
         {
           "type": "basic",
           "conditions": [
-            { "type": "variable_if", "name": "current_mode", "value": 1 },
+            { "type": "variable_unless", "name": "current_mode", "value": 0 },
             { "type": "frontmost_application_unless", "bundle_identifiers": [ "^com\\.googlecode\\.iterm2" ] }
           ],
           "from": {
             "key_code": "escape"
           },
           "to": [
-            { "set_variable": { "name": "current_mode", "value": 2 } }
+            { "set_variable": { "name": "current_mode", "value": 0 } }
           ]
         },
         {
