@@ -77,35 +77,29 @@ alias diff='diff -U1'
 # vim っぽくする
 bindkey -v
 
-bindkey -M viins 'jj'    vi-cmd-mode
-bindkey -M viins '\er  ' history-incremental-pattern-search-forward
-bindkey -M viins '^?'    backward-delete-char
-bindkey -M viins '^A'    beginning-of-line
-bindkey -M viins '^B'    backward-char
-bindkey -M viins '^D'    delete-char-or-list
-bindkey -M viins '^E'    end-of-line
-bindkey -M viins '^F'    forward-char
-bindkey -M viins '^G'    send-break
-bindkey -M viins '^H'    backward-delete-char
-bindkey -M viins '^K'    kill-line
-bindkey -M viins '^N'    down-line-or-history
-# bindkey -M viins 'O' c-o
-bindkey -M viins '^O''h' backward-char
-bindkey -M viins '^O''H' beginning-of-line
-bindkey -M viins '^O''L' end-of-line
-bindkey -M viins '^O''l' forward-char
+bindkey -M viins 'jj'       vi-cmd-mode
+bindkey -M viins '^?'       backward-delete-char
+bindkey -M viins '^A'       beginning-of-line
+bindkey -M viins '^B'       backward-char
+bindkey -M viins '^D'       delete-char-or-list
+bindkey -M viins '^E'       end-of-line
+bindkey -M viins '^F'       forward-char
+bindkey -M viins '^G'       send-break
+bindkey -M viins '^H'       backward-delete-char
+bindkey -M viins '^K'       kill-line
+bindkey -M viins '^N'       down-line-or-history
+bindkey -M viins '^O''h'    backward-char
+bindkey -M viins '^O''H'    beginning-of-line
+bindkey -M viins '^O''L'    end-of-line
+bindkey -M viins '^O''l'    forward-char
 bindkey -M viins '^O''d''d' backward-kill-line
-bindkey -M viins '^P'    up-line-or-history
-bindkey -M viins '^R'    history-incremental-pattern-search-backward
-bindkey -M viins '^U'    backward-kill-line
-bindkey -M viins '^W'    backward-kill-word
-bindkey -M viins '^Y'    yank
+bindkey -M viins '^P'       up-line-or-history
+bindkey -M viins '^R'       history-incremental-pattern-search-backward
+bindkey -M viins '^S'       history-incremental-pattern-search-forward
+bindkey -M viins '^U'       backward-kill-line
+bindkey -M viins '^W'       backward-kill-word
+bindkey -M viins '^Y'       yank
 
-function c-o() {
-  zle vi-cmd-mode
-  # read ope
-}
-zle -N c-o
 
 bindkey -M vicmd 'H'   beginning-of-line
 bindkey -M vicmd 'L'   end-of-line
@@ -155,17 +149,14 @@ zstyle ':completion:*:default' menu select=2
 # 補完で大文字にもマッチ
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 
-# Ctrl+rでヒストリーのインクリメンタルサーチ、Ctrl+sで逆順
-bindkey '^r' history-incremental-pattern-search-backward
-bindkey '^s' history-incremental-pattern-search-forward
 
 # コマンドを途中まで入力後、historyから絞り込み
-# 例 ls まで打ってCtrl+pでlsコマンドをさかのぼる、Ctrl+bで逆順
+# 例 ls まで打ってCtrl+pでlsコマンドをさかのぼる、Ctrl+nで逆順
 autoload -Uz history-search-end
 zle -N history-beginning-search-backward-end history-search-end
 zle -N history-beginning-search-forward-end history-search-end
 bindkey "^p" history-beginning-search-backward-end
-bindkey "^b" history-beginning-search-forward-end
+bindkey "^n" history-beginning-search-forward-end
 
 # cdrコマンドを有効 ログアウトしても有効なディレクトリ履歴
 # cdr タブでリストを表示
