@@ -459,8 +459,11 @@ endfunction
 
 
 " motion ------------------------------{{{
-noremap! <C-f> <Right>
+noremap! <C-a> <HOME>
 noremap! <C-b> <left>
+noremap! <C-e> <END>
+noremap! <C-f> <Right>
+noremap! <C-t> <C-e>
 " keepjumps をする際に，関数の中に入れることで，無限ループを回避している。
 nnoremap <silent>n  :keepjumps normal ___n<CR>"{{{
 nnoremap <expr>  ___n Avoid_too_recursive_n()

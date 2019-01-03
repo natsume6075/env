@@ -81,6 +81,7 @@ bindkey -M viins 'jj'       vi-cmd-mode
 bindkey -M viins '^?'       backward-delete-char
 bindkey -M viins '^A'       beginning-of-line
 bindkey -M viins '^B'       backward-char
+bindkey -M viins '^C'       vi-cmd-mode
 bindkey -M viins '^D'       delete-char-or-list
 bindkey -M viins '^E'       end-of-line
 bindkey -M viins '^F'       forward-char
