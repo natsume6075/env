@@ -93,7 +93,7 @@ bindkey -M viins '^O''h'    backward-char
 bindkey -M viins '^O''H'    beginning-of-line
 bindkey -M viins '^O''L'    end-of-line
 bindkey -M viins '^O''l'    forward-char
-bindkey -M viins '^O''d''d' backward-kill-line
+bindkey -M viins '^O''d''d' backward-kill-line # ちゃんとできてない。前しか削除されない。ddの実装を見たい。。。
 bindkey -M viins '^P'       up-line-or-history
 bindkey -M viins '^R'       history-incremental-pattern-search-backward
 bindkey -M viins '^S'       history-incremental-pattern-search-forward
