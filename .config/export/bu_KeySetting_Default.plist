@@ -2089,8 +2089,6 @@
 			<dict>
 				<key>command</key>
 				<string>forward_prediction</string>
-				<key>New item</key>
-				<string>control+&apos;o</string>
 			</dict>
 		</dict>
 	</dict>
