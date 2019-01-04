@@ -257,7 +257,9 @@ augroup initvim
           \   call system(g:force_kana_input_command) |
           \   let g:current_input_method = s:keycode_jis_eisuu |
           \ endif
+    "ここにairlineみたいな，かな入力であることを強調する仕組みを作る？「いんさーと」って表示するとか
   endif
+
 
   " 逆転の発想で，っj が送られた時だけ，かな入力になっていると言う情報を保持。上で発火してる。
   imap <silent> っj <ESC>:let current_input_method = 104<CR>
@@ -459,6 +461,8 @@ inoremap <C-a> <C-o>^
 noremap! <C-b> <left>
 noremap! <C-e> <END>
 noremap! <C-f> <Right>
+inoremap <C-n> <Down>
+inoremap <C-p> <Up>
 noremap! <C-t> <C-e>
 " keepjumps をする際に，関数の中に入れることで，無限ループを回避している。
 nnoremap <silent>n  :keepjumps normal ___n<CR>"{{{
