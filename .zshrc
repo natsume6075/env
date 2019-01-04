@@ -78,6 +78,7 @@ alias diff='diff -U1'
 bindkey -v
 
 bindkey -M viins 'jj'       vi-cmd-mode
+bindkey -M viins 'っj'       vi-cmd-mode
 bindkey -M viins '^?'       backward-delete-char
 bindkey -M viins '^A'       beginning-of-line
 bindkey -M viins '^B'       backward-char
