@@ -260,7 +260,7 @@ augroup initvim
   endif
 
   " 逆転の発想で，っj が送られた時だけ，かな入力になっていると言う情報を保持。上で発火してる。
-  imap っj <ESC>:let current_input_method = 104<CR>
+  imap <silent> っj <ESC>:let current_input_method = 104<CR>
 
 
   " init.vim を保存したときにリロード
@@ -381,6 +381,7 @@ hi spellbad NONE
 hi SpellCap NONE
 hi SpellRare NONE
 hi SpellLocal NONE
+
 
 " let g:airline_theme = 'tomorrow'
 " let g:airline_theme = 'bubblegum'

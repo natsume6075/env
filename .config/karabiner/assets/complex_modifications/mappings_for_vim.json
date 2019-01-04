@@ -2,7 +2,7 @@
   "title": "my_simple_mappings",
   "rules": [
     {
-      "description": "「っj がきたら <CR> する」「っj の後に lang2」",
+      "description": "「っj がきたら <CR> する」「っj，C-c の後に lang2」",
       "manipulators": [
         {
           "type": "basic",
@@ -39,6 +39,18 @@
               { "set_variable": { "name": "j_key", "value": 0 } }
             ]
           }
+        },
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "frontmost_application_if", "bundle_identifiers": [ "^com\\.googlecode\\.iterm2" ] },
+            { "type": "input_source_if",          "input_sources": [ { "language": "^ja$" } ] }
+          ],
+          "from": { "key_code": "c", "modifiers": {"mandatory":["control"]}},
+          "to": [
+            { "key_code": "c", "modifiers":["control"]},
+            { "key_code": "lang2" }
+          ]
         }
       ]
     }
