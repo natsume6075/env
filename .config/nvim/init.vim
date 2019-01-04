@@ -238,6 +238,7 @@ command! DiffOrig vert new | set bt=nofile | r ++edit # | 0d_
 "  autocmd settings
 " ---------------------------------------
 augroup initvim
+
   if executable('osascript')
     let s:keycode_jis_eisuu = 102
     let g:force_alphanumeric_input_command = "osascript -e 'tell application \"System Events\" to key code " . s:keycode_jis_eisuu . "' &"
@@ -249,21 +250,18 @@ augroup initvim
     " input source が切り替わった瞬間に押しっぱなしになってる装飾キーがもう一度押された判定になるからの模様。
     " さらにスニペット絡みは展開もジャンプも内部的にインサートを抜けるので，同じく発火されるし挿入される。
     " そもそもラグが辛すぎる！ CTRL-o とかのレスポンスが悪すぎて，論外。
+    " インサートモードを抜けるときに発火（仕様上 C-c では発火しないので注意）
     " autocmd InsertLeave * call system(g:force_alphanumeric_input_command)
-
     autocmd InsertEnter *
-          \ if g:current_input_method == 104 |
+          \ if g:current_input_method == s:keycode_jis_kana |
           \   call system(g:force_kana_input_command) |
+          \   let g:current_input_method = s:keycode_jis_eisuu |
           \ endif
-    " autocmd initvim BufReadPost *
-          "\ if line("'\"") > 0 && line ("'\"") <= line("$") |
-          "\   exe "normal! g'\"" |
-          "\ endif
   endif
 
-  " インサートモードに入ったときに発火
+  " 逆転の発想で，っj が送られた時だけ，かな入力になっていると言う情報を保持。上で発火してる。
+  imap っj <ESC>:let current_input_method = 104<CR>
 
-  " インサートモードを抜けるときに発火（仕様上 C-c では発火しないので注意）
 
   " init.vim を保存したときにリロード
   autocmd BufWritePost $XDG_CONFIG_HOME/nvim/init.vim so $XDG_CONFIG_HOME/nvim/init.vim
@@ -729,7 +727,6 @@ vmap <silent> " <plug>(caw:hatpos:toggle)
 "  key map (i):
 " ---------------------------------------
 imap <silent> jj  <ESC>
-imap <silent> っj <ESC>
 inoremap <C-d> <Right><C-h>
 " spell
 inoremap <C-s> <C-x>s
