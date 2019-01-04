@@ -223,13 +223,6 @@ set wrapscan
 set hlsearch
 " }}}
 
-" " 英数を切り替えるための関数を定義する
-" if executable('osascript')
-"   let s:keycode_jis_eisuu = 102
-"   let g:force_alphanumeric_input_command = "osascript -e 'tell application \"System Events\" to key code " . s:keycode_jis_eisuu . "' &"
-"   " inoremap   :call system(g:force_alphanumeric_input_command)
-" endif
-" Ref:
 
 
 " about help ---------------------
@@ -245,35 +238,38 @@ command! DiffOrig vert new | set bt=nofile | r ++edit # | 0d_
 "  autocmd settings
 " ---------------------------------------
 augroup initvim
-
   if executable('osascript')
     let s:keycode_jis_eisuu = 102
     let g:force_alphanumeric_input_command = "osascript -e 'tell application \"System Events\" to key code " . s:keycode_jis_eisuu . "' &"
+    let s:keycode_jis_kana  = 104
+    let g:force_kana_input_command         = "osascript -e 'tell application \"System Events\" to key code " . s:keycode_jis_kana  . "' &"
+    let g:current_input_method = 102
+
+    " control を押した状態で insert を抜けると，抜けた後にスペースが挿入される。
+    " input source が切り替わった瞬間に押しっぱなしになってる装飾キーがもう一度押された判定になるからの模様。
+    " さらにスニペット絡みは展開もジャンプも内部的にインサートを抜けるので，同じく発火されるし挿入される。
+    " そもそもラグが辛すぎる！ CTRL-o とかのレスポンスが悪すぎて，論外。
+    " autocmd InsertLeave * call system(g:force_alphanumeric_input_command)
+
+    autocmd InsertEnter *
+          \ if g:current_input_method == 104 |
+          \   call system(g:force_kana_input_command) |
+          \ endif
+    " autocmd initvim BufReadPost *
+          "\ if line("'\"") > 0 && line ("'\"") <= line("$") |
+          "\   exe "normal! g'\"" |
+          "\ endif
   endif
 
   " インサートモードに入ったときに発火
-  " autocmd InsertEnter * NoMatchParen
 
-  " インサートモードを抜けるときに発火
-  " 抜けてから入力できるまでウェイトタイムが生まれちゃうので切る。フォーカスのやつなら許容範囲だけど。。。
-  " q: モードでインサートモードに入るとバグる
-  " autocmd InsertLeave * DoMatchParen
-  " autocmd InsertLeave * call system(g:force_alphanumeric_input_command)
-
-  " vim をフォーカスしたときに発火
-  " インサートモードなら発火しないとかも考えられる
-  " autocmd FocusGained *
-  "     \   call system(g:force_alphanumeric_input_command)
+  " インサートモードを抜けるときに発火（仕様上 C-c では発火しないので注意）
 
   " init.vim を保存したときにリロード
   autocmd BufWritePost $XDG_CONFIG_HOME/nvim/init.vim so $XDG_CONFIG_HOME/nvim/init.vim
 
-  " 新規に .hello ファイルを作成する場合に Hello というテキストを挿入する
-  autocmd BufNewFile  *.hello  put='Hello'
-
 
 augroup END
-
 
 " ---------------------------------------
 "  Dein Scripts:
@@ -459,7 +455,8 @@ endfunction
 
 
 " motion ------------------------------{{{
-noremap! <C-a> <HOME>
+cnoremap <C-a> <HOME>
+inoremap <C-a> <C-o>^
 noremap! <C-b> <left>
 noremap! <C-e> <END>
 noremap! <C-f> <Right>
@@ -549,7 +546,8 @@ nnoremap <C-p> q:k
 nnoremap q: :
 
 nnoremap <silent> <ESC> :nohl<CR><ESC>
-nnoremap <silent> <C-c> :nohl<CR><ESC>
+nnoremap <silent> <C-c> :nohl<CR><C-c>
+nnoremap <silent> <C-{> :nohl<CR><C-{>
 
 
 " http://www.ipentec.com/document/regularexpression-url-detect
@@ -720,19 +718,16 @@ nnoremap <silent>d, :
 "  key map (v):
 " ---------------------------------------
 
-vnoremap  *  y/\V\<<C-r>0\>
-vnoremap g*  y/\V<C-r>0
+vnoremap  *  y/\V<C-r>0
 
 
 " comment (caw)
 vmap <silent> " <plug>(caw:hatpos:toggle)
 
 
-
 " ---------------------------------------
 "  key map (i):
 " ---------------------------------------
-
 imap <silent> jj  <ESC>
 imap <silent> っj <ESC>
 inoremap <C-d> <Right><C-h>
@@ -830,6 +825,7 @@ let g:neosnippet#snippets_directory='$XDG_CONFIG_HOME/nvim/my_snippets'
 "   待機モードで expand を呼び出しても即座に展開はされず，二度押しが必要だった。
 "   他にも待機モードになるような任意の入力で即座に展開できなかった。
 "   一旦適当な文字 a を打ってそれを消す操作を挟むことで，一度押しでいけるようにした。
+" 内部的にインサートモードを抜けるので，InsertLeave が発火する。
 imap <C-k>     a<C-h><plug>(neosnippet_expand)
 smap <C-k>     a<C-h><plug>(neosnippet_expand)
 xmap <C-k>     <plug>(neosnippet_expand_target)
