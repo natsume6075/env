@@ -260,9 +260,15 @@ augroup initvim
     "ここにairlineみたいな，かな入力であることを強調する仕組みを作る？「いんさーと」って表示するとか
   endif
 
-
   " 逆転の発想で，っj が送られた時だけ，かな入力になっていると言う情報を保持。上で発火してる。
   imap <silent> っj <ESC>:let current_input_method = 104<CR>
+
+  " lang2 -> <C-\>l2 lang2 と karabiner で割り当てて，ここに副作用を書いたらどうかな？
+  " -> いや！ lang2 二連打できなくなるわ！
+  map  <silent> <C-\>l1 hoge
+  map! <silent> <C-\>l1 hoge
+  map  <silent> <C-\>l2 hoge
+  map! <silent> <C-\>l2 hoge
 
 
   " init.vim を保存したときにリロード
