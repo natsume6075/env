@@ -633,6 +633,20 @@
             { "type": "frontmost_application_unless", "bundle_identifiers": [ "^com\\.googlecode\\.iterm2" ] }
           ],
           "from": {
+            "key_code": "o"
+          },
+          "to": [
+            { "key_code": "right_arrow", "modifiers": ["command"] },
+            { "key_code": "return_or_enter" }
+          ]
+        },
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "variable_if", "name": "current_mode", "value": 21 },
+            { "type": "frontmost_application_unless", "bundle_identifiers": [ "^com\\.googlecode\\.iterm2" ] }
+          ],
+          "from": {
             "key_code": "p"
           },
           "to": [
