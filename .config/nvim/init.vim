@@ -437,7 +437,6 @@ let maplocalleader = "t"
 nnoremap <C-u> <C-r>
 " yank/cut/paste
 noremap <C-r>   "
-noremap <C-r>'  "*
 nnoremap Y y$
 " 折り返し時に表示行単位での移動できるようにする
 nnoremap j gj
@@ -447,6 +446,9 @@ nnoremap <C-s> z=
 " commentout
 nmap <silent> " <plug>(caw:hatpos:toggle)
 nnoremap con J
+" 行を移動
+nnoremap <C-Up> "zdd<Up>"zP
+nnoremap <C-Down> "zdd"zp
 
 " 同じ文字に置換するコマンドを呼び出すことで，マッチ数を表示する検索を模倣する
 nnoremap <expr> // _(":%s/<Cursor>/&/g")
@@ -700,7 +702,7 @@ xnoremap <f7> y :NeoSnippetEdit -horizontal<CR>Gp
 " <f8> dictionary の呼び出し
 " autocmd initvim filetype dict  nnoremap <f8> :q<CR>
 nnoremap <f8> :<C-u>.tabedit $LANG_DICTIONARY<CR>:sort u<CR>:w<CR>
-vnoremap <f8> y :!echo <C-r>">> $LANG_DICTIONARY<CR><CR>
+vnoremap <f8> "zy :!echo <C-r>z>> $LANG_DICTIONARY<CR><CR>
 " <f11> conceal syntax の呼び出し（vim）
 autocmd initvim filetype tex  nnoremap <f11>
       \ :<C-u>.tabedit $XDG_CACHE_HOME/dein/repos/github.com/keitanakamura/tex-conceal.vim/after/syntax/tex.vim<CR>
@@ -727,8 +729,11 @@ nnoremap <silent>d, :
 "  key map (v):
 " ---------------------------------------
 
-vnoremap  *  y/\V<C-r>0
+vnoremap  *  "zy/\V<C-r>z<CR>
 
+" 複数行を移動
+vnoremap <C-Up> "zx<Up>"zP`[V`]
+vnoremap <C-Down> "zx"zp`[V`]
 
 " comment (caw)
 vmap <silent> " <plug>(caw:hatpos:toggle)
@@ -738,12 +743,9 @@ vmap <silent> " <plug>(caw:hatpos:toggle)
 "  key map (i):
 " ---------------------------------------
 imap <silent> jj  <ESC>
-inoremap <C-d> <Right><C-h>
+inoremap <C-d> <Del>
 " spell
 inoremap <C-s> <C-x>s
-" yank/cut/paste
-inoremap <C-r>'   <C-r>*
-" inoremap <C-r><C-r>  <C-r>*
 
 " ひとつ上の行をいただく
 " i_CTRL-Y を最後までやる
