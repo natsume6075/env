@@ -66,6 +66,16 @@ function! g:Set_curpos() abort
   call setpos('.', save_curpos)
 endfunction
 
+function! s:move_cursor_pos_mapping(str, ...)
+  let left = get(a:, 1, "<Left>")
+  let lefts = join(map(split(matchstr(a:str, '.*<Cursor>\zs.*\ze'), '.\zs'), 'left'), "")
+  return substitute(a:str, '<Cursor>', '', '') . lefts
+endfunction
+function! Move_cursor_pos_mapping(str)
+  return s:move_cursor_pos_mapping(a:str, "\<Left>")
+endfunction
+" Ref: http://d.hatena.ne.jp/osyo-manga/20130424/1366800441
+
 
 
 set fenc=utf-8
@@ -445,25 +455,34 @@ nnoremap con J
 " 行を移動
 nnoremap <C-Up> "zdd<Up>"zP
 nnoremap <C-Down> "zdd"zp
-" anzu
+
+" anzu search
 nmap n <Plug>(anzu-n-with-echo)
 nmap N <Plug>(anzu-N-with-echo)
-nmap * <Plug>(anzu-star-with-echo)
-nmap # <Plug>(anzu-sharp-with-echo)
 " nmap n <Plug>(anzu-mode-n)
 " nmap N <Plug>(anzu-mode-N)
+nmap * <Plug>(anzu-star-with-echo)
+nmap # <Plug>(anzu-sharp-with-echo)
+" nmap <Esc><Esc> <Plug>(anzu-clear-search-status)
+" set statusline=%{anzu#search_status()}
+" nnoremap <expr> n anzu#mode#mapexpr("n", "", "zzzv")
+" nnoremap <expr> N anzu#mode#mapexpr("N", "", "zzzv")
+" let g:anzu_status_format = "%#WarningMsg#%p(%i/%l)"
 
-" 同じ文字に置換するコマンドを呼び出すことで，マッチ数を表示する検索を模倣する
-nnoremap <expr> // Move_cursor_pos_mapping(":%s/<Cursor>/&/g")
-function! s:move_cursor_pos_mapping(str, ...)
-  let left = get(a:, 1, "<Left>")
-  let lefts = join(map(split(matchstr(a:str, '.*<Cursor>\zs.*\ze'), '.\zs'), 'left'), "")
-  return substitute(a:str, '<Cursor>', '', '') . lefts
+" nnoremap <silent>n  :keepjumps normal ___n<CR>"{{{
+" nnoremap <expr>  ___n Avoid_too_recursive_n()
+function! Avoid_too_recursive_n() abort"
+  return "n"
 endfunction
-function! Move_cursor_pos_mapping(str)
-  return s:move_cursor_pos_mapping(a:str, "\<Left>")
+"}}}
+" nnoremap <silent>N  :keepjumps normal ___N<CR>"{{{
+nnoremap <expr>  ___N Avoid_too_recursive_N()
+function! Avoid_too_recursive_N() abort"
+  return "N"
 endfunction
-" Ref: http://d.hatena.ne.jp/osyo-manga/20130424/1366800441
+"}}}
+
+
 
 
 " motion ------------------------------{{{
@@ -475,19 +494,6 @@ noremap! <C-f> <Right>
 inoremap <C-n> <Down>
 inoremap <C-p> <Up>
 noremap! <C-t> <C-e>
-" keepjumps をする際に，関数の中に入れることで，無限ループを回避している。
-" nnoremap <silent>n  :keepjumps normal ___n<CR>"{{{
-" nnoremap <expr>  ___n Avoid_too_recursive_n()
-" function! Avoid_too_recursive_n() abort"
-  " return "n"
-" endfunction
-"}}}
-nnoremap <silent>N  :keepjumps normal ___N<CR>"{{{
-nnoremap <expr>  ___N Avoid_too_recursive_N()
-function! Avoid_too_recursive_N() abort"
-  return "N"
-endfunction
-"}}}
 noremap H _
 noremap L $
 noremap <silent>M :keepjumps normal ___M<CR>"{{{
@@ -497,6 +503,7 @@ function! Avoid_too_recursive_M() abort"
 endfunction"
 "}}}
 " 思い通りになるJK
+" keepjumps をする際に，関数の中に入れることで，無限ループを回避している。
 " default: Concat some lines
 noremap <silent>J   :keepjumps normal ___J<CR>
 xnoremap <expr>J        To_bottom_of_window_OR_scroll_next_page()
