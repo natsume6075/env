@@ -92,15 +92,10 @@ set spell
 set spelllang=en,cjk
 
 "--- Motion ---------------------{{{
-" 左右のカーソル移動で行間移動可能にする。
-set whichwrap=h,l,b,s,<,>,[,]
+set whichwrap=<,>,[,]
 set backspace=indent,eol,start
-" マウスを使えるようにする
 set mouse=a
-" 行末の1文字先までカーソルを移動できるように
-set virtualedit=
-" 短形選択でいくらでも横に行ける
-set virtualedit=block
+set virtualedit=block,insert
 " スクロールの余裕を確保する
 set scrolloff=2
 " maintain cursor position
@@ -305,6 +300,7 @@ if dein#load_state('$XDG_CACHE_HOME/dein')
   " call dein#add('Shougo/neco-vim')
   call dein#add('Shougo/neosnippet.vim')
   call dein#add('Shougo/neosnippet-snippets')
+  call dein#add('osyo-manga/vim-anzu')
 
   call dein#add('jonathanfilip/vim-lucius')
   call dein#add('flazz/vim-colorschemes')
@@ -449,15 +445,22 @@ nnoremap con J
 " 行を移動
 nnoremap <C-Up> "zdd<Up>"zP
 nnoremap <C-Down> "zdd"zp
+" anzu
+nmap n <Plug>(anzu-n-with-echo)
+nmap N <Plug>(anzu-N-with-echo)
+nmap * <Plug>(anzu-star-with-echo)
+nmap # <Plug>(anzu-sharp-with-echo)
+" nmap n <Plug>(anzu-mode-n)
+" nmap N <Plug>(anzu-mode-N)
 
 " 同じ文字に置換するコマンドを呼び出すことで，マッチ数を表示する検索を模倣する
-nnoremap <expr> // _(":%s/<Cursor>/&/g")
+nnoremap <expr> // Move_cursor_pos_mapping(":%s/<Cursor>/&/g")
 function! s:move_cursor_pos_mapping(str, ...)
   let left = get(a:, 1, "<Left>")
   let lefts = join(map(split(matchstr(a:str, '.*<Cursor>\zs.*\ze'), '.\zs'), 'left'), "")
   return substitute(a:str, '<Cursor>', '', '') . lefts
 endfunction
-function! _(str)
+function! Move_cursor_pos_mapping(str)
   return s:move_cursor_pos_mapping(a:str, "\<Left>")
 endfunction
 " Ref: http://d.hatena.ne.jp/osyo-manga/20130424/1366800441
@@ -473,11 +476,11 @@ inoremap <C-n> <Down>
 inoremap <C-p> <Up>
 noremap! <C-t> <C-e>
 " keepjumps をする際に，関数の中に入れることで，無限ループを回避している。
-nnoremap <silent>n  :keepjumps normal ___n<CR>"{{{
-nnoremap <expr>  ___n Avoid_too_recursive_n()
-function! Avoid_too_recursive_n() abort"
-  return "n"
-endfunction
+" nnoremap <silent>n  :keepjumps normal ___n<CR>"{{{
+" nnoremap <expr>  ___n Avoid_too_recursive_n()
+" function! Avoid_too_recursive_n() abort"
+  " return "n"
+" endfunction
 "}}}
 nnoremap <silent>N  :keepjumps normal ___N<CR>"{{{
 nnoremap <expr>  ___N Avoid_too_recursive_N()
@@ -549,12 +552,8 @@ nnoremap ___hoge :
 "}}}
 
 " mode switch ----------------------
-" default: same as [gQ] (switch to ex mode)
-nnoremap Q kA
-
-" default: same as [k]
-nnoremap <C-p> q:k
-nnoremap q: :
+nnoremap <C-p> :<C-p>
+" nnoremap q: :
 
 nnoremap <silent> <ESC> :nohl<CR><ESC>
 nnoremap <silent> <C-c> :nohl<CR><C-c>
