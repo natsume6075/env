@@ -456,6 +456,7 @@ nnoremap con J
 nnoremap <C-Up> "zdd<Up>"zP
 nnoremap <C-Down> "zdd"zp
 
+"Search/substitute
 " anzu search
 nmap n <Plug>(anzu-n-with-echo)
 nmap N <Plug>(anzu-N-with-echo)
@@ -468,7 +469,6 @@ nmap # <Plug>(anzu-sharp-with-echo)
 " nnoremap <expr> n anzu#mode#mapexpr("n", "", "zzzv")
 " nnoremap <expr> N anzu#mode#mapexpr("N", "", "zzzv")
 " let g:anzu_status_format = "%#WarningMsg#%p(%i/%l)"
-
 " nnoremap <silent>n  :keepjumps normal ___n<CR>"{{{
 " nnoremap <expr>  ___n Avoid_too_recursive_n()
 function! Avoid_too_recursive_n() abort"
@@ -482,6 +482,8 @@ function! Avoid_too_recursive_N() abort"
 endfunction
 "}}}
 
+nnoremap <expr> sub Move_cursor_pos_mapping(":%s/<C-r>0/<C-r>0<CURSOR>/g")
+vnoremap <expr> sub Move_cursor_pos_mapping(":s/<C-r>0/<C-r>0<CURSOR>/g")
 
 
 
