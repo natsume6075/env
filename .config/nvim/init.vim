@@ -1069,7 +1069,6 @@ let g:vimtex_quickfix_mode     = 2
 let g:vimtex_quickfix_autoclose_after_keystrokes = 1
 
 
-nmap <buffer> <localleader>lt <plug>(vimtex-toc-toggle)sj
 
 function! s:previewTex() range
   let l:tmp = @@
@@ -1090,6 +1089,10 @@ autocmd initvim FileType tex
       \ | nmap <buffer> <localleader>la vae:call <SID>previewTex()<CR>
       \ | vnoremap <buffer> <localleader>la :call <SID>previewTex()<CR>
       \ | nmap <buffer> <Space><Space> <localleader>la
+      \ | nmap <silent> zj zjvae:call <SID>previewTex()<CR>
+      \ | nmap <silent> zk zkvae:call <SID>previewTex()<CR>
+      \ | nmap <buffer> <localleader>lt <plug>(vimtex-toc-toggle)sj
+      \ | nmap <buffer> <localleader>lj f{yi{:e <C-r>"<CR>
 " Ref: http://mmi.hatenablog.com/entry/2015/01/02/003517
 " 環境単位でコンパイルできる。
 " カードル移動に伴って自動的に表示するようにする？
