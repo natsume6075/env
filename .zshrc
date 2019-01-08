@@ -5,7 +5,7 @@ setopt IGNOREEOF
 export LANG=ja_JP.UTF-8
 
 # PATH
-export PATH="$HOME/.bin:$PATH"
+export PATH="$HOME/bin:$PATH"
 export PATH="//Applications/gnuplot.app:$PATH"
 
 # 色を使用
