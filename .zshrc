@@ -5,7 +5,7 @@ setopt IGNOREEOF
 export LANG=ja_JP.UTF-8
 
 # PATH
-export PATH="$HOME/bin:$PATH"
+export PATH="$HOME/.bin:$PATH"
 export PATH="//Applications/gnuplot.app:$PATH"
 
 # 色を使用
@@ -66,6 +66,7 @@ alias g='git'
 alias gl='git log --oneline --graph --decorate --numstat'
 alias vimtex="NVIM_LISTEN_ADDRESS=/tmp/nvimsocket nvim"
 alias edit="sh edit.sh"
+alias chrome="open -a /Applications/Google Chrome.app"
 
 # historyに日付を表示
 alias h='fc -lt '%F %T' 1'
