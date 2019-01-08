@@ -80,6 +80,7 @@ alias diff='diff -U1'
 
 # vim っぽくする
 bindkey -v
+bindkey '___Control-h'      backward-delete-char
 
 bindkey -M viins '___Control-h'       backward-delete-char
 bindkey -M viins 'jj'       vi-cmd-mode
