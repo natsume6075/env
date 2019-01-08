@@ -66,7 +66,8 @@ alias g='git'
 alias gl='git log --oneline --graph --decorate --numstat'
 alias vimtex="NVIM_LISTEN_ADDRESS=/tmp/nvimsocket nvim"
 alias edit="sh edit.sh"
-alias chrome="open -a /Applications/Google Chrome.app"
+alias chrome="open -a /Applications/Google\ Chrome.app"
+alias safari="open -a /Applications/Safari.app"
 
 # historyに日付を表示
 alias h='fc -lt '%F %T' 1'
