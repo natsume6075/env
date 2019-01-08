@@ -102,7 +102,7 @@ set spell
 set spelllang=en,cjk
 
 "--- Motion ---------------------{{{
-set whichwrap=<,>,[,]
+set whichwrap=<,>,[,],h,l
 set backspace=indent,eol,start
 set mouse=a
 set virtualedit=block,insert
@@ -382,7 +382,7 @@ highlight conceal ctermfg=7 ctermbg=black guibg=darkgray
 autocmd initvim colorscheme highlight fullwidthspace ctermbg=white
 autocmd initvim vimenter match fullwidthspace /　/
 
-hi Folded     term=standout ctermbg=Black ctermfg=Green
+hi Folded     term=standout ctermbg=Black ctermfg=white
 hi FoldColumn term=standout ctermbg=Black ctermfg=130
 " 欲を言うなら，fold しても1行目の構文ハイライトは維持したい。
 
@@ -428,7 +428,9 @@ set concealcursor=""
 " cmap / cnoremap  |    -   |   -    |    @    |   -    |   -    |    -     |
 "---------------------------------------------------------------------------"
 
-let maplocalleader = "t"
+map  ___Control-h <C-h>
+map! ___Control-h <C-h>
+let maplocalleader = "\<Space>"
 
 " ---------------------------------------
 "  key map (n):
@@ -640,7 +642,7 @@ endfunction
 let mapleader = "\\"
 let mapleader = "s"
 
-" about tab/pain --------------------- {{{
+" about pain --------------------- {{{
 " split pain horizontally/vertically
 nnoremap <silent> <Leader>S :split<CR>
 nnoremap <silent> <Leader>s :vsplit<CR>
@@ -656,14 +658,30 @@ nnoremap <Leader>> <C-w>>
 nnoremap <Leader>< <C-w><
 nnoremap <Leader>+ <C-w>+
 nnoremap <Leader>- <C-w>-
-" new tab
-nnoremap <silent> <Leader>n :tabnew<CR>
-" show preious/next tab
-nnoremap <Leader>h gT
-nnoremap <Leader>l gt
+"}}}
+" about buffer (airline) ---------------------{{{
+" new buffer
+" nnoremap <silent> <Leader>n :tabnew<CR>
+" show preious/next buffer
+nmap <leader>1 <Plug>AirlineSelectTab1
+nmap <leader>2 <Plug>AirlineSelectTab2
+nmap <leader>3 <Plug>AirlineSelectTab3
+nmap <leader>4 <Plug>AirlineSelectTab4
+nmap <leader>5 <Plug>AirlineSelectTab5
+nmap <leader>6 <Plug>AirlineSelectTab6
+nmap <leader>7 <Plug>AirlineSelectTab7
+nmap <leader>8 <Plug>AirlineSelectTab8
+nmap <leader>9 <Plug>AirlineSelectTab9
+nmap <leader>h <Plug>AirlineSelectPrevTab
+nmap <leader>l <Plug>AirlineSelectNextTab
+nmap <C-h> <Plug>AirlineSelectPrevTab
+nmap ___Control-h <Plug>AirlineSelectPrevTab
+nmap <C-l> <Plug>AirlineSelectNextTab
+nmap <leader><Space> :b<Space>
+nmap <leader>q :bdelete<CR>
 " move current pain to new tab
 " (if current window has only one pane, split into two tabs)
-nnoremap <silent> <Leader>t :<C-u>call <SID>MoveToNewTab()<CR>
+" nnoremap <silent> <Leader>t :<C-u>call <SID>MoveToNewTab()<CR>
 function! s:MoveToNewTab()" {{{
   tab split
   tabprevious
@@ -675,7 +693,10 @@ function! s:MoveToNewTab()" {{{
   tabnext
 endfunction
 " }}}
-" }}}
+"}}}
+
+let mapleader = "\\"
+let mapleader = "t"
 
 " surround ---------------------------{{{
 nmap <Leader>d  ds
@@ -888,8 +909,8 @@ let g:airline_section_c = ''
 
 
 let g:airline_powerline_fonts = 1
-" let g:airline#extensions#tabline#enabled = 1
-" let g:airline#extensions#tabline#buffer_idx_mode = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#buffer_idx_mode = 1
 let g:airline#extensions#whitespace#mixed_indent_algo = 1
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
@@ -1016,6 +1037,7 @@ autocmd initvim FileType vim
 autocmd initvim BufNewFile  *.snip  put='# hogehoge snippets'
 
 " tex --------------------------
+" autocmd initvim BufNewFile,BufRead *.tex set filetype=tex
 autocmd initvim FileType tex
       \ | let $LANG = "tex"
       \ | set foldmethod=expr
@@ -1029,22 +1051,25 @@ call deoplete#custom#var('omni', 'input_patterns', {
       \ 'tex': g:vimtex#re#deoplete
       \})
 let g:vimtex_compiler_enabled = 1
-let g:vimtex_compiler_progname = '/usr/local/bin/nvim'
+let g:vimtex_compiler_progname = 'nvr'
 " -pvc
 let g:vimtex_compiler_latexmk = {'continuous': 1}
 let g:vimtex_quickfix_open_on_warning = 1
 " autocmd BufNewFile,BufRead *.tex nmap <C-c> <plug>(vimtex-compile)
 
 let g:vimtex_latexmk_options = '-pdfdvi'
-let g:vimtex_view_method = 'general'
+let g:vimtex_view_method = 'skim'
 let g:vimtex_view_automatic = 1
-let g:vimtex_view_general_viewer = '/Applications/Skim.app/Contents/MacOS/Skim'
+" let g:vimtex_view_general_viewer = '/Applications/Skim.app/Contents/MacOS/Skim'
+let g:vimtex_view_general_viewer = '/Applications/Skim.app/Contents/SharedSupport/displayline'
+let g:vimtex_view_general_options = '@line @pdf @tex'
 " 分割してるとバグる？
 " let g:vimtex_quickfix_autojump = 1
 let g:vimtex_quickfix_mode     = 2
 let g:vimtex_quickfix_autoclose_after_keystrokes = 1
 
 
+nmap <buffer> <localleader>lt <plug>(vimtex-toc-toggle)sj
 
 function! s:previewTex() range
   let l:tmp = @@

@@ -64,6 +64,8 @@ alias vim='nvim'
 alias initvim='vim ~/.config/nvim/init.vim'
 alias g='git'
 alias gl='git log --oneline --graph --decorate --numstat'
+alias vimtex="NVIM_LISTEN_ADDRESS=/tmp/nvimsocket nvim"
+alias edit="sh edit.sh"
 
 # historyに日付を表示
 alias h='fc -lt '%F %T' 1'
@@ -77,6 +79,7 @@ alias diff='diff -U1'
 # vim っぽくする
 bindkey -v
 
+bindkey -M viins '___Control-h'       backward-delete-char
 bindkey -M viins 'jj'       vi-cmd-mode
 bindkey -M viins 'っj'       vi-cmd-mode
 bindkey -M viins '^?'       backward-delete-char
@@ -103,6 +106,7 @@ bindkey -M viins '^W'       backward-kill-word
 bindkey -M viins '^Y'       yank
 
 
+bindkey -M vicmd '___Control-h'       backward-char
 bindkey -M vicmd 'H'   beginning-of-line
 bindkey -M vicmd 'L'   end-of-line
 
