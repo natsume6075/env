@@ -169,11 +169,7 @@ let g:foldCCtext_head = ''
 let g:foldCCtext_tail = 'printf(" %s[%4d lines Lv%-2d ]%s  ", v:folddashes, v:foldend-v:foldstart+1, v:foldlevel, v:folddashes)'
 " foldcolumn が足りなくなった時に，自動で大きくする バグあり
 " Ref: http://leafcage.hateblo.jp/entry/20111223/1324705686
-" let g:foldCCtext_enable_autofdc_adjuster = 1
-" Ref: https://vim-jp.org/vim-users-jp/2009/10/08/Hack-84.html
-" Save fold settings.
-autocmd BufWritePost * if expand('%') != '' && &buftype !~ 'nofile'                       | mkview | endif
-autocmd BufRead      * if expand('%') != '' && &buftype !~ 'nofile' && &buftype !~ 'help' | silent loadview | endif
+let g:foldCCtext_enable_autofdc_adjuster = 1
 " Don't save options.
 set viewoptions-=options
 " }}}
@@ -1117,6 +1113,10 @@ autocmd initvim VimEnter *
 autocmd initvim VimEnter *
       \ set dictionary=$LANG_DICTIONARY
 
+" Ref: https://vim-jp.org/vim-users-jp/2009/10/08/Hack-84.html
+" Save fold settings and cursor pos.
+autocmd BufWritePost * if expand('%') != '' && &buftype !~ 'nofile'                       | mkview | endif
+autocmd BufRead      * if expand('%') != '' && &buftype !~ 'nofile' && &buftype !~ 'help' | silent loadview | endif
 
 
 
