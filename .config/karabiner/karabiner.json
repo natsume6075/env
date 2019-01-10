@@ -1628,6 +1628,9 @@
                                             "name": "current_mode",
                                             "value": 12
                                         }
+                                    },
+                                    {
+                                        "key_code": "left_arrow"
                                     }
                                 ],
                                 "to_delayed_action": {
@@ -1637,6 +1640,12 @@
                                                 "name": "current_mode",
                                                 "value": 1
                                             }
+                                        },
+                                        {
+                                            "key_code": "right_arrow",
+                                            "modifiers": [
+                                                "shift"
+                                            ]
                                         }
                                     ],
                                     "to_if_invoked": [
@@ -1645,6 +1654,12 @@
                                                 "name": "current_mode",
                                                 "value": 1
                                             }
+                                        },
+                                        {
+                                            "key_code": "right_arrow",
+                                            "modifiers": [
+                                                "shift"
+                                            ]
                                         }
                                     ]
                                 },
@@ -1679,6 +1694,14 @@
                                     },
                                     {
                                         "key_code": "right_arrow"
+                                    }
+                                ],
+                                "to_after_key_up": [
+                                    {
+                                        "key_code": "right_arrow",
+                                        "modifiers": [
+                                            "shift"
+                                        ]
                                     }
                                 ],
                                 "type": "basic"
@@ -1720,6 +1743,14 @@
                                         "key_code": "right_arrow"
                                     }
                                 ],
+                                "to_after_key_up": [
+                                    {
+                                        "key_code": "right_arrow",
+                                        "modifiers": [
+                                            "shift"
+                                        ]
+                                    }
+                                ],
                                 "type": "basic"
                             },
                             {
@@ -1740,6 +1771,9 @@
                                     "key_code": "i"
                                 },
                                 "to": [
+                                    {
+                                        "key_code": "left_arrow"
+                                    },
                                     {
                                         "set_variable": {
                                             "name": "current_mode",
@@ -1891,9 +1925,20 @@
                                 },
                                 "to": [
                                     {
+                                        "key_code": "right_arrow"
+                                    },
+                                    {
                                         "key_code": "v",
                                         "modifiers": [
                                             "command"
+                                        ]
+                                    }
+                                ],
+                                "to_after_key_up": [
+                                    {
+                                        "key_code": "left_arrow",
+                                        "modifiers": [
+                                            "shift"
                                         ]
                                     }
                                 ],
@@ -1944,6 +1989,14 @@
                                         ]
                                     }
                                 ],
+                                "to_after_key_up": [
+                                    {
+                                        "key_code": "right_arrow",
+                                        "modifiers": [
+                                            "shift"
+                                        ]
+                                    }
+                                ],
                                 "type": "basic"
                             },
                             {
@@ -1975,9 +2028,20 @@
                                 },
                                 "to": [
                                     {
+                                        "key_code": "left_arrow"
+                                    },
+                                    {
                                         "key_code": "v",
                                         "modifiers": [
                                             "command"
+                                        ]
+                                    }
+                                ],
+                                "to_after_key_up": [
+                                    {
+                                        "key_code": "left_arrow",
+                                        "modifiers": [
+                                            "shift"
                                         ]
                                     }
                                 ],
@@ -2033,6 +2097,14 @@
                                         "key_code": "left_arrow",
                                         "modifiers": [
                                             "command"
+                                        ]
+                                    }
+                                ],
+                                "to_after_key_up": [
+                                    {
+                                        "key_code": "right_arrow",
+                                        "modifiers": [
+                                            "shift"
                                         ]
                                     }
                                 ],
@@ -2286,6 +2358,9 @@
                                             "name": "current_mode",
                                             "value": 11
                                         }
+                                    },
+                                    {
+                                        "key_code": "left_arrow"
                                     }
                                 ],
                                 "to_delayed_action": {
@@ -2295,6 +2370,12 @@
                                                 "name": "current_mode",
                                                 "value": 1
                                             }
+                                        },
+                                        {
+                                            "key_code": "right_arrow",
+                                            "modifiers": [
+                                                "shift"
+                                            ]
                                         }
                                     ],
                                     "to_if_invoked": [
@@ -2303,6 +2384,12 @@
                                                 "name": "current_mode",
                                                 "value": 1
                                             }
+                                        },
+                                        {
+                                            "key_code": "right_arrow",
+                                            "modifiers": [
+                                                "shift"
+                                            ]
                                         }
                                     ]
                                 },
@@ -2412,6 +2499,14 @@
                                         "key_code": "left_arrow"
                                     }
                                 ],
+                                "to_after_key_up": [
+                                    {
+                                        "key_code": "left_arrow",
+                                        "modifiers": [
+                                            "shift"
+                                        ]
+                                    }
+                                ],
                                 "type": "basic"
                             },
                             {
@@ -2444,6 +2539,14 @@
                                         ]
                                     }
                                 ],
+                                "to_after_key_up": [
+                                    {
+                                        "key_code": "right_arrow",
+                                        "modifiers": [
+                                            "shift"
+                                        ]
+                                    }
+                                ],
                                 "type": "basic"
                             },
                             {
@@ -2466,6 +2569,14 @@
                                 "to": [
                                     {
                                         "key_code": "down_arrow"
+                                    }
+                                ],
+                                "to_after_key_up": [
+                                    {
+                                        "key_code": "right_arrow",
+                                        "modifiers": [
+                                            "shift"
+                                        ]
                                     }
                                 ],
                                 "type": "basic"
@@ -2492,6 +2603,14 @@
                                         "key_code": "up_arrow"
                                     }
                                 ],
+                                "to_after_key_up": [
+                                    {
+                                        "key_code": "right_arrow",
+                                        "modifiers": [
+                                            "shift"
+                                        ]
+                                    }
+                                ],
                                 "type": "basic"
                             },
                             {
@@ -2514,6 +2633,14 @@
                                 "to": [
                                     {
                                         "key_code": "right_arrow"
+                                    }
+                                ],
+                                "to_after_key_up": [
+                                    {
+                                        "key_code": "right_arrow",
+                                        "modifiers": [
+                                            "shift"
+                                        ]
                                     }
                                 ],
                                 "type": "basic"
@@ -2545,6 +2672,14 @@
                                         "key_code": "right_arrow",
                                         "modifiers": [
                                             "command"
+                                        ]
+                                    }
+                                ],
+                                "to_after_key_up": [
+                                    {
+                                        "key_code": "left_arrow",
+                                        "modifiers": [
+                                            "shift"
                                         ]
                                     }
                                 ],
@@ -2600,6 +2735,14 @@
                                         ]
                                     }
                                 ],
+                                "to_after_key_up": [
+                                    {
+                                        "key_code": "right_arrow",
+                                        "modifiers": [
+                                            "shift"
+                                        ]
+                                    }
+                                ],
                                 "type": "basic"
                             },
                             {
@@ -2625,38 +2768,6 @@
                                     }
                                 },
                                 "to": [],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "current_mode",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    },
-                                    {
-                                        "bundle_identifiers": [
-                                            "^com\\.googlecode\\.iterm2"
-                                        ],
-                                        "type": "frontmost_application_unless"
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "c",
-                                    "modifiers": {
-                                        "mandatory": [
-                                            "control"
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "set_variable": {
-                                            "name": "current_mode",
-                                            "value": 1
-                                        }
-                                    }
-                                ],
                                 "type": "basic"
                             },
                             {
@@ -2708,6 +2819,14 @@
                                         "key_code": "left_arrow",
                                         "modifiers": [
                                             "option"
+                                        ]
+                                    }
+                                ],
+                                "to_after_key_up": [
+                                    {
+                                        "key_code": "right_arrow",
+                                        "modifiers": [
+                                            "shift"
                                         ]
                                     }
                                 ],
@@ -3633,6 +3752,12 @@
                                             "name": "current_mode",
                                             "value": 1
                                         }
+                                    },
+                                    {
+                                        "key_code": "left_arrow",
+                                        "modifiers": [
+                                            "shift"
+                                        ]
                                     }
                                 ],
                                 "type": "basic"
@@ -3723,6 +3848,12 @@
                                             "name": "current_mode",
                                             "value": 1
                                         }
+                                    },
+                                    {
+                                        "key_code": "left_arrow",
+                                        "modifiers": [
+                                            "shift"
+                                        ]
                                     }
                                 ],
                                 "type": "basic"
@@ -3827,6 +3958,12 @@
                                             "name": "line_yank",
                                             "value": 0
                                         }
+                                    },
+                                    {
+                                        "key_code": "right_arrow",
+                                        "modifiers": [
+                                            "shift"
+                                        ]
                                     }
                                 ],
                                 "type": "basic"
@@ -4031,6 +4168,12 @@
                                             "name": "current_mode",
                                             "value": 1
                                         }
+                                    },
+                                    {
+                                        "key_code": "right_arrow",
+                                        "modifiers": [
+                                            "shift"
+                                        ]
                                     }
                                 ],
                                 "type": "basic"
@@ -4063,6 +4206,15 @@
                                             "name": "current_mode",
                                             "value": 1
                                         }
+                                    },
+                                    {
+                                        "key_code": "left_arrow"
+                                    },
+                                    {
+                                        "key_code": "right_arrow",
+                                        "modifiers": [
+                                            "shift"
+                                        ]
                                     }
                                 ],
                                 "type": "basic"

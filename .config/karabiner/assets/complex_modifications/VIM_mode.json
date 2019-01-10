@@ -127,14 +127,17 @@
             "modifiers":{"optional":["any"]}
           },
           "to": [
-            { "set_variable": { "name": "current_mode", "value": 12 } }
+            { "set_variable": { "name": "current_mode", "value": 12 } },
+            { "key_code": "left_arrow" }
           ],
           "to_delayed_action": {
             "to_if_invoked": [
-              { "set_variable": { "name": "current_mode", "value": 1 } }
+              { "set_variable": { "name": "current_mode", "value": 1 } },
+              { "key_code": "right_arrow", "modifiers": ["shift"] }
             ],
             "to_if_canceled": [
-              { "set_variable": { "name": "current_mode", "value": 1 } }
+              { "set_variable": { "name": "current_mode", "value": 1 } },
+              { "key_code": "right_arrow", "modifiers": ["shift"] }
             ]
           }
         },
@@ -151,6 +154,9 @@
             { "key_code": "z", "modifiers": ["command"] },
             { "key_code": "left_arrow" },
             { "key_code": "right_arrow" }
+          ],
+          "to_after_key_up": [
+            { "key_code": "right_arrow", "modifiers": ["shift"] }
           ]
         },
         {
@@ -167,6 +173,9 @@
             { "key_code": "z", "modifiers": ["command", "shift"] },
             { "key_code": "left_arrow" },
             { "key_code": "right_arrow" }
+          ],
+          "to_after_key_up": [
+            { "key_code": "right_arrow", "modifiers": ["shift"] }
           ]
         },
         {
@@ -179,6 +188,7 @@
             "key_code": "i"
           },
           "to": [
+            { "key_code": "left_arrow" },
             { "set_variable": { "name": "current_mode", "value": 2 } }
           ]
         },
@@ -240,7 +250,11 @@
             "key_code": "p"
           },
           "to": [
+            { "key_code": "right_arrow" },
             { "key_code": "v", "modifiers": ["command"] }
+          ],
+          "to_after_key_up": [
+            { "key_code": "left_arrow", "modifiers": ["shift"] }
           ]
         },
         {
@@ -258,6 +272,9 @@
             { "key_code": "return_or_enter" },
             { "key_code": "v", "modifiers": ["command"] },
             { "key_code": "left_arrow", "modifiers": ["command"] }
+          ],
+          "to_after_key_up": [
+            { "key_code": "right_arrow", "modifiers": ["shift"] }
           ]
         },
         {
@@ -272,7 +289,11 @@
             "modifiers":{"mandatory":["shift"]}
           },
           "to": [
+            { "key_code": "left_arrow" },
             { "key_code": "v", "modifiers": ["command"] }
+          ],
+          "to_after_key_up": [
+            { "key_code": "left_arrow", "modifiers": ["shift"] }
           ]
         },
         {
@@ -292,6 +313,9 @@
             { "key_code": "up_arrow" },
             { "key_code": "v", "modifiers": ["command"] },
             { "key_code": "left_arrow", "modifiers": ["command"] }
+          ],
+          "to_after_key_up": [
+            { "key_code": "right_arrow", "modifiers": ["shift"] }
           ]
         },
         {
@@ -386,14 +410,17 @@
             "key_code": "d"
           },
           "to": [
-            { "set_variable": { "name": "current_mode", "value": 11 } }
+            { "set_variable": { "name": "current_mode", "value": 11 } },
+            { "key_code": "left_arrow" }
           ],
           "to_delayed_action": {
             "to_if_invoked": [
-              { "set_variable": { "name": "current_mode", "value": 1 } }
+              { "set_variable": { "name": "current_mode", "value": 1 } },
+              { "key_code": "right_arrow", "modifiers": ["shift"] }
             ],
             "to_if_canceled": [
-              { "set_variable": { "name": "current_mode", "value": 1 } }
+              { "set_variable": { "name": "current_mode", "value": 1 } },
+              { "key_code": "right_arrow", "modifiers": ["shift"] }
             ]
           }
         },
@@ -446,6 +473,9 @@
           },
           "to": [
             { "key_code": "left_arrow" }
+          ],
+          "to_after_key_up": [
+            { "key_code": "left_arrow", "modifiers": ["shift"] }
           ]
         },
         {
@@ -460,6 +490,9 @@
           },
           "to": [
             { "key_code": "left_arrow", "modifiers": ["command"] }
+          ],
+          "to_after_key_up": [
+            { "key_code": "right_arrow", "modifiers": ["shift"] }
           ]
         },
         {
@@ -473,6 +506,9 @@
           },
           "to": [
             { "key_code": "down_arrow" }
+          ],
+          "to_after_key_up": [
+            { "key_code": "right_arrow", "modifiers": ["shift"] }
           ]
         },
         {
@@ -486,6 +522,9 @@
           },
           "to": [
             { "key_code": "up_arrow" }
+          ],
+          "to_after_key_up": [
+            { "key_code": "right_arrow", "modifiers": ["shift"] }
           ]
         },
         {
@@ -499,6 +538,9 @@
           },
           "to": [
             { "key_code": "right_arrow" }
+          ],
+          "to_after_key_up": [
+            { "key_code": "right_arrow", "modifiers": ["shift"] }
           ]
         },
         {
@@ -513,6 +555,9 @@
           },
           "to": [
             { "key_code": "right_arrow", "modifiers": ["command"] }
+          ],
+          "to_after_key_up": [
+            { "key_code": "left_arrow", "modifiers": ["shift"] }
           ]
         },
         {
@@ -538,6 +583,9 @@
           },
           "to": [
             { "key_code": "delete_or_backspace", "modifiers": ["fn"] }
+          ],
+          "to_after_key_up": [
+            { "key_code": "right_arrow", "modifiers": ["shift"] }
           ]
         },
         {
@@ -551,20 +599,6 @@
             "modifiers":{"optional":["any"]}
           },
           "to": []
-        },
-        {
-          "type": "basic",
-          "conditions": [
-            { "type": "variable_if", "name": "current_mode", "value": 1 },
-            { "type": "frontmost_application_unless", "bundle_identifiers": [ "^com\\.googlecode\\.iterm2" ] }
-          ],
-          "from": {
-            "key_code": "c",
-            "modifiers": { "mandatory": [ "control" ] }
-          },
-          "to": [
-            { "set_variable": { "name": "current_mode", "value": 1 } }
-          ]
         },
         {
           "type": "basic",
@@ -590,6 +624,9 @@
           },
           "to": [
             { "key_code": "left_arrow", "modifiers": ["option"] }
+          ],
+          "to_after_key_up": [
+            { "key_code": "right_arrow", "modifiers": ["shift"] }
           ]
         },
         {
@@ -991,7 +1028,8 @@
           "from": { "key_code": "j" },
           "to": [
             { "key_code": "delete_or_backspace" },
-            { "set_variable": { "name": "current_mode", "value": 1 } }
+            { "set_variable": { "name": "current_mode", "value": 1 } },
+            { "key_code": "left_arrow", "modifiers": ["shift"] }
           ]
         },
         {
@@ -1029,7 +1067,8 @@
             "modifiers": { "mandatory": [ "control" ] }
           },
           "to": [
-            { "set_variable": { "name": "current_mode", "value": 1 } }
+            { "set_variable": { "name": "current_mode", "value": 1 } },
+            { "key_code": "left_arrow", "modifiers": ["shift"] }
           ]
         },
         {
@@ -1080,7 +1119,8 @@
             { "key_code": "c", "modifiers": ["command"] },
             { "key_code": "left_arrow" },
             { "set_variable": { "name": "current_mode", "value": 1 } },
-            { "set_variable": { "name": "line_yank", "value": 0 } }
+            { "set_variable": { "name": "line_yank", "value": 0 } },
+              { "key_code": "right_arrow", "modifiers": ["shift"] }
           ]
         },
         {
@@ -1174,7 +1214,8 @@
           },
           "to": [
             { "key_code": "delete_or_backspace" },
-            { "set_variable": { "name": "current_mode", "value": 1 } }
+            { "set_variable": { "name": "current_mode", "value": 1 } },
+              { "key_code": "right_arrow", "modifiers": ["shift"] }
           ]
         },
         {
@@ -1188,7 +1229,9 @@
             "modifiers": { "mandatory": [ "control" ] }
           },
           "to": [
-            { "set_variable": { "name": "current_mode", "value": 1 } }
+            { "set_variable": { "name": "current_mode", "value": 1 } },
+              { "key_code": "left_arrow" },
+              { "key_code": "right_arrow", "modifiers": ["shift"] }
           ]
         },
         {
