@@ -1590,6 +1590,12 @@
                                     },
                                     {
                                         "key_code": "left_arrow"
+                                    },
+                                    {
+                                        "set_variable": {
+                                            "name": "line_yank",
+                                            "value": 1
+                                        }
                                     }
                                 ],
                                 "type": "basic"
@@ -1864,6 +1870,11 @@
                             {
                                 "conditions": [
                                     {
+                                        "name": "line_yank",
+                                        "type": "variable_if",
+                                        "value": 0
+                                    },
+                                    {
                                         "name": "current_mode",
                                         "type": "variable_if",
                                         "value": 1
@@ -1881,6 +1892,145 @@
                                 "to": [
                                     {
                                         "key_code": "v",
+                                        "modifiers": [
+                                            "command"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "line_yank",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    },
+                                    {
+                                        "name": "current_mode",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    },
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.googlecode\\.iterm2"
+                                        ],
+                                        "type": "frontmost_application_unless"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "p"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "right_arrow",
+                                        "modifiers": [
+                                            "command"
+                                        ]
+                                    },
+                                    {
+                                        "key_code": "return_or_enter"
+                                    },
+                                    {
+                                        "key_code": "v",
+                                        "modifiers": [
+                                            "command"
+                                        ]
+                                    },
+                                    {
+                                        "key_code": "left_arrow",
+                                        "modifiers": [
+                                            "command"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "line_yank",
+                                        "type": "variable_if",
+                                        "value": 0
+                                    },
+                                    {
+                                        "name": "current_mode",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    },
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.googlecode\\.iterm2"
+                                        ],
+                                        "type": "frontmost_application_unless"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "p",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "shift"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "v",
+                                        "modifiers": [
+                                            "command"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "line_yank",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    },
+                                    {
+                                        "name": "current_mode",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    },
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.googlecode\\.iterm2"
+                                        ],
+                                        "type": "frontmost_application_unless"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "p",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "shift"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "left_arrow",
+                                        "modifiers": [
+                                            "command"
+                                        ]
+                                    },
+                                    {
+                                        "key_code": "return_or_enter"
+                                    },
+                                    {
+                                        "key_code": "up_arrow"
+                                    },
+                                    {
+                                        "key_code": "v",
+                                        "modifiers": [
+                                            "command"
+                                        ]
+                                    },
+                                    {
+                                        "key_code": "left_arrow",
                                         "modifiers": [
                                             "command"
                                         ]
@@ -2011,6 +2161,12 @@
                                         "modifiers": [
                                             "command"
                                         ]
+                                    },
+                                    {
+                                        "set_variable": {
+                                            "name": "line_yank",
+                                            "value": 0
+                                        }
                                     }
                                 ],
                                 "type": "basic"
@@ -2057,6 +2213,12 @@
                                         "modifiers": [
                                             "command"
                                         ]
+                                    },
+                                    {
+                                        "set_variable": {
+                                            "name": "line_yank",
+                                            "value": 1
+                                        }
                                     }
                                 ],
                                 "type": "basic"
@@ -2091,6 +2253,12 @@
                                         "modifiers": [
                                             "command"
                                         ]
+                                    },
+                                    {
+                                        "set_variable": {
+                                            "name": "line_yank",
+                                            "value": 0
+                                        }
                                     }
                                 ],
                                 "type": "basic"
@@ -2764,6 +2932,11 @@
                             {
                                 "conditions": [
                                     {
+                                        "name": "line_yank",
+                                        "type": "variable_if",
+                                        "value": 0
+                                    },
+                                    {
                                         "name": "current_mode",
                                         "type": "variable_if",
                                         "value": 21
@@ -2781,6 +2954,145 @@
                                 "to": [
                                     {
                                         "key_code": "v",
+                                        "modifiers": [
+                                            "command"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "line_yank",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    },
+                                    {
+                                        "name": "current_mode",
+                                        "type": "variable_if",
+                                        "value": 21
+                                    },
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.googlecode\\.iterm2"
+                                        ],
+                                        "type": "frontmost_application_unless"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "p"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "right_arrow",
+                                        "modifiers": [
+                                            "command"
+                                        ]
+                                    },
+                                    {
+                                        "key_code": "return_or_enter"
+                                    },
+                                    {
+                                        "key_code": "v",
+                                        "modifiers": [
+                                            "command"
+                                        ]
+                                    },
+                                    {
+                                        "key_code": "left_arrow",
+                                        "modifiers": [
+                                            "command"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "line_yank",
+                                        "type": "variable_if",
+                                        "value": 0
+                                    },
+                                    {
+                                        "name": "current_mode",
+                                        "type": "variable_if",
+                                        "value": 21
+                                    },
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.googlecode\\.iterm2"
+                                        ],
+                                        "type": "frontmost_application_unless"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "p",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "shift"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "v",
+                                        "modifiers": [
+                                            "command"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "line_yank",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    },
+                                    {
+                                        "name": "current_mode",
+                                        "type": "variable_if",
+                                        "value": 21
+                                    },
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.googlecode\\.iterm2"
+                                        ],
+                                        "type": "frontmost_application_unless"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "p",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "shift"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "left_arrow",
+                                        "modifiers": [
+                                            "command"
+                                        ]
+                                    },
+                                    {
+                                        "key_code": "return_or_enter"
+                                    },
+                                    {
+                                        "key_code": "up_arrow"
+                                    },
+                                    {
+                                        "key_code": "v",
+                                        "modifiers": [
+                                            "command"
+                                        ]
+                                    },
+                                    {
+                                        "key_code": "left_arrow",
                                         "modifiers": [
                                             "command"
                                         ]
@@ -2818,6 +3130,12 @@
                                         "modifiers": [
                                             "command"
                                         ]
+                                    },
+                                    {
+                                        "set_variable": {
+                                            "name": "line_yank",
+                                            "value": 0
+                                        }
                                     }
                                 ],
                                 "type": "basic"
@@ -2864,6 +3182,12 @@
                                         "modifiers": [
                                             "command"
                                         ]
+                                    },
+                                    {
+                                        "set_variable": {
+                                            "name": "line_yank",
+                                            "value": 1
+                                        }
                                     }
                                 ],
                                 "type": "basic"
@@ -2898,6 +3222,12 @@
                                         "modifiers": [
                                             "command"
                                         ]
+                                    },
+                                    {
+                                        "set_variable": {
+                                            "name": "line_yank",
+                                            "value": 0
+                                        }
                                     }
                                 ],
                                 "type": "basic"
@@ -3490,6 +3820,12 @@
                                         "set_variable": {
                                             "name": "current_mode",
                                             "value": 1
+                                        }
+                                    },
+                                    {
+                                        "set_variable": {
+                                            "name": "line_yank",
+                                            "value": 0
                                         }
                                     }
                                 ],
