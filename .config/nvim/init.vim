@@ -1037,6 +1037,7 @@ autocmd initvim BufNewFile  *.snip  put='# hogehoge snippets'
 autocmd initvim FileType tex
       \ | let $LANG = "tex"
       \ | set foldmethod=expr
+      \ | set shiftwidth=4
 let g:tex_conceal="adgmb"
 
 autocmd initvim BufNewFile  *.tex  put='%! TEX root = /path/to/thesis.tex'
@@ -1083,8 +1084,8 @@ function! s:previewTex() range
 endfunction
 autocmd initvim FileType tex
       \ | nmap <buffer> <localleader>la vae:call <SID>previewTex()<CR>
+      \ | nmap <buffer> <localleader><localleader> vae:call <SID>previewTex()<CR>
       \ | vnoremap <buffer> <localleader>la :call <SID>previewTex()<CR>
-      \ | nmap <buffer> <Space><Space> <localleader>la
       \ | nmap <silent> zj zjvae:call <SID>previewTex()<CR>
       \ | nmap <silent> zk zkvae:call <SID>previewTex()<CR>
       \ | nmap <buffer> <localleader>lt <plug>(vimtex-toc-toggle)sj
