@@ -700,7 +700,8 @@ autocmd FileType defx call s:defx_my_settings()
 function! s:defx_my_settings() abort
   " Define mappings
   nnoremap <silent><buffer><expr> <C-f>
-        \ defx#do_action('quit')
+        \ defx#do_action('change_vim_cwd')
+        \ .defx#do_action('quit')
   nnoremap <silent><buffer><expr> q
         \ defx#do_action('quit')
   nnoremap <silent><buffer><expr> <CR>
