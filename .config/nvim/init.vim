@@ -49,9 +49,9 @@ let $XDG_CONFIG_HOME = expand($HOME.'/.config')
 let $XDG_DATA_DIRS = expand('/usr/local/share:/usr/share')
 let $XDG_DATA_HOME = expand($HOME.'/.local/share')
 
-let $CURRENT_FILE_NAME = split(expand("%:p"),"/")[-1]
-let $CURRENT_DIR       = substitute(expand("%:p"), "/[^/]*$", "", "g")
 let $CURRENT_FILE_PASS = expand("%")
+let $CURRENT_FILE_NAME = substitute(expand("%:p"), "^.*/", "", "g")
+let $CURRENT_DIR       = substitute(expand("%:p"), "/[^/]*$", "", "g")
 
 "--- Global Functions: -------------------
 let save_curpos = getcurpos()
@@ -274,6 +274,17 @@ augroup initvim
 
   " init.vim を保存したときにリロード
   autocmd BufWritePost $XDG_CONFIG_HOME/nvim/init.vim so $XDG_CONFIG_HOME/nvim/init.vim
+
+  autocmd VimEnter *
+        \ if @% == '' && s:GetBufByte() == 0 | Defx
+  function! s:GetBufByte()
+    let byte = line2byte(line('$') + 1)
+    if byte == -1
+      return 0
+    else
+      return byte - 1
+    endif
+  endfunction
 
 
 augroup END
@@ -641,6 +652,7 @@ let mapleader = "s"
 " split pain horizontally/vertically
 nnoremap <silent> <Leader>S :split<CR>
 nnoremap <silent> <Leader>s :vsplit<CR>
+nnoremap <silent> <Leader>b :5split<CR>:enew<CR>
 " focus to another pane
 nnoremap <Leader>j <C-w>w
 " swap to another pane
