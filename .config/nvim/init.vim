@@ -49,9 +49,6 @@ let $XDG_CONFIG_HOME = expand($HOME.'/.config')
 let $XDG_DATA_DIRS = expand('/usr/local/share:/usr/share')
 let $XDG_DATA_HOME = expand($HOME.'/.local/share')
 
-let $CURRENT_FILE_NAME = split(expand("%"),"/")[-1]
-
-
 
 "--- Global Functions: -------------------
 let save_curpos = getcurpos()
@@ -80,9 +77,9 @@ endfunction
 
 set fenc=utf-8
 set backupdir=$XDG_DATA_HOME/nvim/backup
-" " CURRENT_FILE_NAME で backupをまとめようかと思ったけど，
+" " file_name で backupをまとめようかと思ったけど，
 " " ディレクトリが存在しないと保存できないのでめんどくさい。
-" set backupdir=$XDG_DATA_HOME/nvim/backup/$CURRENT_FILE_NAME
+" set backupdir=$XDG_DATA_HOME/nvim/backup/file_name
 set backup
 au initvim BufWritePre * let &bex = '.' . strftime("%Y%m%d_%H%M%S")
 set directory=$XDG_DATA_HOME/nvim/swap
@@ -306,6 +303,8 @@ if dein#load_state('$XDG_CACHE_HOME/dein')
   " call dein#add('Shougo/neco-vim')
   call dein#add('Shougo/neosnippet.vim')
   call dein#add('Shougo/neosnippet-snippets')
+  call dein#add('Shougo/defx.nvim')
+
   call dein#add('osyo-manga/vim-anzu')
 
   call dein#add('jonathanfilip/vim-lucius')
@@ -407,7 +406,7 @@ set concealcursor=""
 
 
 " ---------------------------------------
-"  Key Map: {{{
+"  Key Map:
 "
 "
 "---------------------------------------------------------------------------"
@@ -431,8 +430,8 @@ let maplocalleader = "\<Space>"
 " ---------------------------------------
 "  key map (n):
 " ---------------------------------------
-
-" simple mappings -------------------
+"{{{
+" simple mapping -------------------
 " :と;の入れ替え、Karabinar からやったのでクビ
 " それどころかキーボードも物理的に入れ替えちゃった
 " nnoremap ; :
@@ -484,7 +483,6 @@ nnoremap <expr> sub Move_cursor_pos_mapping(":%s/<C-r>0/<C-r>0<CURSOR>/g")
 vnoremap <expr> sub Move_cursor_pos_mapping(":s/<C-r>0/<C-r>0<CURSOR>/g")
 
 
-
 " motion ------------------------------{{{
 cnoremap <C-a> <HOME>
 inoremap <C-a> <C-o>^
@@ -496,18 +494,18 @@ inoremap <C-p> <Up>
 noremap! <C-t> <C-e>
 noremap H _
 noremap L $
-noremap <silent>M :keepjumps normal ___M<CR>"{{{
-noremap <expr>  ___M   Avoid_too_recursive_M()
-function! Avoid_too_recursive_M() abort"
+noremap <silent> M     :keepjumps normal ___M<CR>
+noremap <expr>   ___M  Avoid_too_recursive_M()
+xnoremap <expr>  M     Avoid_too_recursive_M()
+function! Avoid_too_recursive_M() abort"{{{
   return "M"
 endfunction"
 "}}}
 " 思い通りになるJK
 " keepjumps をする際に，関数の中に入れることで，無限ループを回避している。
-" default: Concat some lines
-noremap <silent>J   :keepjumps normal ___J<CR>
-xnoremap <expr>J        To_bottom_of_window_OR_scroll_next_page()
-noremap  <expr>  ___J   To_bottom_of_window_OR_scroll_next_page()
+noremap <silent> J     :keepjumps normal ___J<CR>
+noremap <expr>   ___J  To_bottom_of_window_OR_scroll_next_page()
+xnoremap <expr>  J     To_bottom_of_window_OR_scroll_next_page()
 function! To_bottom_of_window_OR_scroll_next_page() abort" {{{
   if winline() > winheight(0) - 5
     return "\<C-f>L"
@@ -515,10 +513,9 @@ function! To_bottom_of_window_OR_scroll_next_page() abort" {{{
     return "L"
   endif
 endfunction" }}}
-" default: reference to help
-noremap <silent>K   :keepjumps normal ___K<CR>
-xnoremap <expr>K      To_top_of_window_OR_scroll_previous_page()
-noremap <expr> ___K   To_top_of_window_OR_scroll_previous_page()
+noremap <silent> K     :keepjumps normal ___K<CR>
+noremap <expr>   ___K  To_top_of_window_OR_scroll_previous_page()
+xnoremap <expr>  K     To_top_of_window_OR_scroll_previous_page()
 function! To_top_of_window_OR_scroll_previous_page() abort" {{{
   if winline() < 5
     return "\<C-b>H"
@@ -526,10 +523,9 @@ function! To_top_of_window_OR_scroll_previous_page() abort" {{{
     return "H"
   endif
 endfunction" }}}
-noremap <silent>fa fa
-function! Find_for_next_line(char) abort
-  let save_curpos = getcurpos()
-endfunction
+
+
+
 " cursor が移動したときとしなかったときとで，動作を変えるしくみ。
 " f コマンドは見つからなかったときにエラーとして扱われるらしく，これでうまくいかない。
 nnoremap ___l :
@@ -655,6 +651,7 @@ nnoremap <Leader>< <C-w><
 nnoremap <Leader>+ <C-w>+
 nnoremap <Leader>- <C-w>-
 "}}}
+
 " about buffer (airline) ---------------------{{{
 " new buffer
 " nnoremap <silent> <Leader>n :tabnew<CR>
@@ -670,15 +667,18 @@ nmap <leader>8 <Plug>AirlineSelectTab8
 nmap <leader>9 <Plug>AirlineSelectTab9
 nmap <leader>h <Plug>AirlineSelectPrevTab
 nmap <leader>l <Plug>AirlineSelectNextTab
-nmap <C-h> <Plug>AirlineSelectPrevTab
-nmap ___Control-h <Plug>AirlineSelectPrevTab
-nmap <C-l> <Plug>AirlineSelectNextTab
-nmap <leader><Space> :b<Space>
-nmap <leader>q :bdelete<CR>
-" move current pain to new tab
+nmap <silent> <C-h>        :bprevious<CR>
+nmap <silent> ___Control-h :bprevious<CR>
+nmap <silent> <C-l>        :bnext<CR>
+nmap <silent> <leader><Space> :b<Space>
+nmap <silent> <leader>q :bdelete<CR>
+"}}}
+
+" interface between pain and buffer ---------------------{{{
+" move current pain to new buffer
 " (if current window has only one pane, split into two tabs)
-" nnoremap <silent> <Leader>t :<C-u>call <SID>MoveToNewTab()<CR>
-function! s:MoveToNewTab()" {{{
+" nnoremap <silent> <Leader>t :<C-u>call <SID>MoveToNewBuf()<CR>
+function! s:MoveToNewBuf()" {{{
   tab split
   tabprevious
   if winnr('$') > 1
@@ -692,6 +692,77 @@ endfunction
 "}}}
 
 let mapleader = "\\"
+
+nnoremap <silent> <C-f> :Defx<CR>
+
+" defx --------{{{
+autocmd FileType defx call s:defx_my_settings()
+function! s:defx_my_settings() abort
+  " Define mappings
+  nnoremap <silent><buffer><expr> <C-f>
+        \ defx#do_action('quit')
+  nnoremap <silent><buffer><expr> q
+        \ defx#do_action('quit')
+  nnoremap <silent><buffer><expr> <CR>
+        \ defx#do_action('open')
+  nnoremap <silent><buffer><expr> cd
+        \ defx#do_action('change_vim_cwd')
+  nnoremap <silent><buffer><expr> h
+        \ defx#do_action('cd', ['..'])
+  nnoremap <silent><buffer><expr> ~
+        \ defx#do_action('cd')
+  nnoremap <silent><buffer><expr> c
+        \ defx#do_action('copy')
+  nnoremap <silent><buffer><expr> m
+        \ defx#do_action('move')
+  nnoremap <silent><buffer><expr> p
+        \ defx#do_action('paste')
+  nnoremap <silent><buffer><expr> l
+        \ defx#do_action('open')
+  nnoremap <silent><buffer><expr> E
+        \ defx#do_action('open', 'vsplit')
+  nnoremap <silent><buffer><expr> P
+        \ defx#do_action('open', 'pedit')
+  nnoremap <silent><buffer><expr> K
+        \ defx#do_action('new_directory')
+  nnoremap <silent><buffer><expr> N
+        \ defx#do_action('new_file')
+  nnoremap <silent><buffer><expr> M
+        \ defx#do_action('new_multiple_files')
+  nnoremap <silent><buffer><expr> C
+        \ defx#do_action('toggle_columns',
+        \                'mark:filename:type:size:time')
+  nnoremap <silent><buffer><expr> S
+        \ defx#do_action('toggle_sort', 'Time')
+  nnoremap <silent><buffer><expr> d
+        \ defx#do_action('remove')
+  nnoremap <silent><buffer><expr> r
+        \ defx#do_action('rename')
+  nnoremap <silent><buffer><expr> !
+        \ defx#do_action('execute_command')
+  nnoremap <silent><buffer><expr> x
+        \ defx#do_action('execute_system')
+  nnoremap <silent><buffer><expr> yy
+        \ defx#do_action('yank_path')
+  nnoremap <silent><buffer><expr> .
+        \ defx#do_action('toggle_ignored_files')
+  nnoremap <silent><buffer><expr> ;
+        \ defx#do_action('repeat')
+  nnoremap <silent><buffer><expr> <Space>
+        \ defx#do_action('toggle_select') . 'j'
+  nnoremap <silent><buffer><expr> *
+        \ defx#do_action('toggle_select_all')
+  nnoremap <silent><buffer><expr> j
+        \ line('.') == line('$') ? 'gg' : 'j'
+  nnoremap <silent><buffer><expr> k
+        \ line('.') == 1 ? 'G' : 'k'
+  nnoremap <silent><buffer><expr> <C-l>
+        \ defx#do_action('redraw')
+  nnoremap <silent><buffer><expr> <C-g>
+        \ defx#do_action('print')
+endfunction
+"}}}
+
 let mapleader = "t"
 
 " surround ---------------------------{{{
@@ -748,12 +819,12 @@ nnoremap <silent>d, :
       \:let save_curpos = getcurpos()<CR>
       \A<C-h><ESC>
       \:call setpos('.', save_curpos)<CR>
-
+"}}}
 
 " ---------------------------------------
 "  key map (v):
 " ---------------------------------------
-
+"{{{
 vnoremap  *  "zy/\V<C-r>z<CR>
 
 " 複数行を移動
@@ -762,13 +833,14 @@ vnoremap <C-Down> "zx"zp`[V`]
 
 " comment (caw)
 vmap <silent> " <plug>(caw:hatpos:toggle)
-
+"}}}
 
 " ---------------------------------------
 "  key map (i):
 " ---------------------------------------
+"{{{
 imap <silent> jj  <ESC>
-inoremap <C-d> <Del>
+noremap! <C-d> <Del>
 " spell
 inoremap <C-s> <C-x>s
 
@@ -805,8 +877,9 @@ inoremap {<CR> {}<ESC>i<CR><Esc><S-o>
 inoremap [<CR> []<ESC>i<CR><Esc><S-o>
 inoremap <<CR> <><ESC>i<CR><Esc><S-o>
 
-" imap     <silent><expr> <C-l>   pumvisible() ? deoplete#close_popup()."\<C-l>" : "\<plug>(neosnippet_jump)"}}}
-" ---------------------------------------
+" imap     <silent><expr> <C-l>   pumvisible() ? deoplete#close_popup()."\<C-l>" : "\<plug>(neosnippet_jump)
+"}}}
+
 
 
 
@@ -847,9 +920,7 @@ inoremap <expr> <S-TAB> deoplete#refresh().deoplete#smart_close_popup()
 imap     <expr> <C-l>   pumvisible() ? deoplete#close_popup()."\<C-l>"   : "\<plug>(neosnippet_jump)"
 inoremap <expr> <Up>    pumvisible() ? deoplete#close_popup()."\<Up>"    : "\<Up>"
 inoremap <expr> <Down>  pumvisible() ? deoplete#close_popup()."\<Down>"  : "\<Down>"
-
-
-" }}}
+"}}}
 
 " neosnippet --------------------- {{{
 let g:neosnippet#snippets_directory='$XDG_CONFIG_HOME/nvim/my_snippets'

@@ -1,8 +1,9 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =6
-let g:netrw_dirhist_1='/Users/natsume/Dropbox/natsume/master_thesis/document/text'
+let g:netrw_dirhist_cnt =7
+let g:netrw_dirhist_1='/usr/local/Cellar/neovim/0.3.1/share/nvim/runtime/doc'
 let g:netrw_dirhist_2='/Users/natsume/Dropbox/natsume/master_thesis/document'
 let g:netrw_dirhist_3='/Users/natsume/Dropbox/natsume/master_thesis/document/text'
 let g:netrw_dirhist_4='/Users/natsume/Dropbox/natsume/master_thesis/document'
 let g:netrw_dirhist_5='/Users/natsume/Dropbox/natsume/master_thesis'
 let g:netrw_dirhist_6='/Users/natsume/.ssh'
+let g:netrw_dirhist_7='/usr/local/Cellar/neovim/0.3.1/share/nvim/runtime/doc'
