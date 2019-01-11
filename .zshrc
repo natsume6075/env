@@ -84,7 +84,7 @@ bindkey '___Control-h'      backward-delete-char
 
 bindkey -M viins '___Control-h'       backward-delete-char
 bindkey -M viins 'jj'       vi-cmd-mode
-bindkey -M viins 'っj'       vi-cmd-mode
+bindkey -M viins 'っj'      vi-cmd-mode
 bindkey -M viins '^?'       backward-delete-char
 bindkey -M viins '^A'       beginning-of-line
 bindkey -M viins '^B'       backward-char
@@ -100,7 +100,7 @@ bindkey -M viins '^O''h'    backward-char
 bindkey -M viins '^O''H'    beginning-of-line
 bindkey -M viins '^O''L'    end-of-line
 bindkey -M viins '^O''l'    forward-char
-bindkey -M viins '^O''d''d' backward-kill-line # ちゃんとできてない。前しか削除されない。ddの実装を見たい。。。
+bindkey -M viins '^O''d''d' kill-line-all
 bindkey -M viins '^P'       up-line-or-history
 bindkey -M viins '^R'       history-incremental-pattern-search-backward
 bindkey -M viins '^S'       history-incremental-pattern-search-forward
@@ -112,6 +112,19 @@ bindkey -M viins '^Y'       yank
 bindkey -M vicmd '___Control-h'       backward-char
 bindkey -M vicmd 'H'   beginning-of-line
 bindkey -M vicmd 'L'   end-of-line
+
+function kill-line-all() {
+  zle beginning-of-line
+  zle kill-line
+}
+zle -N kill-line-all
+
+function vi-cmd-mode-with-cursor() {
+  echo -e '\033]1337;CursorShape=0\a'
+  # echo -e '\033]1337;SetProfile=Natsume\a'
+}
+zle -N vi-cmd-mode-with-cursor
+bindkey -M viins '^q' vi-cmd-mode-with-cursor
 
 
 #zshプロンプトにモード表示
