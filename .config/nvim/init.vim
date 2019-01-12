@@ -279,18 +279,6 @@ augroup initvim
   " init.vim を保存したときにリロード
   autocmd BufWritePost $XDG_CONFIG_HOME/nvim/init.vim so $XDG_CONFIG_HOME/nvim/init.vim
 
-  autocmd VimEnter *
-        \ if @% == '' && s:GetBufByte() == 0 | Defx
-  function! s:GetBufByte()
-    let byte = line2byte(line('$') + 1)
-    if byte == -1
-      return 0
-    else
-      return byte - 1
-    endif
-  endfunction
-
-
 augroup END
 "}}}
 
