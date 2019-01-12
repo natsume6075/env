@@ -405,6 +405,11 @@ hi SpellCap NONE
 hi SpellRare NONE
 hi SpellLocal NONE
 
+set cursorline
+hi clear CursorLine
+hi CursorColumn ctermbg=0
+hi CursorLineNr term=bold   cterm=NONE ctermfg=215 ctermbg=NONE
+
 
 " let g:airline_theme = 'tomorrow'
 " let g:airline_theme = 'bubblegum'
@@ -802,8 +807,14 @@ nnoremap <CR> <CR>
 " default: map <f1> to display the help file
 " map <f2> to toggle show Information
 nnoremap <f2> :
-      \:set cursorline!<CR>
       \:set cursorcolumn!<CR>
+      "\:let hi_cursorline=(hi_cursorline/2+1)%2*2<CR>
+      "\:if hi_cursorline == 0<CR>
+      "\:    hi Cursorline =0<CR>
+      "\:else<CR>
+      "\:    hi Cursorline =0<CR>
+      "\:endif<CR>
+      "\<CR>
 " map <f4> to edit init.vim
 nnoremap <f4> :<C-u>.tabedit $XDG_CONFIG_HOME/nvim/init.vim<CR>
 " map <f5> to source init.vim
