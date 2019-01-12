@@ -414,7 +414,7 @@ hi CursorColumn ctermbg=0
 hi CursorLineNr term=bold   cterm=NONE ctermfg=215 ctermbg=NONE
 
 " "todo なぜか更新しないと反映されない
-" autocmd initvim BufRead,BufNewfile * 
+" autocmd initvim BufRead,BufNewfile *
 syntax match fmrkr '"*{{{\|"*}}}'
   \ containedin=vimLineComment contained |
   \ hi fmrkr term=NONE
