@@ -120,7 +120,7 @@ set undodir=$XDG_DATA_HOME/nvim/undo
 set undofile
 set undolevels=1000
 "}}}
-"
+
 " --- Yank, Paste, Resisters ----------- {{{
 " set clipboard+=unnamedplus
 autocmd initvim TextYankPost *
@@ -133,7 +133,7 @@ autocmd initvim TextYankPost * :wv
 autocmd initvim FocusGained * :rv!
 " }}}
 
-" --- Marks ----------------todo: {{{
+" --- Marks ---------------- {{{
 " mark[0-9] をキューのように扱うものとして再構成する。
 " mark 0 に追加して，mark9 は削除する。
 function! Push_queue_of_marks() abort
@@ -144,34 +144,37 @@ endfunction
 " --- Folding -------------- {{{
 set foldenable
 set foldmethod=marker
-" set foldmethod=indent
 set foldmarker=\{{{,\}}}
-set foldtext=Natsume_fold_text()
-function! Natsume_fold_text() "{{{
-  " todo: 設定し放題。コメントなら表示するけど，そうじゃないなら表示しないとか？　大きいならなにか変わったあれを用意するとか？
-  "       関数定義の１行目を巻き込まないようにすれば，シンタックスハイライトも消えずにすむ。
-  "       その場合は body とかにしたりね。
-  if g:foldCCtext_enable_autofdc_adjuster && v:foldlevel > &fdc-1
-    let &fdc = v:foldlevel + 1
-  endif
-  let headline =
-        \ getline(v:foldstart)
-  "\ getline(v:foldstart)
-  let head = g:foldCCtext_head=='' ? '' : eval(g:foldCCtext_head)
-  let tail = g:foldCCtext_tail=='' ? '' : ' '. eval(g:foldCCtext_tail)
-  let headline = s:_adjust_headline(headline, strlen(head)+strlen(tail))
-  return substitute(headline, '^\s*\ze', '\0'. head, ''). tail
-endfunction
-"}}}
+set foldtext=FoldCCtext()
+let g:foldCCtext_head = ''
+" let g:foldCCtext_tail = 'printf(" %s[%4d lines Lv%-2d ]%s  ", v:folddashes, v:foldend-v:foldstart+1, v:foldlevel, v:folddashes)'
+let g:foldCCtext_tail = 'printf(" %s[ %4d   %s  ", substitute(repeat("[", v:foldlevel-1), "[[[[[", "V ", "g"), v:foldend-v:foldstart+1, (repeat("]", v:foldlevel).repeat(" ", 5-v:foldlevel))[0:4])'
 set foldcolumn=3
 set fillchars=vert:\|
-let g:foldCCtext_head = ''
-let g:foldCCtext_tail = 'printf(" %s[%4d lines Lv%-2d ]%s  ", v:folddashes, v:foldend-v:foldstart+1, v:foldlevel, v:folddashes)'
 " foldcolumn が足りなくなった時に，自動で大きくする バグあり
 " Ref: http://leafcage.hateblo.jp/entry/20111223/1324705686
 let g:foldCCtext_enable_autofdc_adjuster = 1
 " Don't save options.
 set viewoptions-=options
+"{{{{{{{{{{{{{{{
+"{{{
+"{{{
+"{{{
+"{{{
+"{{{
+"{{{
+
+"}}}
+"}}}
+"}}}
+"}}}
+"}}}
+"}}}
+"}}}
+"}}}
+"}}}
+"}}}
+"}}}
 " }}}
 
 " --- Information ------------------------- {{{
@@ -211,7 +214,7 @@ set listchars=tab:>-,trail:.
 set list
 " }}}
 
-" --- Search -------------------- {{{
+" --- Search ------------------------------ {{{
 " 検索文字列が小文字の場合は大文字小文字を区別なく検索する
 set ignorecase
 " 検索文字列に大文字が含まれている場合は区別して検索する
@@ -236,8 +239,9 @@ command! DiffOrig vert new | set bt=nofile | r ++edit # | 0d_
 
 
 " ---------------------------------------
-"  autocmd settings
+"  Autocmd Settings:
 " ---------------------------------------
+"{{{
 augroup initvim
 
   if executable('osascript')
@@ -288,11 +292,13 @@ augroup initvim
 
 
 augroup END
+"}}}
+
 
 " ---------------------------------------
 "  Dein Scripts:
 " ---------------------------------------
-
+"{{{
 if &compatible
   set nocompatible               " Be iMproved
 endif
@@ -355,13 +361,14 @@ if dein#check_install()
   call dein#install()
 
 endif
+"}}}
 
 
 " ---------------------------------------
 "  Appearance:
 " ---------------------------------------
-
-" Color Scheme: -----------------------{{{
+"{{{
+" Color Scheme: -----------------------
 set runtimepath+=$XDG_CONFIG_HOME/nvim/runtime/
 
 " :Unite -auto-preview colorscheme
@@ -382,22 +389,18 @@ colorscheme my_default
 " set background=dark
 
 
-" highlight statusline ctermfg=248 ctermbg=23
 hi Visual ctermbg = 0
 
-" conceal        xxx ctermfg=7 ctermbg=242 guifg=lightgrey guibg=darkgrey
 highlight conceal ctermfg=7 ctermbg=black guibg=darkgray
-" 全角スペースの背景を白に変更
-autocmd initvim colorscheme highlight fullwidthspace ctermbg=white
-autocmd initvim vimenter match fullwidthspace /　/
 
 hi Folded     term=standout ctermbg=Black ctermfg=white
-hi FoldColumn term=standout ctermbg=Black ctermfg=130
+hi FoldColumn term=standout ctermbg=Black ctermfg=2
 " 欲を言うなら，fold しても1行目の構文ハイライトは維持したい。
 
 
 " https://h2plus.biz/hiromitsu/entry/674
 " カラースキームをまとめたサイト
+
 hi MatchParen ctermbg=240
 
 hi spellbad NONE
@@ -410,24 +413,29 @@ hi clear CursorLine
 hi CursorColumn ctermbg=0
 hi CursorLineNr term=bold   cterm=NONE ctermfg=215 ctermbg=NONE
 
+" "todo なぜか更新しないと反映されない
+" autocmd initvim BufRead,BufNewfile * 
+syntax match fmrkr '"*{{{\|"*}}}'
+  \ containedin=vimLineComment contained |
+  \ hi fmrkr term=NONE
+  \ ctermbg=NONE ctermfg=black
 
 " let g:airline_theme = 'tomorrow'
 " let g:airline_theme = 'bubblegum'
 " let g:airline_theme = 'papercolor'
 let g:airline_theme = 'luna'
-"}}}
+
 
 " --- Conceal: --------------------
 let conceallevel=0
 set conceallevel=0
 set concealcursor=""
-
-
+"}}}
 
 " ---------------------------------------
 "  Key Map:
-"
-"
+" ---------------------------------------
+"{{{
 "---------------------------------------------------------------------------"
 " Commands \ Modes | Normal | Insert | Command | Visual | Select | Operator |
 "------------------|--------|--------|---------|--------|--------|----------|
@@ -909,8 +917,7 @@ inoremap <<CR> <><ESC>i<CR><Esc><S-o>
 
 " imap     <silent><expr> <C-l>   pumvisible() ? deoplete#close_popup()."\<C-l>" : "\<plug>(neosnippet_jump)
 "}}}
-
-
+"}}}
 
 
 " ---------------------------------------
@@ -1116,6 +1123,7 @@ call defx#custom#column('mark', {
 " ---------------------------------------
 "  Language Specific Setting:
 " ---------------------------------------
+"{{{
 filetype on
 filetype plugin indent on
 
@@ -1176,7 +1184,6 @@ let g:vimtex_quickfix_mode     = 2
 let g:vimtex_quickfix_autoclose_after_keystrokes = 1
 
 
-
 function! s:previewTex() range
   let l:tmp = @@
   silent normal gvy
@@ -1207,18 +1214,16 @@ autocmd initvim FileType tex
 "   最前列で内容に合わせてなるべく小さく
 " キャッシュしておいて素早く表示する
 
-
-
 " json -------------------------
 autocmd initvim FileType json
       \ let $LANG = "json"
-
+"}}}
 
 
 " ---------------------------------------
 "  Fired Lastly:
 " ---------------------------------------
-
+"{{{
 autocmd initvim VimEnter *
       \ let $LANG_DICTIONARY = expand($XDG_CONFIG_HOME.'/nvim/my_dictionary/'.$LANG.'.dict')
 autocmd initvim VimEnter *
@@ -1228,7 +1233,7 @@ autocmd initvim VimEnter *
 " Save fold settings and cursor pos.
 autocmd BufWritePost * if expand('%') != '' && &buftype !~ 'nofile'                       | mkview | endif
 autocmd BufRead      * if expand('%') != '' && &buftype !~ 'nofile' && &buftype !~ 'help' | silent loadview | endif
-
+"}}}
 
 
 " ----------------------------------------------

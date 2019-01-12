@@ -12,4 +12,7 @@ options     head
     autocmd initvim FileType ${2:#:lang}
     		\ let $LANG = "${3:#:lang}"
 
+snippet     substitute
+options     word
+    substitute(${1:#:TARGET}, "${2:#:pattern}", "${2:#:string}", "g")
 
