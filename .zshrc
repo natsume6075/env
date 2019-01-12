@@ -91,7 +91,7 @@ bindkey -M viins '^B'       backward-char
 bindkey -M viins '^C'       vi-cmd-mode
 bindkey -M viins '^D'       delete-char-or-list
 bindkey -M viins '^E'       end-of-line
-bindkey -M viins '^F'       forward-char
+bindkey -M viins '^F'       ctrl-f
 bindkey -M viins '^G'       send-break
 bindkey -M viins '^H'       backward-delete-char
 bindkey -M viins '^K'       kill-line
@@ -126,6 +126,14 @@ function vi-cmd-mode-with-cursor() {
 zle -N vi-cmd-mode-with-cursor
 bindkey -M viins '^q' vi-cmd-mode-with-cursor
 
+function ctrl-f() {
+if false; then
+  vim
+else
+  zle forward-char
+fi
+}
+zle -N ctrl-f
 
 #zshプロンプトにモード表示
 function zle-line-init zle-keymap-select {
