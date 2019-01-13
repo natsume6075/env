@@ -452,7 +452,8 @@ let maplocalleader = "\<Space>"
 " nnoremap ; :
 " nnoremap : ;
 nnoremap <C-u> <C-r>
-noremap <C-r>   "
+nnoremap <C-r> "
+xnoremap <C-r> "
 nnoremap Y y$
 nnoremap j gj
 nnoremap k gk
