@@ -451,17 +451,13 @@ let maplocalleader = "\<Space>"
 " それどころかキーボードも物理的に入れ替えちゃった
 " nnoremap ; :
 " nnoremap : ;
-" undo/redo
 nnoremap <C-u> <C-r>
-" yank/cut/paste
 noremap <C-r>   "
 nnoremap Y y$
-" 折り返し時に表示行単位での移動できるようにする
 nnoremap j gj
 nnoremap k gk
 " spell
 nnoremap <C-s> z=
-" commentout
 nmap <silent> " <plug>(caw:hatpos:toggle)
 nnoremap con J
 " 行を移動
@@ -1150,7 +1146,7 @@ autocmd initvim BufNewFile  *.snip  put='# hogehoge snippets'
 autocmd initvim FileType tex
       \ | let $LANG = "tex"
       \ | set foldmethod=expr
-      \ | set shiftwidth=4
+      \ | set shiftwidth=2
 let g:tex_conceal="adgmb"
 
 autocmd initvim BufNewFile  *.tex  put='%! TEX root = /path/to/thesis.tex'

@@ -66,3 +66,29 @@ snippet     \RightLabel
 alias       rightlabel \rightlabel
 options     head
     \RightLabel{${1:#:TARGET}}${2}
+
+snippet table
+alias   \begin{table} \table
+	\begin{table}[${1}]
+		\centering
+		\caption{${2}}
+		\label{${3}}
+		\begin{tabular}{${4}}
+			${5:#:TARGET}
+		\end{tabular}
+	\end{table}
+
+
+snippet     boxtable
+abbr        
+options     head
+    \begin{table}[h]
+      \centering
+      \fbox{\vbox{
+        ${1:#:TARGET}
+      }}
+      \caption{$2}
+      \label{$3}
+    \end{table}
+
+
