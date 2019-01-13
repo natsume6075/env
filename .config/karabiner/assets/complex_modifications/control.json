@@ -81,6 +81,7 @@
         }
       ]
     },
+
     {
       "description": "control 単推しで previous desktop/window/display",
       "manipulators": [
@@ -152,11 +153,11 @@
           ],
           "to_if_alone": [
             {
-              "key_code": "j",
+              "key_code": "e",
               "modifiers": [
                 "left_control",
-                "left_shift",
-                "option"
+                "option",
+                "left_command"
               ],
               "lazy":"true"
             },
@@ -198,7 +199,19 @@
           ],
           "to_if_alone": [
             {
-              "key_code": "e",
+              "key_code": "j",
+              "modifiers": [
+                "left_control",
+                "left_shift",
+                "option"
+              ],
+              "lazy":"true"
+            },
+            { "set_variable": { "name": "previous_move_j", "value": 0 } }
+          ],
+          "to_if_held_down": [
+            {
+              "key_code": "b",
               "modifiers": [
                 "left_control",
                 "option",
@@ -206,7 +219,39 @@
               ],
               "lazy":"true"
             },
-            { "set_variable": { "name": "previous_move_j", "value": 0 } }
+            { "set_variable": { "name": "instant_expose", "value": 1 } }
+          ]
+        },
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "variable_if", "name": "instant_expose", "value": 0 },
+            { "type": "variable_if", "name": "previous_move", "value": 20 }
+          ],
+          "from": {
+            "key_code": "left_control",
+            "modifiers":{"optional":["command"]}
+          },
+          "to": [
+            {
+              "key_code": "left_control",
+              "modifiers": [
+                "left_shift",
+                "option"
+              ],
+              "lazy":"true"
+            }
+          ],
+          "to_if_alone": [
+            {
+              "key_code": "k",
+              "modifiers": [
+                "left_control",
+                "left_shift",
+                "option"
+              ],
+              "lazy":"true"
+            }
           ],
           "to_if_held_down": [
             {
@@ -266,6 +311,9 @@
           ]
         },
 
+
+
+
         {
           "type": "basic",
           "conditions": [
@@ -275,6 +323,14 @@
             "key_code": "i"
           },
           "to": [
+            {
+              "key_code": "i",
+              "modifiers": [
+                "left_control",
+                "left_shift",
+                "option"
+              ]
+            },
             { "set_variable": { "name": "previous_move", "value": 18 } }
           ]
         },
@@ -287,7 +343,35 @@
             "key_code": "j"
           },
           "to": [
+            {
+              "key_code": "j",
+              "modifiers": [
+                "left_control",
+                "left_shift",
+                "option"
+              ]
+            },
             { "set_variable": { "name": "previous_move", "value": 19 } }
+          ]
+        },
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "variable_if", "name": "previous_move_set_mode", "value": 1 }
+          ],
+          "from": {
+            "key_code": "k"
+          },
+          "to": [
+            {
+              "key_code": "k",
+              "modifiers": [
+                "left_control",
+                "left_shift",
+                "option"
+              ]
+            },
+            { "set_variable": { "name": "previous_move", "value": 20 } }
           ]
         },
         {
@@ -299,6 +383,14 @@
             "key_code": "n"
           },
           "to": [
+            {
+              "key_code": "n",
+              "modifiers": [
+                "left_control",
+                "left_shift",
+                "option"
+              ]
+            },
             { "set_variable": { "name": "previous_move", "value": 23 } }
           ]
         },

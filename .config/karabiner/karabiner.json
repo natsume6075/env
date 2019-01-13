@@ -1463,12 +1463,12 @@
                                 ],
                                 "to_if_alone": [
                                     {
-                                        "key_code": "j",
+                                        "key_code": "e",
                                         "lazy": "true",
                                         "modifiers": [
                                             "left_control",
-                                            "left_shift",
-                                            "option"
+                                            "option",
+                                            "left_command"
                                         ]
                                     },
                                     {
@@ -1535,7 +1535,24 @@
                                 ],
                                 "to_if_alone": [
                                     {
-                                        "key_code": "e",
+                                        "key_code": "j",
+                                        "lazy": "true",
+                                        "modifiers": [
+                                            "left_control",
+                                            "left_shift",
+                                            "option"
+                                        ]
+                                    },
+                                    {
+                                        "set_variable": {
+                                            "name": "previous_move_j",
+                                            "value": 0
+                                        }
+                                    }
+                                ],
+                                "to_if_held_down": [
+                                    {
+                                        "key_code": "b",
                                         "lazy": "true",
                                         "modifiers": [
                                             "left_control",
@@ -1545,9 +1562,53 @@
                                     },
                                     {
                                         "set_variable": {
-                                            "name": "previous_move_j",
-                                            "value": 0
+                                            "name": "instant_expose",
+                                            "value": 1
                                         }
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "instant_expose",
+                                        "type": "variable_if",
+                                        "value": 0
+                                    },
+                                    {
+                                        "name": "previous_move",
+                                        "type": "variable_if",
+                                        "value": 20
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "left_control",
+                                    "modifiers": {
+                                        "optional": [
+                                            "command"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "left_control",
+                                        "lazy": "true",
+                                        "modifiers": [
+                                            "left_shift",
+                                            "option"
+                                        ]
+                                    }
+                                ],
+                                "to_if_alone": [
+                                    {
+                                        "key_code": "k",
+                                        "lazy": "true",
+                                        "modifiers": [
+                                            "left_control",
+                                            "left_shift",
+                                            "option"
+                                        ]
                                     }
                                 ],
                                 "to_if_held_down": [
@@ -1643,6 +1704,14 @@
                                 },
                                 "to": [
                                     {
+                                        "key_code": "i",
+                                        "modifiers": [
+                                            "left_control",
+                                            "left_shift",
+                                            "option"
+                                        ]
+                                    },
+                                    {
                                         "set_variable": {
                                             "name": "previous_move",
                                             "value": 18
@@ -1664,6 +1733,14 @@
                                 },
                                 "to": [
                                     {
+                                        "key_code": "j",
+                                        "modifiers": [
+                                            "left_control",
+                                            "left_shift",
+                                            "option"
+                                        ]
+                                    },
+                                    {
                                         "set_variable": {
                                             "name": "previous_move",
                                             "value": 19
@@ -1681,9 +1758,46 @@
                                     }
                                 ],
                                 "from": {
+                                    "key_code": "k"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "k",
+                                        "modifiers": [
+                                            "left_control",
+                                            "left_shift",
+                                            "option"
+                                        ]
+                                    },
+                                    {
+                                        "set_variable": {
+                                            "name": "previous_move",
+                                            "value": 20
+                                        }
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "previous_move_set_mode",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
                                     "key_code": "n"
                                 },
                                 "to": [
+                                    {
+                                        "key_code": "n",
+                                        "modifiers": [
+                                            "left_control",
+                                            "left_shift",
+                                            "option"
+                                        ]
+                                    },
                                     {
                                         "set_variable": {
                                             "name": "previous_move",
