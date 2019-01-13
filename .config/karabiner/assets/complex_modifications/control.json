@@ -22,7 +22,8 @@
         {
           "type": "basic",
           "conditions": [
-            { "type": "variable_if", "name": "instant_expose", "value": 0 }
+            { "type": "variable_if", "name": "instant_expose", "value": 0 },
+            { "type": "variable_if", "name": "previous_move", "value": 0 }
           ],
           "from": {
             "key_code": "left_control",
@@ -81,48 +82,250 @@
       ]
     },
     {
-      "description": "previous desktop/window/display",
+      "description": "control 単推しで previous desktop/window/display",
       "manipulators": [
+
         {
           "type": "basic",
           "conditions": [
-            { "type": "variable_if", "name": "current_mode", "value": 2 },
-            { "type": "variable_if", "name": "j_key", "value": 1 },
-            { "type": "frontmost_application_unless", "bundle_identifiers": [ "^com\\.googlecode\\.iterm2" ] }
+            { "type": "variable_if", "name": "instant_expose", "value": 0 },
+            { "type": "variable_if", "name": "previous_move", "value": 18 }
           ],
           "from": {
-            "key_code": "j",
-            "modifiers": { "mandatory": [ "control" ] }
+            "key_code": "left_control",
+            "modifiers":{"optional":["command"]}
           },
           "to": [
-            { "key_code": "delete_or_backspace" },
-            { "set_variable": { "name": "current_mode", "value": 1 } },
-            { "key_code": "left_arrow", "modifiers": ["shift"] }
+            {
+              "key_code": "left_control",
+              "modifiers": [
+                "left_shift",
+                "option"
+              ],
+              "lazy":"true"
+            }
+          ],
+          "to_if_alone": [
+            {
+              "key_code": "i",
+              "modifiers": [
+                "left_control",
+                "left_shift",
+                "option"
+              ],
+              "lazy":"true"
+            }
+          ],
+          "to_if_held_down": [
+            {
+              "key_code": "b",
+              "modifiers": [
+                "left_control",
+                "option",
+                "left_command"
+              ],
+              "lazy":"true"
+            },
+            { "set_variable": { "name": "instant_expose", "value": 1 } }
           ]
         },
         {
           "type": "basic",
           "conditions": [
-            { "type": "variable_if", "name": "current_mode", "value": 2 },
-            { "type": "variable_if", "name": "j_key", "value": 0 },
-            { "type": "frontmost_application_unless", "bundle_identifiers": [ "^com\\.googlecode\\.iterm2" ] }
+            { "type": "variable_if", "name": "previous_move_j", "value": 0 },
+            { "type": "variable_if", "name": "instant_expose", "value": 0 },
+            { "type": "variable_if", "name": "previous_move", "value": 19 }
           ],
           "from": {
-            "key_code": "",
-            "modifiers": { "optional": [ "control" ] }
+            "key_code": "left_control",
+            "modifiers":{"optional":["command"]}
           },
           "to": [
-            { "set_variable": { "name": "j_key", "value": 1 } },
-            { "key_code": "j" }
+            {
+              "key_code": "left_control",
+              "modifiers": [
+                "left_shift",
+                "option"
+              ],
+              "lazy":"true"
+            }
+          ],
+          "to_if_alone": [
+            {
+              "key_code": "j",
+              "modifiers": [
+                "left_control",
+                "left_shift",
+                "option"
+              ],
+              "lazy":"true"
+            },
+            { "set_variable": { "name": "previous_move_j", "value": 1 } }
+          ],
+          "to_if_held_down": [
+            {
+              "key_code": "b",
+              "modifiers": [
+                "left_control",
+                "option",
+                "left_command"
+              ],
+              "lazy":"true"
+            },
+            { "set_variable": { "name": "instant_expose", "value": 1 } }
+          ]
+        },
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "variable_if", "name": "previous_move_j", "value": 1 },
+            { "type": "variable_if", "name": "instant_expose", "value": 0 },
+            { "type": "variable_if", "name": "previous_move", "value": 19 }
+          ],
+          "from": {
+            "key_code": "left_control",
+            "modifiers":{"optional":["command"]}
+          },
+          "to": [
+            {
+              "key_code": "left_control",
+              "modifiers": [
+                "left_shift",
+                "option"
+              ],
+              "lazy":"true"
+            }
+          ],
+          "to_if_alone": [
+            {
+              "key_code": "e",
+              "modifiers": [
+                "left_control",
+                "option",
+                "left_command"
+              ],
+              "lazy":"true"
+            },
+            { "set_variable": { "name": "previous_move_j", "value": 0 } }
+          ],
+          "to_if_held_down": [
+            {
+              "key_code": "b",
+              "modifiers": [
+                "left_control",
+                "option",
+                "left_command"
+              ],
+              "lazy":"true"
+            },
+            { "set_variable": { "name": "instant_expose", "value": 1 } }
+          ]
+        },
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "variable_if", "name": "instant_expose", "value": 0 },
+            { "type": "variable_if", "name": "previous_move", "value": 23 }
+          ],
+          "from": {
+            "key_code": "left_control",
+            "modifiers":{"optional":["command"]}
+          },
+          "to": [
+            {
+              "key_code": "left_control",
+              "modifiers": [
+                "left_shift",
+                "option"
+              ],
+              "lazy":"true"
+            }
+          ],
+          "to_if_alone": [
+            {
+              "key_code": "n",
+              "modifiers": [
+                "left_control",
+                "left_shift",
+                "option"
+              ],
+              "lazy":"true"
+            }
+          ],
+          "to_if_held_down": [
+            {
+              "key_code": "b",
+              "modifiers": [
+                "left_control",
+                "option",
+                "left_command"
+              ],
+              "lazy":"true"
+            },
+            { "set_variable": { "name": "instant_expose", "value": 1 } }
+          ]
+        },
+
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "variable_if", "name": "previous_move_set_mode", "value": 1 }
+          ],
+          "from": {
+            "key_code": "i"
+          },
+          "to": [
+            { "set_variable": { "name": "previous_move", "value": 18 } }
+          ]
+        },
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "variable_if", "name": "previous_move_set_mode", "value": 1 }
+          ],
+          "from": {
+            "key_code": "j"
+          },
+          "to": [
+            { "set_variable": { "name": "previous_move", "value": 19 } }
+          ]
+        },
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "variable_if", "name": "previous_move_set_mode", "value": 1 }
+          ],
+          "from": {
+            "key_code": "n"
+          },
+          "to": [
+            { "set_variable": { "name": "previous_move", "value": 23 } }
+          ]
+        },
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "variable_if", "name": "previous_move_set_mode", "value": 0 }
+          ],
+          "from": {
+            "key_code": "left_control",
+            "modifiers": { "mandatory": [ "fn" ] }
+          },
+          "to": [
+            { "set_variable": { "name": "previous_move_set_mode", "value": 1 } }
           ],
           "to_delayed_action": {
             "to_if_invoked": [
-              { "set_variable": { "name": "j_key", "value": 0 } }
+              { "set_variable": { "name": "previous_move_set_mode", "value": 0 } }
             ],
             "to_if_canceled": [
-              { "set_variable": { "name": "j_key", "value": 0 } }
+              { "set_variable": { "name": "previous_move_set_mode", "value": 0 } }
             ]
-          }
+          },
+          "to_if_alone": [
+            { "set_variable": { "name": "previous_move", "value": 0 } },
+            { "set_variable": { "name": "previous_move_j", "value": 0 } }
+          ]
         }
 
       ]
