@@ -80,9 +80,9 @@ alias diff='diff -U1'
 
 # vim っぽくする
 bindkey -v
-bindkey '___Control-h'      backward-delete-char
+bindkey '─Control-h'      backward-delete-char
 
-bindkey -M viins '___Control-h'       backward-delete-char
+bindkey -M viins '─Control-h'       backward-delete-char
 bindkey -M viins 'jj'       vi-cmd-mode
 bindkey -M viins 'っj'      vi-cmd-mode
 bindkey -M viins '^?'       backward-delete-char
@@ -109,7 +109,7 @@ bindkey -M viins '^W'       backward-kill-word
 bindkey -M viins '^Y'       yank
 
 
-bindkey -M vicmd '___Control-h'       backward-char
+bindkey -M vicmd '─Control-h'       backward-char
 bindkey -M vicmd 'H'   beginning-of-line
 bindkey -M vicmd 'L'   end-of-line
 

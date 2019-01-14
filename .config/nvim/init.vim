@@ -438,8 +438,8 @@ set concealcursor=""
 " cmap / cnoremap  |    -   |   -    |    @    |   -    |   -    |    -     |
 "---------------------------------------------------------------------------"
 
-map  ___Control-h <C-h>
-map! ___Control-h <C-h>
+map  ─Control-h <C-h>
+map! ─Control-h <C-h>
 let maplocalleader = "\<Space>"
 
 " ---------------------------------------
@@ -478,14 +478,14 @@ nmap # <Plug>(anzu-sharp-with-echo)
 " nnoremap <expr> n anzu#mode#mapexpr("n", "", "zzzv")
 " nnoremap <expr> N anzu#mode#mapexpr("N", "", "zzzv")
 " let g:anzu_status_format = "%#WarningMsg#%p(%i/%l)"
-" nnoremap <silent>n  :keepjumps normal ___n<CR>"{{{
-" nnoremap <expr>  ___n Avoid_too_recursive_n()
+" nnoremap <silent>n  :keepjumps normal ─n<CR>"{{{
+" nnoremap <expr>  ─n Avoid_too_recursive_n()
 function! Avoid_too_recursive_n() abort"
   return "n"
 endfunction
 "}}}
-" nnoremap <silent>N  :keepjumps normal ___N<CR>"{{{
-nnoremap <expr>  ___N Avoid_too_recursive_N()
+" nnoremap <silent>N  :keepjumps normal ─N<CR>"{{{
+nnoremap <expr>  ─N Avoid_too_recursive_N()
 function! Avoid_too_recursive_N() abort"
   return "N"
 endfunction
@@ -506,8 +506,8 @@ inoremap <C-p> <Up>
 noremap! <C-t> <C-e>
 noremap H _
 noremap L $
-noremap <silent> M     :keepjumps normal ___M<CR>
-noremap <expr>   ___M  Avoid_too_recursive_M()
+noremap <silent> M     :keepjumps normal ─M<CR>
+noremap <expr>   ─M  Avoid_too_recursive_M()
 xnoremap <expr>  M     Avoid_too_recursive_M()
 function! Avoid_too_recursive_M() abort"{{{
   return "M"
@@ -515,8 +515,8 @@ endfunction"
 "}}}
 " 思い通りになるJK
 " keepjumps をする際に，関数の中に入れることで，無限ループを回避している。
-noremap <silent> J     :keepjumps normal ___J<CR>
-noremap <expr>   ___J  To_bottom_of_window_OR_scroll_next_page()
+noremap <silent> J     :keepjumps normal ─J<CR>
+noremap <expr>   ─J  To_bottom_of_window_OR_scroll_next_page()
 xnoremap <expr>  J     To_bottom_of_window_OR_scroll_next_page()
 function! To_bottom_of_window_OR_scroll_next_page() abort" {{{
   if winline() > winheight(0) - 5
@@ -525,8 +525,8 @@ function! To_bottom_of_window_OR_scroll_next_page() abort" {{{
     return "L"
   endif
 endfunction" }}}
-noremap <silent> K     :keepjumps normal ___K<CR>
-noremap <expr>   ___K  To_top_of_window_OR_scroll_previous_page()
+noremap <silent> K     :keepjumps normal ─K<CR>
+noremap <expr>   ─K  To_top_of_window_OR_scroll_previous_page()
 xnoremap <expr>  K     To_top_of_window_OR_scroll_previous_page()
 function! To_top_of_window_OR_scroll_previous_page() abort" {{{
   if winline() < 5
@@ -540,7 +540,7 @@ endfunction" }}}
 
 " cursor が移動したときとしなかったときとで，動作を変えるしくみ。
 " f コマンドは見つからなかったときにエラーとして扱われるらしく，これでうまくいかない。
-nnoremap ___l :
+nnoremap ─l :
       \:let g:save_curpos = getcurpos()<CR>
       \l
       \:call Hoge(save_curpos)
@@ -552,7 +552,7 @@ function! Hoge(save_curpos) abort
   endif
 endfunction
 
-nnoremap ___hoge :
+nnoremap ─hoge :
       \:let save_curpos = getcurpos()<CR>
       \jjjkl
       \:if save_curpos == getcurpos()<CR>
@@ -681,7 +681,7 @@ nmap <leader>9 <Plug>AirlineSelectTab9
 nmap <leader>h <Plug>AirlineSelectPrevTab
 nmap <leader>l <Plug>AirlineSelectNextTab
 nmap <silent> <C-h>        :bprevious<CR>
-nmap <silent> ___Control-h :bprevious<CR>
+nmap <silent> ─Control-h :bprevious<CR>
 nmap <silent> <C-l>        :bnext<CR>
 nmap <silent> <leader><Space> :b<Space>
 nmap <silent> <leader>q :bdelete<CR>
@@ -896,18 +896,6 @@ xmap <     <plug>(neosnippet_expand_target)<<CR>
 xmap "     <plug>(neosnippet_expand_target)"<CR>
 xmap '     <plug>(neosnippet_expand_target)'<CR>
 
-inoremap () ()
-inoremap {} {}
-inoremap [] []
-inoremap <> <>
-imap (jj (jj
-imap {jj {jj
-imap [jj [jj
-imap <jj <jj
-inoremap (<CR> ()<ESC>i<CR><Esc><S-o>
-inoremap {<CR> {}<ESC>i<CR><Esc><S-o>
-inoremap [<CR> []<ESC>i<CR><Esc><S-o>
-inoremap <<CR> <><ESC>i<CR><Esc><S-o>
 
 " imap     <silent><expr> <C-l>   pumvisible() ? deoplete#close_popup()."\<C-l>" : "\<plug>(neosnippet_jump)
 "}}}
@@ -948,9 +936,6 @@ endfunction"}}}
 " inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : <sid>Check_back_space() ? "\<TAB>" : deoplete#mappings#manual_complete()
 inoremap <expr> <TAB>   pumvisible() ? deoplete#complete_common_string() : "\<TAB>"
 inoremap <expr> <S-TAB> deoplete#refresh().deoplete#smart_close_popup()
-imap     <expr> <C-l>   pumvisible() ? deoplete#close_popup()."\<C-l>"   : "\<plug>(neosnippet_jump)"
-inoremap <expr> <Up>    pumvisible() ? deoplete#close_popup()."\<Up>"    : "\<Up>"
-inoremap <expr> <Down>  pumvisible() ? deoplete#close_popup()."\<Down>"  : "\<Down>"
 "}}}
 
 " neosnippet --------------------- {{{
@@ -963,13 +948,35 @@ let g:neosnippet#snippets_directory='$XDG_CONFIG_HOME/nvim/my_snippets'
 "   他にも待機モードになるような任意の入力で即座に展開できなかった。
 "   一旦適当な文字 a を打ってそれを消す操作を挟むことで，一度押しでいけるようにした。
 " 内部的にインサートモードを抜けるので，InsertLeave が発火する。
-imap <C-k>     a<C-h><plug>(neosnippet_expand)
-smap <C-k>     a<C-h><plug>(neosnippet_expand)
-xmap <C-k>     <plug>(neosnippet_expand_target)
-" deoplete setting -> imap <silent><expr> <C-l>   pumvisible() ? deoplete#close_popup()."\<C-l>" : "\<plug>(neosnippet_jump)"
-smap <C-l>     <plug>(neosnippet_jump)
+
+" 一番上の expand できるキーワードでスニペットを展開する
+" imap <expr> <C-k>
+      "\ neosnippet#expandable() ?
+      "\ "\<Plug>(neosnippet_expand)" : pumvisible() ? "\<C-n><C-k>" : ""
+
+imap <expr> <C-k> First_expandable()
+let counter = 0
+function! First_expandable()
+  if pumvisible()
+    if neosnippet#expandable()
+      let g:counter = 0
+      return "\<Plug>(neosnippet_expand)"
+    elseif g:counter < 100
+      let g:counter += 1
+      return "\<C-n>\<C-k>"
+    else
+      let g:counter = 0
+      return "\<S-TAB>"
+    endif
+  else
+    return ""
+  endif
+endfunction
+
+vmap <C-k>     <plug>(neosnippet_expand_target)
+imap <expr> <C-l>   pumvisible() ? deoplete#close_popup()."\<C-l>" : "\<plug>(neosnippet_jump)"
 "imap <hoge>    <plug>(neosnippet_start_unite_snippet)
-" }}}
+"}}}
 
 " vim-surround ---------------- {{{
 " }}}
