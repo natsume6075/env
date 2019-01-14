@@ -950,13 +950,8 @@ let g:neosnippet#snippets_directory='$XDG_CONFIG_HOME/nvim/my_snippets'
 " 内部的にインサートモードを抜けるので，InsertLeave が発火する。
 
 " 一番上の expand できるキーワードでスニペットを展開する
-" imap <expr> <C-k>
-      "\ neosnippet#expandable() ?
-      "\ "\<Plug>(neosnippet_expand)" : pumvisible() ? "\<C-n><C-k>" : ""
-
 imap <expr> <C-k> First_expandable()
-let counter = 0
-function! First_expandable()
+function! First_expandable()"{{{
   if pumvisible()
     if neosnippet#expandable()
       let g:counter = 0
@@ -972,6 +967,8 @@ function! First_expandable()
     return ""
   endif
 endfunction
+let counter = 0
+"}}}
 
 vmap <C-k>     <plug>(neosnippet_expand_target)
 imap <expr> <C-l>   pumvisible() ? deoplete#close_popup()."\<C-l>" : "\<plug>(neosnippet_jump)"
