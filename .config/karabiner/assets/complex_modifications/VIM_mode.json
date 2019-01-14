@@ -722,6 +722,34 @@
         {
           "type": "basic",
           "conditions": [
+            { "type": "variable_if", "name": "current_mode", "value": 2 },
+            { "type": "frontmost_application_unless", "bundle_identifiers": [ "^com\\.googlecode\\.iterm2" ] }
+          ],
+          "from": {
+            "key_code": "i",
+            "modifiers": { "mandatory": [ "control" ] }
+          },
+          "to": [
+            { "key_code": "tab" }
+          ]
+        },
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "variable_if", "name": "current_mode", "value": 2 },
+            { "type": "frontmost_application_unless", "bundle_identifiers": [ "^com\\.googlecode\\.iterm2" ] }
+          ],
+          "from": {
+            "key_code": "i",
+            "modifiers": { "mandatory": [ "control", "shift" ] }
+          },
+          "to": [
+            { "key_code": "tab", "modifiers": ["shift"] }
+          ]
+        },
+        {
+          "type": "basic",
+          "conditions": [
             { "type": "variable_if", "name": "current_mode", "value": 21 },
             { "type": "frontmost_application_unless", "bundle_identifiers": [ "^com\\.googlecode\\.iterm2" ] }
           ],

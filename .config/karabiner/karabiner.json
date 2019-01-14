@@ -3607,6 +3607,68 @@
                                     {
                                         "name": "current_mode",
                                         "type": "variable_if",
+                                        "value": 2
+                                    },
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.googlecode\\.iterm2"
+                                        ],
+                                        "type": "frontmost_application_unless"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "i",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "control"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "tab"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "current_mode",
+                                        "type": "variable_if",
+                                        "value": 2
+                                    },
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.googlecode\\.iterm2"
+                                        ],
+                                        "type": "frontmost_application_unless"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "i",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "control",
+                                            "shift"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "tab",
+                                        "modifiers": [
+                                            "shift"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "current_mode",
+                                        "type": "variable_if",
                                         "value": 21
                                     },
                                     {
