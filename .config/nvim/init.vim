@@ -105,7 +105,7 @@ set spelllang=en,cjk
 set whichwrap=<,>,[,],h,l
 set backspace=indent,eol,start
 set mouse=a
-set virtualedit=block,insert
+set virtualedit=block,insert,onemore
 " スクロールの余裕を確保する
 set scrolloff=2
 " maintain cursor position
@@ -873,12 +873,12 @@ imap jj  <ESC>
 noremap! <C-d> <Del>
 " spell
 inoremap <C-s> <C-x>s
+inoremap 🄷  <C-o>db
 
 " ひとつ上の行をいただく
 " i_CTRL-Y を最後までやる
 " CTRL-Y の表示がこのマッピングがあるためにディレイかかっちゃって使いづらい上に，あんまり使ってないのでオフ
 " imap <C-y>L  <Up><Right><ESC>y$i<Down><ESC>pa<CR><C-o>dd<left>
-
 
 
 " かっこ補完
