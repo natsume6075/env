@@ -5,11 +5,11 @@ snippet     snippet
 alias       snip
 abbr        snippet abbr options <snippet code>
 options     head, indent
-    snippet     ${1:#:trigger}
-    alias       ${2:#:alias}
-    abbr        ${3:#:abbr}
-    options     ${4:head, word, indent}
-    			${5:#:TARGET}
+    snippet     ${2:#:trigger}
+    alias       ${3:#:alias}
+    abbr        ${4:#:abbr}
+    options     ${5:head, word, indent}
+    			${1:#:TARGET}
     ${6:#:word => unko+snip| OK}
-    ${7:#:don't forget TARGET}
+    ${7:#:don't forget 1:#TARGET}
 
