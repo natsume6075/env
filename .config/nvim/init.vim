@@ -43,7 +43,7 @@ augroup initvim
   autocmd!
 augroup END
 
-"--- Environment Variables: --------------------------------------------------
+"--- Environment Variables: --------------------------------------------------{{{
 let $XDG_CACHE_HOME = expand($HOME.'/.cache')
 let $XDG_CONFIG_HOME = expand($HOME.'/.config')
 let $XDG_DATA_DIRS = expand('/usr/local/share:/usr/share')
@@ -52,8 +52,9 @@ let $XDG_DATA_HOME = expand($HOME.'/.local/share')
 let $CURRENT_FILE_PASS = expand("%")
 let $CURRENT_FILE_NAME = substitute(expand("%:p"), "^.*/", "", "g")
 let $CURRENT_DIR       = substitute(expand("%:p"), "/[^/]*$", "", "g")
+"}}}
 
-"--- Global Functions: -------------------
+"--- Global Functions: -------------------{{{
 let save_curpos = getcurpos()
 set nocompatible
 
@@ -75,9 +76,9 @@ function! Move_cursor_pos_mapping(str)
   return s:move_cursor_pos_mapping(a:str, "\<Left>")
 endfunction
 " Ref: http://d.hatena.ne.jp/osyo-manga/20130424/1366800441
+"}}}
 
-
-
+"--- Global Settings: -------------------------------------{{{
 set fenc=utf-8
 set backupdir=$XDG_DATA_HOME/nvim/backup
 " " file_name で backupをまとめようかと思ったけど，
@@ -95,17 +96,16 @@ set hidden
 set textwidth=0
 set display=lastline
 set pumheight=12
-
-
 " spelling check
 set spell
 set spelllang=en,cjk
+"}}}
 
 "--- Motion ---------------------{{{
 set whichwrap=<,>,[,],h,l
 set backspace=indent,eol,start
 set mouse=a
-set virtualedit=block,insert,onemore
+set virtualedit=block,insert
 " スクロールの余裕を確保する
 set scrolloff=2
 " maintain cursor position
@@ -901,11 +901,10 @@ xmap '     <plug>(neosnippet_expand_target)'<CR>
 "}}}
 "}}}
 
-
 " ---------------------------------------
 "  Plugin Setting:
 " ---------------------------------------
-
+"{{{
 " deoplete --------------------- {{{
 
 if !has('nvim')
@@ -1116,7 +1115,7 @@ call defx#custom#column('mark', {
       \ 'selected_icon': '✓',
       \ })
 "}}}
-
+"}}}
 
 " ---------------------------------------
 "  Language Specific Setting:
@@ -1245,8 +1244,5 @@ autocmd BufRead      * if expand('%') != '' && &buftype !~ 'nofile' && &buftype 
 "        ￣￣￣￣￣￣￣￣￣￣   >
 "        ￣                     >
 "
-" これでヒノアラシつくりたい。
-" 火は " /\ " で囲って赤くする！
-" そうする関係上，デザインは慎重に選ぶ。
 "
 " ----------------------------------------------
