@@ -276,7 +276,7 @@
                         ]
                     },
                     {
-                        "description": "スペースが他キーと同時押しされたときは，CTRLとして扱う。単体なら，s+c j を送ってからspacebar。",
+                        "description": "スペースが他キーと同時押しされたときは，CTRLとして扱う。単体なら，spacebar。",
                         "manipulators": [
                             {
                                 "from": {
@@ -294,13 +294,6 @@
                                     }
                                 ],
                                 "to_if_alone": [
-                                    {
-                                        "key_code": "j",
-                                        "modifiers": [
-                                            "control",
-                                            "shift"
-                                        ]
-                                    },
                                     {
                                         "key_code": "spacebar"
                                     }
