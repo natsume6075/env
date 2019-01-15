@@ -11,12 +11,13 @@ left_arrow
 left_shift
 mandatory
 modifiers
+open_bracket
 option
 optional
 quote
 return_or_enter
 right_arrow
 shift
+spacebar
 to_after_key_up
 up_arrow
-open_bracket

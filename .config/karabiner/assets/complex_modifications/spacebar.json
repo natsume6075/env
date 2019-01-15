@@ -2,7 +2,7 @@
   "title": "map SPACE to CTRL(if press with any key)",
   "rules": [
     {
-      "description": "スペースが他キーと同時押しされたときは，CTRLとして扱う。単体ならそのまま。",
+      "description": "スペースが他キーと同時押しされたときは，CTRLとして扱う。単体なら，s+c j を送ってからspacebar。",
       "manipulators": [
         { 
           "type": "basic",
@@ -14,10 +14,11 @@
             {"key_code": "left_control", "lazy": true}
           ],
           "to_if_alone": [
+            {"key_code": "j", "modifiers":["control", "shift" ]},
             {"key_code": "spacebar"}
           ]
         }
-
+        
       ]
     }
   ]
