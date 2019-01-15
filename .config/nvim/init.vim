@@ -576,17 +576,36 @@ nnoremap <silent> <C-{> :nohl<CR><C-{>
 
 
 " http://www.ipentec.com/document/regularexpression-url-detect
-
+" todo: ディレクトリパスなら開く？
 noremap <expr> +  Open_reference_OR_URL()
-
 function! Open_reference_OR_URL() abort" {{{
   if expand('<cWORD>') =~ 'https\?:\/\/'
     return ":!open ".expand('<cWORD>')."\<CR>"
+  elseif expand('<cWORD>') =~ '^\(\$\?\(\w\|\ \)\+\|\~\)\?\(\/\(\.\?\(\(\w\|\ \)\+\)\)\)\+\/'
+    return ":e ".expand('<cWORD>')."\<CR>"
   else
     return "K"
   endif
 endfunction
+
+" ~/.config/nvim/my_dictionary/json.dict
+" ~/.config/nv im/my_dictionary/json.dict
+" $XDG_CHAce/.config/nvim/my_dictionary/json.dict
+" $XDG_CHAce/.config/nvim/my_dictionary/
+" $XDG_CHAce/.con fig/nvim/my_dictionary/
+" fig/nvim/my_dictionary/
+" 
+" \(\$\(\w\|\ \)\+\|\~\)
+" " 一つのディレクトリ名
+" \(\.\?\(\(\w\|\ \)\+\)\)
+" 
+" \(\/\(\.\?\(\(\w\|\ \)\+\)\)\)\+
+" \(\$\(\w\|\ \)\+\|\~\)\(\/\(\.\?\(\(\w\|\ \)\+\)\)\)\+\/
+" \/\(\.\?\(\(\w\|\ \)\+\)\)\+
+
 " }}}
+
+" ~/.config/nvim/my_dictionary/json.dict
 
 let mapleader = "z"
 
@@ -1179,6 +1198,17 @@ let g:vimtex_view_general_options = '@line @pdf @tex'
 " let g:vimtex_quickfix_autojump = 1
 let g:vimtex_quickfix_mode     = 2
 let g:vimtex_quickfix_autoclose_after_keystrokes = 1
+
+let g:Tex_IgnoredWarnings =
+      \"Underfull\n".
+      \"Overfull\n".
+      \"specifier changed to\n".
+      \"You have requested\n".
+      \"Missing number, treated as zero.\n".
+      \"There were undefined references\n".
+      \"Citation %.%# undefined\n".
+      \"LaTeX Font Warning:"
+let g:Tex_IgnoreLevel = 8
 
 
 function! s:previewTex() range
