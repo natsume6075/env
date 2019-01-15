@@ -256,12 +256,11 @@ augroup initvim
     " さらにスニペット絡みは展開もジャンプも内部的にインサートを抜けるので，同じく発火されるし挿入される。
     " そもそもラグが辛すぎる！ CTRL-o とかのレスポンスが悪すぎて，論外。
     " インサートモードを抜けるときに発火（仕様上 C-c では発火しないので注意）
-    " autocmd InsertLeave * call system(g:force_alphanumeric_input_command)
-    autocmd InsertEnter *
-          \ if g:current_input_method == s:keycode_jis_kana |
-          \   call system(g:force_kana_input_command) |
-          \   let g:current_input_method = s:keycode_jis_eisuu |
-          \ endif
+    " autocmd InsertEnter *
+          "\ if g:current_input_method == s:keycode_jis_kana |
+          "\   call system(g:force_kana_input_command) |
+          "\   let g:current_input_method = s:keycode_jis_eisuu |
+          "\ endif
     "ここにairlineみたいな，かな入力であることを強調する仕組みを作る？「いんさーと」って表示するとか
   endif
 
