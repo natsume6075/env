@@ -456,6 +456,7 @@ xnoremap <C-r> "
 nnoremap Y y$
 nnoremap j gj
 nnoremap k gk
+map gm %
 " spell
 nnoremap <C-s> z=
 nmap <silent> " <plug>(caw:hatpos:toggle)
@@ -575,7 +576,7 @@ nnoremap <silent> <C-{> :nohl<CR><C-{>
 
 
 " http://www.ipentec.com/document/regularexpression-url-detect
-" todo: ディレクトリパスなら開く？
+" done : ディレクトリパスなら開く？ gf でできる！
 noremap <expr> +  Open_reference_OR_URL()
 function! Open_reference_OR_URL() abort" {{{
   if expand('<cWORD>') =~ 'https\?:\/\/'
@@ -593,11 +594,11 @@ endfunction
 " $XDG_CHAce/.config/nvim/my_dictionary/
 " $XDG_CHAce/.con fig/nvim/my_dictionary/
 " fig/nvim/my_dictionary/
-" 
+"
 " \(\$\(\w\|\ \)\+\|\~\)
 " " 一つのディレクトリ名
 " \(\.\?\(\(\w\|\ \)\+\)\)
-" 
+"
 " \(\/\(\.\?\(\(\w\|\ \)\+\)\)\)\+
 " \(\$\(\w\|\ \)\+\|\~\)\(\/\(\.\?\(\(\w\|\ \)\+\)\)\)\+\/
 " \/\(\.\?\(\(\w\|\ \)\+\)\)\+

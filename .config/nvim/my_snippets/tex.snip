@@ -16,10 +16,6 @@ alias       \mathbb
 options     word
   \mathbb{${1:#:TARGET}}${2}
 
-snippet     bf
-alias       \bf
-options     word
-  {\bf ${1:#:TARGET}}${2}
 
 snippet     bnf_term
 abbr        && expression \\
@@ -39,17 +35,6 @@ abbr        prooftree Axiom
 options     head
   \AxiomC{$${1:#:term}$}${2}
 
-snippet     \UnaryInfC
-alias       unaryc \unaryc
-abbr        prooftree UnaryInfC
-options     head
-  \UnaryInfC{$${1:#:term1} ${2:\fCenter\ } ${3:#:term2}$${4}}
-
-snippet     \UnaryInf
-alias       unary \unaryinf
-abbr        prooftree UnaryInf
-options     head
-  \UnaryInf$${1:#:term1} ${2:\fCenter\ } ${3:#:term2}$${4}
 
 snippet     \BinaryInf
 alias       binary \binaryinf
@@ -91,3 +76,22 @@ options     head
     \end{table}
 
 
+snippet     unary
+alias       unaryinfc UnaryInfC \unaryinfc \UnaryInfC
+abbr        add more unaryinf
+options     head
+    \noLine
+    \UnaryInfC{$
+      ${1:#:TARGET}
+    $}
+
+snippet     textsl
+alias       sl
+options     word
+   \textsl{${1:#:TARGET}}
+
+
+snippet     textbf
+alias       bf
+options     word
+   \textsl{${1:#:TARGET}}
