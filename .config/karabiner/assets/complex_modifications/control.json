@@ -22,7 +22,7 @@
         {
           "type": "basic",
           "conditions": [
-            { "type": "variable_if", "name": "instant_expose", "value": 0 },
+            { "type": "frontmost_application_unless", "bundle_identifiers": [ "^com\\.binaryage\\.TotalSpaces2" ] },
             { "type": "variable_if", "name": "previous_move", "value": 0 }
           ],
           "from": {
@@ -59,15 +59,14 @@
                 "left_command"
               ],
               "lazy":"true"
-            },
-            { "set_variable": { "name": "instant_expose", "value": 1 } }
+            }
           ]
         },
 
         {
           "type": "basic",
           "conditions": [
-            { "type": "variable_if", "name": "instant_expose", "value": 1 }
+            { "type": "frontmost_application_if", "bundle_identifiers": [ "^com\\.binaryage\\.TotalSpaces2" ] }
           ],
           "from": {
             "key_code": "left_control"
@@ -75,8 +74,7 @@
           "to": [
             {
               "key_code": "return_or_enter"
-            },
-            { "set_variable": { "name": "instant_expose", "value": 0 } }
+            }
           ]
         }
       ]
@@ -89,7 +87,6 @@
         {
           "type": "basic",
           "conditions": [
-            { "type": "variable_if", "name": "instant_expose", "value": 0 },
             { "type": "variable_if", "name": "previous_move", "value": 18 }
           ],
           "from": {
@@ -126,15 +123,13 @@
                 "left_command"
               ],
               "lazy":"true"
-            },
-            { "set_variable": { "name": "instant_expose", "value": 1 } }
+            }
           ]
         },
         {
           "type": "basic",
           "conditions": [
             { "type": "variable_if", "name": "previous_move_j", "value": 0 },
-            { "type": "variable_if", "name": "instant_expose", "value": 0 },
             { "type": "variable_if", "name": "previous_move", "value": 19 }
           ],
           "from": {
@@ -172,15 +167,13 @@
                 "left_command"
               ],
               "lazy":"true"
-            },
-            { "set_variable": { "name": "instant_expose", "value": 1 } }
+            }
           ]
         },
         {
           "type": "basic",
           "conditions": [
             { "type": "variable_if", "name": "previous_move_j", "value": 1 },
-            { "type": "variable_if", "name": "instant_expose", "value": 0 },
             { "type": "variable_if", "name": "previous_move", "value": 19 }
           ],
           "from": {
@@ -218,14 +211,12 @@
                 "left_command"
               ],
               "lazy":"true"
-            },
-            { "set_variable": { "name": "instant_expose", "value": 1 } }
+            }
           ]
         },
         {
           "type": "basic",
           "conditions": [
-            { "type": "variable_if", "name": "instant_expose", "value": 0 },
             { "type": "variable_if", "name": "previous_move", "value": 20 }
           ],
           "from": {
@@ -262,14 +253,12 @@
                 "left_command"
               ],
               "lazy":"true"
-            },
-            { "set_variable": { "name": "instant_expose", "value": 1 } }
+            }
           ]
         },
         {
           "type": "basic",
           "conditions": [
-            { "type": "variable_if", "name": "instant_expose", "value": 0 },
             { "type": "variable_if", "name": "previous_move", "value": 23 }
           ],
           "from": {
@@ -306,8 +295,7 @@
                 "left_command"
               ],
               "lazy":"true"
-            },
-            { "set_variable": { "name": "instant_expose", "value": 1 } }
+            }
           ]
         },
 

@@ -1350,9 +1350,10 @@
                             {
                                 "conditions": [
                                     {
-                                        "name": "instant_expose",
-                                        "type": "variable_if",
-                                        "value": 0
+                                        "bundle_identifiers": [
+                                            "^com\\.binaryage\\.TotalSpaces2"
+                                        ],
+                                        "type": "frontmost_application_unless"
                                     },
                                     {
                                         "name": "previous_move",
@@ -1398,12 +1399,6 @@
                                             "option",
                                             "left_command"
                                         ]
-                                    },
-                                    {
-                                        "set_variable": {
-                                            "name": "instant_expose",
-                                            "value": 1
-                                        }
                                     }
                                 ],
                                 "type": "basic"
@@ -1411,9 +1406,10 @@
                             {
                                 "conditions": [
                                     {
-                                        "name": "instant_expose",
-                                        "type": "variable_if",
-                                        "value": 1
+                                        "bundle_identifiers": [
+                                            "^com\\.binaryage\\.TotalSpaces2"
+                                        ],
+                                        "type": "frontmost_application_if"
                                     }
                                 ],
                                 "from": {
@@ -1422,12 +1418,6 @@
                                 "to": [
                                     {
                                         "key_code": "return_or_enter"
-                                    },
-                                    {
-                                        "set_variable": {
-                                            "name": "instant_expose",
-                                            "value": 0
-                                        }
                                     }
                                 ],
                                 "type": "basic"
@@ -1439,11 +1429,6 @@
                         "manipulators": [
                             {
                                 "conditions": [
-                                    {
-                                        "name": "instant_expose",
-                                        "type": "variable_if",
-                                        "value": 0
-                                    },
                                     {
                                         "name": "previous_move",
                                         "type": "variable_if",
@@ -1488,12 +1473,6 @@
                                             "option",
                                             "left_command"
                                         ]
-                                    },
-                                    {
-                                        "set_variable": {
-                                            "name": "instant_expose",
-                                            "value": 1
-                                        }
                                     }
                                 ],
                                 "type": "basic"
@@ -1502,11 +1481,6 @@
                                 "conditions": [
                                     {
                                         "name": "previous_move_j",
-                                        "type": "variable_if",
-                                        "value": 0
-                                    },
-                                    {
-                                        "name": "instant_expose",
                                         "type": "variable_if",
                                         "value": 0
                                     },
@@ -1560,12 +1534,6 @@
                                             "option",
                                             "left_command"
                                         ]
-                                    },
-                                    {
-                                        "set_variable": {
-                                            "name": "instant_expose",
-                                            "value": 1
-                                        }
                                     }
                                 ],
                                 "type": "basic"
@@ -1576,11 +1544,6 @@
                                         "name": "previous_move_j",
                                         "type": "variable_if",
                                         "value": 1
-                                    },
-                                    {
-                                        "name": "instant_expose",
-                                        "type": "variable_if",
-                                        "value": 0
                                     },
                                     {
                                         "name": "previous_move",
@@ -1632,23 +1595,12 @@
                                             "option",
                                             "left_command"
                                         ]
-                                    },
-                                    {
-                                        "set_variable": {
-                                            "name": "instant_expose",
-                                            "value": 1
-                                        }
                                     }
                                 ],
                                 "type": "basic"
                             },
                             {
                                 "conditions": [
-                                    {
-                                        "name": "instant_expose",
-                                        "type": "variable_if",
-                                        "value": 0
-                                    },
                                     {
                                         "name": "previous_move",
                                         "type": "variable_if",
@@ -1693,23 +1645,12 @@
                                             "option",
                                             "left_command"
                                         ]
-                                    },
-                                    {
-                                        "set_variable": {
-                                            "name": "instant_expose",
-                                            "value": 1
-                                        }
                                     }
                                 ],
                                 "type": "basic"
                             },
                             {
                                 "conditions": [
-                                    {
-                                        "name": "instant_expose",
-                                        "type": "variable_if",
-                                        "value": 0
-                                    },
                                     {
                                         "name": "previous_move",
                                         "type": "variable_if",
@@ -1754,12 +1695,6 @@
                                             "option",
                                             "left_command"
                                         ]
-                                    },
-                                    {
-                                        "set_variable": {
-                                            "name": "instant_expose",
-                                            "value": 1
-                                        }
                                     }
                                 ],
                                 "type": "basic"
