@@ -54,11 +54,11 @@
                                     }
                                 ],
                                 "from": {
-                                    "key_code": "k"
+                                    "key_code": "h"
                                 },
                                 "to": [
                                     {
-                                        "key_code": "close_bracket",
+                                        "key_code": "4",
                                         "modifiers": [
                                             "shift"
                                         ]
@@ -80,6 +80,27 @@
                                 "to": [
                                     {
                                         "key_code": "8",
+                                        "modifiers": [
+                                            "shift"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "simbol_mode",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "k"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "close_bracket",
                                         "modifiers": [
                                             "shift"
                                         ]
@@ -113,6 +134,33 @@
                                     }
                                 ],
                                 "to_if_held_down": [],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "[0] スペースが他キーと同時押しされたときは，CTRLとして扱う。単体なら，spacebar。",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "spacebar",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "left_control",
+                                        "lazy": true
+                                    }
+                                ],
+                                "to_if_alone": [
+                                    {
+                                        "key_code": "spacebar"
+                                    }
+                                ],
                                 "type": "basic"
                             }
                         ]
@@ -267,33 +315,6 @@
                                         "modifiers": [
                                             "shift"
                                         ]
-                                    }
-                                ],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "スペースが他キーと同時押しされたときは，CTRLとして扱う。単体なら，spacebar。",
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "spacebar",
-                                    "modifiers": {
-                                        "optional": [
-                                            "any"
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "left_control",
-                                        "lazy": true
-                                    }
-                                ],
-                                "to_if_alone": [
-                                    {
-                                        "key_code": "spacebar"
                                     }
                                 ],
                                 "type": "basic"

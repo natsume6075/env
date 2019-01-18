@@ -27,10 +27,10 @@
             { "type": "variable_if", "name": "simbol_mode", "value": 1 }
           ],
           "from": {
-            "key_code": "k"
+            "key_code": "h"
           },
           "to": [
-            { "key_code": "close_bracket", "modifiers":["shift"] }
+            { "key_code": "4", "modifiers":["shift"] }
           ]
         },
         {
@@ -43,6 +43,18 @@
           },
           "to": [
             { "key_code": "8", "modifiers":["shift"] }
+          ]
+        },
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "variable_if", "name": "simbol_mode", "value": 1 }
+          ],
+          "from": {
+            "key_code": "k"
+          },
+          "to": [
+            { "key_code": "close_bracket", "modifiers":["shift"] }
           ]
         }
       ]

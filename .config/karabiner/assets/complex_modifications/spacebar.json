@@ -2,7 +2,7 @@
   "title": "map SPACE to CTRL(if press with any key)",
   "rules": [
     {
-      "description": "スペースが他キーと同時押しされたときは，CTRLとして扱う。単体なら，spacebar。",
+      "description": "[0] スペースが他キーと同時押しされたときは，CTRLとして扱う。単体なら，spacebar。",
       "manipulators": [
         {
           "type": "basic",
