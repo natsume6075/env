@@ -7,16 +7,42 @@
         {
           "type": "basic",
           "from": {
-            "key_code": "right_shift",
-            "modifiers":{"optional":["any"]}
+            "key_code": "lang1"
           },
           "to": [
-            {"key_code": "right_shift", "lazy": true}
+            { "set_variable": { "name": "simbol_mode", "value": 1 } }
+          ],
+          "to_after_key_up": [
+            { "set_variable": { "name": "simbol_mode", "value": 0 } }
           ],
           "to_if_alone": [
-            {"key_code": "lang1"}
+            { "key_code": "lang1" }
           ],
           "to_if_held_down": [
+          ]
+        },
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "variable_if", "name": "simbol_mode", "value": 1 }
+          ],
+          "from": {
+            "key_code": "k"
+          },
+          "to": [
+            { "key_code": "close_bracket", "modifiers":["shift"] }
+          ]
+        },
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "variable_if", "name": "simbol_mode", "value": 1 }
+          ],
+          "from": {
+            "key_code": "j"
+          },
+          "to": [
+            { "key_code": "8", "modifiers":["shift"] }
           ]
         }
       ]
@@ -27,42 +53,16 @@
         {
           "type": "basic",
           "from": {
-            "key_code": "lang2"
+            "key_code": "left_shift",
+            "modifiers":{"optional":["any"]}
           },
           "to": [
-            { "set_variable": { "name": "lang2", "value": 1 } }
-          ],
-          "to_after_key_up": [
-            { "set_variable": { "name": "lang2", "value": 0 } }
+            {"key_code": "left_shift", "lazy": true}
           ],
           "to_if_alone": [
-            { "key_code": "lang2" }
+            {"key_code": "lang2"}
           ],
           "to_if_held_down": [
-          ]
-        },
-        {
-          "type": "basic",
-          "conditions": [
-            { "type": "variable_if", "name": "lang2", "value": 1 }
-          ],
-          "from": {
-            "key_code": "j"
-          },
-          "to": [
-            { "key_code": "close_bracket", "modifiers":["shift"] }
-          ]
-        },
-        {
-          "type": "basic",
-          "conditions": [
-            { "type": "variable_if", "name": "lang2", "value": 1 }
-          ],
-          "from": {
-            "key_code": "k"
-          },
-          "to": [
-            { "key_code": "8", "modifiers":["shift"] }
           ]
         }
       ]

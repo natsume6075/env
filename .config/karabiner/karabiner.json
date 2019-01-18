@@ -19,17 +19,22 @@
                         "manipulators": [
                             {
                                 "from": {
-                                    "key_code": "right_shift",
-                                    "modifiers": {
-                                        "optional": [
-                                            "any"
-                                        ]
-                                    }
+                                    "key_code": "lang1"
                                 },
                                 "to": [
                                     {
-                                        "key_code": "right_shift",
-                                        "lazy": true
+                                        "set_variable": {
+                                            "name": "simbol_mode",
+                                            "value": 1
+                                        }
+                                    }
+                                ],
+                                "to_after_key_up": [
+                                    {
+                                        "set_variable": {
+                                            "name": "simbol_mode",
+                                            "value": 0
+                                        }
                                     }
                                 ],
                                 "to_if_alone": [
@@ -39,50 +44,17 @@
                                 ],
                                 "to_if_held_down": [],
                                 "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "[0] lang2",
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "lang2"
-                                },
-                                "to": [
-                                    {
-                                        "set_variable": {
-                                            "name": "lang2",
-                                            "value": 1
-                                        }
-                                    }
-                                ],
-                                "to_after_key_up": [
-                                    {
-                                        "set_variable": {
-                                            "name": "lang2",
-                                            "value": 0
-                                        }
-                                    }
-                                ],
-                                "to_if_alone": [
-                                    {
-                                        "key_code": "lang2"
-                                    }
-                                ],
-                                "to_if_held_down": [],
-                                "type": "basic"
                             },
                             {
                                 "conditions": [
                                     {
-                                        "name": "lang2",
+                                        "name": "simbol_mode",
                                         "type": "variable_if",
                                         "value": 1
                                     }
                                 ],
                                 "from": {
-                                    "key_code": "j"
+                                    "key_code": "k"
                                 },
                                 "to": [
                                     {
@@ -97,13 +69,13 @@
                             {
                                 "conditions": [
                                     {
-                                        "name": "lang2",
+                                        "name": "simbol_mode",
                                         "type": "variable_if",
                                         "value": 1
                                     }
                                 ],
                                 "from": {
-                                    "key_code": "k"
+                                    "key_code": "j"
                                 },
                                 "to": [
                                     {
@@ -113,6 +85,34 @@
                                         ]
                                     }
                                 ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "[0] lang2",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "left_shift",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "left_shift",
+                                        "lazy": true
+                                    }
+                                ],
+                                "to_if_alone": [
+                                    {
+                                        "key_code": "lang2"
+                                    }
+                                ],
+                                "to_if_held_down": [],
                                 "type": "basic"
                             }
                         ]
@@ -4948,10 +4948,10 @@
             "simple_modifications": [
                 {
                     "from": {
-                        "key_code": "lang1"
+                        "key_code": "lang2"
                     },
                     "to": {
-                        "key_code": "right_shift"
+                        "key_code": "left_shift"
                     }
                 },
                 {
