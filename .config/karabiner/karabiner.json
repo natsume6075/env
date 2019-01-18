@@ -15,7 +15,35 @@
                 },
                 "rules": [
                     {
-                        "description": "lang2",
+                        "description": "[0] lang1",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "right_shift",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "right_shift",
+                                        "lazy": true
+                                    }
+                                ],
+                                "to_if_alone": [
+                                    {
+                                        "key_code": "lang1"
+                                    }
+                                ],
+                                "to_if_held_down": [],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "[0] lang2",
                         "manipulators": [
                             {
                                 "from": {
@@ -42,6 +70,7 @@
                                         "key_code": "lang2"
                                     }
                                 ],
+                                "to_if_held_down": [],
                                 "type": "basic"
                             },
                             {
@@ -4919,6 +4948,14 @@
             "simple_modifications": [
                 {
                     "from": {
+                        "key_code": "lang1"
+                    },
+                    "to": {
+                        "key_code": "right_shift"
+                    }
+                },
+                {
+                    "from": {
                         "key_code": "quote"
                     },
                     "to": {
@@ -4927,18 +4964,18 @@
                 },
                 {
                     "from": {
-                        "key_code": "semicolon"
-                    },
-                    "to": {
-                        "key_code": "quote"
-                    }
-                },
-                {
-                    "from": {
-                        "key_code": "right_command"
+                        "key_code": "right_shift"
                     },
                     "to": {
                         "key_code": "f13"
+                    }
+                },
+                {
+                    "from": {
+                        "key_code": "semicolon"
+                    },
+                    "to": {
+                        "key_code": "quote"
                     }
                 }
             ],

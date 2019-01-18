@@ -1,8 +1,28 @@
 {
-  "title": "lang2",
+  "title": "lang",
   "rules": [
     {
-      "description": "lang2",
+      "description": "[0] lang1",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "right_shift",
+            "modifiers":{"optional":["any"]}
+          },
+          "to": [
+            {"key_code": "right_shift", "lazy": true}
+          ],
+          "to_if_alone": [
+            {"key_code": "lang1"}
+          ],
+          "to_if_held_down": [
+          ]
+        }
+      ]
+    },
+    {
+      "description": "[0] lang2",
       "manipulators": [
         {
           "type": "basic",
@@ -17,6 +37,8 @@
           ],
           "to_if_alone": [
             { "key_code": "lang2" }
+          ],
+          "to_if_held_down": [
           ]
         },
         {
