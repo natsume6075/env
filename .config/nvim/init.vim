@@ -233,10 +233,16 @@ set hlsearch
 " If true Vim master, use English help file.
 set helplang& helplang=en,ja
 
-" command
+" ---------------------------------------
+"  Commands Settings:
+" ---------------------------------------
+"{{{
 command! DiffOrig vert new | set bt=nofile | r ++edit # | 0d_
       \ | diffthis | wincmd p | diffthis
 
+command! W bufdo w
+command! WQ bufdo wq
+"}}}
 
 " ---------------------------------------
 "  Autocmd Settings:
@@ -281,6 +287,13 @@ augroup initvim
 augroup END
 "}}}
 
+" ---------------------------------------
+"  Comands:
+" ---------------------------------------
+"{{{
+
+
+"}}}
 
 " ---------------------------------------
 "  Dein Scripts:
@@ -496,7 +509,6 @@ vnoremap <expr> sub Move_cursor_pos_mapping(":s/<C-r>0/<C-r>0<CURSOR>/g")
 
 
 " motion ------------------------------{{{
-cnoremap <C-a> <HOME>
 inoremap <C-a> <C-o>^
 noremap! <C-b> <left>
 noremap! <C-e> <END>
@@ -868,6 +880,8 @@ nnoremap <silent>d, :
 " ---------------------------------------
 "{{{
 cnoremap jj <C-c>
+cnoremap <C-a> <HOME>
+cnoremap <C-y> <HOME>bufdo :
 "}}}
 
 " ---------------------------------------
@@ -917,7 +931,6 @@ xmap '     <plug>(neosnippet_expand_target)'<CR>
 
 
 " imap     <silent><expr> <C-l>   pumvisible() ? deoplete#close_popup()."\<C-l>" : "\<plug>(neosnippet_jump)
-"}}}
 "}}}
 
 " ---------------------------------------
