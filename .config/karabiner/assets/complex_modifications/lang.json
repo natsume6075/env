@@ -27,6 +27,18 @@
             { "type": "variable_if", "name": "simbol_mode", "value": 1 }
           ],
           "from": {
+            "key_code": "f"
+          },
+          "to": [
+            { "key_code": "5", "modifiers":["shift"] }
+          ]
+        },
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "variable_if", "name": "simbol_mode", "value": 1 }
+          ],
+          "from": {
             "key_code": "h"
           },
           "to": [
