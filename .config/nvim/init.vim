@@ -1111,8 +1111,20 @@ let g:neosnippet#snippets_directory='$XDG_CONFIG_HOME/nvim/my_snippets'
 " 内部的にインサートモードを抜けるので，InsertLeave が発火する。
 
 " 一番上の expand できるキーワードでスニペットを展開する
-imap <expr> œ neosnippet#expandable() ? "\<Plug>(neosnippet_expand)" : pumvisible() ? Finite_increase_pum() : "œ"
+imap <expr> <C-k> neosnippet#expandable() ? "\<Plug>(neosnippet_expand)" : pumvisible() ? Finite_increase_pum() : ""
+" imap <expr> œ neosnippet#expandable() ? "\<Plug>(neosnippet_expand)" : pumvisible() ? Finite_increase_pum() : "œ"
 function! Finite_increase_pum()"{{{
+  if g:counter < 100
+    let g:counter += 1
+    return "\<C-n>\<C-k>"
+  else
+    let g:counter = 0
+    return "\<S-TAB>"
+  endif
+endfunction
+let counter = 0
+"}}}
+function! Finite_increase_pum_copy()"{{{
   if g:counter < 100
     let g:counter += 1
     return "\<C-n>œ"
@@ -1124,7 +1136,8 @@ endfunction
 let counter = 0
 "}}}
 
-vmap œ     <plug>(neosnippet_expand_target)
+vmap <C-k>     <plug>(neosnippet_expand_target)
+" vmap œ     <plug>(neosnippet_expand_target)
 imap <expr> <C-l>   pumvisible() ? deoplete#close_popup()."\<C-l>" : "\<plug>(neosnippet_jump)"
 "imap <hoge>    <plug>(neosnippet_start_unite_snippet)
 "}}}
