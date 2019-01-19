@@ -1039,11 +1039,6 @@ inoremap 🄹  <C-o>J
 " imap <C-y>L  <Up><Right><ESC>y$i<Down><ESC>pa<CR><C-o>dd<left>
 
 
-" かっこ補完
-" imap (       (a<C-h><plug>(neosnippet_expand)
-" imap {       {a<C-h><plug>(neosnippet_expand)
-" imap [       [a<C-h><plug>(neosnippet_expand)
-" imap <       <a<C-h><plug>(neosnippet_expand)
 
 xmap (     <plug>(neosnippet_expand_target)(<CR>
 xmap {     <plug>(neosnippet_expand_target){<CR>
@@ -1055,6 +1050,17 @@ xmap '     <plug>(neosnippet_expand_target)'<CR>
 
 " imap     <silent><expr> <C-l>   pumvisible() ? deoplete#close_popup()."\<C-l>" : "\<plug>(neosnippet_jump)
 "}}}
+"}}}
+
+" ---------------------------------------
+"  Auto Snippet:
+" ---------------------------------------
+"{{{
+imap å(       (a<C-h><plug>(neosnippet_expand)
+imap å{       {a<C-h><plug>(neosnippet_expand)
+imap å[       [a<C-h><plug>(neosnippet_expand)
+imap å<       <a<C-h><plug>(neosnippet_expand)
+imap å$       $a<C-h><plug>(neosnippet_expand)
 "}}}
 
 " ---------------------------------------
