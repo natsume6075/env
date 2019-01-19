@@ -39,7 +39,6 @@
       "manipulators": [
         { "type": "basic",
           "conditions": [
-            { "type": "frontmost_application_unless", "bundle_identifiers": [ "^com\\.googlecode\\.iterm2" ] }
           ],
           "from": {
             "key_code": "k",

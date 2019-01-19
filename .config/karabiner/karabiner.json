@@ -5303,14 +5303,7 @@
                         "description": "[auxilary] C-k で œ を送る",
                         "manipulators": [
                             {
-                                "conditions": [
-                                    {
-                                        "bundle_identifiers": [
-                                            "^com\\.googlecode\\.iterm2"
-                                        ],
-                                        "type": "frontmost_application_unless"
-                                    }
-                                ],
+                                "conditions": [],
                                 "from": {
                                     "key_code": "k",
                                     "modifiers": {

@@ -972,10 +972,12 @@ xnoremap <f6> y :<C-u>.tabedit $XDG_CONFIG_HOME/nvim/my_snippets/_.snip<CR>Gp
 " map <f7> to language specific neosnippetedit
 nnoremap <f7> :NeoSnippetEdit -horizontal<CR>
 xnoremap <f7> y :NeoSnippetEdit -horizontal<CR>Gp
-" <f8> dictionary の呼び出し
-" autocmd initvim filetype dict  nnoremap <f8> :q<CR>
-nnoremap <f8> :<C-u>.tabedit $LANG_DICTIONARY<CR>:sort u<CR>:w<CR>
-vnoremap <f8> "zy :!echo <C-r>z>> $LANG_DICTIONARY<CR><CR>
+nnoremap <f8> :<C-u>.tabedit $GLOBAL_DICTIONARY<CR>:sort u<CR>:w<CR>
+vnoremap <f8> "zy :!echo <C-r>z>> $GLOBAL_DICTIONARY<CR><CR>
+" <f9> dictionary の呼び出し
+" autocmd initvim filetype dict  nnoremap <f9> :q<CR>
+nnoremap <f9> :<C-u>.tabedit $LANG_DICTIONARY<CR>:sort u<CR>:w<CR>
+vnoremap <f9> "zy :!echo <C-r>z>> $LANG_DICTIONARY<CR><CR>
 " <f11> conceal syntax の呼び出し（vim）
 autocmd initvim filetype tex  nnoremap <f11>
       \ :<C-u>.tabedit $XDG_CACHE_HOME/dein/repos/github.com/keitanakamura/tex-conceal.vim/after/syntax/tex.vim<CR>
@@ -1109,11 +1111,11 @@ let g:neosnippet#snippets_directory='$XDG_CONFIG_HOME/nvim/my_snippets'
 " 内部的にインサートモードを抜けるので，InsertLeave が発火する。
 
 " 一番上の expand できるキーワードでスニペットを展開する
-imap <expr> <C-k> neosnippet#expandable() ? "\<Plug>(neosnippet_expand)" : pumvisible() ? Finite_increase_pum() : ""
+imap <expr> œ neosnippet#expandable() ? "\<Plug>(neosnippet_expand)" : pumvisible() ? Finite_increase_pum() : "œ"
 function! Finite_increase_pum()"{{{
   if g:counter < 100
     let g:counter += 1
-    return "\<C-n>\<C-k>"
+    return "\<C-n>œ"
   else
     let g:counter = 0
     return "\<S-TAB>"
@@ -1122,11 +1124,11 @@ endfunction
 let counter = 0
 "}}}
 
-
-vmap <C-k>     <plug>(neosnippet_expand_target)
+vmap œ     <plug>(neosnippet_expand_target)
 imap <expr> <C-l>   pumvisible() ? deoplete#close_popup()."\<C-l>" : "\<plug>(neosnippet_jump)"
 "imap <hoge>    <plug>(neosnippet_start_unite_snippet)
 "}}}
+
 
 " vim-surround ---------------- {{{
 " }}}
@@ -1268,10 +1270,16 @@ autocmd initvim FileType json
 "  Fired Lastly:
 " ---------------------------------------
 "{{{
+
 autocmd initvim VimEnter *
       \ let $LANG_DICTIONARY = expand($XDG_CONFIG_HOME.'/nvim/my_dictionary/'.$LANG.'.dict')
 autocmd initvim VimEnter *
-      \ set dictionary=$LANG_DICTIONARY
+      \ set dictionary+=$LANG_DICTIONARY
+
+let $GLOBAL_DICTIONARY = expand($XDG_CONFIG_HOME.'/nvim/my_dictionary/_.dict')
+set dictionary+=$GLOBAL_DICTIONARY
+
+
 
 " Ref: https://vim-jp.org/vim-users-jp/2009/10/08/Hack-84.html
 " Save fold settings and cursor pos.
