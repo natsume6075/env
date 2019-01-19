@@ -105,3 +105,16 @@ abbr        vim_mode の normal_mode での挙動の定義
             { "key_code": "right_arrow" }
           ]
         },
+
+
+snippet     from
+alias       "from"
+options     head
+    "from": {
+      "key_code": "${1}",
+      "modifiers":{
+        "mandatory":["any"],
+        "optional" :["any"]
+      }
+    },
+

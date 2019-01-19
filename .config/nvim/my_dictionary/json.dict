@@ -4,6 +4,7 @@ control
 delete_or_backspace
 down_arrow
 frontmost_application_if
+hyphen
 international1
 international3
 key_code
@@ -28,4 +29,3 @@ spacebar
 to_after_key_up
 to_if_alone
 up_arrow
-hyphen

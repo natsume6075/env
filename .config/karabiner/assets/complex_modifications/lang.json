@@ -7,7 +7,10 @@
         {
           "type": "basic",
           "from": {
-            "key_code": "lang1"
+            "key_code": "lang1",
+            "modifiers":{
+              "optional" :["any"]
+            }
           },
           "to": [
             { "set_variable": { "name": "simbol_mode", "value": 1 } }
@@ -137,10 +140,40 @@
             { "type": "variable_if", "name": "simbol_mode", "value": 1 }
           ],
           "from": {
+            "key_code": "j",
+            "modifiers":{
+              "mandatory":["shift"]
+            }
+          },
+          "to": [
+            { "key_code": "9", "modifiers":["shift"] }
+          ]
+        },
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "variable_if", "name": "simbol_mode", "value": 1 }
+          ],
+          "from": {
             "key_code": "k"
           },
           "to": [
             { "key_code": "close_bracket", "modifiers":["shift"] }
+          ]
+        },
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "variable_if", "name": "simbol_mode", "value": 1 }
+          ],
+          "from": {
+            "key_code": "k",
+            "modifiers":{
+              "mandatory":["shift"]
+            }
+          },
+          "to": [
+            { "key_code": "backslash", "modifiers":["shift"] }
           ]
         },
         {
@@ -161,11 +194,40 @@
             { "type": "variable_if", "name": "simbol_mode", "value": 1 }
           ],
           "from": {
-            "key_code": "quote",
-            "modifiers": ["shift"]
+            "key_code": "l",
+            "modifiers":{
+              "mandatory":["shift"]
+            }
+          },
+          "to": [
+            { "key_code": "backslash", "modifiers":[""] }
+          ]
+        },
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "variable_if", "name": "simbol_mode", "value": 1 }
+          ],
+          "from": {
+            "key_code": "quote"
           },
           "to": [
             { "key_code": "comma", "modifiers":["shift"] }
+          ]
+        },
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "variable_if", "name": "simbol_mode", "value": 1 }
+          ],
+          "from": {
+            "key_code": "quote",
+            "modifiers":{
+              "mandatory":["shift"]
+            }
+          },
+          "to": [
+            { "key_code": "period", "modifiers":["shift"] }
           ]
         }
       ]
