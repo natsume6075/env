@@ -29,3 +29,4 @@ spacebar
 to_after_key_up
 to_if_alone
 up_arrow
+frontmost_application_unless
