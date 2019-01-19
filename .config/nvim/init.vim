@@ -1030,8 +1030,6 @@ noremap! <C-d> <Del>
 " spell
 inoremap <C-s> <C-x>s
 
-inoremap 🄷  <C-o>db
-inoremap 🄹  <C-o>J
 
 " ひとつ上の行をいただく
 " i_CTRL-Y を最後までやる
