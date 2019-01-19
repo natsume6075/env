@@ -21,6 +21,68 @@
           "to_if_held_down": [
           ]
         },
+
+
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "variable_if", "name": "simbol_mode", "value": 1 }
+          ],
+          "from": {
+            "key_code": "u"
+          },
+          "to": [
+            { "key_code": "slash", "modifiers":[] }
+          ]
+        },
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "variable_if", "name": "simbol_mode", "value": 1 }
+          ],
+          "from": {
+            "key_code": "i"
+          },
+          "to": [
+            { "key_code": "international3", "modifiers":[] }
+          ]
+        },
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "variable_if", "name": "simbol_mode", "value": 1 }
+          ],
+          "from": {
+            "key_code": "o"
+          },
+          "to": [
+            { "key_code": "1", "modifiers":["shift"] }
+          ]
+        },
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "variable_if", "name": "simbol_mode", "value": 1 }
+          ],
+          "from": {
+            "key_code": "p"
+          },
+          "to": [
+            { "key_code": "slash", "modifiers":["shift"] }
+          ]
+        },
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "variable_if", "name": "simbol_mode", "value": 1 }
+          ],
+          "from": {
+            "key_code": "d"
+          },
+          "to": [
+            { "key_code": "hyphen", "modifiers":["shift"] }
+          ]
+        },
         {
           "type": "basic",
           "conditions": [
@@ -28,6 +90,18 @@
           ],
           "from": {
             "key_code": "f"
+          },
+          "to": [
+            { "key_code": "6", "modifiers":["shift"] }
+          ]
+        },
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "variable_if", "name": "simbol_mode", "value": 1 }
+          ],
+          "from": {
+            "key_code": "g"
           },
           "to": [
             { "key_code": "5", "modifiers":["shift"] }
@@ -67,6 +141,31 @@
           },
           "to": [
             { "key_code": "close_bracket", "modifiers":["shift"] }
+          ]
+        },
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "variable_if", "name": "simbol_mode", "value": 1 }
+          ],
+          "from": {
+            "key_code": "l"
+          },
+          "to": [
+            { "key_code": "close_bracket", "modifiers":[] }
+          ]
+        },
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "variable_if", "name": "simbol_mode", "value": 1 }
+          ],
+          "from": {
+            "key_code": "quote",
+            "modifiers": ["shift"]
+          },
+          "to": [
+            { "key_code": "comma", "modifiers":["shift"] }
           ]
         }
       ]
