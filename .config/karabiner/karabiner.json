@@ -82,8 +82,10 @@
                                 },
                                 "to": [
                                     {
-                                        "key_code": "international3",
-                                        "modifiers": []
+                                        "key_code": "1",
+                                        "modifiers": [
+                                            "shift"
+                                        ]
                                     }
                                 ],
                                 "type": "basic"
@@ -101,7 +103,7 @@
                                 },
                                 "to": [
                                     {
-                                        "key_code": "1",
+                                        "key_code": "slash",
                                         "modifiers": [
                                             "shift"
                                         ]
@@ -122,10 +124,8 @@
                                 },
                                 "to": [
                                     {
-                                        "key_code": "slash",
-                                        "modifiers": [
-                                            "shift"
-                                        ]
+                                        "key_code": "international3",
+                                        "modifiers": []
                                     }
                                 ],
                                 "type": "basic"

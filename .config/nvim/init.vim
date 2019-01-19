@@ -838,6 +838,7 @@ nmap <silent> ─Control-h :bprevious<CR>
 nmap <silent> <C-l>        :bnext<CR>
 nmap <silent> <leader><Space> :b<Space>
 nmap <silent> <leader>q :bdelete<CR>
+nmap <silent> <leader>w :w<CR>
 "}}}
 
 " interface between pain and buffer ---------------------{{{

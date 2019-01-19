@@ -47,7 +47,7 @@
             "key_code": "i"
           },
           "to": [
-            { "key_code": "international3", "modifiers":[] }
+            { "key_code": "1", "modifiers":["shift"] }
           ]
         },
         {
@@ -59,7 +59,7 @@
             "key_code": "o"
           },
           "to": [
-            { "key_code": "1", "modifiers":["shift"] }
+            { "key_code": "slash", "modifiers":["shift"] }
           ]
         },
         {
@@ -71,9 +71,10 @@
             "key_code": "p"
           },
           "to": [
-            { "key_code": "slash", "modifiers":["shift"] }
+            { "key_code": "international3", "modifiers":[] }
           ]
         },
+
         {
           "type": "basic",
           "conditions": [
