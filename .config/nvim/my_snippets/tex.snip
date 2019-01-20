@@ -95,3 +95,8 @@ snippet     textbf
 alias       bf
 options     word
    \textsl{${1:#:TARGET}}
+
+snippet     lstinputlisting
+options     word
+    \lstinputlisting[caption=${1:#:caption}, label=src:${2:#:label}]{${3:#:filename}}\quad\\\\
+
