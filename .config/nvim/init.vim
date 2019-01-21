@@ -266,7 +266,7 @@ augroup initvim
           \ if g:current_input_method == s:keycode_jis_kana |
           \   call system(g:force_kana_input_command) |
           \   let g:current_input_method = s:keycode_jis_eisuu |
-          \   hi FoldColumn ctermbg=darkmagenta ctermfg=Black|
+          \   hi FoldColumn ctermbg=darkred ctermfg=white|
           \ else |
           \   hi FoldColumn ctermbg=Black ctermfg=2 |
           \ endif
@@ -276,7 +276,7 @@ augroup initvim
 
 
   " 逆転の発想で，っj が送られた時だけ，かな入力になっていると言う情報を保持。上で発火してる。
-  imap <silent> っj <ESC>:let current_input_method = 104<CR>:hi FoldColumn ctermbg=darkmagenta ctermfg=Black<CR>
+  imap <silent> っj <ESC>:let current_input_method = 104<CR>:hi FoldColumn ctermbg=darkred ctermfg=white<CR>
   imap jj  <ESC>:hi FoldColumn ctermbg=Black ctermfg=2<CR>
 
 
@@ -1039,6 +1039,7 @@ noremap! <C-d> <Del>
 inoremap <C-s> <C-x>s
 
 " inoremap <C-o> call system(g:force_kana_input_command)
+
 
 
 " ひとつ上の行をいただく
