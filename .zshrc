@@ -80,6 +80,8 @@ alias diff='diff -U1'
 
 # vim っぽくする
 bindkey -v
+bindkey 'çlang2'      none
+bindkey 'çlang1'      none
 bindkey '─Control-h'      backward-delete-char
 # bindkey '^I'              tab
 
@@ -113,7 +115,8 @@ bindkey -M viins '^Y'       yank
 bindkey -M vicmd '─Control-h'       backward-char
 bindkey -M vicmd 'H'   beginning-of-line
 bindkey -M vicmd 'L'   end-of-line
-
+function none() {}
+zle -N none
 function kill-line-all() {
   zle beginning-of-line
   zle kill-line

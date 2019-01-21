@@ -267,25 +267,30 @@ augroup initvim
           \   call system(g:force_kana_input_command) |
           \   let g:current_input_method = s:keycode_jis_eisuu |
           \   hi FoldColumn ctermbg=darkred ctermfg=white|
-          \ else |
-          \   hi FoldColumn ctermbg=Black ctermfg=2 |
           \ endif
 "ここにairlineみたいな，かな入力であることを強調する仕組みを作る？「いんさーと」って表示するとか
   endif
 
+  inoremap <silent>っj <ESC>
+        \:let current_input_method = 104<CR>
+        \:hi FoldColumn ctermbg=Black ctermfg=2<CR>
+
+  noremap  çlang1 <Nop>
+  noremap! çlang1 <Nop>
+  noremap  çlang2 <Nop>
+  noremap! çlang2 <Nop>
+  nnoremap <silent> çlang1 :
+        \:let current_input_method = 104<CR>
+        \:call system(g:force_alphanumeric_input_command)<CR>
+  nnoremap <silent> çlang2 :
+        \:hi FoldColumn ctermbg=Black ctermfg=2<CR>
+        \:let current_input_method = 102<CR>
+  inoremap <silent> çlang1
+        \ <C-o>:hi FoldColumn ctermbg=darkred ctermfg=white<CR>
+  inoremap <silent> çlang2
+        \ <C-o>:hi FoldColumn ctermbg=Black ctermfg=2<CR>
 
 
-  " 逆転の発想で，っj が送られた時だけ，かな入力になっていると言う情報を保持。上で発火してる。
-  imap <silent> っj <ESC>:let current_input_method = 104<CR>:hi FoldColumn ctermbg=darkred ctermfg=white<CR>
-  imap jj  <ESC>:hi FoldColumn ctermbg=Black ctermfg=2<CR>
-
-
-  " lang2 -> <C-\>l2 lang2 と karabiner で割り当てて，ここに副作用を書いたらどうかな？
-  " -> いや！ lang2 二連打できなくなるわ！
-  map  <silent> <C-\>l1 hoge
-  map! <silent> <C-\>l1 hoge
-  map  <silent> <C-\>l2 hoge
-  map! <silent> <C-\>l2 hoge
 
 
   " init.vim を保存したときにリロード
@@ -1034,6 +1039,7 @@ vmap <silent> " <plug>(caw:hatpos:toggle)
 "  key map (i):
 " ---------------------------------------
 "{{{
+imap jj <ESC>
 noremap! <C-d> <Del>
 " spell
 inoremap <C-s> <C-x>s
