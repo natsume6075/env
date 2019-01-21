@@ -266,32 +266,34 @@ augroup initvim
           \ if g:current_input_method == s:keycode_jis_kana |
           \   call system(g:force_kana_input_command) |
           \   let g:current_input_method = s:keycode_jis_eisuu |
-          \   hi FoldColumn ctermbg=darkred ctermfg=white|
+          \   hi FoldColumn ctermbg=black |
           \ endif
 "ここにairlineみたいな，かな入力であることを強調する仕組みを作る？「いんさーと」って表示するとか
   endif
 
   inoremap <silent>っj <ESC>
         \:let current_input_method = 104<CR>
-        \:hi FoldColumn ctermbg=Black ctermfg=2<CR>
+        "\:hi FoldColumn ctermbg=16<CR>
 
   noremap  çlang1 <Nop>
   noremap! çlang1 <Nop>
   noremap  çlang2 <Nop>
   noremap! çlang2 <Nop>
   nnoremap <silent> çlang1 :
-        \:let current_input_method = 104<CR>
         \:call system(g:force_alphanumeric_input_command)<CR>
+        \:let current_input_method = 104<CR>
+        \:hi FoldColumn ctermbg=black<CR>
   nnoremap <silent> çlang2 :
-        \:hi FoldColumn ctermbg=Black ctermfg=2<CR>
+        \:hi FoldColumn ctermbg=16<CR>
         \:let current_input_method = 102<CR>
   inoremap <silent> çlang1
-        \ <C-o>:hi FoldColumn ctermbg=darkred ctermfg=white<CR>
+        \ <C-o>:hi FoldColumn ctermbg=black<CR>
   inoremap <silent> çlang2
-        \ <C-o>:hi FoldColumn ctermbg=Black ctermfg=2<CR>
+        \ <C-o>:hi FoldColumn ctermbg=16<CR>
 
 
-
+"8 10 11 12
+"16 漆黒
 
   " init.vim を保存したときにリロード
   autocmd BufWritePost $XDG_CONFIG_HOME/nvim/init.vim so $XDG_CONFIG_HOME/nvim/init.vim
@@ -406,7 +408,7 @@ hi Visual ctermbg = 6
 highlight conceal ctermfg=7 ctermbg=black guibg=darkgray
 
 hi Folded     term=standout ctermbg=Black ctermfg=white
-hi FoldColumn term=standout ctermbg=Black ctermfg=2
+hi FoldColumn term=standout ctermbg=16 ctermfg=2
 " 欲を言うなら，fold しても1行目の構文ハイライトは維持したい。
 
 
