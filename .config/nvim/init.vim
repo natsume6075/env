@@ -105,7 +105,7 @@ set spelllang=en,cjk
 set whichwrap=<,>,[,],h,l
 set backspace=indent,eol,start
 set mouse=a
-set virtualedit=block,insert
+set virtualedit=block
 " スクロールの余裕を確保する
 set scrolloff=2
 " maintain cursor position
@@ -266,12 +266,19 @@ augroup initvim
           \ if g:current_input_method == s:keycode_jis_kana |
           \   call system(g:force_kana_input_command) |
           \   let g:current_input_method = s:keycode_jis_eisuu |
+          \   hi FoldColumn ctermbg=darkmagenta ctermfg=Black|
+          \ else |
+          \   hi FoldColumn ctermbg=Black ctermfg=2 |
           \ endif
-    "ここにairlineみたいな，かな入力であることを強調する仕組みを作る？「いんさーと」って表示するとか
+"ここにairlineみたいな，かな入力であることを強調する仕組みを作る？「いんさーと」って表示するとか
   endif
 
+
+
   " 逆転の発想で，っj が送られた時だけ，かな入力になっていると言う情報を保持。上で発火してる。
-  imap <silent> っj <ESC>:let current_input_method = 104<CR>
+  imap <silent> っj <ESC>:let current_input_method = 104<CR>:hi FoldColumn ctermbg=darkmagenta ctermfg=Black<CR>
+  imap jj  <ESC>:hi FoldColumn ctermbg=Black ctermfg=2<CR>
+
 
   " lang2 -> <C-\>l2 lang2 と karabiner で割り当てて，ここに副作用を書いたらどうかな？
   " -> いや！ lang2 二連打できなくなるわ！
@@ -416,9 +423,9 @@ hi CursorLineNr term=bold   cterm=NONE ctermfg=215 ctermbg=NONE
 " "todo なぜか更新しないと反映されない
 " autocmd initvim BufRead,BufNewfile *
 syntax match fmrkr '"*{{{\|"*}}}'
-  \ containedin=vimLineComment contained |
-  \ hi fmrkr term=NONE
-  \ ctermbg=NONE ctermfg=black
+      \ containedin=vimLineComment contained |
+      \ hi fmrkr term=NONE
+      \ ctermbg=NONE ctermfg=black
 
 " let g:airline_theme = 'tomorrow'
 " let g:airline_theme = 'bubblegum'
@@ -955,13 +962,13 @@ nnoremap <CR> <CR>
 " map <f2> to toggle show Information
 nnoremap <f2> :
       \:set cursorcolumn!<CR>
-      "\:let hi_cursorline=(hi_cursorline/2+1)%2*2<CR>
-      "\:if hi_cursorline == 0<CR>
-      "\:    hi Cursorline =0<CR>
-      "\:else<CR>
-      "\:    hi Cursorline =0<CR>
-      "\:endif<CR>
-      "\<CR>
+"\:let hi_cursorline=(hi_cursorline/2+1)%2*2<CR>
+"\:if hi_cursorline == 0<CR>
+"\:    hi Cursorline =0<CR>
+"\:else<CR>
+"\:    hi Cursorline =0<CR>
+"\:endif<CR>
+"\<CR>
 " map <f4> to edit init.vim
 nnoremap <f4> :<C-u>.tabedit $XDG_CONFIG_HOME/nvim/init.vim<CR>
 " map <f5> to source init.vim
@@ -1027,10 +1034,11 @@ vmap <silent> " <plug>(caw:hatpos:toggle)
 "  key map (i):
 " ---------------------------------------
 "{{{
-imap jj  <ESC>
 noremap! <C-d> <Del>
 " spell
 inoremap <C-s> <C-x>s
+
+" inoremap <C-o> call system(g:force_kana_input_command)
 
 
 " ひとつ上の行をいただく
