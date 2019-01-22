@@ -261,43 +261,41 @@ augroup initvim
     " input source が切り替わった瞬間に押しっぱなしになってるキーがもう一度押された判定になるからの模様。
     " さらにスニペット絡みは展開もジャンプも内部的にインサートを抜けるので，同じく発火されるし挿入される。
     " そもそもラグが辛すぎる！ CTRL-o とかのレスポンスが悪すぎて，論外。
-    autocmd InsertEnter *
-          \ if g:current_input_method == s:keycode_jis_kana |
-          \   call system(g:force_kana_input_command) |
-          \ endif
-    "ここにairlineみたいな，かな入力であることを強調する仕組みを作る？「いんさーと」って表示するとか
   endif
 
+  " " IME のための設定．重すぎるのでとりあえずクビ  {{{
+  " autocmd InsertEnter *
+        "\ if g:current_input_method == s:keycode_jis_kana |
+        "\   call system(g:force_kana_input_command) |
+        "\ endif
   inoremap <silent>っj <ESC>:let current_input_method = 104<CR>
-
 
   " todo: 変更が不必要な時は変更しない
   noremap  çlang1 <Nop>
   noremap! çlang1 <Nop>
   noremap  çlang2 <Nop>
   noremap! çlang2 <Nop>
-  nnoremap <silent> çlang1 :
-        \:call system(g:force_alphanumeric_input_command)<CR>
-        \:let current_input_method = 104<CR>
-        \:hi FoldColumn ctermbg=black<CR>
-  nnoremap <silent> çlang2 :
-        \:hi FoldColumn ctermbg=16<CR>
-        \:let current_input_method = 102<CR>
-  inoremap <silent> çlang1
-        \ <C-o>
-        \:if current_input_method==102<CR>
-        \  :hi FoldColumn ctermbg=black<CR>
-        \  :let current_input_method = 104<CR>
-        \:endif<CR>
-  inoremap <silent> çlang2
-        \ <C-o>
-        \:if current_input_method==104<CR>
-        \  :hi FoldColumn ctermbg=16<CR>
-        \  :let current_input_method = 102<CR>
-        \:endif<CR>
+  " nnoremap <silent> çlang1 :
+        "\:call system(g:force_alphanumeric_input_command)<CR>
+        "\:let current_input_method = 104<CR>
+        "\:hi FoldColumn ctermbg=black<CR>
+  " nnoremap <silent> çlang2 :
+        "\:hi FoldColumn ctermbg=16<CR>
+        "\:let current_input_method = 102<CR>
+  " inoremap <silent> çlang1
+        "\ <C-o>
+        "\:if current_input_method==102<CR>
+        "\  :hi FoldColumn ctermbg=black<CR>
+        "\  :let current_input_method = 104<CR>
+        "\:endif<CR>
+  " inoremap <silent> çlang2
+        "\ <C-o>
+        "\:if current_input_method==104<CR>
+        "\  :hi FoldColumn ctermbg=16<CR>
+        "\  :let current_input_method = 102<CR>
+        "\:endif<CR>
+"}}}
 
-
-  "}}}
 
   " init.vim を保存したときにリロード
   autocmd BufWritePost $XDG_CONFIG_HOME/nvim/init.vim so $XDG_CONFIG_HOME/nvim/init.vim
@@ -901,6 +899,8 @@ function! s:defx_my_settings() abort
         \ defx#do_action('cd', ['..'])
   nnoremap <silent><buffer><expr> l
         \ defx#do_action('open_directory')
+  nnoremap <silent><buffer><expr> l
+        \ defx#do_action('open')
   nnoremap <silent><buffer><expr> .
         \ defx#do_action('cd', [expand($CURRENT_DIR)])
   nnoremap <silent><buffer><expr> ~
@@ -1160,7 +1160,6 @@ vmap <C-k>     <plug>(neosnippet_expand_target)
 imap <expr> <C-l>   pumvisible() ? deoplete#close_popup()."\<C-l>" : "\<plug>(neosnippet_jump)"
 "imap <hoge>    <plug>(neosnippet_start_unite_snippet)
 "}}}
-
 
 " vim-surround ---------------- {{{
 " }}}

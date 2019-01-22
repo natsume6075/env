@@ -100,3 +100,22 @@ snippet     lstinputlisting
 options     word
     \lstinputlisting[caption=${1:#:caption}, label=src:${2:#:label}]{${3:#:filename}}\quad\\\\
 
+snippet     @
+alias       @$
+options     word
+    @$${1:#:TARGET}$@
+
+snippet     stackrel
+alias       \stackrel uetsuki
+options     word
+    \stackrel{${2:#:upper_simbol}}{${1:#:TARGET}}
+
+snippet     equation
+alias       \equation
+options     head
+    \begin{equation}
+      \begin{split}
+        ${1:#:TARGET}
+      \end{split}
+    \end{equation}
+
