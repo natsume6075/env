@@ -271,6 +271,7 @@ augroup initvim
   inoremap <silent>っj <ESC>:let current_input_method = 104<CR>
 
 
+  " todo: 変更が不必要な時は変更しない
   noremap  çlang1 <Nop>
   noremap! çlang1 <Nop>
   noremap  çlang2 <Nop>
@@ -283,11 +284,17 @@ augroup initvim
         \:hi FoldColumn ctermbg=16<CR>
         \:let current_input_method = 102<CR>
   inoremap <silent> çlang1
-        \ <C-o>:hi FoldColumn ctermbg=black<CR>
-        \<C-o>:let current_input_method = 104<CR>
+        \ <C-o>
+        \:if current_input_method==102<CR>
+        \  :hi FoldColumn ctermbg=black<CR>
+        \  :let current_input_method = 104<CR>
+        \:endif<CR>
   inoremap <silent> çlang2
-        \ <C-o>:hi FoldColumn ctermbg=16<CR>
-        \<C-o>:let current_input_method = 102<CR>
+        \ <C-o>
+        \:if current_input_method==104<CR>
+        \  :hi FoldColumn ctermbg=16<CR>
+        \  :let current_input_method = 102<CR>
+        \:endif<CR>
 
 
   "}}}
