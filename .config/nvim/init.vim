@@ -32,7 +32,7 @@
 "                          | |    |＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿|    | |    |
 "                          | |                                                | |    |
 "                          | |                                                | |    |
-"                          | |     command でコマンド追加できる？             | |    |
+"                          | |                                                | |    |
 "                          | |                                                | |    |
 "                          | |                                                | |    |
 "                          | |                                                | |    |
@@ -258,22 +258,18 @@ augroup initvim
     let g:current_input_method = 102
 
     " control を押した状態で insert を抜けると，抜けた後にスペースが挿入される。
-    " input source が切り替わった瞬間に押しっぱなしになってる装飾キーがもう一度押された判定になるからの模様。
+    " input source が切り替わった瞬間に押しっぱなしになってるキーがもう一度押された判定になるからの模様。
     " さらにスニペット絡みは展開もジャンプも内部的にインサートを抜けるので，同じく発火されるし挿入される。
     " そもそもラグが辛すぎる！ CTRL-o とかのレスポンスが悪すぎて，論外。
-    " インサートモードを抜けるときに発火（仕様上 C-c では発火しないので注意）
     autocmd InsertEnter *
           \ if g:current_input_method == s:keycode_jis_kana |
           \   call system(g:force_kana_input_command) |
-          \   let g:current_input_method = s:keycode_jis_eisuu |
-          \   hi FoldColumn ctermbg=black |
           \ endif
-"ここにairlineみたいな，かな入力であることを強調する仕組みを作る？「いんさーと」って表示するとか
+    "ここにairlineみたいな，かな入力であることを強調する仕組みを作る？「いんさーと」って表示するとか
   endif
 
-  inoremap <silent>っj <ESC>
-        \:let current_input_method = 104<CR>
-        "\:hi FoldColumn ctermbg=16<CR>
+  inoremap <silent>っj <ESC>:let current_input_method = 104<CR>
+
 
   noremap  çlang1 <Nop>
   noremap! çlang1 <Nop>
@@ -288,12 +284,13 @@ augroup initvim
         \:let current_input_method = 102<CR>
   inoremap <silent> çlang1
         \ <C-o>:hi FoldColumn ctermbg=black<CR>
+        \<C-o>:let current_input_method = 104<CR>
   inoremap <silent> çlang2
         \ <C-o>:hi FoldColumn ctermbg=16<CR>
+        \<C-o>:let current_input_method = 102<CR>
 
 
-"8 10 11 12
-"16 漆黒
+  "}}}
 
   " init.vim を保存したときにリロード
   autocmd BufWritePost $XDG_CONFIG_HOME/nvim/init.vim so $XDG_CONFIG_HOME/nvim/init.vim
@@ -377,7 +374,6 @@ if dein#check_install()
 endif
 "}}}
 
-
 " ---------------------------------------
 "  Appearance:
 " ---------------------------------------
@@ -406,8 +402,9 @@ colorscheme my_default
 hi Visual ctermbg = 6
 
 highlight conceal ctermfg=7 ctermbg=black guibg=darkgray
-
-hi Folded     term=standout ctermbg=Black ctermfg=white
+"{{{
+"}}}
+hi Folded     term=standout ctermbg=17 ctermfg=white
 hi FoldColumn term=standout ctermbg=16 ctermfg=2
 " 欲を言うなら，fold しても1行目の構文ハイライトは維持したい。
 
@@ -1045,8 +1042,6 @@ imap jj <ESC>
 noremap! <C-d> <Del>
 " spell
 inoremap <C-s> <C-x>s
-
-" inoremap <C-o> call system(g:force_kana_input_command)
 
 
 
