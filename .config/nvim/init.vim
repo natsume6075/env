@@ -1280,8 +1280,6 @@ autocmd initvim FileType tex
       \ | nmap <buffer> <localleader>la vae:call <SID>previewTex()<CR>
       \ | nmap <buffer> <localleader><localleader> vae:call <SID>previewTex()<CR>
       \ | vnoremap <buffer> <localleader>la :call <SID>previewTex()<CR>
-      \ | nmap <silent> zj zjvae:call <SID>previewTex()<CR>
-      \ | nmap <silent> zk zkvae:call <SID>previewTex()<CR>
       \ | nmap <buffer> <localleader>lt <plug>(vimtex-toc-toggle)sj
       \ | nmap <buffer> <localleader>lj f{yi{:e <C-r>"<CR>
 " Ref: http://mmi.hatenablog.com/entry/2015/01/02/003517
