@@ -1046,7 +1046,7 @@ vnoremap  *  "zy/\V<C-r>z<CR>
 vnoremap <C-Up> "zx<Up>"zP`[V`]
 vnoremap <C-Down> "zx"zp`[V`]
 
-nnoremap tcou :s/.//gn<CR>
+vnoremap tcou :s/.//gn<CR>
 
 " comment (caw)
 vmap <silent> " <plug>(caw:hatpos:toggle)
