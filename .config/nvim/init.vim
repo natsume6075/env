@@ -43,6 +43,8 @@ augroup initvim
   autocmd!
 augroup END
 
+
+
 "--- Environment Variables: --------------------------------------------------{{{
 let $XDG_CACHE_HOME = expand($HOME.'/.cache')
 let $XDG_CONFIG_HOME = expand($HOME.'/.config')
@@ -242,10 +244,12 @@ command! DiffOrig vert new | set bt=nofile | r ++edit # | 0d_
 
 command! W bufdo w
 command! WQ bufdo wq
+
+command! MOJI %s/./&/g
 "}}}
 
 " ---------------------------------------
-"  Autocmd Settings:
+"  IME Settings:
 " ---------------------------------------
 "{{{
 augroup initvim
@@ -263,45 +267,47 @@ augroup initvim
     " そもそもラグが辛すぎる！ CTRL-o とかのレスポンスが悪すぎて，論外。
   endif
 
-  " " IME のための設定．重すぎるのでとりあえずクビ  {{{
-  " autocmd InsertEnter *
-        "\ if g:current_input_method == s:keycode_jis_kana |
-        "\   call system(g:force_kana_input_command) |
-        "\ endif
+  " " IME のための設定．重すぎるのでとりあえずクビ
+  autocmd InsertEnter *
+        \ if g:current_input_method == s:keycode_jis_kana |
+        \   call system(g:force_kana_input_command) |
+        \ endif
   inoremap <silent>っj <ESC>:let current_input_method = 104<CR>
+
 
   " todo: 変更が不必要な時は変更しない
   noremap  çlang1 <Nop>
   noremap! çlang1 <Nop>
   noremap  çlang2 <Nop>
   noremap! çlang2 <Nop>
-  " nnoremap <silent> çlang1 :
-        "\:call system(g:force_alphanumeric_input_command)<CR>
-        "\:let current_input_method = 104<CR>
-        "\:hi FoldColumn ctermbg=black<CR>
-  " nnoremap <silent> çlang2 :
-        "\:hi FoldColumn ctermbg=16<CR>
-        "\:let current_input_method = 102<CR>
-  " inoremap <silent> çlang1
-        "\ <C-o>
-        "\:if current_input_method==102<CR>
-        "\  :hi FoldColumn ctermbg=black<CR>
-        "\  :let current_input_method = 104<CR>
-        "\:endif<CR>
-  " inoremap <silent> çlang2
-        "\ <C-o>
-        "\:if current_input_method==104<CR>
-        "\  :hi FoldColumn ctermbg=16<CR>
-        "\  :let current_input_method = 102<CR>
-        "\:endif<CR>
-"}}}
+  nnoremap <silent> çlang1 :
+        \:call system(g:force_alphanumeric_input_command)<CR>
+        \:let current_input_method = 104<CR>
+        \:hi FoldColumn ctermbg=black<CR>
+  nnoremap <silent> çlang2 :
+        \:let current_input_method = 102<CR>
+        \:hi FoldColumn ctermbg=16<CR>
+  inoremap <silent> çlang1
+        \ <C-o>
+        \:if current_input_method==102<CR>
+        \  :let current_input_method = 104<CR>
+        \  :hi FoldColumn ctermbg=black<CR>
+        \:endif<CR>
+  inoremap <silent> çlang2
+        \ <C-o>
+        \:if current_input_method==104<CR>
+        \  :let current_input_method = 102<CR>
+        \  :hi FoldColumn ctermbg=16<CR>
+        \:endif<CR>
 
-
-  " init.vim を保存したときにリロード
-  autocmd BufWritePost $XDG_CONFIG_HOME/nvim/init.vim so $XDG_CONFIG_HOME/nvim/init.vim
 
 augroup END
 "}}}
+
+" init.vim を保存したときにリロード
+autocmd initvim BufWritePost $XDG_CONFIG_HOME/nvim/init.vim so $XDG_CONFIG_HOME/nvim/init.vim
+
+
 
 " ---------------------------------------
 "  Comands:
@@ -608,10 +614,13 @@ nnoremap Y y$
 nnoremap j gj
 nnoremap k gk
 map gm %
+nnoremap tcou :%s/.//gn<CR>
+
+
 " spell
 nnoremap <C-s> z=
 nmap <silent> " <plug>(caw:hatpos:toggle)
-nnoremap con J
+nnoremap tcon J
 " 行を移動
 nnoremap <C-Up> "zdd<Up>"zP
 nnoremap <C-Down> "zdd"zp
@@ -1036,6 +1045,8 @@ vnoremap  *  "zy/\V<C-r>z<CR>
 " 複数行を移動
 vnoremap <C-Up> "zx<Up>"zP`[V`]
 vnoremap <C-Down> "zx"zp`[V`]
+
+nnoremap tcou :s/.//gn<CR>
 
 " comment (caw)
 vmap <silent> " <plug>(caw:hatpos:toggle)

@@ -25,9 +25,16 @@ snippet     \begin{prooftree}
 alias       prooftree \begin{prooftree}
 abbr        make prooftree
 options     head
+  \begin{table}[!h]
+  \centering
+  \caption{${1:#:caption}}
+  \label{${2:#:label}}
   \begin{prooftree}
-    ${1:#:term}
+    \AxiomC{$
+      ${3:#:term}
+    $}${4}
   \end{prooftree}
+  \end{table}
 
 snippet     \AxiomC
 alias       axiom AxiomC \axiomc
@@ -45,7 +52,7 @@ options     head
 snippet     env
 abbr        \mathbb{L};\Delta;\Gamma\vdash
 options     word
-  \mathbb{L};\Delta;\Gamma\vdash
+  L;\Delta;\Gamma\vdash
 
 snippet     \RightLabel
 alias       rightlabel \rightlabel
@@ -108,7 +115,13 @@ options     word
 snippet     stackrel
 alias       \stackrel uetsuki
 options     word
-    \stackrel{${2:#:upper_simbol}}{${1:#:TARGET}}
+    \stackrel{${2:#:upper_simbol}}{${1:#:TARGET}}${3}
+
+
+snippet     def
+alias       \def
+options     word
+    \stackrel{def}{=}${1}
 
 snippet     equation
 alias       \equation
@@ -118,4 +131,31 @@ options     head
         ${1:#:TARGET}
       \end{split}
     \end{equation}
+
+snippet     comment
+options     head
+    \begin{comment}
+      \caption{${2:#:module name}}
+      ${1:#:TARGET}
+    \end{comment}
+
+snippet     all
+alias       \all forall \forall
+abbr        ∀
+options     word
+    \forall ${1}
+
+snippet     $
+abbr        expression
+options     word
+    $${1:#:TARGET}$${2}
+
+snippet     fvc#
+options     word
+    $FVC^{\#}$
+
+snippet     pq
+options     word
+    \{P\}\_\{Q\}
+
 

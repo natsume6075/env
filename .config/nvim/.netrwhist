@@ -1,3 +1,10 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =1
+let g:netrw_dirhist_cnt =8
 let g:netrw_dirhist_1='/Users/natsume/Dropbox/natsume/master_thesis/document/src'
+let g:netrw_dirhist_2='/Users/natsume/Dropbox/ろん/jcop_exs/TransferSystem-2/src/account'
+let g:netrw_dirhist_3='/Users/natsume/Dropbox/ろん/jcop_exs/TransferSystem-2/src/main'
+let g:netrw_dirhist_4='/Users/natsume/Dropbox/ろん/jcop_exs/TransferSystem-2/src/account'
+let g:netrw_dirhist_5='/Users/natsume/Dropbox/ろん/jcop_exs/TransferSystem-2/src/main'
+let g:netrw_dirhist_6='/Users/natsume/Dropbox/ろん/jcop_exs/TransferSystem-2/src/account'
+let g:netrw_dirhist_7='/Users/natsume/Dropbox/ろん/jcop_exs/TransferSystem-2/src/main'
+let g:netrw_dirhist_8='/Users/natsume/Dropbox/ろん/jcop_exs/TransferSystem-2/src/account'
