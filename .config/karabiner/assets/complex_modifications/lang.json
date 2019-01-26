@@ -46,7 +46,7 @@
           ],
           "to_if_alone": [
             { "key_code": "lang1" },
-            { "key_code": "f", "modifiers":["control","option","command"] }
+            { "key_code": "f", "modifiers":["control","shift","command"] }
           ],
           "to_if_held_down": [
           ]
@@ -377,7 +377,7 @@
           ],
           "to_if_alone": [
             {"key_code": "lang2"},
-            { "key_code": "g", "modifiers":["control","option","command"] }
+            { "key_code": "g", "modifiers":["control","shift","command"] }
           ],
           "to_if_held_down": [
           ]

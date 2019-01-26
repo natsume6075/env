@@ -9,7 +9,7 @@
             "complex_modifications": {
                 "parameters": {
                     "basic.simultaneous_threshold_milliseconds": 50,
-                    "basic.to_delayed_action_delay_milliseconds": 1000,
+                    "basic.to_delayed_action_delay_milliseconds": 200,
                     "basic.to_if_alone_timeout_milliseconds": 300,
                     "basic.to_if_held_down_threshold_milliseconds": 300
                 },
@@ -99,7 +99,7 @@
                                         "key_code": "f",
                                         "modifiers": [
                                             "control",
-                                            "option",
+                                            "shift",
                                             "command"
                                         ]
                                     }
@@ -682,7 +682,7 @@
                                         "key_code": "g",
                                         "modifiers": [
                                             "control",
-                                            "option",
+                                            "shift",
                                             "command"
                                         ]
                                     }
@@ -1911,537 +1911,6 @@
                                     },
                                     {
                                         "key_code": "lang2"
-                                    }
-                                ],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "コントロールキーを ctrl+shift+command に。単体押しで ctrl+opt+com+a，長押しで ctrl+opt+com+b，single expose 中は return",
-                        "manipulators": [
-                            {
-                                "conditions": [
-                                    {
-                                        "bundle_identifiers": [
-                                            "^com\\.binaryage\\.TotalSpaces2"
-                                        ],
-                                        "type": "frontmost_application_unless"
-                                    },
-                                    {
-                                        "name": "previous_move",
-                                        "type": "variable_if",
-                                        "value": 0
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "left_control",
-                                    "modifiers": {
-                                        "optional": [
-                                            "command"
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "left_control",
-                                        "lazy": "true",
-                                        "modifiers": [
-                                            "left_shift",
-                                            "option"
-                                        ]
-                                    }
-                                ],
-                                "to_if_alone": [
-                                    {
-                                        "key_code": "a",
-                                        "lazy": "true",
-                                        "modifiers": [
-                                            "left_control",
-                                            "option",
-                                            "left_command"
-                                        ]
-                                    }
-                                ],
-                                "to_if_held_down": [
-                                    {
-                                        "key_code": "b",
-                                        "lazy": "true",
-                                        "modifiers": [
-                                            "left_control",
-                                            "option",
-                                            "left_command"
-                                        ]
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "bundle_identifiers": [
-                                            "^com\\.binaryage\\.TotalSpaces2"
-                                        ],
-                                        "type": "frontmost_application_if"
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "left_control"
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "return_or_enter"
-                                    }
-                                ],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "control 単推しで previous desktop/window/display",
-                        "manipulators": [
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "previous_move",
-                                        "type": "variable_if",
-                                        "value": 18
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "left_control",
-                                    "modifiers": {
-                                        "optional": [
-                                            "command"
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "left_control",
-                                        "lazy": "true",
-                                        "modifiers": [
-                                            "left_shift",
-                                            "option"
-                                        ]
-                                    }
-                                ],
-                                "to_if_alone": [
-                                    {
-                                        "key_code": "i",
-                                        "lazy": "true",
-                                        "modifiers": [
-                                            "left_control",
-                                            "left_shift",
-                                            "option"
-                                        ]
-                                    }
-                                ],
-                                "to_if_held_down": [
-                                    {
-                                        "key_code": "b",
-                                        "lazy": "true",
-                                        "modifiers": [
-                                            "left_control",
-                                            "option",
-                                            "left_command"
-                                        ]
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "previous_move_j",
-                                        "type": "variable_if",
-                                        "value": 0
-                                    },
-                                    {
-                                        "name": "previous_move",
-                                        "type": "variable_if",
-                                        "value": 19
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "left_control",
-                                    "modifiers": {
-                                        "optional": [
-                                            "command"
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "left_control",
-                                        "lazy": "true",
-                                        "modifiers": [
-                                            "left_shift",
-                                            "option"
-                                        ]
-                                    }
-                                ],
-                                "to_if_alone": [
-                                    {
-                                        "key_code": "e",
-                                        "lazy": "true",
-                                        "modifiers": [
-                                            "left_control",
-                                            "option",
-                                            "left_command"
-                                        ]
-                                    },
-                                    {
-                                        "set_variable": {
-                                            "name": "previous_move_j",
-                                            "value": 1
-                                        }
-                                    }
-                                ],
-                                "to_if_held_down": [
-                                    {
-                                        "key_code": "b",
-                                        "lazy": "true",
-                                        "modifiers": [
-                                            "left_control",
-                                            "option",
-                                            "left_command"
-                                        ]
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "previous_move_j",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    },
-                                    {
-                                        "name": "previous_move",
-                                        "type": "variable_if",
-                                        "value": 19
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "left_control",
-                                    "modifiers": {
-                                        "optional": [
-                                            "command"
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "left_control",
-                                        "lazy": "true",
-                                        "modifiers": [
-                                            "left_shift",
-                                            "option"
-                                        ]
-                                    }
-                                ],
-                                "to_if_alone": [
-                                    {
-                                        "key_code": "j",
-                                        "lazy": "true",
-                                        "modifiers": [
-                                            "left_control",
-                                            "left_shift",
-                                            "option"
-                                        ]
-                                    },
-                                    {
-                                        "set_variable": {
-                                            "name": "previous_move_j",
-                                            "value": 0
-                                        }
-                                    }
-                                ],
-                                "to_if_held_down": [
-                                    {
-                                        "key_code": "b",
-                                        "lazy": "true",
-                                        "modifiers": [
-                                            "left_control",
-                                            "option",
-                                            "left_command"
-                                        ]
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "previous_move",
-                                        "type": "variable_if",
-                                        "value": 20
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "left_control",
-                                    "modifiers": {
-                                        "optional": [
-                                            "command"
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "left_control",
-                                        "lazy": "true",
-                                        "modifiers": [
-                                            "left_shift",
-                                            "option"
-                                        ]
-                                    }
-                                ],
-                                "to_if_alone": [
-                                    {
-                                        "key_code": "k",
-                                        "lazy": "true",
-                                        "modifiers": [
-                                            "left_control",
-                                            "left_shift",
-                                            "option"
-                                        ]
-                                    }
-                                ],
-                                "to_if_held_down": [
-                                    {
-                                        "key_code": "b",
-                                        "lazy": "true",
-                                        "modifiers": [
-                                            "left_control",
-                                            "option",
-                                            "left_command"
-                                        ]
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "previous_move",
-                                        "type": "variable_if",
-                                        "value": 23
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "left_control",
-                                    "modifiers": {
-                                        "optional": [
-                                            "command"
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "left_control",
-                                        "lazy": "true",
-                                        "modifiers": [
-                                            "left_shift",
-                                            "option"
-                                        ]
-                                    }
-                                ],
-                                "to_if_alone": [
-                                    {
-                                        "key_code": "n",
-                                        "lazy": "true",
-                                        "modifiers": [
-                                            "left_control",
-                                            "left_shift",
-                                            "option"
-                                        ]
-                                    }
-                                ],
-                                "to_if_held_down": [
-                                    {
-                                        "key_code": "b",
-                                        "lazy": "true",
-                                        "modifiers": [
-                                            "left_control",
-                                            "option",
-                                            "left_command"
-                                        ]
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "previous_move_set_mode",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "i"
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "i",
-                                        "modifiers": [
-                                            "left_control",
-                                            "left_shift",
-                                            "option"
-                                        ]
-                                    },
-                                    {
-                                        "set_variable": {
-                                            "name": "previous_move",
-                                            "value": 18
-                                        }
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "previous_move_set_mode",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "j"
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "j",
-                                        "modifiers": [
-                                            "left_control",
-                                            "left_shift",
-                                            "option"
-                                        ]
-                                    },
-                                    {
-                                        "set_variable": {
-                                            "name": "previous_move",
-                                            "value": 19
-                                        }
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "previous_move_set_mode",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "k"
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "k",
-                                        "modifiers": [
-                                            "left_control",
-                                            "left_shift",
-                                            "option"
-                                        ]
-                                    },
-                                    {
-                                        "set_variable": {
-                                            "name": "previous_move",
-                                            "value": 20
-                                        }
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "previous_move_set_mode",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "n"
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "n",
-                                        "modifiers": [
-                                            "left_control",
-                                            "left_shift",
-                                            "option"
-                                        ]
-                                    },
-                                    {
-                                        "set_variable": {
-                                            "name": "previous_move",
-                                            "value": 23
-                                        }
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "previous_move_set_mode",
-                                        "type": "variable_if",
-                                        "value": 0
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "left_control",
-                                    "modifiers": {
-                                        "mandatory": [
-                                            "fn"
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "set_variable": {
-                                            "name": "previous_move_set_mode",
-                                            "value": 1
-                                        }
-                                    }
-                                ],
-                                "to_delayed_action": {
-                                    "to_if_canceled": [
-                                        {
-                                            "set_variable": {
-                                                "name": "previous_move_set_mode",
-                                                "value": 0
-                                            }
-                                        }
-                                    ],
-                                    "to_if_invoked": [
-                                        {
-                                            "set_variable": {
-                                                "name": "previous_move_set_mode",
-                                                "value": 0
-                                            }
-                                        }
-                                    ]
-                                },
-                                "to_if_alone": [
-                                    {
-                                        "set_variable": {
-                                            "name": "previous_move",
-                                            "value": 0
-                                        }
-                                    },
-                                    {
-                                        "set_variable": {
-                                            "name": "previous_move_j",
-                                            "value": 0
-                                        }
                                     }
                                 ],
                                 "type": "basic"
@@ -5402,6 +4871,224 @@
                                 "type": "basic"
                             }
                         ]
+                    },
+                    {
+                        "description": "button32 を ctrl+option+command，さらに manager を発火．単体押しで ctrl+shift+com+a，連打で ctrl+shift+com+b，single expose 中は return",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.binaryage\\.TotalSpaces2"
+                                        ],
+                                        "type": "frontmost_application_unless"
+                                    }
+                                ],
+                                "from": {
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    },
+                                    "pointing_button": "button32"
+                                },
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "manager",
+                                            "value": 1
+                                        }
+                                    },
+                                    {
+                                        "set_variable": {
+                                            "name": "repeat_button32",
+                                            "value": 1
+                                        }
+                                    },
+                                    {
+                                        "key_code": "left_control",
+                                        "lazy": "true",
+                                        "modifiers": [
+                                            "option",
+                                            "command"
+                                        ]
+                                    }
+                                ],
+                                "to_after_key_up": [
+                                    {
+                                        "set_variable": {
+                                            "name": "manager",
+                                            "value": 0
+                                        }
+                                    }
+                                ],
+                                "to_if_alone": [
+                                    {
+                                        "key_code": "a",
+                                        "modifiers": [
+                                            "left_control",
+                                            "left_shift",
+                                            "left_command"
+                                        ]
+                                    }
+                                ],
+                                "to_if_held_down": [
+                                    {
+                                        "key_code": "b",
+                                        "modifiers": [
+                                            "left_control",
+                                            "left_shift",
+                                            "left_command"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.binaryage\\.TotalSpaces2"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "from": {
+                                    "pointing_button": "button32"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "return_or_enter"
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "c-k で スクリーンを次々変更",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "current_screen",
+                                        "type": "variable_if",
+                                        "value": 0
+                                    },
+                                    {
+                                        "name": "num_of_screen",
+                                        "type": "variable_if",
+                                        "value": 0
+                                    },
+                                    {
+                                        "name": "manager",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "k",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "h",
+                                        "modifiers": []
+                                    },
+                                    {
+                                        "set_variable": {
+                                            "name": "current_screen",
+                                            "value": 1
+                                        }
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "current_screen",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    },
+                                    {
+                                        "name": "num_of_screen",
+                                        "type": "variable_if",
+                                        "value": 0
+                                    },
+                                    {
+                                        "name": "manager",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "k",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "i",
+                                        "modifiers": []
+                                    },
+                                    {
+                                        "set_variable": {
+                                            "name": "current_screen",
+                                            "value": 2
+                                        }
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "current_screen",
+                                        "type": "variable_if",
+                                        "value": 2
+                                    },
+                                    {
+                                        "name": "num_of_screen",
+                                        "type": "variable_if",
+                                        "value": 0
+                                    },
+                                    {
+                                        "name": "manager",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "k",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "h",
+                                        "modifiers": []
+                                    },
+                                    {
+                                        "set_variable": {
+                                            "name": "current_screen",
+                                            "value": 1
+                                        }
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
                     }
                 ]
             },
@@ -5527,6 +5214,14 @@
                     },
                     "to": {
                         "key_code": "left_shift"
+                    }
+                },
+                {
+                    "from": {
+                        "key_code": "left_shift"
+                    },
+                    "to": {
+                        "pointing_button": "button32"
                     }
                 },
                 {
