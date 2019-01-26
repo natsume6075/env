@@ -367,7 +367,8 @@ if dein#load_state('$XDG_CACHE_HOME/dein')
   call dein#add('LeafCage/foldCC.vim')
 
   call dein#add('lervag/vimtex')
-
+  " カッコ補完プラグイン
+  call dein#add('cohama/lexima.vim')
 
   " Required :
   call dein#end()
@@ -657,15 +658,18 @@ vnoremap <expr> sub Move_cursor_pos_mapping(":s/<C-r>0/<C-r>0<CURSOR>/g")
 
 " motion ------------------------------{{{
 inoremap <C-a> <C-o>^
-noremap! <C-b> <left>
+" アンドゥを抜けないで左に動かす．
+noremap! <C-b> <C-g>U<left>
 noremap! <C-e> <END>
-noremap! <C-f> <Right>
+" noremap! <C-f> <C-g>U<Right>
 inoremap <C-n> <Down>
 inoremap <C-p> <Up>
 noremap! <C-t> <C-e>
 noremap H _
 noremap L $
-noremap <silent> M     :keepjumps normal ─M<CR>
+nnoremap <silent> M     :keepjumps normal ─M<CR>
+xnoremap <silent> M     :keepjumps normal ─M<CR>
+onoremap <silent> M     :keepjumps normal ─M<CR>
 noremap <expr>   ─M  Avoid_too_recursive_M()
 xnoremap <expr>  M     Avoid_too_recursive_M()
 function! Avoid_too_recursive_M() abort"{{{
@@ -674,7 +678,9 @@ endfunction"
 "}}}
 " 思い通りになるJK
 " keepjumps をする際に，関数の中に入れることで，無限ループを回避している。
-noremap <silent> J     :keepjumps normal ─J<CR>
+nnoremap <silent> J     :keepjumps normal ─J<CR>
+xnoremap <silent> J     :keepjumps normal ─J<CR>
+onoremap <silent> J     :keepjumps normal ─J<CR>
 noremap <expr>   ─J  To_bottom_of_window_OR_scroll_next_page()
 xnoremap <expr>  J     To_bottom_of_window_OR_scroll_next_page()
 function! To_bottom_of_window_OR_scroll_next_page() abort" {{{
@@ -684,7 +690,9 @@ function! To_bottom_of_window_OR_scroll_next_page() abort" {{{
     return "L"
   endif
 endfunction" }}}
-noremap <silent> K     :keepjumps normal ─K<CR>
+nnoremap <silent> K     :keepjumps normal ─K<CR>
+xnoremap <silent> K     :keepjumps normal ─K<CR>
+onoremap <silent> K     :keepjumps normal ─K<CR>
 noremap <expr>   ─K  To_top_of_window_OR_scroll_previous_page()
 xnoremap <expr>  K     To_top_of_window_OR_scroll_previous_page()
 function! To_top_of_window_OR_scroll_previous_page() abort" {{{
@@ -1063,7 +1071,11 @@ noremap! <C-d> <Del>
 " spell
 inoremap <C-s> <C-x>s
 
+imap <expr> <C-l>   (neosnippet#jumpable() ? "\<plug>(neosnippet_jump)" : pumvisible() ? deoplete#close_popup() : "\<Tab>")
+inoremap <silent> <C-f> <C-r>=lexima#insmode#leave(1, '<LT>C-G>U<LT>RIGHT>')<CR>
+
 " inoremap <C-> Match_Paren()
+
 
 
 let paren_list = '('
@@ -1105,11 +1117,11 @@ xmap '     <plug>(neosnippet_expand_target)'<CR>
 "  Auto Snippet:
 " ---------------------------------------
 "{{{
-imap å(       (a<C-h><plug>(neosnippet_expand)
-imap å{       {a<C-h><plug>(neosnippet_expand)
-imap å[       [a<C-h><plug>(neosnippet_expand)
-imap å<       <a<C-h><plug>(neosnippet_expand)
-imap å$       $a<C-h><plug>(neosnippet_expand)
+" imap å(       (a<C-h><plug>(neosnippet_expand)
+" imap å{       {a<C-h><plug>(neosnippet_expand)
+" imap å[       [a<C-h><plug>(neosnippet_expand)
+" imap å<       <a<C-h><plug>(neosnippet_expand)
+" imap å$       $a<C-h><plug>(neosnippet_expand)
 "}}}
 
 " ---------------------------------------
@@ -1187,7 +1199,6 @@ let counter = 0
 
 vmap <C-k>     <plug>(neosnippet_expand_target)
 " vmap œ     <plug>(neosnippet_expand_target)
-imap <expr> <C-l>   neosnippet#jumpable() ? "\<plug>(neosnippet_jump)" : pumvisible() ? deoplete#close_popup() : "\<Tab>"
 imap <expr> <C-i>   deoplete#complete_common_string()
 "imap <hoge>    <plug>(neosnippet_start_unite_snippet)
 "}}}
@@ -1215,6 +1226,17 @@ call defx#custom#column('mark', {
       \ 'selected_icon': '✓',
       \ })
 "}}}
+
+" lexima ------------------------{{{
+call lexima#add_rule({'char': '$', 'input_after': '$', 'filetype': 'latex'})
+call lexima#add_rule({'char': '$', 'at': '\%#\$', 'leave': 1, 'filetype': 'latex'})
+call lexima#add_rule({'char': '<BS>', 'at': '\$\%#\$', 'delete': 1, 'filetype': 'latex'})
+
+
+let g:leximamap_escape = 'jj'
+
+"}}}
+
 "}}}
 
 " ---------------------------------------
