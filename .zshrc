@@ -83,7 +83,6 @@ bindkey -v
 bindkey 'çlang2'      none
 bindkey 'çlang1'      none
 bindkey '─Control-h'      backward-delete-char
-# bindkey '^I'              tab
 
 bindkey -M viins '─Control-h'       backward-delete-char
 bindkey -M viins 'jj'       vi-cmd-mode
@@ -98,6 +97,7 @@ bindkey -M viins '^F'       ctrl-f
 bindkey -M viins '^G'       send-break
 bindkey -M viins '^H'       backward-delete-char
 bindkey -M viins '^K'       kill-line
+bindkey -M viins '^L'       complete-word
 bindkey -M viins '^N'       down-line-or-history
 bindkey -M viins '^O''h'    backward-char
 bindkey -M viins '^O''H'    beginning-of-line
@@ -115,8 +115,16 @@ bindkey -M viins '^Y'       yank
 bindkey -M vicmd '─Control-h'       backward-char
 bindkey -M vicmd 'H'   beginning-of-line
 bindkey -M vicmd 'L'   end-of-line
+
+function tab()
+{
+  zle 'tab'
+}
+# zle -N tab
+
 function none() {}
 zle -N none
+
 function kill-line-all() {
   zle beginning-of-line
   zle kill-line
@@ -131,11 +139,11 @@ zle -N vi-cmd-mode-with-cursor
 bindkey -M viins '^q' vi-cmd-mode-with-cursor
 
 function ctrl-f() {
-if false; then
-  vim
-else
-  zle forward-char
-fi
+  if false; then
+    vim
+  else
+    zle forward-char
+  fi
 }
 zle -N ctrl-f
 

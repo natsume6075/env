@@ -300,6 +300,8 @@ augroup initvim
         \  :hi FoldColumn ctermbg=16<CR>
         \:endif<CR>
 
+  " inoremap <silent> <
+
 
 augroup END
 "}}}
@@ -1228,9 +1230,16 @@ call defx#custom#column('mark', {
 "}}}
 
 " lexima ------------------------{{{
-call lexima#add_rule({'char': '$', 'input_after': '$', 'filetype': 'latex'})
-call lexima#add_rule({'char': '$', 'at': '\%#\$', 'leave': 1, 'filetype': 'latex'})
-call lexima#add_rule({'char': '<BS>', 'at': '\$\%#\$', 'delete': 1, 'filetype': 'latex'})
+call lexima#add_rule({'filetype': 'latex', 'char': '$', 'input_after': '$', })
+call lexima#add_rule({'filetype': 'latex', 'char': '$', 'at': '\%#\$', 'leave': 1})
+call lexima#add_rule({'filetype': 'latex', 'char': '<Space>', 'at': '\$\%#\$', 'input': '<Space>', 'input_after': '<Space>'})
+call lexima#add_rule({'filetype': 'latex', 'char': '<BS>', 'at': '\$\%#\$', 'delete': 1})
+
+call lexima#add_rule({'char': '<', 'input': '<', 'input_after': '>'})
+call lexima#add_rule({'char': '>', 'at': '\%#>', 'leave': 1})
+call lexima#add_rule({'char': '<Space>', 'at': '<\%#>', 'input': '<Space>', 'input_after': '<Space>'})
+call lexima#add_rule({'char': '<BS>',    'at': '<\%#>', 'delete': 1})
+
 
 
 let g:leximamap_escape = 'jj'
