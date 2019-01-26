@@ -614,7 +614,7 @@ nnoremap Y y$
 nnoremap j gj
 nnoremap k gk
 map gm %
-nnoremap tcou :%s/.//gn<CR>
+nnoremap tcou :%s/.//gn
 
 
 " spell
@@ -973,7 +973,7 @@ let mapleader = "\\"
 
 " marks ------------------------------{{{
 " <C-m> と <CR> の２つはつながってる
-" nnoremap <C-m> '
+" nnoremap <C-> '
 nnoremap <CR> <CR>
 "}}}
 
@@ -1034,6 +1034,8 @@ nnoremap <silent>d, :
 cnoremap jj <C-c>
 cnoremap <C-a> <HOME>
 cnoremap <C-y> <HOME>bufdo :
+cnoremap <C-i> <C-l>
+set wildchar=<C-l>
 "}}}
 
 " ---------------------------------------
@@ -1061,6 +1063,24 @@ noremap! <C-d> <Del>
 " spell
 inoremap <C-s> <C-x>s
 
+" inoremap <C-> Match_Paren()
+
+
+let paren_list = '('
+
+function! Match_Paren() abort
+  if expand('<cWORD>') =~ 'https\?:\/\/'
+    return ":!open ".expand('<cWORD>')."\<CR>"
+  elseif expand('<cWORD>') =~ '^\(\$\?\(\w\|\ \)\+\|\~\)\?\(\/\(\.\?\(\(\w\|\ \)\+\)\)\)\+\/'
+    return ":e ".expand('<cWORD>')."\<CR>"
+  else
+    return "K"
+  endif
+endfunction
+
+
+set matchpairs=(:),{:},[:],<:>
+
 
 
 " ひとつ上の行をいただく
@@ -1078,7 +1098,6 @@ xmap "     <plug>(neosnippet_expand_target)"<CR>
 xmap '     <plug>(neosnippet_expand_target)'<CR>
 
 
-" imap     <silent><expr> <C-l>   pumvisible() ? deoplete#close_popup()."\<C-l>" : "\<plug>(neosnippet_jump)
 "}}}
 "}}}
 
@@ -1168,7 +1187,8 @@ let counter = 0
 
 vmap <C-k>     <plug>(neosnippet_expand_target)
 " vmap œ     <plug>(neosnippet_expand_target)
-imap <expr> <C-l>   pumvisible() ? deoplete#close_popup()."\<C-l>" : "\<plug>(neosnippet_jump)"
+imap <expr> <C-l>   neosnippet#jumpable() ? "\<plug>(neosnippet_jump)" : pumvisible() ? deoplete#close_popup() : "\<Tab>"
+imap <expr> <C-i>   deoplete#complete_common_string()
 "imap <hoge>    <plug>(neosnippet_start_unite_snippet)
 "}}}
 
