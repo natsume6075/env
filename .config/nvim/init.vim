@@ -267,8 +267,8 @@ augroup initvim
     " そもそもラグが辛すぎる！ CTRL-o とかのレスポンスが悪すぎて，論外。
   endif
 
-  " " IME のための設定．重すぎるのでとりあえずクビ
   autocmd InsertEnter *
+        \ hi FoldColumn ctermbg=16 |
         \ if g:current_input_method == s:keycode_jis_kana |
         \   call system(g:force_kana_input_command) |
         \ endif
