@@ -272,10 +272,15 @@ augroup initvim
         \ if g:current_input_method == s:keycode_jis_kana |
         \   call system(g:force_kana_input_command) |
         \ endif
-  inoremap <silent>っj <ESC>:let current_input_method = 104<CR>
 
+  inoremap <silent>っj <ESC>:let current_input_method = 104<CR>:hi FoldColumn ctermbg=black<CR>
+  imap     <silent> jj <ESC>:let current_input_method = 102<CR>:hi FoldColumn ctermbg=16<CR>
 
   " todo: 変更が不必要な時は変更しない
+  " 重さについて
+  "   英数モードに変えるときは一切問題なし（割り込まれても大丈夫みたい）
+  "   :hi :let も結構ラグがある
+  "
   noremap  çlang1 <Nop>
   noremap! çlang1 <Nop>
   noremap  çlang2 <Nop>
@@ -287,20 +292,19 @@ augroup initvim
   nnoremap <silent> çlang2 :
         \:let current_input_method = 102<CR>
         \:hi FoldColumn ctermbg=16<CR>
-  inoremap <silent> çlang1
-        \ <C-o>
-        \:if current_input_method==102<CR>
-        \  :let current_input_method = 104<CR>
-        \  :hi FoldColumn ctermbg=black<CR>
-        \:endif<CR>
-  inoremap <silent> çlang2
-        \ <C-o>
-        \:if current_input_method==104<CR>
-        \  :let current_input_method = 102<CR>
-        \  :hi FoldColumn ctermbg=16<CR>
-        \:endif<CR>
+  " inoremap <silent> çlang1
+        "\ <C-o>
+        "\:if current_input_method==102<CR>
+        "\  :let current_input_method = 104<CR>
+        "\  :hi FoldColumn ctermbg=black<CR>
+        "\:endif<CR>
+  " inoremap <silent> çlang2
+        "\ <C-o>
+        "\:if current_input_method==104<CR>
+        "\  :let current_input_method = 102<CR>
+        "\  :hi FoldColumn ctermbg=16<CR>
+        "\:endif<CR>
 
-  " inoremap <silent> <
 
 
 augroup END
@@ -868,7 +872,7 @@ nmap <leader>8 <Plug>AirlineSelectTab8
 nmap <leader>9 <Plug>AirlineSelectTab9
 nmap <leader>h <Plug>AirlineSelectPrevTab
 nmap <leader>l <Plug>AirlineSelectNextTab
-nmap <silent> <C-h>        :bprevious<CR>
+nmap <silent> <BS>        :bprevious<CR>
 nmap <silent> ─Control-h :bprevious<CR>
 nmap <silent> <C-l>        :bnext<CR>
 nmap <silent> <leader><Space> :b<Space>
@@ -1062,13 +1066,16 @@ vnoremap tcou :s/.//gn<CR>
 
 " comment (caw)
 vmap <silent> " <plug>(caw:hatpos:toggle)
+
+" vnoremap Y :<BS><BS><BS><BS><BS>
+vnoremap Y "*y
+
 "}}}
 
 " ---------------------------------------
 "  key map (i):
 " ---------------------------------------
 "{{{
-imap jj <ESC>
 noremap! <C-d> <Del>
 " spell
 inoremap <C-s> <C-x>s
@@ -1230,10 +1237,10 @@ call defx#custom#column('mark', {
 "}}}
 
 " lexima ------------------------{{{
-call lexima#add_rule({'filetype': 'latex', 'char': '$', 'input_after': '$', })
-call lexima#add_rule({'filetype': 'latex', 'char': '$', 'at': '\%#\$', 'leave': 1})
-call lexima#add_rule({'filetype': 'latex', 'char': '<Space>', 'at': '\$\%#\$', 'input': '<Space>', 'input_after': '<Space>'})
-call lexima#add_rule({'filetype': 'latex', 'char': '<BS>', 'at': '\$\%#\$', 'delete': 1})
+call lexima#add_rule({'char': '$', 'input_after': '$', 'filetype': 'tex'})
+call lexima#add_rule({'char': '$', 'at': '\%#\$', 'leave': 1, 'filetype': 'tex'})
+call lexima#add_rule({'char': '<Space>', 'at': '\$\%#\$', 'input': '<Space>', 'input_after': '<Space>', 'filetype': 'tex'})
+call lexima#add_rule({'char': '<BS>',    'at': '\$\%#\$', 'delete': 1, 'filetype': 'tex'})
 
 call lexima#add_rule({'char': '<', 'input': '<', 'input_after': '>'})
 call lexima#add_rule({'char': '>', 'at': '\%#>', 'leave': 1})
