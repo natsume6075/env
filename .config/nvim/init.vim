@@ -975,16 +975,6 @@ function! s:defx_my_settings() abort
 endfunction
 "}}}
 
-let mapleader = "t"
-
-" surround ---------------------------{{{
-nmap <Leader>d  ds
-nmap <Leader>c  cs
-vmap <Leader>   S
-"}}}
-
-let mapleader = "\\"
-
 " marks ------------------------------{{{
 " <C-m> と <CR> の２つはつながってる
 " nnoremap <C-> '
@@ -1070,6 +1060,13 @@ vmap <silent> " <plug>(caw:hatpos:toggle)
 " vnoremap Y :<BS><BS><BS><BS><BS>
 vnoremap Y "*y
 
+" xmap (     <plug>(neosnippet_expand_target)(<CR>
+" xmap {     <plug>(neosnippet_expand_target){<CR>
+" xmap [     <plug>(neosnippet_expand_target)[<CR>
+" xmap <     <plug>(neosnippet_expand_target)<<CR>
+" xmap "     <plug>(neosnippet_expand_target)"<CR>
+" xmap '     <plug>(neosnippet_expand_target)'<CR>
+
 "}}}
 
 " ---------------------------------------
@@ -1111,12 +1108,6 @@ set matchpairs=(:),{:},[:],<:>
 
 
 
-xmap (     <plug>(neosnippet_expand_target)(<CR>
-xmap {     <plug>(neosnippet_expand_target){<CR>
-xmap [     <plug>(neosnippet_expand_target)[<CR>
-xmap <     <plug>(neosnippet_expand_target)<<CR>
-xmap "     <plug>(neosnippet_expand_target)"<CR>
-xmap '     <plug>(neosnippet_expand_target)'<CR>
 
 
 "}}}
@@ -1212,6 +1203,26 @@ imap <expr> <C-i>   deoplete#complete_common_string()
 "imap <hoge>    <plug>(neosnippet_start_unite_snippet)
 "}}}
 
+" lexima ------------------------{{{
+call lexima#add_rule({'char': '$',       'input_after': '$', 'filetype': 'tex'})
+call lexima#add_rule({'char': '$',       'at': '\%#\$', 'leave': 1, 'filetype': 'tex'})
+call lexima#add_rule({'char': '<Space>', 'at': '\$\%#\$', 'input': '<Space>', 'input_after': '<Space>', 'filetype': 'tex'})
+call lexima#add_rule({'char': '<BS>',    'at': '\$\%#\$', 'delete': 1, 'filetype': 'tex'})
+call lexima#add_rule({'char': '<BS>',    'at': '\$ \%# \$', 'delete': 1, 'filetype': 'tex'})
+
+
+call lexima#add_rule({'char': '<', 'input': '<', 'input_after': '>'})
+call lexima#add_rule({'char': '>', 'at': '\%#>', 'leave': 1})
+call lexima#add_rule({'char': '<Space>', 'at': '<\%#>', 'input': '<Space>', 'input_after': '<Space>'})
+call lexima#add_rule({'char': '<BS>',    'at': '<\%#>', 'delete': 1})
+call lexima#add_rule({'char': '<BS>',    'at': '< \%# >', 'delete': 1})
+
+
+
+let g:leximamap_escape = 'jj'
+
+"}}}
+
 " vim-surround ---------------- {{{
 " }}}
 
@@ -1236,22 +1247,6 @@ call defx#custom#column('mark', {
       \ })
 "}}}
 
-" lexima ------------------------{{{
-call lexima#add_rule({'char': '$', 'input_after': '$', 'filetype': 'tex'})
-call lexima#add_rule({'char': '$', 'at': '\%#\$', 'leave': 1, 'filetype': 'tex'})
-call lexima#add_rule({'char': '<Space>', 'at': '\$\%#\$', 'input': '<Space>', 'input_after': '<Space>', 'filetype': 'tex'})
-call lexima#add_rule({'char': '<BS>',    'at': '\$\%#\$', 'delete': 1, 'filetype': 'tex'})
-
-call lexima#add_rule({'char': '<', 'input': '<', 'input_after': '>'})
-call lexima#add_rule({'char': '>', 'at': '\%#>', 'leave': 1})
-call lexima#add_rule({'char': '<Space>', 'at': '<\%#>', 'input': '<Space>', 'input_after': '<Space>'})
-call lexima#add_rule({'char': '<BS>',    'at': '<\%#>', 'delete': 1})
-
-
-
-let g:leximamap_escape = 'jj'
-
-"}}}
 
 "}}}
 
