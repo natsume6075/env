@@ -1210,6 +1210,7 @@ call lexima#add_rule({'char': '$',       'at': '\%#\$', 'leave': 1, 'filetype': 
 call lexima#add_rule({'char': '<Space>', 'at': '\$\%#\$', 'input': '<Space>', 'input_after': '<Space>', 'filetype': 'tex'})
 call lexima#add_rule({'char': '<BS>',    'at': '\$\%#\$', 'delete': 1, 'filetype': 'tex'})
 call lexima#add_rule({'char': '<BS>',    'at': '\$ \%# \$', 'delete': 1, 'filetype': 'tex'})
+call lexima#add_rule({'char': '$',    'at': '@\%#', 'input_after': '$@', 'filetype': 'tex'})
 
 
 call lexima#add_rule({'char': '<', 'input': '<', 'input_after': '>'})

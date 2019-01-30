@@ -160,11 +160,11 @@
           "from": {
             "key_code": "h",
             "modifiers":{
-              "mandatory":["control"]
+              "mandatory":["shift"]
             }
           },
           "to": [
-            { "key_code": "a", "modifiers":["option"] },
+            { "key_code": "open_bracket" },
             { "key_code": "4", "modifiers":["shift"] }
           ]
         },
