@@ -998,18 +998,18 @@ nnoremap <f2> :
 nnoremap <f4> :<C-u>.tabedit $XDG_CONFIG_HOME/nvim/init.vim<CR>
 " map <f5> to source init.vim
 nnoremap <f5> :<C-u>source $XDG_CONFIG_HOME/nvim/init.vim<CR>
-" map <f6> to global neosnippetedit
-nnoremap <f6> :<C-u>.tabedit $XDG_CONFIG_HOME/nvim/my_snippets/_.snip<CR>
-xnoremap <f6> y :<C-u>.tabedit $XDG_CONFIG_HOME/nvim/my_snippets/_.snip<CR>Gp
-" map <f7> to language specific neosnippetedit
-nnoremap <f7> :NeoSnippetEdit -horizontal<CR>
-xnoremap <f7> y :NeoSnippetEdit -horizontal<CR>Gp
-nnoremap <f8> :<C-u>.tabedit $GLOBAL_DICTIONARY<CR>:sort u<CR>:w<CR>
-vnoremap <f8> "zy :!echo <C-r>z>> $GLOBAL_DICTIONARY<CR><CR>
-" <f9> dictionary の呼び出し
-" autocmd initvim filetype dict  nnoremap <f9> :q<CR>
-nnoremap <f9> :<C-u>.tabedit $LANG_DICTIONARY<CR>:sort u<CR>:w<CR>
-vnoremap <f9> "zy :!echo <C-r>z>> $LANG_DICTIONARY<CR><CR>
+
+" map language_specific/global dictionary
+nnoremap <f6>  :<C-u>.tabedit $LANG_DICTIONARY<CR>:sort u<CR>:w<CR>
+vnoremap <f6>  "zy :!echo <C-r>z>> $LANG_DICTIONARY<CR><CR>
+nnoremap <f18> :<C-u>.tabedit $GLOBAL_DICTIONARY<CR>:sort u<CR>:w<CR>
+vnoremap <f18> "zy :!echo <C-r>z>> $GLOBAL_DICTIONARY<CR><CR>
+" map language_specific/global neosnippet edit
+nnoremap <f7>  :NeoSnippetEdit -horizontal<CR>
+xnoremap <f7>  y :NeoSnippetEdit -horizontal<CR>Gp
+nnoremap <f19> :<C-u>.tabedit $XDG_CONFIG_HOME/nvim/my_snippets/_.snip<CR>
+xnoremap <f19> y :<C-u>.tabedit $XDG_CONFIG_HOME/nvim/my_snippets/_.snip<CR>Gp
+
 " <f11> conceal syntax の呼び出し（vim）
 autocmd initvim filetype tex  nnoremap <f11>
       \ :<C-u>.tabedit $XDG_CACHE_HOME/dein/repos/github.com/keitanakamura/tex-conceal.vim/after/syntax/tex.vim<CR>

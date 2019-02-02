@@ -5,7 +5,6 @@ expand
 getcurpos
 hinoarashi
 horizontally
-init.vim
 nnoremap
 unko
 vertically
