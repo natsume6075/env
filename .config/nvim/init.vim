@@ -884,7 +884,7 @@ nmap <silent> <leader>w :w<CR>
 " interface between pain and buffer ---------------------{{{
 " move current pain to new buffer
 " (if current window has only one pane, split into two tabs)
-" nnoremap <silent> <Leader>t :<C-u>call <SID>MoveToNewBuf()<CR>
+nnoremap <silent> <Leader>t :<C-u>call <SID>MoveToNewBuf()<CR>
 function! s:MoveToNewBuf()" {{{
   tab split
   tabprevious

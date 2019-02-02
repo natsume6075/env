@@ -83,7 +83,7 @@ options     head
     \end{table}
 
 
-snippet     unary
+snippet     unaryc
 alias       unaryinfc UnaryInfC \unaryinfc \UnaryInfC
 abbr        add more unaryinf
 options     head
@@ -91,6 +91,17 @@ options     head
     \UnaryInfC{$
       ${1:#:TARGET}
     $}
+
+
+snippet     unary
+alias       unaryinf UnaryInf \unaryinf \UnaryInf
+abbr        add more unaryinf
+options     head
+    \noLine
+    \UnaryInfC$
+      ${1:#:TARGET}
+    $
+
 
 snippet     textsl
 alias       sl
