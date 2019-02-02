@@ -1,8 +1,8 @@
 {
-  "title": "lang",
+  "title": "[1] lang",
   "rules": [
     {
-      "description": "[0] lang1",
+      "description": "[1] lang1",
       "manipulators": [
         {
           "type": "basic",
@@ -343,7 +343,7 @@
       ]
     },
     {
-      "description": "[0] lang2",
+      "description": "[1] lang2",
       "manipulators": [
         {
           "type": "basic",

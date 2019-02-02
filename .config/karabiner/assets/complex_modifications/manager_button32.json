@@ -1,9 +1,10 @@
 {
-  "title": "Manager = button32 について",
+  "title": "[1] Manager = button32 について",
   "rules": [
     {
-      "description": "[0] button32 → ⇧ ⌘ ⌥  ，単体押しで ctrl+shift+com+a，連打で ctrl+shift+com+b，single expose 中は return",
+      "description": "[1] button32 → ⇧ ⌘ ⌥  ，単体押しで ctrl+shift+com+a，連打で ctrl+shift+com+b，single expose 中は return",
       "manipulators": [
+
         {
           "type": "basic",
           "conditions": [
@@ -11,9 +12,7 @@
           ],
           "from": {
             "pointing_button": "button32",
-            "modifiers":{
-              "optional" :["any"]
-            }
+            "modifiers":{ "optional" :["any"] }
           },
           "to": [
             { "set_variable": { "name": "manager", "value": 1 } }
@@ -24,24 +23,77 @@
           "to_if_alone": [
             {
               "key_code": "a",
-              "modifiers": [
-                "left_control",
-                "left_shift",
-                "left_command"
-              ]
+              "modifiers": [ "left_control", "left_shift", "left_command" ]
             }
           ],
           "to_if_held_down": [
             {
               "key_code": "b",
-              "modifiers": [
-                "left_control",
-                "left_shift",
-                "left_command"
-              ]
+              "modifiers": [ "left_control", "left_shift", "left_command" ]
             }
           ]
         },
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "variable_if", "name": "previous_motion", "value": 1 },
+            { "type": "frontmost_application_unless", "bundle_identifiers": [ "^com\\.binaryage\\.TotalSpaces2" ] }
+          ],
+          "from": {
+            "pointing_button": "button32",
+            "modifiers":{ "optional" :["any"] }
+          },
+          "to": [
+            { "set_variable": { "name": "manager", "value": 1 } }
+          ],
+          "to_after_key_up": [
+            { "set_variable": { "name": "manager", "value": 0 } }
+          ],
+          "to_if_alone": [
+            {
+              "key_code": "quote",
+              "modifiers": [ "shift", "command", "option" ]
+            }
+          ],
+          "to_if_held_down": [
+            {
+              "key_code": "b",
+              "modifiers": [ "left_control", "left_shift", "left_command" ]
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "variable_if", "name": "previous_motion", "value": 2 },
+            { "type": "frontmost_application_unless", "bundle_identifiers": [ "^com\\.binaryage\\.TotalSpaces2" ] }
+          ],
+          "from": {
+            "pointing_button": "button32",
+            "modifiers":{ "optional" :["any"] }
+          },
+          "to": [
+            { "set_variable": { "name": "manager", "value": 1 } }
+          ],
+          "to_after_key_up": [
+            { "set_variable": { "name": "manager", "value": 0 } }
+          ],
+          "to_if_alone": [
+            {
+              "key_code": "semicolon",
+              "modifiers": [ "shift", "command", "option" ]
+            }
+          ],
+          "to_if_held_down": [
+            {
+              "key_code": "b",
+              "modifiers": [ "left_control", "left_shift", "left_command" ]
+            }
+          ]
+        },
+
+
+
 
         {
           "type": "basic",
@@ -69,18 +121,13 @@
           ],
           "from": {
             "key_code": "a",
-            "modifiers":{
-              "optional" :["any"]
-            }
+            "modifiers":{ "optional" :["any"] }
           },
           "to": [
+            { "set_variable": { "name": "previous_motion", "value": 0 } },
             {
               "key_code": "a",
-              "modifiers": [
-                "shift",
-                "command",
-                "option"
-              ]
+              "modifiers": [ "shift", "command", "option" ]
             }
           ]
         },
@@ -91,18 +138,13 @@
           ],
           "from": {
             "key_code": "b",
-            "modifiers":{
-              "optional" :["any"]
-            }
+            "modifiers":{ "optional" :["any"] }
           },
           "to": [
+            { "set_variable": { "name": "previous_motion", "value": 0 } },
             {
               "key_code": "b",
-              "modifiers": [
-                "shift",
-                "command",
-                "option"
-              ]
+              "modifiers": [ "shift", "command", "option" ]
             }
           ]
         },
@@ -113,18 +155,13 @@
           ],
           "from": {
             "key_code": "c",
-            "modifiers":{
-              "optional" :["any"]
-            }
+            "modifiers":{ "optional" :["any"] }
           },
           "to": [
+            { "set_variable": { "name": "previous_motion", "value": 0 } },
             {
               "key_code": "c",
-              "modifiers": [
-                "shift",
-                "command",
-                "option"
-              ]
+              "modifiers": [ "shift", "command", "option" ]
             }
           ]
         },
@@ -135,18 +172,13 @@
           ],
           "from": {
             "key_code": "d",
-            "modifiers":{
-              "optional" :["any"]
-            }
+            "modifiers":{ "optional" :["any"] }
           },
           "to": [
+            { "set_variable": { "name": "previous_motion", "value": 0 } },
             {
               "key_code": "d",
-              "modifiers": [
-                "shift",
-                "command",
-                "option"
-              ]
+              "modifiers": [ "shift", "command", "option" ]
             }
           ]
         },
@@ -157,18 +189,13 @@
           ],
           "from": {
             "key_code": "e",
-            "modifiers":{
-              "optional" :["any"]
-            }
+            "modifiers":{ "optional" :["any"] }
           },
           "to": [
+            { "set_variable": { "name": "previous_motion", "value": 0 } },
             {
               "key_code": "e",
-              "modifiers": [
-                "shift",
-                "command",
-                "option"
-              ]
+              "modifiers": [ "shift", "command", "option" ]
             }
           ]
         },
@@ -179,18 +206,13 @@
           ],
           "from": {
             "key_code": "f",
-            "modifiers":{
-              "optional" :["any"]
-            }
+            "modifiers":{ "optional" :["any"] }
           },
           "to": [
+            { "set_variable": { "name": "previous_motion", "value": 0 } },
             {
               "key_code": "f",
-              "modifiers": [
-                "shift",
-                "command",
-                "option"
-              ]
+              "modifiers": [ "shift", "command", "option" ]
             }
           ]
         },
@@ -201,18 +223,13 @@
           ],
           "from": {
             "key_code": "g",
-            "modifiers":{
-              "optional" :["any"]
-            }
+            "modifiers":{ "optional" :["any"] }
           },
           "to": [
+            { "set_variable": { "name": "previous_motion", "value": 0 } },
             {
               "key_code": "g",
-              "modifiers": [
-                "shift",
-                "command",
-                "option"
-              ]
+              "modifiers": [ "shift", "command", "option" ]
             }
           ]
         },
@@ -223,18 +240,13 @@
           ],
           "from": {
             "key_code": "h",
-            "modifiers":{
-              "optional" :["any"]
-            }
+            "modifiers":{ "optional" :["any"] }
           },
           "to": [
+            { "set_variable": { "name": "previous_motion", "value": 0 } },
             {
               "key_code": "h",
-              "modifiers": [
-                "shift",
-                "command",
-                "option"
-              ]
+              "modifiers": [ "shift", "command", "option" ]
             }
           ]
         },
@@ -245,18 +257,13 @@
           ],
           "from": {
             "key_code": "i",
-            "modifiers":{
-              "optional" :["any"]
-            }
+            "modifiers":{ "optional" :["any"] }
           },
           "to": [
+            { "set_variable": { "name": "previous_motion", "value": 0 } },
             {
               "key_code": "i",
-              "modifiers": [
-                "shift",
-                "command",
-                "option"
-              ]
+              "modifiers": [ "shift", "command", "option" ]
             }
           ]
         },
@@ -267,18 +274,13 @@
           ],
           "from": {
             "key_code": "j",
-            "modifiers":{
-              "optional" :["any"]
-            }
+            "modifiers":{ "optional" :["any"] }
           },
           "to": [
+            { "set_variable": { "name": "previous_motion", "value": 0 } },
             {
               "key_code": "j",
-              "modifiers": [
-                "shift",
-                "command",
-                "option"
-              ]
+              "modifiers": [ "shift", "command", "option" ]
             }
           ]
         },
@@ -289,18 +291,13 @@
           ],
           "from": {
             "key_code": "k",
-            "modifiers":{
-              "optional" :["any"]
-            }
+            "modifiers":{ "optional" :["any"] }
           },
           "to": [
+            { "set_variable": { "name": "previous_motion", "value": 0 } },
             {
               "key_code": "k",
-              "modifiers": [
-                "shift",
-                "command",
-                "option"
-              ]
+              "modifiers": [ "shift", "command", "option" ]
             }
           ]
         },
@@ -311,18 +308,13 @@
           ],
           "from": {
             "key_code": "l",
-            "modifiers":{
-              "optional" :["any"]
-            }
+            "modifiers":{ "optional" :["any"] }
           },
           "to": [
+            { "set_variable": { "name": "previous_motion", "value": 0 } },
             {
               "key_code": "l",
-              "modifiers": [
-                "shift",
-                "command",
-                "option"
-              ]
+              "modifiers": [ "shift", "command", "option" ]
             }
           ]
         },
@@ -333,18 +325,13 @@
           ],
           "from": {
             "key_code": "m",
-            "modifiers":{
-              "optional" :["any"]
-            }
+            "modifiers":{ "optional" :["any"] }
           },
           "to": [
+            { "set_variable": { "name": "previous_motion", "value": 0 } },
             {
               "key_code": "m",
-              "modifiers": [
-                "shift",
-                "command",
-                "option"
-              ]
+              "modifiers": [ "shift", "command", "option" ]
             }
           ]
         },
@@ -355,18 +342,13 @@
           ],
           "from": {
             "key_code": "n",
-            "modifiers":{
-              "optional" :["any"]
-            }
+            "modifiers":{ "optional" :["any"] }
           },
           "to": [
+            { "set_variable": { "name": "previous_motion", "value": 0 } },
             {
               "key_code": "n",
-              "modifiers": [
-                "shift",
-                "command",
-                "option"
-              ]
+              "modifiers": [ "shift", "command", "option" ]
             }
           ]
         },
@@ -377,18 +359,13 @@
           ],
           "from": {
             "key_code": "o",
-            "modifiers":{
-              "optional" :["any"]
-            }
+            "modifiers":{ "optional" :["any"] }
           },
           "to": [
+            { "set_variable": { "name": "previous_motion", "value": 0 } },
             {
               "key_code": "o",
-              "modifiers": [
-                "shift",
-                "command",
-                "option"
-              ]
+              "modifiers": [ "shift", "command", "option" ]
             }
           ]
         },
@@ -399,18 +376,13 @@
           ],
           "from": {
             "key_code": "p",
-            "modifiers":{
-              "optional" :["any"]
-            }
+            "modifiers":{ "optional" :["any"] }
           },
           "to": [
+            { "set_variable": { "name": "previous_motion", "value": 0 } },
             {
               "key_code": "p",
-              "modifiers": [
-                "shift",
-                "command",
-                "option"
-              ]
+              "modifiers": [ "shift", "command", "option" ]
             }
           ]
         },
@@ -421,18 +393,13 @@
           ],
           "from": {
             "key_code": "q",
-            "modifiers":{
-              "optional" :["any"]
-            }
+            "modifiers":{ "optional" :["any"] }
           },
           "to": [
+            { "set_variable": { "name": "previous_motion", "value": 0 } },
             {
               "key_code": "q",
-              "modifiers": [
-                "shift",
-                "command",
-                "option"
-              ]
+              "modifiers": [ "shift", "command", "option" ]
             }
           ]
         },
@@ -443,18 +410,13 @@
           ],
           "from": {
             "key_code": "r",
-            "modifiers":{
-              "optional" :["any"]
-            }
+            "modifiers":{ "optional" :["any"] }
           },
           "to": [
+            { "set_variable": { "name": "previous_motion", "value": 0 } },
             {
               "key_code": "r",
-              "modifiers": [
-                "shift",
-                "command",
-                "option"
-              ]
+              "modifiers": [ "shift", "command", "option" ]
             }
           ]
         },
@@ -465,18 +427,13 @@
           ],
           "from": {
             "key_code": "s",
-            "modifiers":{
-              "optional" :["any"]
-            }
+            "modifiers":{ "optional" :["any"] }
           },
           "to": [
+            { "set_variable": { "name": "previous_motion", "value": 0 } },
             {
               "key_code": "s",
-              "modifiers": [
-                "shift",
-                "command",
-                "option"
-              ]
+              "modifiers": [ "shift", "command", "option" ]
             }
           ]
         },
@@ -487,18 +444,13 @@
           ],
           "from": {
             "key_code": "t",
-            "modifiers":{
-              "optional" :["any"]
-            }
+            "modifiers":{ "optional" :["any"] }
           },
           "to": [
+            { "set_variable": { "name": "previous_motion", "value": 0 } },
             {
               "key_code": "t",
-              "modifiers": [
-                "shift",
-                "command",
-                "option"
-              ]
+              "modifiers": [ "shift", "command", "option" ]
             }
           ]
         },
@@ -509,18 +461,13 @@
           ],
           "from": {
             "key_code": "u",
-            "modifiers":{
-              "optional" :["any"]
-            }
+            "modifiers":{ "optional" :["any"] }
           },
           "to": [
+            { "set_variable": { "name": "previous_motion", "value": 0 } },
             {
               "key_code": "u",
-              "modifiers": [
-                "shift",
-                "command",
-                "option"
-              ]
+              "modifiers": [ "shift", "command", "option" ]
             }
           ]
         },
@@ -531,40 +478,13 @@
           ],
           "from": {
             "key_code": "v",
-            "modifiers":{
-              "optional" :["any"]
-            }
+            "modifiers":{ "optional" :["any"] }
           },
           "to": [
+            { "set_variable": { "name": "previous_motion", "value": 0 } },
             {
               "key_code": "v",
-              "modifiers": [
-                "shift",
-                "command",
-                "option"
-              ]
-            }
-          ]
-        },
-        {
-          "type": "basic",
-          "conditions": [
-            { "type": "variable_if", "name": "manager", "value": 1 }
-          ],
-          "from": {
-            "key_code": "w",
-            "modifiers":{
-              "optional" :["any"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "w",
-              "modifiers": [
-                "shift",
-                "command",
-                "option"
-              ]
+              "modifiers": [ "shift", "command", "option" ]
             }
           ]
         },
@@ -575,18 +495,13 @@
           ],
           "from": {
             "key_code": "x",
-            "modifiers":{
-              "optional" :["any"]
-            }
+            "modifiers":{ "optional" :["any"] }
           },
           "to": [
+            { "set_variable": { "name": "previous_motion", "value": 0 } },
             {
               "key_code": "x",
-              "modifiers": [
-                "shift",
-                "command",
-                "option"
-              ]
+              "modifiers": [ "shift", "command", "option" ]
             }
           ]
         },
@@ -597,18 +512,13 @@
           ],
           "from": {
             "key_code": "y",
-            "modifiers":{
-              "optional" :["any"]
-            }
+            "modifiers":{ "optional" :["any"] }
           },
           "to": [
+            { "set_variable": { "name": "previous_motion", "value": 0 } },
             {
               "key_code": "y",
-              "modifiers": [
-                "shift",
-                "command",
-                "option"
-              ]
+              "modifiers": [ "shift", "command", "option" ]
             }
           ]
         },
@@ -619,18 +529,13 @@
           ],
           "from": {
             "key_code": "z",
-            "modifiers":{
-              "optional" :["any"]
-            }
+            "modifiers":{ "optional" :["any"] }
           },
           "to": [
+            { "set_variable": { "name": "previous_motion", "value": 0 } },
             {
               "key_code": "z",
-              "modifiers": [
-                "shift",
-                "command",
-                "option"
-              ]
+              "modifiers": [ "shift", "command", "option" ]
             }
           ]
         },
@@ -642,19 +547,13 @@
             { "type": "variable_if", "name": "manager", "value": 1 }
           ],
           "from": {
-            "key_code": "spacebar",
-            "modifiers":{
-              "optional" :["any"]
-            }
+            "key_code": "w",
+            "modifiers":{ "optional" :["any"] }
           },
           "to": [
             {
-              "key_code": "spacebar",
-              "modifiers": [
-                "shift",
-                "command",
-                "option"
-              ]
+              "key_code": "w",
+              "modifiers": [ "shift", "command", "option" ]
             }
           ]
         },
@@ -665,18 +564,13 @@
           ],
           "from": {
             "key_code": "quote",
-            "modifiers":{
-              "optional" :["any"]
-            }
+            "modifiers":{ "optional" :["any"] }
           },
           "to": [
+            { "set_variable": { "name": "previous_motion", "value": 2 } },
             {
               "key_code": "quote",
-              "modifiers": [
-                "shift",
-                "command",
-                "option"
-              ]
+              "modifiers": [ "shift", "command", "option" ]
             }
           ]
         },
@@ -687,18 +581,13 @@
           ],
           "from": {
             "key_code": "semicolon",
-            "modifiers":{
-              "optional" :["any"]
-            }
+            "modifiers":{ "optional" :["any"] }
           },
           "to": [
+            { "set_variable": { "name": "previous_motion", "value": 1 } },
             {
               "key_code": "semicolon",
-              "modifiers": [
-                "shift",
-                "command",
-                "option"
-              ]
+              "modifiers": [ "shift", "command", "option" ]
             }
           ]
         },
@@ -709,18 +598,12 @@
           ],
           "from": {
             "key_code": "left_arrow",
-            "modifiers":{
-              "optional" :["any"]
-            }
+            "modifiers":{ "optional" :["any"] }
           },
           "to": [
             {
               "key_code": "left_arrow",
-              "modifiers": [
-                "shift",
-                "command",
-                "option"
-              ]
+              "modifiers": [ "shift", "command", "option" ]
             }
           ]
         },
@@ -731,18 +614,12 @@
           ],
           "from": {
             "key_code": "right_arrow",
-            "modifiers":{
-              "optional" :["any"]
-            }
+            "modifiers":{ "optional" :["any"] }
           },
           "to": [
             {
               "key_code": "right_arrow",
-              "modifiers": [
-                "shift",
-                "command",
-                "option"
-              ]
+              "modifiers": [ "shift", "command", "option" ]
             }
           ]
         },
@@ -753,18 +630,12 @@
           ],
           "from": {
             "key_code": "up_arrow",
-            "modifiers":{
-              "optional" :["any"]
-            }
+            "modifiers":{ "optional" :["any"] }
           },
           "to": [
             {
               "key_code": "up_arrow",
-              "modifiers": [
-                "shift",
-                "command",
-                "option"
-              ]
+              "modifiers": [ "shift", "command", "option" ]
             }
           ]
         },
@@ -775,18 +646,12 @@
           ],
           "from": {
             "key_code": "down_arrow",
-            "modifiers":{
-              "optional" :["any"]
-            }
+            "modifiers":{ "optional" :["any"] }
           },
           "to": [
             {
               "key_code": "down_arrow",
-              "modifiers": [
-                "shift",
-                "command",
-                "option"
-              ]
+              "modifiers": [ "shift", "command", "option" ]
             }
           ]
         }

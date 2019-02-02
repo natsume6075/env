@@ -15,7 +15,7 @@
                 },
                 "rules": [
                     {
-                        "description": "[0] lang1",
+                        "description": "[1] lang1",
                         "manipulators": [
                             {
                                 "conditions": [
@@ -615,7 +615,7 @@
                         ]
                     },
                     {
-                        "description": "[0] lang2",
+                        "description": "[1] lang2",
                         "manipulators": [
                             {
                                 "conditions": [
@@ -690,10 +690,15 @@
                         ]
                     },
                     {
-                        "description": "[0] button32 → ⇧ ⌘ ⌥  ，単体押しで ctrl+shift+com+a，連打で ctrl+shift+com+b，single expose 中は return",
+                        "description": "[1] button32 → ⇧ ⌘ ⌥  ，単体押しで ctrl+shift+com+a，連打で ctrl+shift+com+b，single expose 中は return",
                         "manipulators": [
                             {
                                 "conditions": [
+                                    {
+                                        "name": "previous_motion",
+                                        "type": "variable_if",
+                                        "value": 0
+                                    },
                                     {
                                         "bundle_identifiers": [
                                             "^com\\.binaryage\\.TotalSpaces2"
@@ -727,6 +732,12 @@
                                 ],
                                 "to_if_alone": [
                                     {
+                                        "set_variable": {
+                                            "name": "previous_motion",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
                                         "key_code": "a",
                                         "modifiers": [
                                             "left_control",
@@ -736,6 +747,372 @@
                                     }
                                 ],
                                 "to_if_held_down": [
+                                    {
+                                        "set_variable": {
+                                            "name": "previous_motion",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "key_code": "b",
+                                        "modifiers": [
+                                            "left_control",
+                                            "left_shift",
+                                            "left_command"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "previous_motion",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    },
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.binaryage\\.TotalSpaces2"
+                                        ],
+                                        "type": "frontmost_application_unless"
+                                    }
+                                ],
+                                "from": {
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    },
+                                    "pointing_button": "button32"
+                                },
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "manager",
+                                            "value": 1
+                                        }
+                                    }
+                                ],
+                                "to_after_key_up": [
+                                    {
+                                        "set_variable": {
+                                            "name": "manager",
+                                            "value": 0
+                                        }
+                                    }
+                                ],
+                                "to_if_alone": [
+                                    {
+                                        "set_variable": {
+                                            "name": "previous_motion",
+                                            "value": 2
+                                        }
+                                    },
+                                    {
+                                        "key_code": "quote",
+                                        "modifiers": [
+                                            "shift",
+                                            "command",
+                                            "option"
+                                        ]
+                                    }
+                                ],
+                                "to_if_held_down": [
+                                    {
+                                        "set_variable": {
+                                            "name": "previous_motion",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "key_code": "b",
+                                        "modifiers": [
+                                            "left_control",
+                                            "left_shift",
+                                            "left_command"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "previous_motion",
+                                        "type": "variable_if",
+                                        "value": 2
+                                    },
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.binaryage\\.TotalSpaces2"
+                                        ],
+                                        "type": "frontmost_application_unless"
+                                    }
+                                ],
+                                "from": {
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    },
+                                    "pointing_button": "button32"
+                                },
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "manager",
+                                            "value": 1
+                                        }
+                                    }
+                                ],
+                                "to_after_key_up": [
+                                    {
+                                        "set_variable": {
+                                            "name": "manager",
+                                            "value": 0
+                                        }
+                                    }
+                                ],
+                                "to_if_alone": [
+                                    {
+                                        "set_variable": {
+                                            "name": "previous_motion",
+                                            "value": 1
+                                        }
+                                    },
+                                    {
+                                        "key_code": "semicolon",
+                                        "modifiers": [
+                                            "shift",
+                                            "command",
+                                            "option"
+                                        ]
+                                    }
+                                ],
+                                "to_if_held_down": [
+                                    {
+                                        "set_variable": {
+                                            "name": "previous_motion",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "key_code": "b",
+                                        "modifiers": [
+                                            "left_control",
+                                            "left_shift",
+                                            "left_command"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "previous_motion",
+                                        "type": "variable_if",
+                                        "value": 3
+                                    },
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.binaryage\\.TotalSpaces2"
+                                        ],
+                                        "type": "frontmost_application_unless"
+                                    }
+                                ],
+                                "from": {
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    },
+                                    "pointing_button": "button32"
+                                },
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "manager",
+                                            "value": 1
+                                        }
+                                    }
+                                ],
+                                "to_after_key_up": [
+                                    {
+                                        "set_variable": {
+                                            "name": "manager",
+                                            "value": 0
+                                        }
+                                    }
+                                ],
+                                "to_if_alone": [
+                                    {
+                                        "set_variable": {
+                                            "name": "previous_motion",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "key_code": "a",
+                                        "modifiers": [
+                                            "left_control",
+                                            "left_shift",
+                                            "left_command"
+                                        ]
+                                    }
+                                ],
+                                "to_if_held_down": [
+                                    {
+                                        "set_variable": {
+                                            "name": "previous_motion",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "key_code": "b",
+                                        "modifiers": [
+                                            "left_control",
+                                            "left_shift",
+                                            "left_command"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "previous_motion",
+                                        "type": "variable_if",
+                                        "value": 4
+                                    },
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.binaryage\\.TotalSpaces2"
+                                        ],
+                                        "type": "frontmost_application_unless"
+                                    }
+                                ],
+                                "from": {
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    },
+                                    "pointing_button": "button32"
+                                },
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "manager",
+                                            "value": 1
+                                        }
+                                    }
+                                ],
+                                "to_after_key_up": [
+                                    {
+                                        "set_variable": {
+                                            "name": "manager",
+                                            "value": 0
+                                        }
+                                    }
+                                ],
+                                "to_if_alone": [
+                                    {
+                                        "set_variable": {
+                                            "name": "previous_motion",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "key_code": "a",
+                                        "modifiers": [
+                                            "left_control",
+                                            "left_shift",
+                                            "left_command"
+                                        ]
+                                    }
+                                ],
+                                "to_if_held_down": [
+                                    {
+                                        "set_variable": {
+                                            "name": "previous_motion",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "key_code": "b",
+                                        "modifiers": [
+                                            "left_control",
+                                            "left_shift",
+                                            "left_command"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "previous_motion",
+                                        "type": "variable_if",
+                                        "value": 5
+                                    },
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.binaryage\\.TotalSpaces2"
+                                        ],
+                                        "type": "frontmost_application_unless"
+                                    }
+                                ],
+                                "from": {
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    },
+                                    "pointing_button": "button32"
+                                },
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "manager",
+                                            "value": 1
+                                        }
+                                    }
+                                ],
+                                "to_after_key_up": [
+                                    {
+                                        "set_variable": {
+                                            "name": "manager",
+                                            "value": 0
+                                        }
+                                    }
+                                ],
+                                "to_if_alone": [
+                                    {
+                                        "set_variable": {
+                                            "name": "previous_motion",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "key_code": "a",
+                                        "modifiers": [
+                                            "left_control",
+                                            "left_shift",
+                                            "left_command"
+                                        ]
+                                    }
+                                ],
+                                "to_if_held_down": [
+                                    {
+                                        "set_variable": {
+                                            "name": "previous_motion",
+                                            "value": 0
+                                        }
+                                    },
                                     {
                                         "key_code": "b",
                                         "modifiers": [
@@ -784,6 +1161,12 @@
                                 },
                                 "to": [
                                     {
+                                        "set_variable": {
+                                            "name": "previous_motion",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
                                         "key_code": "a",
                                         "modifiers": [
                                             "shift",
@@ -811,6 +1194,12 @@
                                     }
                                 },
                                 "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "previous_motion",
+                                            "value": 0
+                                        }
+                                    },
                                     {
                                         "key_code": "b",
                                         "modifiers": [
@@ -840,35 +1229,13 @@
                                 },
                                 "to": [
                                     {
+                                        "set_variable": {
+                                            "name": "previous_motion",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
                                         "key_code": "c",
-                                        "modifiers": [
-                                            "shift",
-                                            "command",
-                                            "option"
-                                        ]
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "manager",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "d",
-                                    "modifiers": {
-                                        "optional": [
-                                            "any"
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "d",
                                         "modifiers": [
                                             "shift",
                                             "command",
@@ -896,35 +1263,13 @@
                                 },
                                 "to": [
                                     {
+                                        "set_variable": {
+                                            "name": "previous_motion",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
                                         "key_code": "e",
-                                        "modifiers": [
-                                            "shift",
-                                            "command",
-                                            "option"
-                                        ]
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "manager",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "f",
-                                    "modifiers": {
-                                        "optional": [
-                                            "any"
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "f",
                                         "modifiers": [
                                             "shift",
                                             "command",
@@ -951,6 +1296,12 @@
                                     }
                                 },
                                 "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "previous_motion",
+                                            "value": 0
+                                        }
+                                    },
                                     {
                                         "key_code": "g",
                                         "modifiers": [
@@ -980,6 +1331,12 @@
                                 },
                                 "to": [
                                     {
+                                        "set_variable": {
+                                            "name": "previous_motion",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
                                         "key_code": "h",
                                         "modifiers": [
                                             "shift",
@@ -1007,6 +1364,12 @@
                                     }
                                 },
                                 "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "previous_motion",
+                                            "value": 0
+                                        }
+                                    },
                                     {
                                         "key_code": "i",
                                         "modifiers": [
@@ -1036,6 +1399,12 @@
                                 },
                                 "to": [
                                     {
+                                        "set_variable": {
+                                            "name": "previous_motion",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
                                         "key_code": "j",
                                         "modifiers": [
                                             "shift",
@@ -1063,6 +1432,12 @@
                                     }
                                 },
                                 "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "previous_motion",
+                                            "value": 0
+                                        }
+                                    },
                                     {
                                         "key_code": "k",
                                         "modifiers": [
@@ -1092,6 +1467,12 @@
                                 },
                                 "to": [
                                     {
+                                        "set_variable": {
+                                            "name": "previous_motion",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
                                         "key_code": "l",
                                         "modifiers": [
                                             "shift",
@@ -1119,6 +1500,12 @@
                                     }
                                 },
                                 "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "previous_motion",
+                                            "value": 0
+                                        }
+                                    },
                                     {
                                         "key_code": "m",
                                         "modifiers": [
@@ -1148,6 +1535,12 @@
                                 },
                                 "to": [
                                     {
+                                        "set_variable": {
+                                            "name": "previous_motion",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
                                         "key_code": "n",
                                         "modifiers": [
                                             "shift",
@@ -1175,6 +1568,12 @@
                                     }
                                 },
                                 "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "previous_motion",
+                                            "value": 0
+                                        }
+                                    },
                                     {
                                         "key_code": "o",
                                         "modifiers": [
@@ -1204,6 +1603,12 @@
                                 },
                                 "to": [
                                     {
+                                        "set_variable": {
+                                            "name": "previous_motion",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
                                         "key_code": "p",
                                         "modifiers": [
                                             "shift",
@@ -1231,6 +1636,12 @@
                                     }
                                 },
                                 "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "previous_motion",
+                                            "value": 0
+                                        }
+                                    },
                                     {
                                         "key_code": "q",
                                         "modifiers": [
@@ -1260,35 +1671,13 @@
                                 },
                                 "to": [
                                     {
+                                        "set_variable": {
+                                            "name": "previous_motion",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
                                         "key_code": "r",
-                                        "modifiers": [
-                                            "shift",
-                                            "command",
-                                            "option"
-                                        ]
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "manager",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "s",
-                                    "modifiers": {
-                                        "optional": [
-                                            "any"
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "s",
                                         "modifiers": [
                                             "shift",
                                             "command",
@@ -1315,6 +1704,12 @@
                                     }
                                 },
                                 "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "previous_motion",
+                                            "value": 0
+                                        }
+                                    },
                                     {
                                         "key_code": "t",
                                         "modifiers": [
@@ -1344,6 +1739,12 @@
                                 },
                                 "to": [
                                     {
+                                        "set_variable": {
+                                            "name": "previous_motion",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
                                         "key_code": "u",
                                         "modifiers": [
                                             "shift",
@@ -1371,6 +1772,12 @@
                                     }
                                 },
                                 "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "previous_motion",
+                                            "value": 0
+                                        }
+                                    },
                                     {
                                         "key_code": "v",
                                         "modifiers": [
@@ -1400,6 +1807,12 @@
                                 },
                                 "to": [
                                     {
+                                        "set_variable": {
+                                            "name": "previous_motion",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
                                         "key_code": "w",
                                         "modifiers": [
                                             "shift",
@@ -1427,6 +1840,12 @@
                                     }
                                 },
                                 "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "previous_motion",
+                                            "value": 0
+                                        }
+                                    },
                                     {
                                         "key_code": "x",
                                         "modifiers": [
@@ -1456,6 +1875,12 @@
                                 },
                                 "to": [
                                     {
+                                        "set_variable": {
+                                            "name": "previous_motion",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
                                         "key_code": "y",
                                         "modifiers": [
                                             "shift",
@@ -1484,6 +1909,12 @@
                                 },
                                 "to": [
                                     {
+                                        "set_variable": {
+                                            "name": "previous_motion",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
                                         "key_code": "z",
                                         "modifiers": [
                                             "shift",
@@ -1503,7 +1934,7 @@
                                     }
                                 ],
                                 "from": {
-                                    "key_code": "spacebar",
+                                    "key_code": "s",
                                     "modifiers": {
                                         "optional": [
                                             "any"
@@ -1512,7 +1943,259 @@
                                 },
                                 "to": [
                                     {
-                                        "key_code": "spacebar",
+                                        "set_variable": {
+                                            "name": "previous_motion",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "key_code": "s",
+                                        "modifiers": [
+                                            "shift",
+                                            "command",
+                                            "option"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "current_screen",
+                                        "type": "variable_if",
+                                        "value": 0
+                                    },
+                                    {
+                                        "name": "manager",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "d",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "d",
+                                        "modifiers": [
+                                            "shift",
+                                            "command",
+                                            "option"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "current_screen",
+                                        "type": "variable_if",
+                                        "value": 2
+                                    },
+                                    {
+                                        "name": "manager",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "d",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "previous_motion",
+                                            "value": 4
+                                        }
+                                    },
+                                    {
+                                        "set_variable": {
+                                            "name": "current_screen",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "key_code": "d",
+                                        "modifiers": [
+                                            "shift",
+                                            "command",
+                                            "option"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "current_screen",
+                                        "type": "variable_if",
+                                        "value": 3
+                                    },
+                                    {
+                                        "name": "manager",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "d",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "previous_motion",
+                                            "value": 5
+                                        }
+                                    },
+                                    {
+                                        "set_variable": {
+                                            "name": "current_screen",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "key_code": "d",
+                                        "modifiers": [
+                                            "shift",
+                                            "command",
+                                            "option"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "current_screen",
+                                        "type": "variable_if",
+                                        "value": 0
+                                    },
+                                    {
+                                        "name": "manager",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "f",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "previous_motion",
+                                            "value": 3
+                                        }
+                                    },
+                                    {
+                                        "set_variable": {
+                                            "name": "current_screen",
+                                            "value": 2
+                                        }
+                                    },
+                                    {
+                                        "key_code": "f",
+                                        "modifiers": [
+                                            "shift",
+                                            "command",
+                                            "option"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "current_screen",
+                                        "type": "variable_if",
+                                        "value": 2
+                                    },
+                                    {
+                                        "name": "manager",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "f",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "f",
+                                        "modifiers": [
+                                            "shift",
+                                            "command",
+                                            "option"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "current_screen",
+                                        "type": "variable_if",
+                                        "value": 3
+                                    },
+                                    {
+                                        "name": "manager",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "f",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "previous_motion",
+                                            "value": 5
+                                        }
+                                    },
+                                    {
+                                        "set_variable": {
+                                            "name": "current_screen",
+                                            "value": 2
+                                        }
+                                    },
+                                    {
+                                        "key_code": "f",
                                         "modifiers": [
                                             "shift",
                                             "command",
@@ -1539,6 +2222,12 @@
                                     }
                                 },
                                 "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "previous_motion",
+                                            "value": 2
+                                        }
+                                    },
                                     {
                                         "key_code": "quote",
                                         "modifiers": [
@@ -1567,6 +2256,12 @@
                                     }
                                 },
                                 "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "previous_motion",
+                                            "value": 1
+                                        }
+                                    },
                                     {
                                         "key_code": "semicolon",
                                         "modifiers": [
@@ -1693,7 +2388,7 @@
                         ]
                     },
                     {
-                        "description": "[1] スペースが他キーと同時押しされたときは，CTRLとして扱う。単体なら，spacebar。",
+                        "description": "[2] スペースが他キーと同時押しされたときは，CTRLとして扱う。単体なら，spacebar。",
                         "manipulators": [
                             {
                                 "from": {

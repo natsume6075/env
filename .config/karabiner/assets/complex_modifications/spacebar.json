@@ -1,8 +1,8 @@
 {
-  "title": "map SPACE to CTRL(if press with any key)",
+  "title": "[2] map SPACE to CTRL(if press with any key)",
   "rules": [
     {
-      "description": "[1] スペースが他キーと同時押しされたときは，CTRLとして扱う。単体なら，spacebar。",
+      "description": "[2] スペースが他キーと同時押しされたときは，CTRLとして扱う。単体なら，spacebar。",
       "manipulators": [
         {
           "type": "basic",
