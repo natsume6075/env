@@ -352,6 +352,7 @@ if dein#load_state('$XDG_CACHE_HOME/dein')
   call dein#add('Shougo/neosnippet.vim')
   call dein#add('Shougo/neosnippet-snippets')
   call dein#add('Shougo/defx.nvim')
+  call dein#add('Shougo/deol.nvim')
 
   call dein#add('osyo-manga/vim-anzu')
 
@@ -1234,8 +1235,7 @@ let g:caw_no_default_keymappings = 1
 " }}}
 
 " evervim --------------------- {{{
-
-"S=s1:U=950c7:E=16ed29afffd:C=1677ae9d0f8:P=1cd:A=en-devtoken:V=2:H=5eb05138265db2c1bf56b1b5fea42e0b
+let g:evervim_devtoken='S=s1:U=950c7:E=17007f452d0:C=168b0432528:P=1cd:A=en-devtoken:V=2:H=708160efd6d58adcc078a7f8ea1c5563'
 " first time settings
 " :EvervimSetup
 " }}}
@@ -1249,6 +1249,15 @@ call defx#custom#column('mark', {
       \ })
 "}}}
 
+" Deol -----------------------{{{
+tnoremap  <CR>  <Plug>(deol_execute_line)
+tnoremap  <C-p> <Plug>(deol_previous_prompt)
+tnoremap  <C-n> <Plug>(deol_next_prompt)
+tnoremap  <C-y> <Plug>(deol_paste_prompt)
+tnoremap  <C-z> <Plug>(deol_bg)
+tnoremap  e     <Plug>(deol_edit)
+
+"}}}
 
 "}}}
 
