@@ -6771,7 +6771,7 @@
                         "key_code": "left_control"
                     },
                     "to": {
-                        "key_code": "left_option"
+                        "pointing_button": "button31"
                     }
                 },
                 {
@@ -6780,14 +6780,6 @@
                     },
                     "to": {
                         "pointing_button": "button32"
-                    }
-                },
-                {
-                    "from": {
-                        "key_code": "quote"
-                    },
-                    "to": {
-                        "key_code": "semicolon"
                     }
                 },
                 {
@@ -6804,6 +6796,14 @@
                     },
                     "to": {
                         "key_code": "quote"
+                    }
+                },
+                {
+                    "from": {
+                        "key_code": "quote"
+                    },
+                    "to": {
+                        "key_code": "semicolon"
                     }
                 }
             ],
