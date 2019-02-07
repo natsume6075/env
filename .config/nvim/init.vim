@@ -988,6 +988,19 @@ nnoremap <CR> <CR>
 " map <f2> to toggle show Information
 nnoremap <f2> :
       \:set cursorcolumn!<CR>
+let copymode=0
+nnoremap <f14> :
+      \:let copymode=(copymode+1)%2<CR>
+      \:if copymode == 1<CR>
+      \:    set foldcolumn=0<CR>
+      \:    set nonumber<CR>
+      \:else<CR>
+      \:    set foldcolumn=3<CR>
+      \:    set number<CR>
+      \:endif<CR>
+      \<CR>
+
+
 "\:let hi_cursorline=(hi_cursorline/2+1)%2*2<CR>
 "\:if hi_cursorline == 0<CR>
 "\:    hi Cursorline =0<CR>
