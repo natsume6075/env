@@ -667,9 +667,10 @@ vnoremap <expr> sub Move_cursor_pos_mapping(":s/<C-r>0/<C-r>0<CURSOR>/g")
 " motion ------------------------------{{{
 inoremap <C-a> <C-o>^
 " アンドゥを抜けないで左に動かす．
-noremap! <C-b> <C-g>U<left>
+inoremap <C-b> <C-g>U<left>
+cnoremap <C-b> <left>
 noremap! <C-e> <END>
-" noremap! <C-f> <C-g>U<Right>
+cnoremap <C-f> <Right>
 inoremap <C-n> <Down>
 inoremap <C-p> <Up>
 noremap! <C-t> <C-e>
