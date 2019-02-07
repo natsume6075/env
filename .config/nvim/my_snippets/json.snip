@@ -122,3 +122,13 @@ snippet     setvariable
 alias       set_variable
 options     word
     { "set_variable": { "name": "${1}", "value": 0 } },
+
+
+snippet     key_code
+options     head
+    {
+      "key_code": "${1:#:key_code}",
+      "modifiers": [ ${2:#:mod} ]
+    },
+
+

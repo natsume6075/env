@@ -106,7 +106,7 @@ set spelllang=en,cjk
 "--- Motion ---------------------{{{
 set whichwrap=<,>,[,],h,l
 set backspace=indent,eol,start
-set mouse=a
+" set mouse=a
 set virtualedit=block
 " スクロールの余裕を確保する
 set scrolloff=2
@@ -629,7 +629,7 @@ nnoremap tcou :%s/.//gn
 " spell
 nnoremap <C-s> z=
 nmap <silent> " <plug>(caw:hatpos:toggle)
-nnoremap tcon J
+nnoremap con J
 " 行を移動
 nnoremap <C-Up> "zdd<Up>"zP
 nnoremap <C-Down> "zdd"zp
@@ -1054,7 +1054,7 @@ vnoremap  *  "zy/\V<C-r>z<CR>
 vnoremap <C-Up> "zx<Up>"zP`[V`]
 vnoremap <C-Down> "zx"zp`[V`]
 
-vnoremap tcou :s/.//gn<CR>
+vnoremap cou :s/.//gn<CR>
 
 " comment (caw)
 vmap <silent> " <plug>(caw:hatpos:toggle)
@@ -1297,6 +1297,7 @@ autocmd initvim FileType tex
       \ | let $LANG = "tex"
       \ | set foldmethod=expr
       \ | set shiftwidth=2
+      \ | set foldcolumn=5
 let g:tex_conceal="adgmb"
 
 autocmd initvim BufNewFile  *.tex  put='%! TEX root = /path/to/thesis.tex'

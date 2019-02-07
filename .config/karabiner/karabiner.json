@@ -7049,9 +7049,9 @@
             "complex_modifications": {
                 "parameters": {
                     "basic.simultaneous_threshold_milliseconds": 50,
-                    "basic.to_delayed_action_delay_milliseconds": 500,
-                    "basic.to_if_alone_timeout_milliseconds": 1000,
-                    "basic.to_if_held_down_threshold_milliseconds": 500
+                    "basic.to_delayed_action_delay_milliseconds": 200,
+                    "basic.to_if_alone_timeout_milliseconds": 300,
+                    "basic.to_if_held_down_threshold_milliseconds": 300
                 },
                 "rules": [
                     {
@@ -8441,6 +8441,14 @@
                 },
                 {
                     "from": {
+                        "key_code": "equal_sign"
+                    },
+                    "to": {
+                        "key_code": "e"
+                    }
+                },
+                {
+                    "from": {
                         "key_code": "f10"
                     },
                     "to": {
@@ -8461,6 +8469,22 @@
                     },
                     "to": {
                         "consumer_key_code": "volume_increment"
+                    }
+                },
+                {
+                    "from": {
+                        "key_code": "hyphen"
+                    },
+                    "to": {
+                        "key_code": "a"
+                    }
+                },
+                {
+                    "from": {
+                        "key_code": "left_control"
+                    },
+                    "to": {
+                        "key_code": "z"
                     }
                 },
                 {

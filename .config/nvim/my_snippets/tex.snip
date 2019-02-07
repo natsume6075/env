@@ -83,24 +83,21 @@ options     head
     \end{table}
 
 
-snippet     unaryc
-alias       unaryinfc UnaryInfC \unaryinfc \UnaryInfC
-abbr        add more unaryinf
-options     head
-    \noLine
-    \UnaryInfC{$
-      ${1:#:TARGET}
-    $}
-
-
 snippet     unary
-alias       unaryinf UnaryInf \unaryinf \UnaryInf
+alias       unaryinf UnaryInf
 abbr        add more unaryinf
 options     head
     \noLine
-    \UnaryInfC$
+    \UnaryInf$
       ${1:#:TARGET}
+      \fCenter\ ${2}
     $
+
+
+snippet     defcenter
+options     head
+    \def\fCenter{\mbox{\ =\ }}
+    \def\fCenter{\mbox{\ $\vdash$\ }}
 
 
 snippet     textsl
