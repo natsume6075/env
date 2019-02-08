@@ -19,6 +19,8 @@ modifiers
 open_bracket
 option
 optional
+page_up
+page_down
 period
 quote
 return_or_enter
