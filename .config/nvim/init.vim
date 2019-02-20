@@ -104,10 +104,11 @@ set spelllang=en,cjk
 "}}}
 
 "--- Motion ---------------------{{{
-set whichwrap=<,>,[,],h,l
+set whichwrap=<,>,[,]
+" set whichwrap=<,>,[,],h,l
 set backspace=indent,eol,start
 " set mouse=a
-set virtualedit=block
+set virtualedit=block,insert
 " スクロールの余裕を確保する
 set scrolloff=2
 " maintain cursor position
@@ -1226,6 +1227,7 @@ call lexima#add_rule({'char': '<Space>', 'at': '\$\%#\$', 'input': '<Space>', 'i
 call lexima#add_rule({'char': '<BS>',    'at': '\$\%#\$', 'delete': 1, 'filetype': 'tex'})
 call lexima#add_rule({'char': '<BS>',    'at': '\$ \%# \$', 'delete': 1, 'filetype': 'tex'})
 call lexima#add_rule({'char': '$',    'at': '@\%#', 'input_after': '$@', 'filetype': 'tex'})
+
 
 
 call lexima#add_rule({'char': '<', 'input': '<', 'input_after': '>'})
