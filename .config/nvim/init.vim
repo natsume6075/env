@@ -107,7 +107,8 @@ set spelllang=en,cjk
 set whichwrap=<,>,[,]
 " set whichwrap=<,>,[,],h,l
 set backspace=indent,eol,start
-" set mouse=a
+" わりとカーソルがクリックで移動するのは邪魔くさいけど，ホイールによるスクロールだけは便利なので．
+set mouse=a
 set virtualedit=block,insert
 " スクロールの余裕を確保する
 set scrolloff=2
