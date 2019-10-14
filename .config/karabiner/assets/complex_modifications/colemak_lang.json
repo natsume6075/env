@@ -1,0 +1,388 @@
+{
+  "title": "colemak_[1] lang",
+  "rules": [
+    {
+      "description": "[1] lang1",
+      "manipulators": [
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "frontmost_application_unless", "bundle_identifiers": [ "^com\\.googlecode\\.iterm2" ] }
+          ],
+          "from": {
+            "key_code": "lang1",
+            "modifiers":{
+              "optional" :["any"]
+            }
+          },
+          "to": [
+            { "set_variable": { "name": "simbol_mode", "value": 1 } }
+          ],
+          "to_after_key_up": [
+            { "set_variable": { "name": "simbol_mode", "value": 0 } }
+          ],
+          "to_if_alone": [
+            { "key_code": "lang1" }
+          ],
+          "to_if_held_down": [
+          ]
+        },
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "frontmost_application_if", "bundle_identifiers": [ "^com\\.googlecode\\.iterm2" ] }
+          ],
+          "from": {
+            "key_code": "lang1",
+            "modifiers":{
+              "optional" :["any"]
+            }
+          },
+          "to": [
+            { "set_variable": { "name": "simbol_mode", "value": 1 } }
+          ],
+          "to_after_key_up": [
+            { "set_variable": { "name": "simbol_mode", "value": 0 } }
+          ],
+          "to_if_alone": [
+            { "key_code": "lang1" },
+            { "key_code": "f", "modifiers":["control","shift","command"] }
+          ],
+          "to_if_held_down": [
+          ]
+        },
+
+
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "variable_if", "name": "simbol_mode", "value": 1 }
+          ],
+          "from": {
+            "key_code": "u"
+          },
+          "to": [
+            { "key_code": "slash", "modifiers":[] }
+          ]
+        },
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "variable_if", "name": "simbol_mode", "value": 1 }
+          ],
+          "from": {
+            "key_code": "i"
+          },
+          "to": [
+            { "key_code": "1", "modifiers":["shift"] }
+          ]
+        },
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "variable_if", "name": "simbol_mode", "value": 1 }
+          ],
+          "from": {
+            "key_code": "o"
+          },
+          "to": [
+            { "key_code": "slash", "modifiers":["shift"] }
+          ]
+        },
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "variable_if", "name": "simbol_mode", "value": 1 }
+          ],
+          "from": {
+            "key_code": "p"
+          },
+          "to": [
+            { "key_code": "international3", "modifiers":[] }
+          ]
+        },
+
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "variable_if", "name": "simbol_mode", "value": 1 }
+          ],
+          "from": {
+            "key_code": "d"
+          },
+          "to": [
+            { "key_code": "hyphen", "modifiers":["shift"] }
+          ]
+        },
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "variable_if", "name": "simbol_mode", "value": 1 }
+          ],
+          "from": {
+            "key_code": "f"
+          },
+          "to": [
+            { "key_code": "6", "modifiers":["shift"] }
+          ]
+        },
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "variable_if", "name": "simbol_mode", "value": 1 }
+          ],
+          "from": {
+            "key_code": "g"
+          },
+          "to": [
+            { "key_code": "5", "modifiers":["shift"] }
+          ]
+        },
+
+
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "variable_if", "name": "simbol_mode", "value": 1 }
+          ],
+          "from": {
+            "key_code": "h"
+          },
+          "to": [
+            { "key_code": "4", "modifiers":["shift"] }
+          ]
+        },
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "variable_if", "name": "simbol_mode", "value": 1 }
+          ],
+          "from": {
+            "key_code": "h",
+            "modifiers":{
+              "mandatory":["shift"]
+            }
+          },
+          "to": [
+            { "key_code": "open_bracket" },
+            { "key_code": "4", "modifiers":["shift"] }
+          ]
+        },
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "variable_if", "name": "simbol_mode", "value": 1 }
+          ],
+          "from": {
+            "key_code": "j"
+          },
+          "to": [
+            { "key_code": "8", "modifiers":["shift"] }
+          ]
+        },
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "variable_if", "name": "simbol_mode", "value": 1 }
+          ],
+          "from": {
+            "key_code": "j",
+            "modifiers":{
+              "mandatory":["shift"]
+            }
+          },
+          "to": [
+            { "key_code": "9", "modifiers":["shift"] }
+          ]
+        },
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "variable_if", "name": "simbol_mode", "value": 1 }
+          ],
+          "from": {
+            "key_code": "j",
+            "modifiers":{
+              "mandatory":["control"]
+            }
+          },
+          "to": [
+            { "key_code": "a", "modifiers":["option"] },
+            { "key_code": "8", "modifiers":["shift"] }
+          ]
+        },
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "variable_if", "name": "simbol_mode", "value": 1 }
+          ],
+          "from": {
+            "key_code": "k"
+          },
+          "to": [
+            { "key_code": "close_bracket", "modifiers":["shift"] }
+          ]
+        },
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "variable_if", "name": "simbol_mode", "value": 1 }
+          ],
+          "from": {
+            "key_code": "k",
+            "modifiers":{
+              "mandatory":["shift"]
+            }
+          },
+          "to": [
+            { "key_code": "backslash", "modifiers":["shift"] }
+          ]
+        },
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "variable_if", "name": "simbol_mode", "value": 1 }
+          ],
+          "from": {
+            "key_code": "k",
+            "modifiers":{
+              "mandatory":["control"]
+            }
+          },
+          "to": [
+            { "key_code": "a", "modifiers":["option"] },
+            { "key_code": "close_bracket", "modifiers":["shift"] }
+          ]
+        },
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "variable_if", "name": "simbol_mode", "value": 1 }
+          ],
+          "from": {
+            "key_code": "l"
+          },
+          "to": [
+            { "key_code": "close_bracket", "modifiers":[] }
+          ]
+        },
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "variable_if", "name": "simbol_mode", "value": 1 }
+          ],
+          "from": {
+            "key_code": "l",
+            "modifiers":{
+              "mandatory":["shift"]
+            }
+          },
+          "to": [
+            { "key_code": "backslash", "modifiers":[""] }
+          ]
+        },
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "variable_if", "name": "simbol_mode", "value": 1 }
+          ],
+          "from": {
+            "key_code": "l",
+            "modifiers":{
+              "mandatory":["control"]
+            }
+          },
+          "to": [
+            { "key_code": "a", "modifiers":["option"] },
+            { "key_code": "close_bracket", "modifiers":[] }
+          ]
+        },
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "variable_if", "name": "simbol_mode", "value": 1 }
+          ],
+          "from": {
+            "key_code": "quote"
+          },
+          "to": [
+            { "key_code": "comma", "modifiers":["shift"] }
+          ]
+        },
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "variable_if", "name": "simbol_mode", "value": 1 }
+          ],
+          "from": {
+            "key_code": "quote",
+            "modifiers":{
+              "mandatory":["shift"]
+            }
+          },
+          "to": [
+            { "key_code": "period", "modifiers":["shift"] }
+          ]
+        },
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "variable_if", "name": "simbol_mode", "value": 1 }
+          ],
+          "from": {
+            "key_code": "quote",
+            "modifiers":{
+              "mandatory":["control"]
+            }
+          },
+          "to": [
+            { "key_code": "a", "modifiers":["option"] },
+            { "key_code": "comma", "modifiers":["shift"] }
+          ]
+        }
+      ]
+    },
+    {
+      "description": "[1] lang2",
+      "manipulators": [
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "frontmost_application_unless", "bundle_identifiers": [ "^com\\.googlecode\\.iterm2" ] }
+          ],
+          "from": {
+            "key_code": "left_shift",
+            "modifiers":{"optional":["any"]}
+          },
+          "to": [
+            {"key_code": "left_shift", "lazy": true}
+          ],
+          "to_if_alone": [
+            {"key_code": "lang2"}
+          ],
+          "to_if_held_down": [
+          ]
+        },
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "frontmost_application_if", "bundle_identifiers": [ "^com\\.googlecode\\.iterm2" ] }
+          ],
+          "from": {
+            "key_code": "left_shift",
+            "modifiers":{"optional":["any"]}
+          },
+          "to": [
+            {"key_code": "left_shift", "lazy": true}
+          ],
+          "to_if_alone": [
+            {"key_code": "lang2"},
+            { "key_code": "g", "modifiers":["control","shift","command"] }
+          ],
+          "to_if_held_down": [
+          ]
+        }
+      ]
+    }
+  ]
+}

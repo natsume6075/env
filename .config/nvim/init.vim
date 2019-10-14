@@ -39,6 +39,7 @@
 "                          | |                                                | |    |
 " ----------------------------------------------------------------------------------------------------
 
+
 augroup initvim
   autocmd!
 augroup END
@@ -109,7 +110,7 @@ set whichwrap=<,>,[,]
 set backspace=indent,eol,start
 " わりとカーソルがクリックで移動するのは邪魔くさいけど，ホイールによるスクロールだけは便利なので．
 set mouse=a
-set virtualedit=block,insert
+set virtualedit=block
 " スクロールの余裕を確保する
 set scrolloff=2
 " maintain cursor position
@@ -614,10 +615,6 @@ let maplocalleader = "\<Space>"
 " ---------------------------------------
 "{{{
 " simple mapping -------------------
-" :と;の入れ替え、Karabinar からやったのでクビ
-" それどころかキーボードも物理的に入れ替えちゃった
-" nnoremap ; :
-" nnoremap : ;
 nnoremap <C-u> <C-r>
 nnoremap <C-r> "
 xnoremap <C-r> "
@@ -635,6 +632,7 @@ nnoremap con J
 " 行を移動
 nnoremap <C-Up> "zdd<Up>"zP
 nnoremap <C-Down> "zdd"zp
+" todo 文字を移動
 
 "Search/substitute
 " anzu search
@@ -679,7 +677,6 @@ noremap! <C-t> <C-e>
 noremap H _
 noremap L $
 nnoremap <silent> M     :keepjumps normal ─M<CR>
-xnoremap <silent> M     :keepjumps normal ─M<CR>
 onoremap <silent> M     :keepjumps normal ─M<CR>
 noremap <expr>   ─M  Avoid_too_recursive_M()
 xnoremap <expr>  M     Avoid_too_recursive_M()
@@ -690,7 +687,6 @@ endfunction"
 " 思い通りになるJK
 " keepjumps をする際に，関数の中に入れることで，無限ループを回避している。
 nnoremap <silent> J     :keepjumps normal ─J<CR>
-xnoremap <silent> J     :keepjumps normal ─J<CR>
 onoremap <silent> J     :keepjumps normal ─J<CR>
 noremap <expr>   ─J  To_bottom_of_window_OR_scroll_next_page()
 xnoremap <expr>  J     To_bottom_of_window_OR_scroll_next_page()
@@ -702,7 +698,6 @@ function! To_bottom_of_window_OR_scroll_next_page() abort" {{{
   endif
 endfunction" }}}
 nnoremap <silent> K     :keepjumps normal ─K<CR>
-xnoremap <silent> K     :keepjumps normal ─K<CR>
 onoremap <silent> K     :keepjumps normal ─K<CR>
 noremap <expr>   ─K  To_top_of_window_OR_scroll_previous_page()
 xnoremap <expr>  K     To_top_of_window_OR_scroll_previous_page()
@@ -1132,6 +1127,28 @@ set matchpairs=(:),{:},[:],<:>
 "}}}
 
 " ---------------------------------------
+"  Mapping For Colemak:
+" ---------------------------------------
+"{{{
+nmap j <Plug>(anzu-n-with-echo)
+nmap J <Plug>(anzu-N-with-echo)
+noremap n gj
+noremap <silent> N     :keepjumps normal ─J<CR>
+xnoremap <expr>  N     To_bottom_of_window_OR_scroll_next_page()
+
+noremap k e
+noremap K E
+noremap e gk
+noremap <silent> E     :keepjumps normal ─K<CR>
+xnoremap <expr>  E     To_top_of_window_OR_scroll_previous_page()
+
+noremap l i
+noremap L I
+noremap i l
+noremap I $
+"}}}
+
+" ---------------------------------------
 "  Auto Snippet:
 " ---------------------------------------
 "{{{
@@ -1317,6 +1334,12 @@ autocmd initvim FileType tex
       \ | set foldcolumn=5
 let g:tex_conceal="adgmb"
 
+augroup texfile
+  autocmd BufRead,BufNewFile *.tex set filetype=tex
+  let md_to_latex  = "pandoc --from=markdown --to=latex"
+  autocmd Filetype tex let &formatprg=md_to_latex
+augroup END
+
 autocmd initvim BufNewFile  *.tex  put='%! TEX root = /path/to/thesis.tex'
 
 let g:tex_flavor = 'latex'
@@ -1400,7 +1423,6 @@ autocmd initvim VimEnter *
 
 let $GLOBAL_DICTIONARY = expand($XDG_CONFIG_HOME.'/nvim/my_dictionary/_.dict')
 set dictionary+=$GLOBAL_DICTIONARY
-
 
 
 " Ref: https://vim-jp.org/vim-users-jp/2009/10/08/Hack-84.html
