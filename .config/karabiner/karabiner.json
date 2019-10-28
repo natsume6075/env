@@ -7359,7 +7359,7 @@
             "parameters": {
                 "delay_milliseconds_before_open_device": 1000
             },
-            "selected": false,
+            "selected": true,
             "simple_modifications": [
                 {
                     "from": {
@@ -11209,7 +11209,7 @@
             "parameters": {
                 "delay_milliseconds_before_open_device": 1000
             },
-            "selected": true,
+            "selected": false,
             "simple_modifications": [
                 {
                     "from": {
@@ -11217,6 +11217,14 @@
                     },
                     "to": {
                         "key_code": "s"
+                    }
+                },
+                {
+                    "from": {
+                        "key_code": "hyphen"
+                    },
+                    "to": {
+                        "key_code": "quote"
                     }
                 },
                 {
@@ -11245,18 +11253,18 @@
                 },
                 {
                     "from": {
-                        "key_code": "s"
+                        "key_code": "right_shift"
                     },
                     "to": {
-                        "key_code": "d"
+                        "pointing_button": "button32"
                     }
                 },
                 {
                     "from": {
-                        "key_code": "hyphen"
+                        "key_code": "s"
                     },
                     "to": {
-                        "key_code": "quote"
+                        "key_code": "d"
                     }
                 }
             ],

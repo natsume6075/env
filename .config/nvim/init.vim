@@ -615,9 +615,6 @@ let maplocalleader = "\<Space>"
 " ---------------------------------------
 "{{{
 " simple mapping -------------------
-nnoremap <C-u> <C-r>
-nnoremap <C-r> "
-xnoremap <C-r> "
 nnoremap Y y$
 nnoremap j gj
 nnoremap k gk
@@ -632,7 +629,6 @@ nnoremap con J
 " 行を移動
 nnoremap <C-Up> "zdd<Up>"zP
 nnoremap <C-Down> "zdd"zp
-" todo 文字を移動
 
 "Search/substitute
 " anzu search
@@ -647,18 +643,6 @@ nmap # <Plug>(anzu-sharp-with-echo)
 " nnoremap <expr> n anzu#mode#mapexpr("n", "", "zzzv")
 " nnoremap <expr> N anzu#mode#mapexpr("N", "", "zzzv")
 " let g:anzu_status_format = "%#WarningMsg#%p(%i/%l)"
-" nnoremap <silent>n  :keepjumps normal ─n<CR>"{{{
-" nnoremap <expr>  ─n Avoid_too_recursive_n()
-function! Avoid_too_recursive_n() abort"
-  return "n"
-endfunction
-"}}}
-" nnoremap <silent>N  :keepjumps normal ─N<CR>"{{{
-nnoremap <expr>  ─N Avoid_too_recursive_N()
-function! Avoid_too_recursive_N() abort"
-  return "N"
-endfunction
-"}}}
 
 nnoremap <expr> sub Move_cursor_pos_mapping(":%s/<C-r>0/<C-r>0<CURSOR>/g")
 vnoremap <expr> sub Move_cursor_pos_mapping(":s/<C-r>0/<C-r>0<CURSOR>/g")
@@ -741,7 +725,6 @@ nnoremap ─hoge :
 
 " mode switch ----------------------
 nnoremap <C-p> :<C-p>
-" nnoremap q: :
 
 nnoremap <silent> <ESC> :nohl<CR><ESC>
 nnoremap <silent> <C-c> :nohl<CR><C-c>
@@ -1148,16 +1131,6 @@ noremap i l
 noremap I $
 "}}}
 
-" ---------------------------------------
-"  Auto Snippet:
-" ---------------------------------------
-"{{{
-" imap å(       (a<C-h><plug>(neosnippet_expand)
-" imap å{       {a<C-h><plug>(neosnippet_expand)
-" imap å[       [a<C-h><plug>(neosnippet_expand)
-" imap å<       <a<C-h><plug>(neosnippet_expand)
-" imap å$       $a<C-h><plug>(neosnippet_expand)
-"}}}
 
 " ---------------------------------------
 "  Plugin Setting:
