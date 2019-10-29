@@ -257,61 +257,61 @@ command! MOJI %s/./&/g
 "{{{
 augroup initvim
 
-  if executable('osascript')
-    let s:keycode_jis_eisuu = 102
-    let g:force_alphanumeric_input_command = "osascript -e 'tell application \"System Events\" to key code " . s:keycode_jis_eisuu . "' &"
-    let s:keycode_jis_kana  = 104
-    let g:force_kana_input_command         = "osascript -e 'tell application \"System Events\" to key code " . s:keycode_jis_kana  . "' &"
-    let g:current_input_method = 102
+  let g:current_ime_mode = 0
 
-    " control を押した状態で insert を抜けると，抜けた後にスペースが挿入される。
-    " input source が切り替わった瞬間に押しっぱなしになってるキーがもう一度押された判定になるからの模様。
-    " さらにスニペット絡みは展開もジャンプも内部的にインサートを抜けるので，同じく発火されるし挿入される。
-    " そもそもラグが辛すぎる！ CTRL-o とかのレスポンスが悪すぎて，論外。
-  endif
+  function! Ime_off() abort
+    if has('win64')
+      echo "Someone please open the windows!"
+    elseif has('mac')
+      call system("osascript -e 'tell application \"System Events\" to key code 102' &")
+    else
+      echo "not defined"
+    endif
+  endfunction
+
+  function! Ime_on() abort
+    if has('win64')
+      echo "Someone please open the Window(s)!"
+    elseif has('mac')
+      call system("osascript -e 'tell application \"System Events\" to key code 104' &")
+    else
+      echo "not defined"
+    endif
+  endfunction
 
   autocmd InsertEnter *
-        \ hi FoldColumn ctermbg=16 |
-        \ if g:current_input_method == s:keycode_jis_kana |
-        \   call system(g:force_kana_input_command) |
-        \ endif
+       \ if g:current_ime_mode == 1 |
+       \   call Ime_on() |
+       \ endif
+  autocmd InsertLeave *
+       \ if g:current_ime_mode == 1 |
+       \   call Ime_off() |
+       \ endif
 
-  inoremap <silent>っj <ESC>:let current_input_method = 104<CR>:hi FoldColumn ctermbg=black<CR>
-  imap     <silent> jj <ESC>:let current_input_method = 102<CR>:hi FoldColumn ctermbg=16<CR>
+  imap <silent>っj <ESC>
+  imap <silent> jj <ESC>
 
-  " todo: 変更が不必要な時は変更しない
-  " 重さについて
-  "   英数モードに変えるときは一切問題なし（割り込まれても大丈夫みたい）
-  "   :hi :let も結構ラグがある
-  "
   noremap  çlang1 <Nop>
   noremap! çlang1 <Nop>
   noremap  çlang2 <Nop>
   noremap! çlang2 <Nop>
   nnoremap <silent> çlang1 :
-        \:call system(g:force_alphanumeric_input_command)<CR>
-        \:let current_input_method = 104<CR>
-        \:hi FoldColumn ctermbg=black<CR>
+       \:call Ime_off()<CR>
+       \:let current_ime_mode = 1<CR>
+       \:hi FoldColumn ctermbg=black<CR>
   nnoremap <silent> çlang2 :
-        \:let current_input_method = 102<CR>
-        \:hi FoldColumn ctermbg=16<CR>
-  " inoremap <silent> çlang1
-        "\ <C-o>
-        "\:if current_input_method==102<CR>
-        "\  :let current_input_method = 104<CR>
-        "\  :hi FoldColumn ctermbg=black<CR>
-        "\:endif<CR>
-  " inoremap <silent> çlang2
-        "\ <C-o>
-        "\:if current_input_method==104<CR>
-        "\  :let current_input_method = 102<CR>
-        "\  :hi FoldColumn ctermbg=16<CR>
-        "\:endif<CR>
-
-
+       \:let current_ime_mode = 0<CR>
+       \:hi FoldColumn ctermbg=16<CR>
+  inoremap <silent> çlang1 <C-o>:
+      \:let current_ime_mode = 1<CR>
+      \<C-o>:hi FoldColumn ctermbg=black<CR>
+  inoremap <silent> çlang2 <C-o>:
+     \:let current_ime_mode = 0<CR>
+     \<C-o>:hi FoldColumn ctermbg=16<CR>
 
 augroup END
 "}}}
+
 
 " init.vim を保存したときにリロード
 autocmd initvim BufWritePost $XDG_CONFIG_HOME/nvim/init.vim so $XDG_CONFIG_HOME/nvim/init.vim
@@ -1113,23 +1113,23 @@ set matchpairs=(:),{:},[:],<:>
 "  Mapping For Colemak:
 " ---------------------------------------
 "{{{
-nmap j <Plug>(anzu-n-with-echo)
-nmap J <Plug>(anzu-N-with-echo)
-noremap n gj
-noremap <silent> N     :keepjumps normal ─J<CR>
-xnoremap <expr>  N     To_bottom_of_window_OR_scroll_next_page()
-
-noremap k e
-noremap K E
-noremap e gk
-noremap <silent> E     :keepjumps normal ─K<CR>
-xnoremap <expr>  E     To_top_of_window_OR_scroll_previous_page()
-
-noremap l i
-noremap L I
-noremap i l
-noremap I $
-"}}}
+" nmap j <Plug>(anzu-n-with-echo)
+" nmap J <Plug>(anzu-N-with-echo)
+" noremap n gj
+" noremap <silent> N     :keepjumps normal ─J<CR>
+" xnoremap <expr>  N     To_bottom_of_window_OR_scroll_next_page()
+" 
+" noremap k e
+" noremap K E
+" noremap e gk
+" noremap <silent> E     :keepjumps normal ─K<CR>
+" xnoremap <expr>  E     To_top_of_window_OR_scroll_previous_page()
+" 
+" noremap l i
+" noremap L I
+" noremap i l
+" noremap I $
+" "}}}
 
 
 " ---------------------------------------
