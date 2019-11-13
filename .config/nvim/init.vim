@@ -46,24 +46,19 @@ augroup END
 
 
 
-"--- Environment Variables: --------------------------------------------------{{{
+" --- Environment Variables: --------------------------------------------------{{{
 let $XDG_CACHE_HOME = expand($HOME.'/.cache')
 let $XDG_CONFIG_HOME = expand($HOME.'/.config')
 let $XDG_DATA_DIRS = expand('/usr/local/share:/usr/share')
 let $XDG_DATA_HOME = expand($HOME.'/.local/share')
+"}}}
 
+" --- Global Functions: -------------------{{{
 let $CURRENT_FILE_PASS = expand("%")
 let $CURRENT_FILE_NAME = substitute(expand("%:p"), "^.*/", "", "g")
 let $CURRENT_DIR       = substitute(expand("%:p"), "/[^/]*$", "", "g")
-"}}}
-
-"--- Global Functions: -------------------{{{
 let save_curpos = getcurpos()
 set nocompatible
-
-" function! g:Get_curpos_to_curpos() abort
-"   let g:curpos = getcurpos()
-" endfunction
 
 " pos は配列で，その扱いがおかしいっぽい？
 function! g:Set_curpos() abort
@@ -81,43 +76,27 @@ endfunction
 " Ref: http://d.hatena.ne.jp/osyo-manga/20130424/1366800441
 "}}}
 
-"--- Global Settings: -------------------------------------{{{
+" --- Global Settings: -------------------------------------{{{
 set fenc=utf-8
 set backupdir=$XDG_DATA_HOME/nvim/backup
-" " file_name で backupをまとめようかと思ったけど，
-" " ディレクトリが存在しないと保存できないのでめんどくさい。
-" set backupdir=$XDG_DATA_HOME/nvim/backup/file_name
 set backup
-au initvim BufWritePre * let &bex = '.' . strftime("%Y%m%d_%H%M%S")
 set directory=$XDG_DATA_HOME/nvim/swap
 set swapfile
-" 編集中のファイルが変更されたら自動で読み直す
 set autoread
-" hidden current buffer and open other files
 set hidden
-" 自動改行しない
 set textwidth=0
 set display=lastline
 set pumheight=12
-" spelling check
 set spell
 set spelllang=en,cjk
 "}}}
 
-"--- Motion ---------------------{{{
+" --- Motion ---------------------{{{
 set whichwrap=<,>,[,]
-" set whichwrap=<,>,[,],h,l
 set backspace=indent,eol,start
-" わりとカーソルがクリックで移動するのは邪魔くさいけど，ホイールによるスクロールだけは便利なので．
 set mouse=a
 set virtualedit=block
-" スクロールの余裕を確保する
 set scrolloff=2
-" maintain cursor position
-autocmd initvim BufReadPost *
-      \ if line("'\"") > 0 && line ("'\"") <= line("$") |
-      \   exe "normal! g'\"" |
-      \ endif
 "}}}
 
 " --- Undo ------------------{{{
@@ -127,23 +106,14 @@ set undolevels=1000
 "}}}
 
 " --- Yank, Paste, Resisters ----------- {{{
-" set clipboard+=unnamedplus
 autocmd initvim TextYankPost *
       \ echomsg "yank"string(v:event.regcontents)" to reg: ".v:event.regname
-" }}}
-
-" --- viminfo -------------------------- {{{
-set viminfo+=n$XDG_DATA_HOME/nvim/viminfo
 autocmd initvim TextYankPost * :wv
 autocmd initvim FocusGained * :rv!
 " }}}
 
-" --- Marks ---------------- {{{
-" mark[0-9] をキューのように扱うものとして再構成する。
-" mark 0 に追加して，mark9 は削除する。
-function! Push_queue_of_marks() abort
-  echo "hoge"
-endfunction
+" --- viminfo -------------------------- {{{
+set viminfo+=n$XDG_DATA_HOME/nvim/viminfo
 " }}}
 
 " --- Folding -------------- {{{
@@ -161,82 +131,40 @@ set fillchars=vert:\|
 let g:foldCCtext_enable_autofdc_adjuster = 1
 " Don't save options.
 set viewoptions-=options
-"{{{{{{{{{{{{{{{
-"{{{
-"{{{
-"{{{
-"{{{
-"{{{
-"{{{
-
-"}}}
-"}}}
-"}}}
-"}}}
-"}}}
-"}}}
-"}}}
-"}}}
-"}}}
-"}}}
-"}}}
 " }}}
 
 " --- Information ------------------------- {{{
-" 行番号を表示
 set number
-" ビープ音を可視化
-" set visualbell
-" 括弧入力時の対応する括弧を表示，その時間
+set visualbell
 set showmatch
 set matchtime=1
-" 入力中のコマンドをステータスに表示する
 set showcmd
-" 文字数
-" set ruler
-" ステータスラインを 0=表示しない,1=2画面以上だけ,2=常に表示
+set ruler
 set laststatus=2
-" コマンドラインの補完
 set wildmode=list:longest
 " }}}
 
 " --- Tab / invisible character ----------- {{{
-" 不可視文字を可視化(タブが「▸-」と表示される)
-set list listchars=tab:\▸\-
-" Tab文字を半角スペースにする
 set expandtab
-" 行頭以外のTab文字の表示幅（スペースいくつ分）
 set tabstop=2
-" 行頭でのTab文字の表示幅
 set shiftwidth=2
-" オートインデント
 set autoindent
-" インデントはスマートインデント
 set smartindent
-" タブを >--- 半スペを . で表示する
 set listchars=tab:>-,trail:.
-" 不可視文字を表示する
 set list
 " }}}
 
 " --- Search ------------------------------ {{{
-" 検索文字列が小文字の場合は大文字小文字を区別なく検索する
 set ignorecase
-" 検索文字列に大文字が含まれている場合は区別して検索する
 set smartcase
-" 検索文字列入力時に順次対象文字列にヒットさせる
 set incsearch
-" 検索時に最後まで行ったら最初に戻る
 set wrapscan
-" 検索語をハイライト表示
 set hlsearch
 " }}}
 
-
-
 " about help ---------------------
 " If true Vim master, use English help file.
-set helplang& helplang=en,ja
+set helplang& helplang=ja,en
 
 " ---------------------------------------
 "  Commands Settings:
@@ -245,10 +173,20 @@ set helplang& helplang=en,ja
 command! DiffOrig vert new | set bt=nofile | r ++edit # | 0d_
       \ | diffthis | wincmd p | diffthis
 
-command! W bufdo w
-command! WQ bufdo wq
 
 command! MOJI %s/./&/g
+"}}}
+
+" ---------------------------------------
+"  Autocmd:
+" ---------------------------------------
+"{{{
+
+autocmd initvim BufReadPost *
+      \ if line("'\"") > 0 && line ("'\"") <= line("$") |
+      \   exe "normal! g'\"" |
+      \ endif
+autocmd initvim BufWritePre * let &bex = '.' . strftime("%Y%m%d_%H%M%S")
 "}}}
 
 " ---------------------------------------
@@ -319,30 +257,16 @@ autocmd initvim BufWritePost $XDG_CONFIG_HOME/nvim/init.vim so $XDG_CONFIG_HOME/
 
 
 " ---------------------------------------
-"  Comands:
-" ---------------------------------------
-"{{{
-
-
-"}}}
-
-" ---------------------------------------
 "  Dein Scripts:
 " ---------------------------------------
 "{{{
-if &compatible
-  set nocompatible               " Be iMproved
-endif
 
-" Required:
 set runtimepath+=$XDG_CACHE_HOME/dein/repos/github.com/Shougo/dein.vim
 
-" Required:
 if dein#load_state('$XDG_CACHE_HOME/dein')
   call dein#begin('$XDG_CACHE_HOME/dein')
 
   " Let dein manage dein
-  " Required:
   call dein#add('$XDG_CACHE_HOME/dein/repos/github.com/Shougo/dein.vim')
 
   " core plugin
@@ -377,7 +301,6 @@ if dein#load_state('$XDG_CACHE_HOME/dein')
   call dein#add('LeafCage/foldCC.vim')
 
   call dein#add('lervag/vimtex')
-  " カッコ補完プラグイン
   call dein#add('cohama/lexima.vim')
 
   " Required :
@@ -424,7 +347,7 @@ colorscheme my_default
 hi Visual ctermbg = 6
 
 highlight conceal ctermfg=7 ctermbg=black guibg=darkgray
-"{{{
+" test "{{{
 "}}}
 hi Folded     term=standout ctermbg=17 ctermfg=white
 hi FoldColumn term=standout ctermbg=16 ctermfg=2
@@ -606,12 +529,10 @@ set concealcursor=""
 " cmap / cnoremap  |    -   |   -    |    @    |   -    |   -    |    -     |
 "---------------------------------------------------------------------------"
 
-map  ─Control-h <C-h>
-map! ─Control-h <C-h>
 let maplocalleader = "\<Space>"
 
 " ---------------------------------------
-"  key map (n):
+"  Key Map (n):
 " ---------------------------------------
 "{{{
 " simple mapping -------------------
@@ -622,9 +543,9 @@ map gm %
 nnoremap tcou :%s/.//gn
 
 
+nmap <silent> <C-_> <plug>(caw:hatpos:toggle)
 " spell
 nnoremap <C-s> z=
-nmap <silent> " <plug>(caw:hatpos:toggle)
 nnoremap con J
 " 行を移動
 nnoremap <C-Up> "zdd<Up>"zP
@@ -958,38 +879,13 @@ function! s:defx_my_settings() abort
 endfunction
 "}}}
 
-" marks ------------------------------{{{
-" <C-m> と <CR> の２つはつながってる
-" nnoremap <C-> '
-nnoremap <CR> <CR>
-"}}}
-
 " function key
 " default: map <f1> to display the help file
 " map <f2> to toggle show Information
 nnoremap <f2> :
       \:set cursorcolumn!<CR>
-let copymode=0
-nnoremap <f14> :
-      \:let copymode=(copymode+1)%2<CR>
-      \:if copymode == 1<CR>
-      \:    set foldcolumn=0<CR>
-      \:    set nonumber<CR>
-      \:else<CR>
-      \:    set foldcolumn=3<CR>
-      \:    set number<CR>
-      \:endif<CR>
-      \<CR>
 
-
-"\:let hi_cursorline=(hi_cursorline/2+1)%2*2<CR>
-"\:if hi_cursorline == 0<CR>
-"\:    hi Cursorline =0<CR>
-"\:else<CR>
-"\:    hi Cursorline =0<CR>
-"\:endif<CR>
-"\<CR>
-" map <f4> to edit init.vim
+" map <f5> to edit init.vim
 nnoremap <f4> :<C-u>.tabedit $XDG_CONFIG_HOME/nvim/init.vim<CR>
 " map <f5> to source init.vim
 nnoremap <f5> :<C-u>source $XDG_CONFIG_HOME/nvim/init.vim<CR>
@@ -1020,7 +916,6 @@ nnoremap <f12> :
 
 " small trick -----------------------
 " delete only last char in current line
-" nnoremap <expr><silent> d, Get_curpos_to_curpos()."\A<C-h><ESC>"
 nnoremap <silent>d, :
       \:let save_curpos = getcurpos()<CR>
       \A<C-h><ESC>
@@ -1028,7 +923,7 @@ nnoremap <silent>d, :
 "}}}
 
 " ---------------------------------------
-"  key map (c):
+"  Key Map (c):
 " ---------------------------------------
 "{{{
 cnoremap jj <C-c>
@@ -1039,7 +934,7 @@ set wildchar=<C-l>
 "}}}
 
 " ---------------------------------------
-"  key map (v):
+"  Key Map (v):
 " ---------------------------------------
 "{{{
 vnoremap  *  "zy/\V<C-r>z<CR>
@@ -1050,8 +945,7 @@ vnoremap <C-Down> "zx"zp`[V`]
 
 vnoremap cou :s/.//gn<CR>
 
-" comment (caw)
-vmap <silent> " <plug>(caw:hatpos:toggle)
+vmap <silent> <C-_> <plug>(caw:hatpos:toggle)
 
 " vnoremap Y :<BS><BS><BS><BS><BS>
 vnoremap Y "*y
@@ -1066,7 +960,7 @@ vnoremap Y "*y
 "}}}
 
 " ---------------------------------------
-"  key map (i):
+"  Key Map (i):
 " ---------------------------------------
 "{{{
 noremap! <C-d> <Del>
@@ -1118,19 +1012,18 @@ set matchpairs=(:),{:},[:],<:>
 " noremap n gj
 " noremap <silent> N     :keepjumps normal ─J<CR>
 " xnoremap <expr>  N     To_bottom_of_window_OR_scroll_next_page()
-" 
+"
 " noremap k e
 " noremap K E
 " noremap e gk
 " noremap <silent> E     :keepjumps normal ─K<CR>
 " xnoremap <expr>  E     To_top_of_window_OR_scroll_previous_page()
-" 
+"
 " noremap l i
 " noremap L I
 " noremap i l
 " noremap I $
 " "}}}
-
 
 " ---------------------------------------
 "  Plugin Setting:
