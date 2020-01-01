@@ -3053,11 +3053,11 @@
                         ]
                     },
                     {
-                        "description": "C-J で Return（衝突注意。vim も日本語をリターンできないから欲しい",
+                        "description": "C-M で Return（衝突注意。vim も日本語をリターンできないから欲しい）",
                         "manipulators": [
                             {
                                 "from": {
-                                    "key_code": "j",
+                                    "key_code": "m",
                                     "modifiers": {
                                         "mandatory": [
                                             "control"
@@ -7207,31 +7207,6 @@
                                     },
                                     {
                                         "key_code": "lang2"
-                                    }
-                                ],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "[auxilary] C-k で œ を送る",
-                        "manipulators": [
-                            {
-                                "conditions": [],
-                                "from": {
-                                    "key_code": "k",
-                                    "modifiers": {
-                                        "mandatory": [
-                                            "control"
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "q",
-                                        "modifiers": [
-                                            "option"
-                                        ]
                                     }
                                 ],
                                 "type": "basic"

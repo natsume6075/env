@@ -195,11 +195,11 @@
       ]
     },
     {
-      "description": "C-J で Return（衝突注意。vim も日本語をリターンできないから欲しい）",
+      "description": "C-M で Return（衝突注意。vim も日本語をリターンできないから欲しい）",
       "manipulators": [
         { "type": "basic",
           "from": {
-            "key_code": "j",
+            "key_code": "m",
             "modifiers": {
               "mandatory": ["control"]
             }
