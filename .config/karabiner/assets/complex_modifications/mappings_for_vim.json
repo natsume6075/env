@@ -14,14 +14,49 @@
           "from": { "key_code": "j" },
           "to": [
             { "key_code": "j" },
-            { "key_code": "return_or_enter" },
-            { "key_code": "lang2" }
+            { "key_code": "return_or_enter" }
           ]
         },
         { "type": "basic",
           "conditions": [
             { "type": "variable_if", "name": "j_key", "value": 0 },
             { "type": "frontmost_application_if", "bundle_identifiers": [ "^com\\.googlecode\\.iterm2" ] },
+            { "type": "input_source_if",          "input_sources": [ { "language": "^ja$" } ] }
+          ],
+          "from": {
+            "key_code": "j"
+          },
+          "to": [
+            { "set_variable": { "name": "j_key", "value": 1 } },
+            { "key_code": "j" }
+          ],
+          "to_delayed_action": {
+            "to_if_invoked": [
+              { "set_variable": { "name": "j_key", "value": 0 } }
+            ],
+            "to_if_canceled": [
+              { "set_variable": { "name": "j_key", "value": 0 } }
+            ]
+          }
+        },
+
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "variable_if", "name": "j_key", "value": 1 },
+            { "type": "frontmost_application_if", "bundle_identifiers": [ "neovim-qt" ] },
+            { "type": "input_source_if",          "input_sources": [ { "language": "^ja$" } ] }
+          ],
+          "from": { "key_code": "j" },
+          "to": [
+            { "key_code": "j" },
+            { "key_code": "return_or_enter" }
+          ]
+        },
+        { "type": "basic",
+          "conditions": [
+            { "type": "variable_if", "name": "j_key", "value": 0 },
+            { "type": "frontmost_application_if", "bundle_identifiers": [ "neovim-qt" ] },
             { "type": "input_source_if",          "input_sources": [ { "language": "^ja$" } ] }
           ],
           "from": {

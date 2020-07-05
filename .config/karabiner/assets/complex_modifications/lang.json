@@ -27,31 +27,6 @@
           "to_if_held_down": [
           ]
         },
-        {
-          "type": "basic",
-          "conditions": [
-            { "type": "frontmost_application_if", "bundle_identifiers": [ "^com\\.googlecode\\.iterm2" ] }
-          ],
-          "from": {
-            "key_code": "lang1",
-            "modifiers":{
-              "optional" :["any"]
-            }
-          },
-          "to": [
-            { "set_variable": { "name": "simbol_mode", "value": 1 } }
-          ],
-          "to_after_key_up": [
-            { "set_variable": { "name": "simbol_mode", "value": 0 } }
-          ],
-          "to_if_alone": [
-            { "key_code": "lang1" },
-            { "key_code": "f", "modifiers":["control","shift","command"] }
-          ],
-          "to_if_held_down": [
-          ]
-        },
-
 
         {
           "type": "basic",

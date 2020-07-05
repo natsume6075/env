@@ -1,22 +1,369 @@
 {
-  "title": "[2] map SPACE to CTRL(if press with any key)",
+  "title": "[1] map SPACE",
   "rules": [
     {
-      "description": "[2] スペースが他キーと同時押しされたときは，CTRLとして扱う。単体なら，spacebar。",
+      "description": "[1] map Space to emacs like key bind ( abcdefhlmnpr)",
       "manipulators": [
         {
           "type": "basic",
           "from": {
             "key_code": "spacebar",
-            "modifiers":{"optional":["any"]}
+            "modifiers":{
+              "optional" :["any"]
+            }
           },
           "to": [
-            {"key_code": "left_control", "lazy": true}
+            { "set_variable": { "name": "space_mode", "value": 1 } }
+          ],
+          "to_after_key_up": [
+            { "set_variable": { "name": "space_mode", "value": 0 } }
           ],
           "to_if_alone": [
-            {"key_code": "spacebar"}
+            { "key_code": "spacebar" }
+          ],
+          "to_if_held_down": [
+          ]
+        },
+
+
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "variable_if", "name": "space_mode", "value": 1 }
+          ],
+          "from": {
+            "key_code": "a"
+          },
+          "to": [
+            { "key_code": "home", "modifiers":[] }
+          ]
+        },
+
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "variable_if", "name": "space_mode", "value": 1 }
+          ],
+          "from": {
+            "key_code": "b"
+          },
+          "to": [
+            { "key_code": "left_arrow", "modifiers":[] }
+          ]
+        },
+
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "variable_if", "name": "space_mode", "value": 1 }
+          ],
+          "from": {
+            "key_code": "c"
+          },
+          "to": [
+            { "key_code": "escape", "modifiers":[] }
+          ]
+        },
+
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "variable_if", "name": "space_mode", "value": 1 }
+          ],
+          "from": {
+            "key_code": "d"
+          },
+          "to": [
+            { "key_code": "delete_forward", "modifiers":[] }
+          ]
+        },
+
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "variable_if", "name": "space_mode", "value": 1 }
+          ],
+          "from": {
+            "key_code": "e"
+          },
+          "to": [
+            { "key_code": "end", "modifiers":[] }
+          ]
+        },
+
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "variable_if", "name": "space_mode", "value": 1 }
+          ],
+          "from": {
+            "key_code": "f"
+          },
+          "to": [
+            { "key_code": "right_arrow", "modifiers":[] }
+          ]
+        },
+
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "variable_if", "name": "space_mode", "value": 1 }
+          ],
+          "from": {
+            "key_code": "g"
+          },
+          "to": [
+            { "key_code": "g", "modifiers":[] }
+          ]
+        },
+
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "variable_if", "name": "space_mode", "value": 1 }
+          ],
+          "from": {
+            "key_code": "h"
+          },
+          "to": [
+            { "key_code": "delete_or_backspace", "modifiers":[] }
+          ]
+        },
+
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "variable_if", "name": "space_mode", "value": 1 }
+          ],
+          "from": {
+            "key_code": "i"
+          },
+          "to": [
+            { "key_code": "i", "modifiers":[] }
+          ]
+        },
+
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "variable_if", "name": "space_mode", "value": 1 }
+          ],
+          "from": {
+            "key_code": "j"
+          },
+          "to": [
+            { "key_code": "j", "modifiers":[] }
+          ]
+        },
+
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "variable_if", "name": "space_mode", "value": 1 }
+          ],
+          "from": {
+            "key_code": "k"
+          },
+          "to": [
+            { "key_code": "k", "modifiers":[] }
+          ]
+        },
+
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "variable_if", "name": "space_mode", "value": 1 }
+          ],
+          "from": {
+            "key_code": "l"
+          },
+          "to": [
+            { "key_code": "tab", "modifiers":[] }
+          ]
+        },
+
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "variable_if", "name": "space_mode", "value": 1 }
+          ],
+          "from": {
+            "key_code": "m"
+          },
+          "to": [
+            { "key_code": "return_or_enter", "modifiers":[] }
+          ]
+        },
+
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "variable_if", "name": "space_mode", "value": 1 }
+          ],
+          "from": {
+            "key_code": "n"
+          },
+          "to": [
+            { "key_code": "down_arrow", "modifiers":[] }
+          ]
+        },
+
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "variable_if", "name": "space_mode", "value": 1 }
+          ],
+          "from": {
+            "key_code": "o"
+          },
+          "to": [
+            { "key_code": "o", "modifiers":[] }
+          ]
+        },
+
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "variable_if", "name": "space_mode", "value": 1 }
+          ],
+          "from": {
+            "key_code": "p"
+          },
+          "to": [
+            { "key_code": "up_arrow", "modifiers":[] }
+          ]
+        },
+
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "variable_if", "name": "space_mode", "value": 1 }
+          ],
+          "from": {
+            "key_code": "q"
+          },
+          "to": [
+            { "key_code": "q", "modifiers":[] }
+          ]
+        },
+
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "variable_if", "name": "space_mode", "value": 1 }
+          ],
+          "from": {
+            "key_code": "r"
+          },
+          "to": [
+            { "pointing_button": "button2", "modifiers":[] }
+          ]
+        },
+
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "variable_if", "name": "space_mode", "value": 1 }
+          ],
+          "from": {
+            "key_code": "s"
+          },
+          "to": [
+            { "key_code": "s", "modifiers":[] }
+          ]
+        },
+
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "variable_if", "name": "space_mode", "value": 1 }
+          ],
+          "from": {
+            "key_code": "t"
+          },
+          "to": [
+            { "key_code": "t", "modifiers":[] }
+          ]
+        },
+
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "variable_if", "name": "space_mode", "value": 1 }
+          ],
+          "from": {
+            "key_code": "u"
+          },
+          "to": [
+            { "key_code": "u", "modifiers":[] }
+          ]
+        },
+
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "variable_if", "name": "space_mode", "value": 1 }
+          ],
+          "from": {
+            "key_code": "v"
+          },
+          "to": [
+            { "key_code": "v", "modifiers":[] }
+          ]
+        },
+
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "variable_if", "name": "space_mode", "value": 1 }
+          ],
+          "from": {
+            "key_code": "w"
+          },
+          "to": [
+            { "key_code": "w", "modifiers":[] }
+          ]
+        },
+
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "variable_if", "name": "space_mode", "value": 1 }
+          ],
+          "from": {
+            "key_code": "x"
+          },
+          "to": [
+            { "key_code": "x", "modifiers":[] }
+          ]
+        },
+
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "variable_if", "name": "space_mode", "value": 1 }
+          ],
+          "from": {
+            "key_code": "y"
+          },
+          "to": [
+            { "key_code": "y", "modifiers":[] }
+          ]
+        },
+
+        {
+          "type": "basic",
+          "conditions": [
+            { "type": "variable_if", "name": "space_mode", "value": 1 }
+          ],
+          "from": {
+            "key_code": "z"
+          },
+          "to": [
+            { "key_code": "z", "modifiers":[] }
           ]
         }
+
       ]
     }
   ]

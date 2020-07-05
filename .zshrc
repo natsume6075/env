@@ -7,6 +7,8 @@ export LANG=ja_JP.UTF-8
 # PATH
 export PATH="$HOME/bin:$PATH"
 export PATH="//Applications/gnuplot.app:$PATH"
+export PATH=/usr/local/bin:$PATH
+export PATH=/usr/local/Cellar/gcc/9.2.0_3/bin/:$PATH
 
 # 色を使用
 autoload -Uz colors
